@@ -1,2 +1,2 @@
-# HatfieldEnviroData.DataAcquire
-Hatfield Enviro Data Management System Quality Data Acquire Module
+# HatfieldEnviroData.DataAcquisition
+Hatfield Enviro Data Management System Quality Data Acquisition Module
