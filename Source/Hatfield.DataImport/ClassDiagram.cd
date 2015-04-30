@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Hatfield.EnviroData.DataImport.ExtractedDataset" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAIAQAAAEAAAACAIA=</HashCode>
+      <FileName>ExtractedDataset.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Hatfield.EnviroData.DataImport.ParsingResult" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAQAAAAAAAAABEAAgIAAAAAA=</HashCode>
+      <FileName>ParsingResult.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Hatfield.EnviroData.DataImport.ResultLevelHelper" Collapsed="true">
+    <Position X="6.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ResultLevelHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Hatfield.EnviroData.DataImport.ICriteria" Collapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ICriteria.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Hatfield.EnviroData.DataImport.IDataImporter" Collapsed="true">
+    <Position X="4.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAIAAAAAAAAAADAAAAAAA=</HashCode>
+      <FileName>IDataImporter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Hatfield.EnviroData.DataImport.IDataSource" Collapsed="true">
+    <Position X="6.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>IDataSource.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Hatfield.EnviroData.DataImport.IDataSourceLocation" Collapsed="true">
+    <Position X="8.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IDataSourceLocation.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Hatfield.EnviroData.DataImport.IDataToImport" Collapsed="true">
+    <Position X="3" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>IDataToImport.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Hatfield.EnviroData.DataImport.IExtractConfiguration" Collapsed="true">
+    <Position X="4.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>IExtractConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Hatfield.EnviroData.DataImport.IExtractedDataset" Collapsed="true">
+    <Position X="6.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAEAAAACAIA=</HashCode>
+      <FileName>IExtractedDataset.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Hatfield.EnviroData.DataImport.IImporterBuilder" Collapsed="true">
+    <Position X="8.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IImporterBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Hatfield.EnviroData.DataImport.IParser" Collapsed="true">
+    <Position X="3" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IParser.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Hatfield.EnviroData.DataImport.IParserFactory" Collapsed="true">
+    <Position X="4.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IParserFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Hatfield.EnviroData.DataImport.IParsingResult" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>IParsingResult.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Hatfield.EnviroData.DataImport.IResult" Collapsed="true">
+    <Position X="0.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAIAAAAAA=</HashCode>
+      <FileName>IResult.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Hatfield.EnviroData.DataImport.IValueAssigner" Collapsed="true">
+    <Position X="6.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IValueAssigner.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Hatfield.EnviroData.DataImport.ResultLevel" Collapsed="true">
+    <Position X="3" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABgAAAAAAAAAAAAAAAAQAAAAAAAAQABAAAAAA=</HashCode>
+      <FileName>ResultLevel.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

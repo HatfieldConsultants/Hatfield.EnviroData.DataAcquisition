@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.DataImport", "Source\Hatfield.DataImport\Hatfield.EnviroData.DataImport.csproj", "{FB279550-18D7-43D5-BC1E-01B651ED1C76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.DataImport.CSV", "Source\Hatfield.DataImport.CSV\Hatfield.EnviroData.DataImport.CSV.csproj", "{A3DCC824-A35F-4425-B9DB-ADB876D8A5E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{4FDB23DD-4C5E-44DC-BC91-AB17F1E04D1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.DataImport.CSV.Test", "Test\Hatfield.DataImport.CSV.Test\Hatfield.DataImport.CSV.Test.csproj", "{07CF7A93-EC3E-4910-B754-E292374B0FE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.DataImport.Test", "Test\Hatfield.DataImport.Test\Hatfield.DataImport.Test.csproj", "{9E1053F8-8FB1-4591-A951-307FF6F928AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "Deploy", "{240D8D57-B89D-4B1C-B9AE-1378962BF6FD}"
+	ProjectSection(SolutionItems) = preProject
+		Deploy\build.xml = Deploy\build.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3708C995-EADE-4587-924C-143D58F61724}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB279550-18D7-43D5-BC1E-01B651ED1C76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB279550-18D7-43D5-BC1E-01B651ED1C76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB279550-18D7-43D5-BC1E-01B651ED1C76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB279550-18D7-43D5-BC1E-01B651ED1C76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3DCC824-A35F-4425-B9DB-ADB876D8A5E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3DCC824-A35F-4425-B9DB-ADB876D8A5E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3DCC824-A35F-4425-B9DB-ADB876D8A5E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3DCC824-A35F-4425-B9DB-ADB876D8A5E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07CF7A93-EC3E-4910-B754-E292374B0FE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07CF7A93-EC3E-4910-B754-E292374B0FE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07CF7A93-EC3E-4910-B754-E292374B0FE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07CF7A93-EC3E-4910-B754-E292374B0FE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E1053F8-8FB1-4591-A951-307FF6F928AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E1053F8-8FB1-4591-A951-307FF6F928AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E1053F8-8FB1-4591-A951-307FF6F928AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E1053F8-8FB1-4591-A951-307FF6F928AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{07CF7A93-EC3E-4910-B754-E292374B0FE0} = {4FDB23DD-4C5E-44DC-BC91-AB17F1E04D1D}
+		{9E1053F8-8FB1-4591-A951-307FF6F928AF} = {4FDB23DD-4C5E-44DC-BC91-AB17F1E04D1D}
+	EndGlobalSection
+EndGlobal
