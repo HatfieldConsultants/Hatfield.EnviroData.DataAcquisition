@@ -6,9 +6,9 @@ using System.IO;
 
 using CsvHelper;
 
-using Hatfield.EnviroData.DataImport;
+using Hatfield.EnviroData.DataAcquisition;
 
-namespace Hatfield.EnviroData.DataImport.CSV
+namespace Hatfield.EnviroData.DataAcquisition.CSV
 {
     public class CSVDataSource : IDataSource
     {

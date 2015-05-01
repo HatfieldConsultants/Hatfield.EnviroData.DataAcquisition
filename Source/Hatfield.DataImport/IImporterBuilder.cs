@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Hatfield.EnviroData.DataImport
+namespace Hatfield.EnviroData.DataAcquisition
 {
     public interface IImporterBuilder
     {
-        IDataImporter Build();
+        IDataAcquisitioner Build();
     }
 }

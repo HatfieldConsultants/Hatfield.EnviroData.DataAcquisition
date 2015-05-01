@@ -5,9 +5,9 @@ using System.Text;
 
 using NUnit.Framework;
 
-using Hatfield.EnviroData.DataImport.ValueAssigners;
+using Hatfield.EnviroData.DataAcquisition.ValueAssigners;
 
-namespace Hatfield.EnviroData.DataImport.Test.ValueAssigners
+namespace Hatfield.EnviroData.DataAcquisition.Test.ValueAssigners
 {
     [TestFixture]
     public class SimpleValueAssignerTest

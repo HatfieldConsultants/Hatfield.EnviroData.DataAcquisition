@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Reflection;
 
-namespace Hatfield.EnviroData.DataImport.Helpers
+namespace Hatfield.EnviroData.DataAcquisition.Helpers
 {
     public static class PropertyInfoHelper
     {

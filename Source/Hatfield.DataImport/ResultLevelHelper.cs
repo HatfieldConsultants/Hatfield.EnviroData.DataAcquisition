@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Hatfield.EnviroData.DataImport
+namespace Hatfield.EnviroData.DataAcquisition
 {
     public class ResultLevelHelper
     {

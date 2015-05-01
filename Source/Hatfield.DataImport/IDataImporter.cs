@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Hatfield.EnviroData.DataImport
+namespace Hatfield.EnviroData.DataAcquisition
 {
-    public interface IDataImporter
+    public interface IDataAcquisitioner
     {
         bool IsDataSourceSupported(IDataSource dataSource);
         IExtractedDataset Extract(IDataSource dataSource);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Hatfield.EnviroData.DataImport.CSV
+namespace Hatfield.EnviroData.DataAcquisition.CSV
 {
     public class CSVDataToImport : IDataToImport
     {

@@ -52,9 +52,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hatfield.DataImport\Hatfield.EnviroData.DataImport.csproj">
+    <ProjectReference Include="..\Hatfield.DataImport\Hatfield.EnviroData.DataAcquisition.csproj">
       <Project>{fb279550-18d7-43d5-bc1e-01b651ed1c76}</Project>
-      <Name>Hatfield.EnviroData.DataImport</Name>
+      <Name>Hatfield.EnviroData.DataAcquisition</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

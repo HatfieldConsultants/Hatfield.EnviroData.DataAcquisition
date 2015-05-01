@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Hatfield.EnviroData.DataImport;
+using Hatfield.EnviroData.DataAcquisition;
 
-namespace Hatfield.EnviroData.DataImport.CSV
+namespace Hatfield.EnviroData.DataAcquisition.CSV
 {
     public class CSVDataSourceLocation : IDataSourceLocation
     {

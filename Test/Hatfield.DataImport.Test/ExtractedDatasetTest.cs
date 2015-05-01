@@ -5,7 +5,7 @@ using System.Text;
 
 using NUnit.Framework;
 
-namespace Hatfield.EnviroData.DataImport.Test
+namespace Hatfield.EnviroData.DataAcquisition.Test
 {
     [TestFixture]
     public class ExtractedDatasetTest

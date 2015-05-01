@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Hatfield.EnviroData.DataImport.ValueParsers;
+using Hatfield.EnviroData.DataAcquisition.ValueParsers;
 
-namespace Hatfield.EnviroData.DataImport
+namespace Hatfield.EnviroData.DataAcquisition
 {
     public class DefaultParserFactory : IParserFactory
     {

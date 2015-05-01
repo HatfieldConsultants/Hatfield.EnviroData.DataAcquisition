@@ -62,9 +62,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Source\Hatfield.DataImport\Hatfield.EnviroData.DataImport.csproj">
+    <ProjectReference Include="..\..\Source\Hatfield.DataImport\Hatfield.EnviroData.DataAcquisition.csproj">
       <Project>{fb279550-18d7-43d5-bc1e-01b651ed1c76}</Project>
-      <Name>Hatfield.EnviroData.DataImport</Name>
+      <Name>Hatfield.EnviroData.DataAcquisition</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

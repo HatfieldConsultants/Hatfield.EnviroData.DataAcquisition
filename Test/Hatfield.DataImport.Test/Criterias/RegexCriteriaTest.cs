@@ -5,9 +5,9 @@ using System.Text;
 
 using NUnit.Framework;
 
-using Hatfield.EnviroData.DataImport.Criterias;
+using Hatfield.EnviroData.DataAcquisition.Criterias;
 
-namespace Hatfield.EnviroData.DataImport.Test.Criterias
+namespace Hatfield.EnviroData.DataAcquisition.Test.Criterias
 {
     [TestFixture]
     public class RegexCriteriaTest
