@@ -7,8 +7,8 @@
     <ProjectGuid>{FB279550-18D7-43D5-BC1E-01B651ED1C76}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Hatfield.DataImport</RootNamespace>
-    <AssemblyName>Hatfield.DataImport</AssemblyName>
+    <RootNamespace>Hatfield.EnviroData.DataAcquisition</RootNamespace>
+    <AssemblyName>Hatfield.EnviroData.DataAcquisition</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>

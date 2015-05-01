@@ -7,8 +7,8 @@
     <ProjectGuid>{A3DCC824-A35F-4425-B9DB-ADB876D8A5E3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Hatfield.DataImport.CSV</RootNamespace>
-    <AssemblyName>Hatfield.DataImport.CSV</AssemblyName>
+    <RootNamespace>Hatfield.EnviroData.DataAcquisition.CSV</RootNamespace>
+    <AssemblyName>Hatfield.EnviroData.DataAcquisition.CSV</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
@@ -52,7 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hatfield.DataImport\Hatfield.EnviroData.DataAcquisition.csproj">
+    <ProjectReference Include="..\Hatfield.EnviroData.DataAcquisition\Hatfield.EnviroData.DataAcquisition.csproj">
       <Project>{fb279550-18d7-43d5-bc1e-01b651ed1c76}</Project>
       <Name>Hatfield.EnviroData.DataAcquisition</Name>
     </ProjectReference>

@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.DataAcquisition", "Source\Hatfield.DataImport\Hatfield.EnviroData.DataAcquisition.csproj", "{FB279550-18D7-43D5-BC1E-01B651ED1C76}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.DataAcquisition", "Source\Hatfield.EnviroData.DataAcquisition\Hatfield.EnviroData.DataAcquisition.csproj", "{FB279550-18D7-43D5-BC1E-01B651ED1C76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.DataAcquisition.CSV", "Source\Hatfield.DataImport.CSV\Hatfield.EnviroData.DataAcquisition.CSV.csproj", "{A3DCC824-A35F-4425-B9DB-ADB876D8A5E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.DataAcquisition.CSV", "Source\Hatfield.EnviroData.DataAcquisition.CSV\Hatfield.EnviroData.DataAcquisition.CSV.csproj", "{A3DCC824-A35F-4425-B9DB-ADB876D8A5E3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{4FDB23DD-4C5E-44DC-BC91-AB17F1E04D1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.DataImport.CSV.Test", "Test\Hatfield.DataImport.CSV.Test\Hatfield.DataImport.CSV.Test.csproj", "{07CF7A93-EC3E-4910-B754-E292374B0FE0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.DataAcquisition.CSV.Test", "Test\Hatfield.EnviroData.DataAcquisition.CSV.Test\Hatfield.EnviroData.DataAcquisition.CSV.Test.csproj", "{07CF7A93-EC3E-4910-B754-E292374B0FE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.DataImport.Test", "Test\Hatfield.DataImport.Test\Hatfield.DataImport.Test.csproj", "{9E1053F8-8FB1-4591-A951-307FF6F928AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.DataAcquisition.Test", "Test\Hatfield.EnviroData.DataAcquisition.Test\Hatfield.EnviroData.DataAcquisition.Test.csproj", "{9E1053F8-8FB1-4591-A951-307FF6F928AF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "Deploy", "{240D8D57-B89D-4B1C-B9AE-1378962BF6FD}"
 	ProjectSection(SolutionItems) = preProject
