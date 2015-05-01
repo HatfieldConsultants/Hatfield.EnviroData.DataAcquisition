@@ -27,7 +27,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <SolutionPath>..\Hatfield.EnviroData.DataImport.sln</SolutionPath>
+    <SolutionPath>..\Hatfield.EnviroData.DataAcquisition.sln</SolutionPath>
     <TestResultDirectory>..\TestResults</TestResultDirectory>
     <OpenCoverMSBuildTasksPath>C:\Apps\OpenCover-4.0.804\MSBuild</OpenCoverMSBuildTasksPath>
     <NUnitPath>C:\Apps\NUnit 2.6.1\bin</NUnitPath>
