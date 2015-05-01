@@ -7,6 +7,6 @@ namespace Hatfield.EnviroData.DataAcquisition
 {
     public interface IImporterBuilder
     {
-        IDataAcquisitioner Build();
+        IDataImporter Build();
     }
 }

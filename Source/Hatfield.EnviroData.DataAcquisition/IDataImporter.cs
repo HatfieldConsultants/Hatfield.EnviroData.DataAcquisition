@@ -5,10 +5,10 @@ using System.Text;
 
 namespace Hatfield.EnviroData.DataAcquisition
 {
-    public interface IDataAcquisitioner
+    public interface IDataImporter
     {
-        bool IsDataSourceSupported(IDataSource dataSource);
-        IExtractedDataset Extract(IDataSource dataSource);
+        bool IsDataSourceSupported(IDataToImport dataSource);
+        IExtractedDataset Extract(IDataToImport dataSource);
         IEnumerable<ICriteria> AllCriteria { get; }
         IEnumerable<IExtractConfiguration> ExtractConfigurations { get; }
     }

@@ -7,9 +7,9 @@ using Hatfield.EnviroData.DataAcquisition;
 
 namespace Hatfield.EnviroData.DataAcquisition.CSV
 {
-    public abstract class CSVDataAcquisitionerBase : IDataAcquisitioner
+    public abstract class CSVDataImporterBase : IDataImporter
     {
-        public virtual bool IsDataSourceSupported(IDataSource dataSource)
+        public virtual bool IsDataSourceSupported(IDataToImport dataSource)
         {
             if (dataSource.GetType() == typeof(CSVDataSource))
             {
@@ -21,7 +21,7 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV
             }
         }
 
-        public IExtractedDataset Extract(IDataSource dataSource)
+        public IExtractedDataset Extract(IDataToImport dataSource)
         {
             if (IsDataSourceSupported(dataSource))
             {
@@ -34,8 +34,8 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV
             }
         }
 
-        protected abstract bool ValidateFormat(IDataSource dataSource);
-        protected abstract IExtractedDataset ExtractDataFromValidatedDataSource(IDataSource dataSource);
+        protected abstract bool ValidateFormat(IDataToImport dataSource);
+        protected abstract IExtractedDataset ExtractDataFromValidatedDataSource(IDataToImport dataSource);
 
 
         public IEnumerable<ICriteria> AllCriteria

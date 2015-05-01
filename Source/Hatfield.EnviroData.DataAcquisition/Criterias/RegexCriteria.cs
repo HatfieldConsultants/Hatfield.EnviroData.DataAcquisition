@@ -15,7 +15,7 @@ namespace Hatfield.EnviroData.DataAcquisition.Criterias
             _matchingRegex = matchingRegex;
         }
 
-        public bool Meet(object value)
+        public virtual bool Meet(object value)
         {
             return Regex.IsMatch(value.ToString(), _matchingRegex, RegexOptions.IgnoreCase);
         }
