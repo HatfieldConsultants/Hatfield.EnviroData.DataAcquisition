@@ -56,12 +56,25 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV
         {
             var results = new List<IResult>();
             var locationToParse = new CSVDataSourceLocation(currentRow, _columnIndex);
-            var parsingResult = _parser.Parse(dataToImport, locationToParse, _propertyType) as IParsingResult;
 
-            _valueAssigner.AssignValue(model, _propertyPath, parsingResult.Value, _propertyType);
+            try
+            {
+                var parsingResult = _parser.Parse(dataToImport, locationToParse, _propertyType) as IParsingResult;
 
-            results.Add(new BaseResult(ResultLevel.DEBUG, string.Format("Extract data from csv file and assign to model {0}", locationToParse.ToString())));
+                _valueAssigner.AssignValue(model, _propertyPath, parsingResult.Value, _propertyType);
+
+                results.Add(new BaseResult(ResultLevel.DEBUG, string.Format("Extract data from csv file and assign to model {0}", locationToParse.ToString())));
+                return results;
+            }
+            catch(Exception ex)
+            {
+                results.Add(new BaseResult(ResultLevel.ERROR, string.Format("Extract data from csv file and assign to model fail. {0}", locationToParse.ToString())));
+                
+            }
+            
             return results;
+            
+            
         }
     }
 }
