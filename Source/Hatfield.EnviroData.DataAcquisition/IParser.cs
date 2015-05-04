@@ -7,6 +7,6 @@ namespace Hatfield.EnviroData.DataAcquisition
 {
     public interface IParser
     {
-        IResult Parse<T>(IDataToImport dataToImport, IDataSourceLocation dataSourceLocation);
+        IResult Parse(IDataToImport dataToImport, IDataSourceLocation dataSourceLocation, Type type);
     }
 }

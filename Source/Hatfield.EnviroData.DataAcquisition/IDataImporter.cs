@@ -7,8 +7,8 @@ namespace Hatfield.EnviroData.DataAcquisition
 {
     public interface IDataImporter
     {
-        bool IsDataSourceSupported(IDataToImport dataSource);
-        IExtractedDataset Extract<T>(IDataToImport dataSource);
+        bool IsDataSupported(IDataToImport dataToImport);
+        IExtractedDataset<T> Extract<T>(IDataToImport dataToImport) where T : new();
         IEnumerable<IValidationRule> AllValidationRules { get; }
         IEnumerable<IExtractConfiguration> ExtractConfigurations { get; }
     }

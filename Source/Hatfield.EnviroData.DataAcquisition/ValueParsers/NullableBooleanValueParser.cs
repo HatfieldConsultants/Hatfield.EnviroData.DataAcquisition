@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Hatfield.EnviroData.DataAcquisition.ValueParsers
 {
-    public class NullableBooleanValueParser
+    public class NullableBooleanValueParser : IValueParser
     {
         public virtual object Parse(object value)
         {

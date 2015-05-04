@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Hatfield.EnviroData.DataAcquisition
 {
-    public class ExtractedDataset : IExtractedDataset
+    public class ExtractedDataset<T> : IExtractedDataset<T>
     {
         private IEnumerable<IResult> _results;
         private ResultLevel _thresholdLevel = ResultLevel.ERROR;
@@ -21,7 +21,7 @@ namespace Hatfield.EnviroData.DataAcquisition
             _thresholdLevel = thresholdLevel;
         }
 
-        public IEnumerable<object> ExtractedEntities
+        public IEnumerable<T> ExtractedEntities
         {
             get {
                 if (IsExtractedSuccess)
@@ -30,7 +30,8 @@ namespace Hatfield.EnviroData.DataAcquisition
                                    where parsingResult is IParsingResult
                                    select ((IParsingResult)parsingResult).Value;
 
-                    return entities;
+                    var castedResult = entities.Cast<T>();
+                    return castedResult;
                 }
                 else
                 {

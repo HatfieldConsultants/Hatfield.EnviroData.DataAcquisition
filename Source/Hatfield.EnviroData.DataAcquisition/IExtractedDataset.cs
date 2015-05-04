@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Hatfield.EnviroData.DataAcquisition
 {
-    public interface IExtractedDataset
+    public interface IExtractedDataset<T>
     {
-        IEnumerable<object> ExtractedEntities { get; }
+        IEnumerable<T> ExtractedEntities { get; }
         bool IsExtractedSuccess { get; }
         IEnumerable<IResult> AllParsingResults { get; }
         void AddParsingResult(IResult parsingResult);

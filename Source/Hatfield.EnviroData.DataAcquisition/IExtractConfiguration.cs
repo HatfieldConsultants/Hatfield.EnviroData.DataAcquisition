@@ -10,5 +10,6 @@ namespace Hatfield.EnviroData.DataAcquisition
         string PropertyPath { get; }
         IParser PropertyParser { get; }
         IValueAssigner PropertyValueAssigner { get; }
+        IEnumerable<IResult> ExtractData(object model, IDataToImport dataToImport, int currentRow);
     }
 }

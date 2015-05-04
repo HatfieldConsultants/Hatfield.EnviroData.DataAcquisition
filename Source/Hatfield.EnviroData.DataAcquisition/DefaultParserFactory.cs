@@ -28,6 +28,35 @@ namespace Hatfield.EnviroData.DataAcquisition
             {
                 return new DateTimeValueParser();
             }
+            else if (type == typeof(bool))
+            {
+                return new BooleanValueParser();
+            }
+            else if (type == typeof(decimal))
+            {
+                return new DecimalValueParser();
+            }
+
+            else if (type == typeof(int?))
+            {
+                return new NullableIntValueParser();
+            } 
+            else if (type == typeof(double?))
+            {
+                return new NullableDoubleValueParser();
+            }          
+            else if (type == typeof(DateTime?))
+            {
+                return new NullableDateTimeValueParser();
+            }
+            else if (type == typeof(bool?))
+            {
+                return new NullableBooleanValueParser();
+            }
+            else if (type == typeof(decimal?))
+            {
+                return new NullableDecimalValueParser();
+            }
             else
             {
                 throw new NotSupportedException(type.Name + " is not a supported value type");

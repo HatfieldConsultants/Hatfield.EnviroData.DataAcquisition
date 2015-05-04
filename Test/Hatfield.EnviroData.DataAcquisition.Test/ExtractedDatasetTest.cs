@@ -13,7 +13,7 @@ namespace Hatfield.EnviroData.DataAcquisition.Test
         [Test]
         public void AssertExtractedSuccessDataset()
         {
-            var dataSet = new ExtractedDataset(ResultLevel.ERROR);
+            var dataSet = new ExtractedDataset<int>(ResultLevel.ERROR);
 
             var baseResult = new BaseResult(ResultLevel.INFO, "Base result message");
             var parsingResult = new ParsingResult(ResultLevel.INFO, "Parsing result", 123);
@@ -34,7 +34,7 @@ namespace Hatfield.EnviroData.DataAcquisition.Test
         [Test]
         public void AssertExtractedFailDataset()
         {
-            var dataSet = new ExtractedDataset(ResultLevel.FATAL);
+            var dataSet = new ExtractedDataset<int>(ResultLevel.FATAL);
 
             var baseResult = new BaseResult(ResultLevel.FATAL, "Base result message");
             var parsingResult = new ParsingResult(ResultLevel.ERROR, "Parsing result", 123);

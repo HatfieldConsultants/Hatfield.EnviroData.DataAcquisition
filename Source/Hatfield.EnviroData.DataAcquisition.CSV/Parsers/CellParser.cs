@@ -18,7 +18,7 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Parsers
             _parserFactory = parserFactory;
         }
 
-        public IResult Parse<T>(IDataToImport dataToImport, IDataSourceLocation dataSourceLocation)
+        public IResult Parse(IDataToImport dataToImport, IDataSourceLocation dataSourceLocation, Type type)
         {
             if (!(dataSourceLocation is CSVDataSourceLocation))
             {
@@ -37,7 +37,7 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Parsers
             try
             {
                 var rawData = GetRawDataValue(castedDataSourceLocation, castedDataToImport);
-                var parsedValue = ParseRawValue(typeof(T), rawData);
+                var parsedValue = ParseRawValue(type, rawData);
 
                 return new ParsingResult(ResultLevel.INFO, "Parsing value successfully", parsedValue);
             }

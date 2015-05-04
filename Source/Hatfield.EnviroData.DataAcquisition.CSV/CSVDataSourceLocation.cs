@@ -33,5 +33,10 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV
                 return _column;
             }
         }
+
+        public override string ToString()
+        {
+            return string.Format("Row: {0}, Column: {1}", _row, _column);
+        }
     }
 }

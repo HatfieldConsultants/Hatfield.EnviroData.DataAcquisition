@@ -15,14 +15,30 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
         {
             var parserFactory = new DefaultCSVParserFactory();
 
-            var testImporter = new SimpleCSVDataImporter();
+            var testImporter = new SimpleCSVDataImporter(4);
 
-            var dateTimeFieldExtractConfiguration = new SimpleCSVExtractConfiguration(
-                                                                                        "DateTime", 
-                                                                                        parserFactory.GetCellParser(typeof(DateTime)), 
-                                                                                        new SimpleValueAssigner(), 
-                                                                                        typeof(DateTime));
+            var dateTimeFieldExtractConfiguration = new SimpleCSVExtractConfiguration(0,
+                                                                                      "DateTime", 
+                                                                                      parserFactory.GetCellParser(typeof(DateTime)), 
+                                                                                      new SimpleValueAssigner(), 
+                                                                                      typeof(DateTime));
+
+            var waterLevelExtractConfiguration = new SimpleCSVExtractConfiguration(2,
+                                                                                   "WaterLevel",
+                                                                                   parserFactory.GetCellParser(typeof(double?)),
+                                                                                   new SimpleValueAssigner(),
+                                                                                   typeof(double?));
+
+            var waterTemperatureExtractConfiguration = new SimpleCSVExtractConfiguration(3,
+                                                                                         "WaterTemperature",
+                                                                                         parserFactory.GetCellParser(typeof(double?)),
+                                                                                         new SimpleValueAssigner(),
+                                                                                         typeof(double?));
+
+
             testImporter.AddExtractConfiguration(dateTimeFieldExtractConfiguration);
+            testImporter.AddExtractConfiguration(waterLevelExtractConfiguration);
+            testImporter.AddExtractConfiguration(waterTemperatureExtractConfiguration);
 
             return testImporter;
         }

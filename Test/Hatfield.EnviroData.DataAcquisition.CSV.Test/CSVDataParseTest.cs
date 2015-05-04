@@ -37,14 +37,14 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
             dataToImport = dataSource.FetchData();
             var parser = new CellParser(new DefaultParserFactory());
 
-            var parseDoubleResult = parser.Parse<double>(dataToImport, dataSourceLocation);
+            var parseDoubleResult = parser.Parse(dataToImport, dataSourceLocation, typeof(double));
 
             Assert.NotNull(parseDoubleResult);
             Assert.AreEqual(parseDoubleResult.Level, ResultLevel.INFO);
             Assert.AreEqual(parseDoubleResult.Message, "Parsing value successfully");
             Assert.AreEqual(0.3, ((IParsingResult)parseDoubleResult).Value);
 
-            var parseDateTimeResult = parser.Parse<DateTime>(dataToImport, dataDateTimeSourceLocation);
+            var parseDateTimeResult = parser.Parse(dataToImport, dataDateTimeSourceLocation, typeof(DateTime));
 
             Assert.NotNull(parseDateTimeResult);
             Assert.AreEqual(parseDateTimeResult.Level, ResultLevel.INFO);

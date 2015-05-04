@@ -18,14 +18,31 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Importers
             _startRow = startRow;
         }
 
-        public bool IsDataSourceSupported(IDataToImport dataSource)
+        /// <summary>
+        /// Always mark as support now
+        /// Need to improve in the future
+        /// </summary>
+        /// <param name="dataSource"></param>
+        /// <returns></returns>
+        public bool IsDataSupported(IDataToImport dataSource)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
-        public IExtractedDataset Extract<T>(IDataToImport dataSource)
+        public IExtractedDataset<T> Extract<T>(IDataToImport dataSource) where T : new()
         {
-            throw new NotImplementedException();
+            var extractedDataset = new ExtractedDataset<T>();
+            var csvDataSource = dataSource as CSVDataToImport;
+            var rawData = csvDataSource.Data as string[][];
+
+            for (var i = _startRow; i < rawData.Length; i++)
+            {
+                var extractResultsForRow = ExtractDataForSingleRow<T>(_extractConfigurations, dataSource, i);
+                extractedDataset.AddParsingResults(extractResultsForRow);
+
+            }
+
+            return extractedDataset;
         }
 
         public IEnumerable<IValidationRule> AllValidationRules
@@ -50,6 +67,24 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Importers
         public void AddValidationRule(IValidationRule validationRuleToAdd)
         {
             _validationRules.Add(validationRuleToAdd);
+        }
+
+        private IEnumerable<IResult> ExtractDataForSingleRow<T>(IList<IExtractConfiguration> extractConfigurations, IDataToImport dataSource, int currentRow) where T : new()
+        {
+            var resultsForSingleRow = new List<IResult>();
+            var model = new T();
+
+            foreach(var configuration in extractConfigurations)
+            {
+                resultsForSingleRow.AddRange(configuration.ExtractData(model, dataSource, currentRow));
+            }
+
+            var parsingResult = new ParsingResult(ResultLevel.DEBUG, "Extract data from single row success", model);
+
+            resultsForSingleRow.Add(parsingResult);
+
+            return resultsForSingleRow;
+
         }
     }
 }

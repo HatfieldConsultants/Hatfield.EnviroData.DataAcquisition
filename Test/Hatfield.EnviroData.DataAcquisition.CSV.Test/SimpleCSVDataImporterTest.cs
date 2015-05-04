@@ -27,7 +27,7 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
 
             Assert.NotNull(extractedDataSet);
             Assert.AreEqual(true, extractedDataSet.IsExtractedSuccess);
-            Assert.AreEqual(12, extractedDataSet.ExtractedEntities.Count());
+            Assert.AreEqual(8, extractedDataSet.ExtractedEntities.Count());
 
         }
     }
