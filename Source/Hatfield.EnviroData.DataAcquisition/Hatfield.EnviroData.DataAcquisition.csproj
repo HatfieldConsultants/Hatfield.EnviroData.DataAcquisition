@@ -57,6 +57,7 @@
     <Compile Include="IParserFactory.cs" />
     <Compile Include="IParsingResult.cs" />
     <Compile Include="IResult.cs" />
+    <Compile Include="IValidationRule.cs" />
     <Compile Include="IValueAssigner.cs" />
     <Compile Include="IValueParser.cs" />
     <Compile Include="ParsingResult.cs" />

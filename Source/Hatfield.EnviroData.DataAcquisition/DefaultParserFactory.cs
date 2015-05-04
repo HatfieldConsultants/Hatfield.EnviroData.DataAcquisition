@@ -8,11 +8,7 @@ using Hatfield.EnviroData.DataAcquisition.ValueParsers;
 namespace Hatfield.EnviroData.DataAcquisition
 {
     public class DefaultParserFactory : IParserFactory
-    {
-        public virtual IParser GetParser(Type type)
-        {
-            throw new NotImplementedException();
-        }
+    {             
 
         public virtual IValueParser GetValueParser(Type type)
         {

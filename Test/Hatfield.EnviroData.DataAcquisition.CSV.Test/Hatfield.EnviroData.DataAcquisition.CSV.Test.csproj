@@ -47,6 +47,8 @@
     <Compile Include="CSVDataParseTest.cs" />
     <Compile Include="CSVDataSourceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleCSVDataImporterTest.cs" />
+    <Compile Include="TestImporter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Source\Hatfield.EnviroData.DataAcquisition.CSV\Hatfield.EnviroData.DataAcquisition.CSV.csproj">

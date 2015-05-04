@@ -64,7 +64,7 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
             Assert.NotNull(csvData);
             var castedData = csvData.Data as string[][];
             Assert.NotNull(castedData);
-            Assert.AreEqual(11033, castedData.Count());
+            Assert.AreEqual(12, castedData.Count());
             Assert.AreEqual("TOA5", castedData[0][0]);
         }
     }

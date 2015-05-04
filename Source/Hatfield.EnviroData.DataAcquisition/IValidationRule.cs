@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Hatfield.EnviroData.DataAcquisition
 {
-    public interface IParserFactory
-    {        
-        IValueParser GetValueParser(Type type);
+    public interface IValidationRule
+    {
+        IResult Validate();
     }
 }
