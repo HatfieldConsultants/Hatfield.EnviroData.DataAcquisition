@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Hatfield.EnviroData.DataAcquisition.Criterias;
 using Hatfield.EnviroData.DataAcquisition.ValueAssigners;
 using Hatfield.EnviroData.DataAcquisition.CSV.Importers;
 using Hatfield.EnviroData.DataAcquisition.CSV.ValidationRules;
@@ -20,6 +21,9 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
 
             var extensionValidationRule = new CSVFileNameExtensionMatchValidationRule(".dat", false);
             testImporter.AddValidationRule(extensionValidationRule);
+
+            var stationNameMatchRule = new CellValueMatchCriteriaValidationRule(new CSVDataSourceLocation(0, 0), new DefaultCSVParserFactory(), typeof(string), new RegexCriteria("^TOA5$"));
+            testImporter.AddValidationRule(stationNameMatchRule);
 
 
             var dateTimeFieldExtractConfiguration = new SimpleCSVExtractConfiguration(0,
