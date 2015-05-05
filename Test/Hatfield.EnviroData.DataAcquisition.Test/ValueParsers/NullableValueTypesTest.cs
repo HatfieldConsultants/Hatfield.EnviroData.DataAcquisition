@@ -24,9 +24,7 @@ namespace Hatfield.EnviroData.DataAcquisition.Test.ValueParsers
             var decimalValueParser = new NullableDecimalValueParser();
             var parsedValue = decimalValueParser.Parse(valueToParse);
             var doubleValueParser = new NullableDoubleValueParser();
-            var doubleParsedValue = doubleValueParser.Parse(valueToParse);
-            var booleanValueParser = new NullableBooleanValueParser();
-            var boolParsedValue = booleanValueParser.Parse(valueToParse);
+            var doubleParsedValue = doubleValueParser.Parse(valueToParse);                        
             var dateTimeValueParser = new NullableDateTimeValueParser();
             var dateTimeParsedValue = dateTimeValueParser.Parse(valueToParse);
             var intParser = new NullableIntValueParser();
@@ -35,8 +33,7 @@ namespace Hatfield.EnviroData.DataAcquisition.Test.ValueParsers
             Assert.AreEqual(expectedParsedValue, intParsedValue);
             Assert.AreEqual(expectedParsedValue, dateTimeParsedValue);
             Assert.AreEqual(expectedParsedValue, doubleParsedValue);
-            Assert.AreEqual(expectedParsedValue, parsedValue);
-            Assert.AreEqual(expectedParsedValue, boolParsedValue);
+            Assert.AreEqual(expectedParsedValue, parsedValue);            
         }
 
         [Test]
@@ -45,13 +42,11 @@ namespace Hatfield.EnviroData.DataAcquisition.Test.ValueParsers
         public void AssertNullableIntParseFailTest(string valueToParse, Type expectionType)
         {
             var intValueParser = new NullableIntValueParser();
-            var dateTimeValueParser = new NullableDateTimeValueParser();
-            var booleanValueParser = new NullableBooleanValueParser();
+            var dateTimeValueParser = new NullableDateTimeValueParser();            
             var doubleValueParser = new NullableDoubleValueParser();
             var decimalValueParser = new NullableDecimalValueParser();
             Assert.Throws(expectionType, () => intValueParser.Parse(valueToParse));
-            Assert.Throws(expectionType, () => dateTimeValueParser.Parse(valueToParse));
-            Assert.Throws(expectionType, () => booleanValueParser.Parse(valueToParse));
+            Assert.Throws(expectionType, () => dateTimeValueParser.Parse(valueToParse));            
             Assert.Throws(expectionType, () => doubleValueParser.Parse(valueToParse));
             Assert.Throws(expectionType, () => decimalValueParser.Parse(valueToParse));
         }

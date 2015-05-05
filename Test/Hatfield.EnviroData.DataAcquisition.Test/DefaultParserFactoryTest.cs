@@ -17,6 +17,11 @@ namespace Hatfield.EnviroData.DataAcquisition.Test
         [TestCase(typeof(double), typeof(DoubleValueParser))]
         [TestCase(typeof(string), typeof(StringValueParser))]
         [TestCase(typeof(DateTime), typeof(DateTimeValueParser))]
+        [TestCase(typeof(decimal), typeof(DecimalValueParser))]
+        [TestCase(typeof(bool), typeof(BooleanValueParser))]
+        [TestCase(typeof(int?), typeof(NullableIntValueParser))]
+        [TestCase(typeof(DateTime?), typeof(NullableDateTimeValueParser))]
+        [TestCase(typeof(decimal?), typeof(NullableDecimalValueParser))]        
         public void AssertGetValueParserTest(Type valueType, Type expectedValueParserType)
         { 
             var parserFactory = new DefaultParserFactory();
@@ -24,6 +29,15 @@ namespace Hatfield.EnviroData.DataAcquisition.Test
 
             Assert.NotNull(actualValueParser);
             Assert.AreEqual(expectedValueParserType, actualValueParser.GetType());
+        }
+
+        [Test]
+        [TestCase(typeof(bool?), ExpectedException = typeof(NotSupportedException))]
+        public void AssertGetValueParserFailTest(Type valueType)
+        {
+            var parserFactory = new DefaultParserFactory();
+            var actualValueParser = parserFactory.GetValueParser(valueType);
+
         }
     }
 }

@@ -49,10 +49,6 @@ namespace Hatfield.EnviroData.DataAcquisition
             {
                 return new NullableDateTimeValueParser();
             }
-            else if (type == typeof(bool?))
-            {
-                return new NullableBooleanValueParser();
-            }
             else if (type == typeof(decimal?))
             {
                 return new NullableDecimalValueParser();

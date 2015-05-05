@@ -11,5 +11,6 @@ namespace Hatfield.EnviroData.DataAcquisition
         IExtractedDataset<T> Extract<T>(IDataToImport dataToImport) where T : new();
         IEnumerable<IValidationRule> AllValidationRules { get; }
         IEnumerable<IExtractConfiguration> ExtractConfigurations { get; }
+        ResultLevel ThresholdLevel { get; }
     }
 }
