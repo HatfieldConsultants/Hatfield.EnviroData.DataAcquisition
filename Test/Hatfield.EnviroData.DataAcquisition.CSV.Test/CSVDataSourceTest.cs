@@ -43,7 +43,7 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
         public void CSVDataSourceReadTextReaderTest()
         {
             var textReader = File.OpenText(_csvDataFilePath);
-            var dataSource = new CSVDataSource(textReader);
+            var dataSource = new CSVDataSource("CSV_15min.csv", textReader);
 
             AssertData(dataSource);
         }
@@ -52,7 +52,7 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
         public void CSVDataSourceReadStreamTest()
         {
             var dataStream = new FileStream(_csvDataFilePath, FileMode.Open);
-            var dataSource = new CSVDataSource(dataStream);
+            var dataSource = new CSVDataSource("DAT_15min.dat", dataStream);
 
             AssertData(dataSource);
         }

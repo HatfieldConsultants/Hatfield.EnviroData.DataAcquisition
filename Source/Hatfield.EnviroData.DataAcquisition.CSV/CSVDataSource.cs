@@ -12,21 +12,25 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV
 {
     public class CSVDataSource : IDataSource
     {
-        private TextReader _textReader;        
+        private TextReader _textReader;
+        private string _fileName;
 
         public CSVDataSource(string filePath)
         {
             _textReader = File.OpenText(filePath);
+            _fileName = Path.GetFileName(filePath);
         }
 
-        public CSVDataSource(TextReader textReader)
+        public CSVDataSource(string fileName, TextReader textReader)
         {
             _textReader = textReader;
+            _fileName = fileName;
         }
 
-        public CSVDataSource(Stream stream)
+        public CSVDataSource(string fileName, Stream stream)
         {
             _textReader = new StreamReader(stream);
+            _fileName = fileName;
         }
 
         public IDataToImport FetchData()
@@ -49,9 +53,9 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV
                     var row = csv.CurrentRecord;
                     allRows.Add(row);
                 }
-            }           
+            }
 
-            return new CSVDataToImport(allRows.ToArray());
+            return new CSVDataToImport(_fileName, allRows.ToArray());
         }
     }
 }
