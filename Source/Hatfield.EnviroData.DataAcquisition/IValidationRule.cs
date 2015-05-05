@@ -7,6 +7,6 @@ namespace Hatfield.EnviroData.DataAcquisition
 {
     public interface IValidationRule
     {
-        IResult Validate();
+        IResult Validate(IDataToImport dataToImport);
     }
 }

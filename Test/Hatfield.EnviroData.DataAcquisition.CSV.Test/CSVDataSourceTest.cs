@@ -28,7 +28,7 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
         {
             var dataSource = new CSVDataSource(_csvDataFilePath);
 
-            AssertData(dataSource);
+            AssertData(Path.GetFileName(_csvDataFilePath), dataSource);
         }
 
         [Test]
@@ -36,7 +36,7 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
         {
             var dataSource = new CSVDataSource(_datDataFilePath);
 
-            AssertData(dataSource);
+            AssertData(Path.GetFileName(_datDataFilePath), dataSource);
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
             var textReader = File.OpenText(_csvDataFilePath);
             var dataSource = new CSVDataSource("CSV_15min.csv", textReader);
 
-            AssertData(dataSource);
+            AssertData("CSV_15min.csv", dataSource);
         }
 
         [Test]
@@ -54,13 +54,14 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
             var dataStream = new FileStream(_csvDataFilePath, FileMode.Open);
             var dataSource = new CSVDataSource("DAT_15min.dat", dataStream);
 
-            AssertData(dataSource);
+            AssertData("DAT_15min.dat", dataSource);
         }
 
-        private void AssertData(CSVDataSource dataSource)
+        private void AssertData(string fileName, CSVDataSource dataSource)
         {
             var csvData = dataSource.FetchData();
 
+            Assert.AreEqual(fileName, ((CSVDataToImport)csvData).FileName);
             Assert.NotNull(csvData);
             var castedData = csvData.Data as string[][];
             Assert.NotNull(castedData);

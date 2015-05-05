@@ -20,26 +20,30 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Importers
             _thresholdLevel = thresholdLevel;
         }
 
-        /// <summary>
-        /// Always mark as support now
-        /// Need to improve in the future
-        /// </summary>
-        /// <param name="dataSource"></param>
-        /// <returns></returns>
-        public bool IsDataSupported(IDataToImport dataSource)
+        
+        public bool IsDataSupported(IDataToImport dataToImport)
         {
-            return true;
+            return ValidateDataToImport(dataToImport).Item1;
         }
 
-        public IExtractedDataset<T> Extract<T>(IDataToImport dataSource) where T : new()
-        {
+        public IExtractedDataset<T> Extract<T>(IDataToImport dataToImport) where T : new()
+        {            
             var extractedDataset = new ExtractedDataset<T>(_thresholdLevel);
-            var csvDataSource = dataSource as CSVDataToImport;
+
+            var validatedDataToImportResult = ValidateDataToImport(dataToImport);
+            extractedDataset.AddParsingResults(validatedDataToImportResult.Item2);
+            if (!validatedDataToImportResult.Item1)
+            {
+                //format not valid, return
+                return extractedDataset;
+            }
+
+            var csvDataSource = dataToImport as CSVDataToImport;
             var rawData = csvDataSource.Data as string[][];
 
             for (var i = _startRow; i < rawData.Length; i++)
             {
-                var extractResultsForRow = ExtractDataForSingleRow<T>(_extractConfigurations, dataSource, i);
+                var extractResultsForRow = ExtractDataForSingleRow<T>(_extractConfigurations, dataToImport, i);
                 extractedDataset.AddParsingResults(extractResultsForRow);
 
             }
@@ -92,6 +96,16 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Importers
 
             return resultsForSingleRow;
 
+        }
+
+        private Tuple<bool, IEnumerable<IResult>> ValidateDataToImport(IDataToImport dataToImport)
+        {
+            var allValidationResults = from rule in _validationRules
+                                       select rule.Validate(dataToImport);
+
+            var isValid = !allValidationResults.Any(x => ResultLevelHelper.LevelIsHigherThanOrEqualToThreshold(_thresholdLevel, x.Level));
+
+            return new Tuple<bool, IEnumerable<IResult>>(isValid, allValidationResults);
         }
     }
 }

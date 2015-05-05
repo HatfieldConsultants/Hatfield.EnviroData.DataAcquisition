@@ -30,6 +30,24 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
             Assert.AreEqual(8, extractedDataSet.ExtractedEntities.Count());
 
         }
+
+        [Test]
+        public void ExtractDataNotValidFormatTest()
+        {
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataFiles", "CSV_15min.csv");
+            var dataSource = new CSVDataSource(path);
+
+            var dataToImport = dataSource.FetchData();
+
+            var dataImporter = new TestImporterBuilder().Build();
+
+            var extractedDataSet = dataImporter.Extract<TestDataModel>(dataToImport);
+
+            Assert.NotNull(extractedDataSet);
+            Assert.AreEqual(false, extractedDataSet.IsExtractedSuccess);
+            Assert.Null(extractedDataSet.ExtractedEntities);
+
+        }
     }
 
 }
