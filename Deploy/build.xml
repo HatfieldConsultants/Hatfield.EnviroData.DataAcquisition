@@ -75,7 +75,7 @@
     <OpenCover
 			Target="$(NUnitPath)\nunit-console.exe"
 			TargetArgs="$(SolutionPath) /noshadow /framework:net-4.0 /process:multiple /config:$(Configuration) &quot;%(TestAssembly.FullPath)&quot; /xml=$(TestResultDirectory)\NUnit\%(TestAssembly.FileName)_TestResult.xml"
-			Filter="filter:+[Hatield.EnviroData.DataAcquisition*]* -[Hatield.EnviroData.DataAcquisition*]*Test"
+			Filter="filter:+[Hatfield.EnviroData.DataAcquisition*]* -[Hatfield.EnviroData.DataAcquisition*]*Test"
 			Output="$(TestResultDirectory)\Coverage\OpenCover_%(TestAssembly.FileName).xml"
 			ToolPath="C:\Apps\OpenCover-4.0.804\"
 			Register="true"
