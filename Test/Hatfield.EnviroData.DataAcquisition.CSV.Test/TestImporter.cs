@@ -5,6 +5,7 @@ using System.Text;
 
 using Hatfield.EnviroData.DataAcquisition.ValueAssigners;
 using Hatfield.EnviroData.DataAcquisition.CSV.Importers;
+using Hatfield.EnviroData.DataAcquisition.CSV.ValidationRules;
 
 namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
 {   
@@ -16,6 +17,10 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
             var parserFactory = new DefaultCSVParserFactory();
 
             var testImporter = new SimpleCSVDataImporter(ResultLevel.ERROR, 4);
+
+            var extensionValidationRule = new CSVFileNameExtensionMatchValidationRule(".dat", false);
+            testImporter.AddValidationRule(extensionValidationRule);
+
 
             var dateTimeFieldExtractConfiguration = new SimpleCSVExtractConfiguration(0,
                                                                                       "DateTime", 
