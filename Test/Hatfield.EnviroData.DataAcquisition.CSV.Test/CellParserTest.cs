@@ -55,10 +55,10 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
         public void OutOfRangeTest()
         {
             var dataSourceLocation = new CSVDataSourceLocation(5, 0);
-            var dataToImport = new CSVDataToImport(
-                                                       new string[][]{
-                                                           new string[]{"1", "2", "3"}
-                                                       }
+            var dataToImport = new CSVDataToImport("test.csv",
+                                                    new string[][]{
+                                                        new string[]{"1", "2", "3"}
+                                                    }
                                                   );
 
             var parserFactory = new DefaultParserFactory();
@@ -78,10 +78,10 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
         public void PasingSuccessTest()
         {
             var dataSourceLocation = new CSVDataSourceLocation(0, 0);
-            var dataToImport = new CSVDataToImport(
-                                                       new string[][]{
-                                                           new string[]{"1", "2", "3"}
-                                                       }
+            var dataToImport = new CSVDataToImport("test.csv",
+                                                    new string[][]{
+                                                        new string[]{"1", "2", "3"}
+                                                    }
                                                   );
 
             var parserFactory = new DefaultParserFactory();

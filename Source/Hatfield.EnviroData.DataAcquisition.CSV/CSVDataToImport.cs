@@ -7,16 +7,23 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV
 {
     public class CSVDataToImport : IDataToImport
     {
-        private string[][] _rows;        
+        private string[][] _rows;
+        private string _fileName;
 
-        public CSVDataToImport(string[][] rows)
+        public CSVDataToImport(string fileName, string[][] rows)
         {
+            _fileName = fileName;
             _rows = rows;            
         }
 
         public object Data
         {
             get { return _rows; }
+        }
+
+        public string FileName
+        {
+            get { return _fileName; }
         }
     }
 }
