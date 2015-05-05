@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseResultTest.cs" />
     <Compile Include="Criterias\RegexCriteriaTest.cs" />
     <Compile Include="DefaultParserFactoryTest.cs" />
     <Compile Include="ExtractedDatasetTest.cs" />

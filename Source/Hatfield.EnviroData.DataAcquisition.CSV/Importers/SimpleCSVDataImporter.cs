@@ -10,12 +10,14 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Importers
         private IList<IExtractConfiguration> _extractConfigurations;
         private IList<IValidationRule> _validationRules;
         private int _startRow = 0;
+        private ResultLevel _thresholdLevel = ResultLevel.ERROR;
 
-        public SimpleCSVDataImporter(int startRow = 0)
+        public SimpleCSVDataImporter(ResultLevel thresholdLevel, int startRow = 0)
         {
             _extractConfigurations = new List<IExtractConfiguration>();
             _validationRules = new List<IValidationRule>();
             _startRow = startRow;
+            _thresholdLevel = thresholdLevel;
         }
 
         /// <summary>
@@ -31,7 +33,7 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Importers
 
         public IExtractedDataset<T> Extract<T>(IDataToImport dataSource) where T : new()
         {
-            var extractedDataset = new ExtractedDataset<T>();
+            var extractedDataset = new ExtractedDataset<T>(_thresholdLevel);
             var csvDataSource = dataSource as CSVDataToImport;
             var rawData = csvDataSource.Data as string[][];
 
@@ -69,7 +71,12 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Importers
             _validationRules.Add(validationRuleToAdd);
         }
 
-        private IEnumerable<IResult> ExtractDataForSingleRow<T>(IList<IExtractConfiguration> extractConfigurations, IDataToImport dataSource, int currentRow) where T : new()
+        public ResultLevel ThresholdLevel
+        {
+            get { return _thresholdLevel; }
+        }
+
+        protected IEnumerable<IResult> ExtractDataForSingleRow<T>(IList<IExtractConfiguration> extractConfigurations, IDataToImport dataSource, int currentRow) where T : new()
         {
             var resultsForSingleRow = new List<IResult>();
             var model = new T();

@@ -15,7 +15,7 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
         {
             var parserFactory = new DefaultCSVParserFactory();
 
-            var testImporter = new SimpleCSVDataImporter(4);
+            var testImporter = new SimpleCSVDataImporter(ResultLevel.ERROR, 4);
 
             var dateTimeFieldExtractConfiguration = new SimpleCSVExtractConfiguration(0,
                                                                                       "DateTime", 
