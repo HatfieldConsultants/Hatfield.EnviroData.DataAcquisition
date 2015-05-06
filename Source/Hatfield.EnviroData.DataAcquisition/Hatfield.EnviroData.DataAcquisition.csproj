@@ -45,6 +45,7 @@
     <Compile Include="DefaultParserFactory.cs" />
     <Compile Include="ExtractedDataset.cs" />
     <Compile Include="FileSystems\DataFromFileSystem.cs" />
+    <Compile Include="FileSystems\FtpFileSystem.cs" />
     <Compile Include="FileSystems\HttpFileSystem.cs" />
     <Compile Include="FileSystems\LocalFileSystem.cs" />
     <Compile Include="Helpers\PropertyInfoHelper.cs" />
