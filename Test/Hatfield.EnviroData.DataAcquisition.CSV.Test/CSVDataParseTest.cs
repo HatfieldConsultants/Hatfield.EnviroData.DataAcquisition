@@ -6,6 +6,7 @@ using System.IO;
 
 using NUnit.Framework;
 using Hatfield.EnviroData.DataAcquisition.CSV.Parsers;
+using Hatfield.EnviroData.DataAcquisition.FileSystems;
 
 namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
 {
@@ -29,12 +30,16 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
 
         [Test]
         public void CSVParseTestSuccess()
-        {
-            var dataSource = new CSVDataSource(_csvDataFilePath);
+        {            
+
+            var dataSource = new LocalFileSystem(_csvDataFilePath);
+            var dataFromFileSystem = dataSource.FetchData();
+
+            var dataToImport = new CSVDataToImport(dataFromFileSystem);
+
             var dataSourceLocation = new CSVDataSourceLocation(6, 3);
             var dataDateTimeSourceLocation = new CSVDataSourceLocation(6, 0);
-
-            dataToImport = dataSource.FetchData();
+            
             var parser = new CellParser(new DefaultParserFactory());
 
             var parseDoubleResult = parser.Parse(dataToImport, dataSourceLocation, typeof(double));

@@ -6,6 +6,7 @@ using System.IO;
 
 using NUnit.Framework;
 using Hatfield.EnviroData.DataAcquisition.CSV.Parsers;
+using Hatfield.EnviroData.DataAcquisition.FileSystems;
 
 namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
 {
@@ -16,10 +17,10 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
         public void ExtractDataTest()
         {
             var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataFiles", "DAT_15min.dat");
-            var dataSource = new CSVDataSource(path);
+            var dataSource = new LocalFileSystem(path);
+            var dataFromFileSystem = dataSource.FetchData();
 
-            var dataToImport = dataSource.FetchData();
-
+            var dataToImport = new CSVDataToImport(dataFromFileSystem);
             
             var dataImporter = new TestImporterBuilder().Build();
 
@@ -35,9 +36,10 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
         public void ExtractDataNotValidFormatTest()
         {
             var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataFiles", "CSV_15min.csv");
-            var dataSource = new CSVDataSource(path);
+            var dataSource = new LocalFileSystem(path);
+            var dataFromFileSystem = dataSource.FetchData();
 
-            var dataToImport = dataSource.FetchData();
+            var dataToImport = new CSVDataToImport(dataFromFileSystem);
 
             var dataImporter = new TestImporterBuilder().Build();
 

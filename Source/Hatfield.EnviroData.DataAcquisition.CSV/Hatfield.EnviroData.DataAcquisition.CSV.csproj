@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CSVDataSource.cs" />
     <Compile Include="CSVDataSourceLocation.cs" />
     <Compile Include="CSVDataToImport.cs" />
     <Compile Include="DefaultCSVParserFactory.cs" />

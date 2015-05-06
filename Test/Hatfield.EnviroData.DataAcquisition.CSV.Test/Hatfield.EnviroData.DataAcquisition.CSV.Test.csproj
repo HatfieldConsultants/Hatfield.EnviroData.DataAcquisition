@@ -49,7 +49,7 @@
   <ItemGroup>
     <Compile Include="CellParserTest.cs" />
     <Compile Include="CSVDataParseTest.cs" />
-    <Compile Include="CSVDataSourceTest.cs" />
+    <Compile Include="CSVDataToImportTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleCSVDataImporterTest.cs" />
     <Compile Include="TestImporter.cs" />
