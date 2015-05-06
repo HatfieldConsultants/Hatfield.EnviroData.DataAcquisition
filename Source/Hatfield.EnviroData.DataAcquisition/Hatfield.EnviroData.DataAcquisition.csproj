@@ -44,10 +44,12 @@
     <Compile Include="Criterias\RegexCriteria.cs" />
     <Compile Include="DefaultParserFactory.cs" />
     <Compile Include="ExtractedDataset.cs" />
+    <Compile Include="FileSystems\DataFromFileSystem.cs" />
+    <Compile Include="FileSystems\LocalFileSystem.cs" />
     <Compile Include="Helpers\PropertyInfoHelper.cs" />
     <Compile Include="ICriteria.cs" />
     <Compile Include="IDataImporter.cs" />
-    <Compile Include="IDataSource.cs" />
+    <Compile Include="IFileSystem.cs" />
     <Compile Include="IDataSourceLocation.cs" />
     <Compile Include="IDataToImport.cs" />
     <Compile Include="IExtractConfiguration.cs" />
