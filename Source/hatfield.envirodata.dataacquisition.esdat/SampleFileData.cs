@@ -13,7 +13,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT
         public string OriginalChemName { get; set; }
         public string ChemCode { get; set; }
         public char Prefix { get; set; }
-        public float Result { get; set; }
+        public double Result { get; set; }
         public string ResultUnit { get; set; }
         public bool TotalOrUnfiltered { get; set; }
         public string ResultType { get; set; }
@@ -21,7 +21,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT
         public string MethodName { get; set; }
         public DateTime ExtractionDate { get; set; }
         public DateTime AnalysedDate { get; set; }
-        public float EQL { get; set; }
+        public double EQL { get; set; }
         public string EQLUnits { get; set; }
         public string Comments { get; set; }
         // Not sure about the type here
