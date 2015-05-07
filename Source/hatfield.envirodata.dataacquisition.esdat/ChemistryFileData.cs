@@ -29,7 +29,10 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT
         public double UCL { get; set; }
         public double LCL { get; set; }
 
-        public ChemistryFileData(string sampleCode, string originalChemName, string chemCode, char prefix, double result, string resultUnit, bool totalOrUnfiltered, string resultType, string methodType, string methodName, DateTime extractionDate, DateTime analysedDate, double eql, string eqlUnits, string comments, string labQualifier, double ucl, double lcl)
+        public ChemistryFileData(string sampleCode, string originalChemName, string chemCode,
+            char prefix, double result, string resultUnit, bool totalOrUnfiltered, string resultType,
+            string methodType, string methodName, DateTime extractionDate, DateTime analysedDate,
+            double eql, string eqlUnits, string comments, string labQualifier, double ucl, double lcl)
         {
             this.SampleCode = sampleCode;
             this.OriginalChemName = originalChemName;
