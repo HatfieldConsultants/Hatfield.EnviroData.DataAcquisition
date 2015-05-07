@@ -29,20 +29,5 @@ namespace Hatfield.EnviroData.DataAcquisition.Test.FileSystems
             var httpFileSystem = new HttpFileSystem(null);
             httpFileSystem.FetchData();
         }
-
-        [Test]
-        [Ignore]
-        public void DownloadTest()
-        {
-            var uri = "http://site.com/file";
-            var httpFileSystem = new HttpFileSystem(uri);
-            var dataFromFileSystem = httpFileSystem.FetchData();
-            var fileStream = dataFromFileSystem.InputStream;
-            var fileName = dataFromFileSystem.FileName;
-            var output = File.Create("C:\\" + fileName);
-            fileStream.CopyTo(output);
-            output.Close();
-            Assert.IsTrue(true);
-        }
     }
 }

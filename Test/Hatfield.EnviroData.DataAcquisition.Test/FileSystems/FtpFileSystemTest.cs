@@ -29,20 +29,5 @@ namespace Hatfield.EnviroData.DataAcquisition.Test.FileSystems
             var httpFileSystem = new FtpFileSystem(null);
             httpFileSystem.FetchData();
         }
-
-        [Test]
-        [Ignore]
-        public void AnonymousDownloadTest()
-        {
-            var uri = "ftp://site.com/file";
-            var ftpFileSystem = new FtpFileSystem(uri);
-            var dataFromFileSystem = ftpFileSystem.FetchData();
-            var fileStream = dataFromFileSystem.InputStream;
-            var fileName = dataFromFileSystem.FileName;
-            var output = File.Create("C:\\" + fileName);
-            fileStream.CopyTo(output);
-            output.Close();
-            Assert.IsTrue(true);
-        }
     }
 }

@@ -17,7 +17,7 @@ namespace Hatfield.EnviroData.DataAcquisition.FileSystems
         public FtpFileSystem(string url)
         {
             _uri = new Uri(url);
-            _credentials = new NetworkCredential();
+            _credentials = null;
         }
 
         public FtpFileSystem(string url, string username, string password)
@@ -29,7 +29,12 @@ namespace Hatfield.EnviroData.DataAcquisition.FileSystems
         public DataFromFileSystem FetchData()
         {
             WebClient request = new WebClient();
-            request.Credentials = _credentials;
+
+            if (_credentials != null)
+            {
+                request.Credentials = _credentials;
+            }
+
             var fileStream = request.OpenRead(_uri);
             var fileName = System.IO.Path.GetFileName(_uri.LocalPath);
 

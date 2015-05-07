@@ -23,7 +23,7 @@ namespace Hatfield.EnviroData.DataAcquisition.FileSystems
             HttpWebRequest httpWebRequest = (HttpWebRequest)HttpWebRequest.Create(_uri);
             HttpWebResponse httpWebReponse = (HttpWebResponse)httpWebRequest.GetResponse();
             var fileStream = httpWebReponse.GetResponseStream();
-            var fileName = System.IO.Path.GetFileName(_uri.LocalPath);
+            var fileName = Path.GetFileName(_uri.LocalPath);
 
             return new DataFromFileSystem(fileName, fileStream);
         }
