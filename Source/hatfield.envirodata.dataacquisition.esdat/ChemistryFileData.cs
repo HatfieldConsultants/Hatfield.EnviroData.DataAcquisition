@@ -9,20 +9,46 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT
 {
     public class ChemistryFileData
     {
+
         public string SampleCode { get; set; }
-        public DateTime SampledDateTime { get; set; }
-        public string FieldID { get; set; }
-        public double Blank1 { get; set; }
-        public double SampleDepth { get; set; }
-        public double Blank2 { get; set; }
-        public string MatrixType { get; set; }
-        public string SampleType { get; set; }
-        public string ParentSample { get; set; }
-        public double Blank3 { get; set; }
-        public string SDG { get; set; }
-        public string Lab_Name { get; set; }
-        public string LabSampleID { get; set; }
+        public string OriginalChemName { get; set; }
+        public string ChemCode { get; set; }
+        public char Prefix { get; set; }
+        public double Result { get; set; }
+        public string ResultUnit { get; set; }
+        public bool TotalOrUnfiltered { get; set; }
+        public string ResultType { get; set; }
+        public string MethodType { get; set; }
+        public string MethodName { get; set; }
+        public DateTime ExtractionDate { get; set; }
+        public DateTime AnalysedDate { get; set; }
+        public double EQL { get; set; }
+        public string EQLUnits { get; set; }
         public string Comments { get; set; }
-        public string LabReportNumber { get; set; }
+        public string LabQualifier { get; set; }
+        public double UCL { get; set; }
+        public double LCL { get; set; }
+
+        public ChemistryFileData(string sampleCode, string originalChemName, string chemCode, char prefix, double result, string resultUnit, bool totalOrUnfiltered, string resultType, string methodType, string methodName, DateTime extractionDate, DateTime analysedDate, double eql, string eqlUnits, string comments, string labQualifier, double ucl, double lcl)
+        {
+            this.SampleCode = sampleCode;
+            this.OriginalChemName = originalChemName;
+            this.ChemCode = chemCode;
+            this.Prefix = prefix;
+            this.Result = result;
+            this.ResultUnit = resultUnit;
+            this.TotalOrUnfiltered = totalOrUnfiltered;
+            this.ResultType = resultType;
+            this.MethodType = methodType;
+            this.MethodName = methodName;
+            this.ExtractionDate = extractionDate;
+            this.AnalysedDate = analysedDate;
+            this.EQL = eql;
+            this.EQLUnits = eqlUnits;
+            this.Comments = comments;
+            this.LabQualifier = labQualifier;
+            this.UCL = ucl;
+            this.LCL = lcl;
+        }
     }
 }

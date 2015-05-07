@@ -9,27 +9,39 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT
 {
     public class SampleFileData
     {
-        public string SampleCode { get ; set; }
-        public string OriginalChemName { get; set; }
-        public string ChemCode { get; set; }
-        public char Prefix { get; set; }
-        public double Result { get; set; }
-        public string ResultUnit { get; set; }
-        public bool TotalOrUnfiltered { get; set; }
-        public string ResultType { get; set; }
-        public string MethodType { get; set; }
-        public string MethodName { get; set; }
-        public DateTime ExtractionDate { get; set; }
-        public DateTime AnalysedDate { get; set; }
-        public double EQL { get; set; }
-        public string EQLUnits { get; set; }
-        public string Comments { get; set; }
-        // Not sure about the type here
-        public string QA {get;set;}
-        public int UCL { get; set; }
-        public int LCL { get; set; }
+            public string SampleCode { get; set; }
+            public DateTime SampledDateTime { get; set; }
+            public string FieldID { get; set; }
+            public double Blank1 { get; set; }
+            public double SampleDepth { get; set; }
+            public double Blank2 { get; set; }
+            public string MatrixType { get; set; }
+            public string SampleType { get; set; }
+            public string ParentSample { get; set; }
+            public double Blank3 { get; set; }
+            public string SDG { get; set; }
+            public string LabName { get; set; }
+            public string LabSampleID { get; set; }
+            public string Comments { get; set; }
+            public string LabReportNumber { get; set; }
 
-        //public string 
-        //Make constructor
+            public SampleFileData(string sampleCode, DateTime sampledDateTime, string fieldID, double blank1, double sampleDepth, double blank2, string matrixType, string sampleType, string parentSample, double blank3, string sdg, string labName, string labSampleID, string comments, string labReportNumber)
+            {
+                this.SampleCode = sampleCode;
+                this.SampledDateTime = sampledDateTime;
+                this.FieldID = fieldID;
+                this.Blank1 = blank1;
+                this.SampleDepth = sampleDepth;
+                this.Blank2 = blank2;
+                this.MatrixType = matrixType;
+                this.SampleType = sampleType;
+                this.ParentSample = parentSample;
+                this.Blank3 = blank3;
+                this.SDG = sdg;
+                this.LabName = labName;
+                this.LabSampleID = labSampleID;
+                this.Comments = comments;
+                this.LabReportNumber = labReportNumber;
+            }
+        }
     }
-}
