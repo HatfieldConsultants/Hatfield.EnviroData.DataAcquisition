@@ -54,6 +54,7 @@
     <Compile Include="FileSystems\DataFromFileSystemTest.cs" />
     <Compile Include="FileSystems\FtpFileSystemTest.cs" />
     <Compile Include="FileSystems\HttpFileSystemTest.cs" />
+    <Compile Include="FileSystems\NetworkFileSystemTest.cs" />
     <Compile Include="FileSystems\LocalFileSystemTest.cs" />
     <Compile Include="ResultLevelHelperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
