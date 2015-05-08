@@ -48,6 +48,7 @@
     <Compile Include="FileSystems\FtpFileSystem.cs" />
     <Compile Include="FileSystems\HttpFileSystem.cs" />
     <Compile Include="FileSystems\LocalFileSystem.cs" />
+    <Compile Include="FileSystems\NetworkFileSystem.cs" />
     <Compile Include="Helpers\PropertyInfoHelper.cs" />
     <Compile Include="ICriteria.cs" />
     <Compile Include="IDataImporter.cs" />
