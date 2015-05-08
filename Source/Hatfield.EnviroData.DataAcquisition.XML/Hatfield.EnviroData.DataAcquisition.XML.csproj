@@ -40,14 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DefaultXMLParserFactory.cs" />
     <Compile Include="Importers\SimpleXMLDataImporter.cs" />
+    <Compile Include="IXMLParserFactory.cs" />
+    <Compile Include="Parsers\ElementParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValidationRules\ElementValueMatchCriteriaValidationRule.cs" />
+    <Compile Include="ValidationRules\XMLFileNameExtensionMatchValidationRule.cs" />
+    <Compile Include="XMLDataSourceLocation.cs" />
     <Compile Include="XMLDataToImport.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Parsers\" />
-    <Folder Include="ValidationRules\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Hatfield.EnviroData.DataAcquisition\Hatfield.EnviroData.DataAcquisition.csproj">
       <Project>{fb279550-18d7-43d5-bc1e-01b651ed1c76}</Project>
