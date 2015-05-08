@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,7 +49,9 @@
     <Compile Include="FileSystems\FtpFileSystem.cs" />
     <Compile Include="FileSystems\HttpFileSystem.cs" />
     <Compile Include="FileSystems\LocalFileSystem.cs" />
+    <Compile Include="FileSystems\NetworkDrive.cs" />
     <Compile Include="FileSystems\NetworkFileSystem.cs" />
+    <Compile Include="FileSystems\UserImpersonation.cs" />
     <Compile Include="Helpers\PropertyInfoHelper.cs" />
     <Compile Include="ICriteria.cs" />
     <Compile Include="IDataImporter.cs" />
