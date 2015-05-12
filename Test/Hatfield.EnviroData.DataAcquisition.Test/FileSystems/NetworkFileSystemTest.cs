@@ -5,7 +5,6 @@ using System.Text;
 using System.IO;
 using System.ComponentModel;
 
-
 using NUnit.Framework;
 
 using Hatfield.EnviroData.DataAcquisition.FileSystems;
