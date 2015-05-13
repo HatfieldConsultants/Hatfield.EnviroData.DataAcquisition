@@ -57,5 +57,11 @@ namespace Hatfield.EnviroData.DataAcquisition.FileSystems
 
             return new DataFromFileSystem(fileName, stream);
         }
+
+
+        public IEnumerable<DataFromFileSystem> FetchData(IEnumerable<IFileSystemFilter> filters)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

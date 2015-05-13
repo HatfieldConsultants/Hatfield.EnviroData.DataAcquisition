@@ -60,6 +60,7 @@
     <Compile Include="IDataToImport.cs" />
     <Compile Include="IExtractConfiguration.cs" />
     <Compile Include="IExtractedDataset.cs" />
+    <Compile Include="IFileSystemFilter.cs" />
     <Compile Include="IImporterBuilder.cs" />
     <Compile Include="IParser.cs" />
     <Compile Include="IParserFactory.cs" />

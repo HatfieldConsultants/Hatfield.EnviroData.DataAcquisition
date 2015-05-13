@@ -10,6 +10,7 @@ namespace Hatfield.EnviroData.DataAcquisition
 {
     public interface IFileSystem
     {
-        DataFromFileSystem FetchData();
+        DataFromFileSystem FetchData();//Get the exact file path to fetch data
+        IEnumerable<DataFromFileSystem> FetchData(IEnumerable<IFileSystemFilter> filters);//fetch files by filters
     }
 }
