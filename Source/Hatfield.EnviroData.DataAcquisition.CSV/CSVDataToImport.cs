@@ -6,7 +6,7 @@ using System.IO;
 
 using CsvHelper;
 
-using Hatfield.EnviroData.DataAcquisition.FileSystems;
+using Hatfield.EnviroData.FileSystems;
 
 namespace Hatfield.EnviroData.DataAcquisition.CSV
 {

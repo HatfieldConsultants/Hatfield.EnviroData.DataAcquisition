@@ -6,8 +6,9 @@ using System.IO;
 
 using NUnit.Framework;
 
-using Hatfield.EnviroData.DataAcquisition.FileSystems;
+using Hatfield.EnviroData.FileSystems;
 using Hatfield.EnviroData.DataAcquisition.CSV;
+using Hatfield.EnviroData.FileSystems.WindowsFileSystem;
 
 namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
 {
@@ -27,7 +28,7 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
         [Test]
         public void CSVDataToImportReadCSVFileTest()
         {
-            var dataSource = new LocalFileSystem(_csvDataFilePath);
+            var dataSource = new WindowsFileSystem(_csvDataFilePath);
             var dataFromFileSystem = dataSource.FetchData();
 
             var dataToImport = new CSVDataToImport(dataFromFileSystem);
@@ -36,8 +37,8 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
 
         [Test]
         public void CSVDataToImportReadDatFileTest()
-        {            
-            var dataSource = new LocalFileSystem(_datDataFilePath);
+        {
+            var dataSource = new WindowsFileSystem(_datDataFilePath);
             var dataFromFileSystem = dataSource.FetchData();
 
             var dataToImport = new CSVDataToImport(dataFromFileSystem);
