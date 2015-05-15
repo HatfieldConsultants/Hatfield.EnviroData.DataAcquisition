@@ -33,16 +33,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Hatfield.EnviroData.FileSystems">
-      <HintPath>..\..\packages\Hatfield.EnviroData.FileSystems.WindowsFileSystem.1.0.0\lib\net40\Hatfield.EnviroData.FileSystems.dll</HintPath>
+      <HintPath>$(SolutionDir)\packages\Hatfield.EnviroData.FileSystems.WindowsFileSystem.1.0.0\lib\net40\Hatfield.EnviroData.FileSystems.dll</HintPath>
     </Reference>
     <Reference Include="Hatfield.EnviroData.FileSystems.WindowsFileSystem">
-      <HintPath>..\..\packages\Hatfield.EnviroData.FileSystems.WindowsFileSystem.1.0.0\lib\net40\Hatfield.EnviroData.FileSystems.WindowsFileSystem.dll</HintPath>
+      <HintPath>$(SolutionDir)\packages\Hatfield.EnviroData.FileSystems.WindowsFileSystem.1.0.0\lib\net40\Hatfield.EnviroData.FileSystems.WindowsFileSystem.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
-      <HintPath>..\..\packages\Moq.4.2.1502.0911\lib\net40\Moq.dll</HintPath>
+      <HintPath>$(SolutionDir)\packages\Moq.4.2.1502.0911\lib\net40\Moq.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <HintPath>$(SolutionDir)\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -61,11 +61,11 @@
     <Compile Include="TestImporter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Source\Hatfield.EnviroData.DataAcquisition.CSV\Hatfield.EnviroData.DataAcquisition.CSV.csproj">
+    <ProjectReference Include="$(SolutionDir)\Source\Hatfield.EnviroData.DataAcquisition.CSV\Hatfield.EnviroData.DataAcquisition.CSV.csproj">
       <Project>{a3dcc824-a35f-4425-b9db-adb876d8a5e3}</Project>
       <Name>Hatfield.EnviroData.DataAcquisition.CSV</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Source\Hatfield.EnviroData.DataAcquisition\Hatfield.EnviroData.DataAcquisition.csproj">
+    <ProjectReference Include="$(SolutionDir)\Source\Hatfield.EnviroData.DataAcquisition\Hatfield.EnviroData.DataAcquisition.csproj">
       <Project>{fb279550-18d7-43d5-bc1e-01b651ed1c76}</Project>
       <Name>Hatfield.EnviroData.DataAcquisition</Name>
     </ProjectReference>
