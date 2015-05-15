@@ -52,6 +52,9 @@
     <Compile Include="DefaultParserFactoryTest.cs" />
     <Compile Include="ExtractedDatasetTest.cs" />
     <Compile Include="FileSystems\DataFromFileSystemTest.cs" />
+    <Compile Include="..\..\Source\Hatfield.EnviroData.DataAcquisition\FileSystems\Filters\FtpFileSystemFilter.cs">
+      <Link>FileSystems\Filters\FtpFileSystemFilter.cs</Link>
+    </Compile>
     <Compile Include="FileSystems\FtpFileSystemTest.cs" />
     <Compile Include="FileSystems\HttpFileSystemTest.cs" />
     <Compile Include="FileSystems\NetworkFileSystemTest.cs" />

@@ -59,6 +59,10 @@
       <Project>{a3dcc824-a35f-4425-b9db-adb876d8a5e3}</Project>
       <Name>Hatfield.EnviroData.DataAcquisition.CSV</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Source\Hatfield.EnviroData.DataAcquisition.ESDAT\Hatfield.EnviroData.DataAcquisition.ESDAT.csproj">
+      <Project>{327cf9c6-1298-4887-8b9f-31400e5dbd05}</Project>
+      <Name>Hatfield.EnviroData.DataAcquisition.ESDAT</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Source\Hatfield.EnviroData.DataAcquisition\Hatfield.EnviroData.DataAcquisition.csproj">
       <Project>{fb279550-18d7-43d5-bc1e-01b651ed1c76}</Project>
       <Name>Hatfield.EnviroData.DataAcquisition</Name>
