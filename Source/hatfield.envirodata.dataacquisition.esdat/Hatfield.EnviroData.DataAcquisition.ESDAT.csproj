@@ -39,7 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnalyzedData.cs" />
     <Compile Include="ChemistryFileData.cs" />
     <Compile Include="Common\SampleCode.cs" />
     <Compile Include="ESDATModel.cs" />

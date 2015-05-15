@@ -9,7 +9,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT
     public class ESDATModel
     {
         //Header file properties
-        public DateTime DateReported { get ; set; }
+        public DateTime DateReported { get; set; }
         public int ProjectId { get; set; }
         public string LabName { get; set; }
         public string LabSignatory { get; set; }
@@ -20,11 +20,10 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT
         public int LabRequestId { get; set; }
         public int LabRequestNumber { get; set; }
         public decimal LabRequestVersion { get; set; }
+        public SampleFileData SampleFileData { get; set; }
+        public IEnumerable<ChemistryFileData> ChemistryData { get; set; }
 
-        //Other Data
-        public List<AnalyzedData> AnalyzedData { get; set; }
-
-        public ESDATModel(DateTime dateReported, int projectID, string labName, string labSignatory, List<string> associatedFiles, List<string> copiesSentTo, int sdgid, int cocNumber, int labRequestID, int labRequestNumber, decimal labRequestVersion)
+        public ESDATModel(DateTime dateReported, int projectID, string labName, string labSignatory, List<string> associatedFiles, List<string> copiesSentTo, int sdgid, int cocNumber, int labRequestID, int labRequestNumber, decimal labRequestVersion, SampleFileData sampleFileData, IEnumerable<ChemistryFileData> chemistryData)
         {
             this.DateReported = dateReported;
             this.ProjectId = projectID;
@@ -37,7 +36,9 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT
             this.LabRequestId = labRequestID;
             this.LabRequestNumber = labRequestNumber;
             this.LabRequestVersion = labRequestVersion;
+            this.SampleFileData = sampleFileData;
+            this.ChemistryData = chemistryData;
         }
-      
+
     }
 }
