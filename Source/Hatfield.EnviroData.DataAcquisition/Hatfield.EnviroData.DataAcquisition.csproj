@@ -46,6 +46,7 @@
     <Compile Include="DefaultParserFactory.cs" />
     <Compile Include="ExtractedDataset.cs" />
     <Compile Include="FileSystems\DataFromFileSystem.cs" />
+    <Compile Include="FileSystems\Filters\FtpFileSystemFilter.cs" />
     <Compile Include="FileSystems\FtpFileSystem.cs" />
     <Compile Include="FileSystems\HttpFileSystem.cs" />
     <Compile Include="FileSystems\LocalFileSystem.cs" />
@@ -87,6 +88,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Hatfield.EnviroData.Core\Source\Hatfield.EnviroData.Core\Hatfield.EnviroData.Core.csproj">
+      <Project>{b578fe6d-b7b8-4324-bb91-f9a6d5c801e9}</Project>
+      <Name>Hatfield.EnviroData.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
