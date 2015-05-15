@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="ChemistryFileData.cs" />
     <Compile Include="Common\SampleCode.cs" />
+    <Compile Include="Converters\ESDATConverter.cs" />
     <Compile Include="ESDATModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleFileData.cs" />

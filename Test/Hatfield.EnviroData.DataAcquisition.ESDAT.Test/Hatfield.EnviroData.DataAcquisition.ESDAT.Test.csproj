@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9E1053F8-8FB1-4591-A951-307FF6F928AF}</ProjectGuid>
+    <ProjectGuid>{7C4D04A4-1F88-49CE-9398-2DDA04AAA687}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Hatfield.EnviroData.DataAcquisition.Test</RootNamespace>
-    <AssemblyName>Hatfield.EnviroData.DataAcquisition.Test</AssemblyName>
+    <RootNamespace>Hatfield.EnviroData.DataAcquisition.ESDAT.Test</RootNamespace>
+    <AssemblyName>Hatfield.EnviroData.DataAcquisition.ESDAT.Test</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
@@ -47,43 +47,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseResultTest.cs" />
-    <Compile Include="Criterias\RegexCriteriaTest.cs" />
-    <Compile Include="DefaultParserFactoryTest.cs" />
-    <Compile Include="ExtractedDatasetTest.cs" />
-    <Compile Include="FileSystems\DataFromFileSystemTest.cs" />
-    <Compile Include="FileSystems\FtpFileSystemTest.cs" />
-    <Compile Include="FileSystems\HttpFileSystemTest.cs" />
-    <Compile Include="FileSystems\NetworkFileSystemTest.cs" />
-    <Compile Include="FileSystems\LocalFileSystemTest.cs" />
-    <Compile Include="ResultLevelHelperTest.cs" />
+    <Compile Include="Converters\ESDATConverterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ValueAssigners\SimpleValueAssignerTest.cs" />
-    <Compile Include="ValueParsers\BooleanValueParserTest.cs" />
-    <Compile Include="ValueParsers\DateTimeValueParserTest.cs" />
-    <Compile Include="ValueParsers\DecimalValueParserTest.cs" />
-    <Compile Include="ValueParsers\DoubleValueParserTest.cs" />
-    <Compile Include="ValueParsers\IntValueParserTest.cs" />
-    <Compile Include="ValueParsers\NullableValueTypesTest.cs" />
-    <Compile Include="ValueParsers\StringValueParserTest.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Hatfield.EnviroData.Core\Source\Hatfield.EnviroData.Core\Hatfield.EnviroData.Core.csproj">
       <Project>{b578fe6d-b7b8-4324-bb91-f9a6d5c801e9}</Project>
       <Name>Hatfield.EnviroData.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Source\Hatfield.EnviroData.DataAcquisition\Hatfield.EnviroData.DataAcquisition.csproj">
-      <Project>{fb279550-18d7-43d5-bc1e-01b651ed1c76}</Project>
-      <Name>Hatfield.EnviroData.DataAcquisition</Name>
+    <ProjectReference Include="..\..\Source\Hatfield.EnviroData.DataAcquisition.ESDAT\Hatfield.EnviroData.DataAcquisition.ESDAT.csproj">
+      <Project>{327cf9c6-1298-4887-8b9f-31400e5dbd05}</Project>
+      <Name>Hatfield.EnviroData.DataAcquisition.ESDAT</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataFiles\test.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
