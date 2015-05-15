@@ -7,9 +7,10 @@ using System.IO;
 using NUnit.Framework;
 
 using Hatfield.EnviroData.DataAcquisition.CSV.Parsers;
-using Hatfield.EnviroData.DataAcquisition.FileSystems;
+using Hatfield.EnviroData.FileSystems;
 using Hatfield.EnviroData.DataAcquisition.CSV.ValidationRules;
 using Hatfield.EnviroData.DataAcquisition.ValueAssigners;
+using Hatfield.EnviroData.FileSystems.WindowsFileSystem;
 
 namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
 {
@@ -96,7 +97,7 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
         private IDataToImport GetDataToImport(string fileName)
         {
             var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataFiles", fileName);
-            var dataSource = new LocalFileSystem(path);
+            var dataSource = new WindowsFileSystem(path);
             var dataFromFileSystem = dataSource.FetchData();
 
             var dataToImport = new CSVDataToImport(dataFromFileSystem);
