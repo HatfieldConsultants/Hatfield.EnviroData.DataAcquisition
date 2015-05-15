@@ -46,6 +46,7 @@
     <Compile Include="DefaultParserFactory.cs" />
     <Compile Include="ExtractedDataset.cs" />
     <Compile Include="FileSystems\DataFromFileSystem.cs" />
+    <Compile Include="FileSystems\Filters\FtpFileSystemFilter.cs" />
     <Compile Include="FileSystems\FtpFileSystem.cs" />
     <Compile Include="FileSystems\HttpFileSystem.cs" />
     <Compile Include="FileSystems\LocalFileSystem.cs" />
@@ -94,6 +95,7 @@
       <Name>Hatfield.EnviroData.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
