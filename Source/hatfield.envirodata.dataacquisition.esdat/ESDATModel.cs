@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Hatfield.EnviroData.Core;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT
 {
     public class ESDATModel
     {
         //Header file properties
-        public DateTime DateReported { get ; set; }
+        public DateTime DateReported { get; set; }
         public int ProjectId { get; set; }
         public string LabName { get; set; }
         public string LabSignatory { get; set; }
@@ -20,24 +21,36 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT
         public int LabRequestId { get; set; }
         public int LabRequestNumber { get; set; }
         public decimal LabRequestVersion { get; set; }
+        public SampleFileData SampleFileData { get; set; }
+        public IEnumerable<ChemistryFileData> ChemistryData { get; set; }
 
-        //Other Data
-        public List<AnalyzedData> AnalyzedData { get; set; }
-
-        public ESDATModel(DateTime dateReported, int projectID, string labName, string labSignatory, List<string> associatedFiles, List<string> copiesSentTo, int sdgid, int cocNumber, int labRequestID, int labRequestNumber, decimal labRequestVersion)
+        public ESDATModel()
         {
-            this.DateReported = dateReported;
-            this.ProjectId = projectID;
-            this.LabName = labName;
-            this.LabSignatory = labSignatory;
-            this.AssociatedFiles = associatedFiles;
-            this.CopiesSentTo = copiesSentTo;
-            this.SDGID = sdgid;
-            this.COCNumber = cocNumber;
-            this.LabRequestId = labRequestID;
-            this.LabRequestNumber = labRequestNumber;
-            this.LabRequestVersion = labRequestVersion;
+            DateReported = new DateTime();
+            AssociatedFiles = new List<string>();
+            CopiesSentTo = new List<string>();
+            SampleFileData = new SampleFileData();
+            ChemistryFileData chemistryData = new ChemistryFileData();
+            List<ChemistryFileData> chemistryDataList = new List<ChemistryFileData>();
+            chemistryDataList.Add(chemistryData);
+            ChemistryData = chemistryDataList;
         }
-      
+
+        public ESDATModel(DateTime dateReported, int projectID, string labName, string labSignatory, List<string> associatedFiles, List<string> copiesSentTo, int sdgid, int cocNumber, int labRequestID, int labRequestNumber, decimal labRequestVersion, SampleFileData sampleFileData, IEnumerable<ChemistryFileData> chemistryData)
+        {
+            DateReported = dateReported;
+            ProjectId = projectID;
+            LabName = labName;
+            LabSignatory = labSignatory;
+            AssociatedFiles = associatedFiles;
+            CopiesSentTo = copiesSentTo;
+            SDGID = sdgid;
+            COCNumber = cocNumber;
+            LabRequestId = labRequestID;
+            LabRequestNumber = labRequestNumber;
+            LabRequestVersion = labRequestVersion;
+            SampleFileData = sampleFileData;
+            ChemistryData = chemistryData;
+        }
     }
 }

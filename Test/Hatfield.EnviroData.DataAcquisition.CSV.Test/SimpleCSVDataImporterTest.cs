@@ -10,6 +10,7 @@ using Hatfield.EnviroData.DataAcquisition.CSV.Parsers;
 using Hatfield.EnviroData.DataAcquisition.FileSystems;
 using Hatfield.EnviroData.DataAcquisition.CSV.ValidationRules;
 using Hatfield.EnviroData.DataAcquisition.ValueAssigners;
+using Hatfield.EnviroData.DataAcquisition.ESDAT;
 
 namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
 {
@@ -37,9 +38,10 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
 
             var dataImporter = new TestImporterBuilder().Build();
 
-            var extractedDataSet = dataImporter.Extract<TestDataModel>(dataToImport);
+            var extractedDataSet = dataImporter.Extract<ESDATModel>(dataToImport);
 
             Assert.NotNull(extractedDataSet);
+
             Assert.AreEqual(false, extractedDataSet.IsExtractedSuccess);
             Assert.Null(extractedDataSet.ExtractedEntities);
             Assert.AreEqual(ResultLevel.ERROR, dataImporter.ThresholdLevel);

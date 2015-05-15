@@ -7,6 +7,7 @@ using System.IO;
 using NUnit.Framework;
 
 using Hatfield.EnviroData.DataAcquisition.FileSystems;
+using Hatfield.EnviroData.DataAcquisition.Test.FileSystems.Filters;
 
 namespace Hatfield.EnviroData.DataAcquisition.Test.FileSystems
 {
@@ -14,20 +15,55 @@ namespace Hatfield.EnviroData.DataAcquisition.Test.FileSystems
     public class FtpFileSystemTest
     {
         [Test]
-        [ExpectedException(typeof(UriFormatException))]
-        public void InvalidUriTest()
+        [ExpectedException(typeof(ArgumentException))]
+        [TestCase("http://httpsite.com")]
+        [TestCase("https://httpssite.com")]
+        public void FtpFileSystemAnonymousNotFtpTest(string uri)
         {
-            var uri = "invalid uri";
-            var httpFileSystem = new FtpFileSystem(uri);
-            var dataFromFileSystem = httpFileSystem.FetchData();
+            var ftpFileSystem = new FtpFileSystem(uri);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        [TestCase("http://httpsite.com")]
+        [TestCase("https://httpssite.com")]
+        public void FtpFileSystemSecureNotFtpTest(string uri)
+        {
+            var ftpFileSystem = new FtpFileSystem(uri, "username", "password");
+        }
+
+        [Test]
+        [ExpectedException(typeof(UriFormatException))]
+        [TestCase("not a valid uri")]
+        [TestCase("www.host.com")]
+        [TestCase("host.com")]
+        public void AnonymousFetchDataInvalidUriTest(string uri)
+        {
+            var ftpFileSystem = new FtpFileSystem(uri);
+        }
+
+        [Test]
+        [ExpectedException(typeof(UriFormatException))]
+        [TestCase("not a valid uri")]
+        [TestCase("www.host.com")]
+        [TestCase("host.com")]
+        public void SecureFetchDataInvalidUriTest(string uri)
+        {
+            var ftpFileSystem = new FtpFileSystem(uri, "username", "password");
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void NullUriTest()
+        public void AnonymousFetchDataNullUriTest()
         {
-            var httpFileSystem = new FtpFileSystem(null);
-            httpFileSystem.FetchData();
+            var ftpFileSystem = new FtpFileSystem(null);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void SecureFetchDataNullUriTest()
+        {
+            var ftpFileSystem = new FtpFileSystem(null, "username", "password");
         }
     }
 }
