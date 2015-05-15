@@ -22,6 +22,11 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT
         public string Comments { get; set; }
         public string LabReportNumber { get; set; }
 
+        public SampleFileData()
+        {
+            SampledDateTime = new DateTime();
+        }
+
         public SampleFileData(string sampleCode, DateTime sampledDateTime, string fieldID,
             double sampleDepth, string matrixType, string sampleType, string parentSample,
             string sdg, string labName, string labSampleID, string comments, string labReportNumber)

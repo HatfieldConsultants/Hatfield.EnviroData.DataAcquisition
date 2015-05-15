@@ -23,6 +23,18 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT
         public SampleFileData SampleFileData { get; set; }
         public IEnumerable<ChemistryFileData> ChemistryData { get; set; }
 
+        public ESDATModel()
+        {
+            DateReported = new DateTime();
+            AssociatedFiles = new List<string>();
+            CopiesSentTo = new List<string>();
+            SampleFileData = new SampleFileData();
+            ChemistryFileData chemistryData = new ChemistryFileData();
+            List<ChemistryFileData> chemistryDataList = new List<ChemistryFileData>();
+            chemistryDataList.Add(chemistryData);
+            ChemistryData = chemistryDataList;
+        }
+
         public ESDATModel(DateTime dateReported, int projectID, string labName, string labSignatory, List<string> associatedFiles, List<string> copiesSentTo, int sdgid, int cocNumber, int labRequestID, int labRequestNumber, decimal labRequestVersion, SampleFileData sampleFileData, IEnumerable<ChemistryFileData> chemistryData)
         {
             this.DateReported = dateReported;
