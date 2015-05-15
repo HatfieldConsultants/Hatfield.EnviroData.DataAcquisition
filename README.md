@@ -6,3 +6,4 @@ Related repositories:
 * Hatfield.EnviroData.Core: contains shared systems used by the web, QA and Data Acquisition systems (ie Database, Notification & File System systems)
 *	Hatfield.EnviroData.MVC: provides all UI functions including admin & end-user access to view data, edit data, run QA systems, and configure/view/monitor DataAquisition systems. All web/UI systems will be implemented in this application/repository
 *	Hatfield.EnviroData.QualityAssurance: contains functions/interfaces/systems used to provide analysis and quality assurance functions
+*	Hatfield.EnviroData.FileSystems: contains functions/interfaces/systems to access file system. If works outside VPN, please download the dependencies DLLs in the release.
