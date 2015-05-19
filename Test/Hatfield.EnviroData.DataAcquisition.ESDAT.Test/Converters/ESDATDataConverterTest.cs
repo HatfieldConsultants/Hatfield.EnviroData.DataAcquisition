@@ -21,7 +21,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
             var esdatConverter = new ESDATConverter(mockDbContext);
             ESDATModel esdatModel = new ESDATModel();
             DateTime sampledDateTime = DateTime.Now;
-            esdatModel.SampleFileData.SampledDateTime = sampledDateTime;
+            //esdatModel.SampleFileData.SampledDateTime = sampledDateTime;
             var action = esdatConverter.ConvertToODMAction(esdatModel);
 
             Assert.AreEqual(action.ActionID, 0);

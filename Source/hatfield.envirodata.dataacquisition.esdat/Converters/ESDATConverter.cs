@@ -24,7 +24,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             Core.Action action = new Core.Action();
             action.ActionID = 0;
             action.ActionTypeCV = "specimenCollection";
-            action.BeginDateTime = dataModel.SampleFileData.SampledDateTime.Value;
+            //action.BeginDateTime = dataModel.SampleFileData.SampledDateTime.Value;
             action.EndDateTime = null;
             action.EndDateTimeUTCOffset = null;
             action.ActionDescription = null;
