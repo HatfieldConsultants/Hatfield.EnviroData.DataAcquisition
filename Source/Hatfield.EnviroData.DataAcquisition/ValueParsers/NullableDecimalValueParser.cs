@@ -9,7 +9,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ValueParsers
     {
         public virtual object Parse(object value)
         {
-            if (value == null)
+            if (value == null || string.IsNullOrEmpty(value.ToString()))
             {
                 return null;
             }

@@ -1,0 +1,10 @@
+SampleCode,ChemCode,OriginalChemName,Prefix,Result,Result_Unit,Total_or_Filtered,Result_Type,Method_Type,Method_Name,Extraction_Date,Analysed_Date,EQL,EQL_Units,Comments,QA,UCL,LCL
+5828314,100-41-4,Ethylbenzene,<,0.0005,mg/L,T,REG,Inorganic,TO 0332,9/23/2014,9/24/2014,0.0005,mg/L,,,50,
+5828314,108-88-3,Toluene,<,0.0003,mg/L,T,REG,Inorganic,TO 0332,9/23/2014,9/24/2014,0.0003,mg/L,,,,
+5828314,1330-20-7,Xylenes,<,0.0005,mg/L,T,REG,Inorganic,TO 0332,9/23/2014,9/24/2014,0.0005,mg/L,,,,
+5828314,1338-24-5,Naphthenic Acid,<,0.4,ug/mL,T,REG,Inorganic,TO 2220,9/24/2014,9/25/2014,0.4,ug/mL,,,,
+5828314,2037-26-5,Toluene-d8 (BTEX),,113,%,T,SUR,Inorganic,TO 0332,9/23/2014,9/24/2014,0.0005,%,,,150,50
+5828314,2037-26-5,Toluene-d8 (BTEX),,113,%,T,SUR,Inorganic,TO 0540,9/23/2014,9/24/2014,0,%,,,150,50
+5828314,71-43-2,Benzene,<,0.0005,mg/L,T,REG,Inorganic,TO 0332,9/23/2014,9/24/2014,0.0005,mg/L,,,,
+5828314,84-15-1,o-Terphenyl (F2-F4),,110,%,T,SUR,Inorganic,TO 0511,9/23/2014,9/25/2014,0.2,%,,,150,50
+5828314,C10-C16,C>10 - C16,<,0.2,mg/L,T,REG,Inorganic,TO 0511,9/23/2014,9/25/2014,0.2,mg/L,,,,

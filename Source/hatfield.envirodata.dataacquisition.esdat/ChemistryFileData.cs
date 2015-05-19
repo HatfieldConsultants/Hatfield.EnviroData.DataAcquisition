@@ -12,21 +12,21 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT
         public string SampleCode { get; set; }
         public string OriginalChemName { get; set; }
         public string ChemCode { get; set; }
-        public char Prefix { get; set; }
-        public double Result { get; set; }
+        public string Prefix { get; set; }
+        public double? Result { get; set; }
         public string ResultUnit { get; set; }
-        public bool TotalOrUnfiltered { get; set; }
+        public string TotalOrFiltered { get; set; }
         public string ResultType { get; set; }
         public string MethodType { get; set; }
         public string MethodName { get; set; }
         public DateTime ExtractionDate { get; set; }
         public DateTime AnalysedDate { get; set; }
-        public double EQL { get; set; }
+        public double? EQL { get; set; }
         public string EQLUnits { get; set; }
         public string Comments { get; set; }
         public string LabQualifier { get; set; }
-        public double UCL { get; set; }
-        public double LCL { get; set; }
+        public double? UCL { get; set; }
+        public double? LCL { get; set; }
 
         public ChemistryFileData()
         {
@@ -35,9 +35,9 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT
         }
 
         public ChemistryFileData(string sampleCode, string originalChemName, string chemCode,
-            char prefix, double result, string resultUnit, bool totalOrUnfiltered, string resultType,
+            string prefix, double? result, string resultUnit, string totalOrFiltered, string resultType,
             string methodType, string methodName, DateTime extractionDate, DateTime analysedDate,
-            double eql, string eqlUnits, string comments, string labQualifier, double ucl, double lcl)
+            double? eql, string eqlUnits, string comments, string labQualifier, double? ucl, double? lcl)
         {
             this.SampleCode = sampleCode;
             this.OriginalChemName = originalChemName;
@@ -45,7 +45,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT
             this.Prefix = prefix;
             this.Result = result;
             this.ResultUnit = resultUnit;
-            this.TotalOrUnfiltered = totalOrUnfiltered;
+            this.TotalOrFiltered = totalOrFiltered;
             this.ResultType = resultType;
             this.MethodType = methodType;
             this.MethodName = methodName;
