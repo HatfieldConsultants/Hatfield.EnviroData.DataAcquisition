@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.DataAcquisition", "Source\Hatfield.EnviroData.DataAcquisition\Hatfield.EnviroData.DataAcquisition.csproj", "{FB279550-18D7-43D5-BC1E-01B651ED1C76}"
 EndProject
@@ -26,8 +26,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3708C9
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.DataAcquisition.ESDAT", "Source\Hatfield.EnviroData.DataAcquisition.ESDAT\Hatfield.EnviroData.DataAcquisition.ESDAT.csproj", "{327CF9C6-1298-4887-8B9F-31400E5DBD05}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.Core", "..\Hatfield.EnviroData.Core\Source\Hatfield.EnviroData.Core\Hatfield.EnviroData.Core.csproj", "{B578FE6D-B7B8-4324-BB91-F9A6D5C801E9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.DataAcquisition.ESDAT.Test", "Test\Hatfield.EnviroData.DataAcquisition.ESDAT.Test\Hatfield.EnviroData.DataAcquisition.ESDAT.Test.csproj", "{7C4D04A4-1F88-49CE-9398-2DDA04AAA687}"
 EndProject
@@ -57,10 +55,6 @@ Global
 		{327CF9C6-1298-4887-8B9F-31400E5DBD05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{327CF9C6-1298-4887-8B9F-31400E5DBD05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{327CF9C6-1298-4887-8B9F-31400E5DBD05}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B578FE6D-B7B8-4324-BB91-F9A6D5C801E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B578FE6D-B7B8-4324-BB91-F9A6D5C801E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B578FE6D-B7B8-4324-BB91-F9A6D5C801E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B578FE6D-B7B8-4324-BB91-F9A6D5C801E9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7C4D04A4-1F88-49CE-9398-2DDA04AAA687}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7C4D04A4-1F88-49CE-9398-2DDA04AAA687}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C4D04A4-1F88-49CE-9398-2DDA04AAA687}.Release|Any CPU.ActiveCfg = Release|Any CPU
