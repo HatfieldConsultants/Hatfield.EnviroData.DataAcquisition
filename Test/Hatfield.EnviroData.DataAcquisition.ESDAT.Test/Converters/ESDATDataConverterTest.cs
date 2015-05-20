@@ -13,24 +13,23 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
     [TestFixture]
     public class ESDATConverterTest
     {
-        // See https://github.com/HatfieldConsultants/Hatfield.EnviroData.Core/wiki/Loading-ESDAT-data-into-ODM2#actions for expected values
+        
         [Test]
         public void ESDATConverterConvertToODMActionActionTest()
         {
             var mockDbContext = new Mock<IDbContext>().Object;
             var esdatConverter = new ESDATConverter(mockDbContext);
-            ESDATModel esdatModel = new ESDATModel();
-            DateTime sampledDateTime = DateTime.Now;
-            //esdatModel.SampleFileData.SampledDateTime = sampledDateTime;
+            var esdatModel = new ESDATModel();
             var action = esdatConverter.ConvertToODMAction(esdatModel);
-
+            
+            // See https://goo.gl/ckWn22 for expected values
             Assert.AreEqual(action.ActionID, 0);
-            Assert.AreEqual(action.ActionTypeCV, "specimenCollection");
-            //Assert.AreEqual(action.BeginDateTime, sampledDateTime);
             Assert.AreEqual(action.EndDateTime, null);
             Assert.AreEqual(action.EndDateTimeUTCOffset, null);
             Assert.AreEqual(action.ActionDescription, null);
             Assert.AreEqual(action.ActionFileLink, null);
+
+            Console.WriteLine(mockDbContext);
         }
     }
 }
