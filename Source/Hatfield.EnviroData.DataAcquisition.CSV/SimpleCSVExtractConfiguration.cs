@@ -30,6 +30,12 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV
             _propertyType = propertyType;
         }
 
+        public int ColumnIndex
+        {
+            get {
+                return _columnIndex;
+            }
+        }
         public string PropertyPath
         {
             get {
@@ -52,23 +58,22 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV
         }
 
 
-        public IEnumerable<IResult> ExtractData(object model, IDataToImport dataToImport, int currentRow)
+        public IEnumerable<IResult> ExtractData(object model, IDataToImport dataToImport, IDataSourceLocation currentLocation)
         {
-            var results = new List<IResult>();
-            var locationToParse = new CSVDataSourceLocation(currentRow, _columnIndex);
+            var results = new List<IResult>();            
 
             try
             {
-                var parsingResult = _parser.Parse(dataToImport, locationToParse, _propertyType) as IParsingResult;
+                var parsingResult = _parser.Parse(dataToImport, currentLocation, _propertyType) as IParsingResult;
 
                 _valueAssigner.AssignValue(model, _propertyPath, parsingResult.Value, _propertyType);
 
-                results.Add(new BaseResult(ResultLevel.DEBUG, string.Format("Extract data from csv file and assign to model {0}", locationToParse.ToString())));
+                results.Add(new BaseResult(ResultLevel.DEBUG, string.Format("Extract data from csv file and assign to model {0}", currentLocation.ToString())));
                 return results;
             }
             catch(Exception ex)
             {
-                results.Add(new BaseResult(ResultLevel.ERROR, string.Format("Extract data from csv file and assign to model fail. {0}", locationToParse.ToString())));
+                results.Add(new BaseResult(ResultLevel.ERROR, string.Format("Extract data from csv file and assign to model fail. {0}", currentLocation.ToString())));
                 
             }
             
