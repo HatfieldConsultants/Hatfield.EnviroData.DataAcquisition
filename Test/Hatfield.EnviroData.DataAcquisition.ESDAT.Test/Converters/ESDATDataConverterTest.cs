@@ -20,13 +20,10 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
             var mockDbContext = new Mock<IDbContext>().Object;
             var esdatConverter = new ESDATConverter(mockDbContext);
             ESDATModel esdatModel = new ESDATModel();
-            DateTime sampledDateTime = DateTime.Now;
-            //esdatModel.SampleFileData.SampledDateTime = sampledDateTime;
             var action = esdatConverter.ConvertToODMAction(esdatModel);
 
             Assert.AreEqual(action.ActionID, 0);
             Assert.AreEqual(action.ActionTypeCV, "specimenCollection");
-            //Assert.AreEqual(action.BeginDateTime, sampledDateTime);
             Assert.AreEqual(action.EndDateTime, null);
             Assert.AreEqual(action.EndDateTimeUTCOffset, null);
             Assert.AreEqual(action.ActionDescription, null);
