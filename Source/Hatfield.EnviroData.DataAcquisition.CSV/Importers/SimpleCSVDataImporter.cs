@@ -85,9 +85,15 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Importers
             var resultsForSingleRow = new List<IResult>();
             var model = new T();
 
+            IDataSourceLocation currentLocation = null;
+
             foreach(var configuration in extractConfigurations)
             {
-                resultsForSingleRow.AddRange(configuration.ExtractData(model, dataSource, currentRow));
+                if(configuration is SimpleCSVExtractConfiguration)
+                {
+                    currentLocation = new CSVDataSourceLocation(currentRow, ((SimpleCSVExtractConfiguration)configuration).ColumnIndex);
+                }
+                resultsForSingleRow.AddRange(configuration.ExtractData(model, dataSource, currentLocation));
             }
 
             var parsingResult = new ParsingResult(ResultLevel.DEBUG, "Extract data from single row success", model);
