@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Hatfield.EnviroData.DataAcquisition.CSV
 {
-    public class SimpleCSVExtractConfiguration : IExtractConfiguration
+    public class SimpleCSVExtractConfiguration : ISimpleExtractConfiguration
     {
         private int _columnIndex;
         private string _propertyPath;

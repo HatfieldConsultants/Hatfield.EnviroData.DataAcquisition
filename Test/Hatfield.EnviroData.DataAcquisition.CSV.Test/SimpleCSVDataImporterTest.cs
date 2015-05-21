@@ -84,7 +84,7 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Test
             var dataImporter = new TestImporterBuilder().Build();
             var configurations = dataImporter.ExtractConfigurations;
 
-            var firstConfiguration = configurations.ElementAt(0);
+            var firstConfiguration = configurations.ElementAt(0) as ISimpleExtractConfiguration;
             
             Assert.NotNull(configurations);
             Assert.AreEqual(3, configurations.Count());

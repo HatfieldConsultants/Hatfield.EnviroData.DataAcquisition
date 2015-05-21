@@ -51,6 +51,7 @@
     <Compile Include="IDataSourceLocation.cs" />
     <Compile Include="IDataToImport.cs" />
     <Compile Include="IExtractConfiguration.cs" />
+    <Compile Include="ISimpleExtractConfiguration.cs" />
     <Compile Include="IExtractedDataset.cs" />
     <Compile Include="IImporterBuilder.cs" />
     <Compile Include="IParser.cs" />
