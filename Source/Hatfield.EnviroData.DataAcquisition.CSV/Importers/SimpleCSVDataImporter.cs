@@ -87,7 +87,7 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Importers
 
             IDataSourceLocation currentLocation = null;
 
-            foreach(var configuration in extractConfigurations)
+            foreach(var configuration in extractConfigurations.Where(x => x is ISimpleExtractConfiguration).Cast<ISimpleExtractConfiguration>())
             {
                 if(configuration is SimpleCSVExtractConfiguration)
                 {

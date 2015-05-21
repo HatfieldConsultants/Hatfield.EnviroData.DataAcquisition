@@ -5,9 +5,8 @@ using System.Text;
 
 namespace Hatfield.EnviroData.DataAcquisition
 {
-    public interface IExtractConfiguration
+    public interface IChildObjectExtractConfiguration : IExtractConfiguration
     {
-        string PropertyPath { get; }
-        IValueAssigner PropertyValueAssigner { get; }
+        IDataImporter ChildObjectImporter { get; }
     }
 }

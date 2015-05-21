@@ -46,11 +46,13 @@
     <Compile Include="DefaultParserFactory.cs" />
     <Compile Include="ExtractedDataset.cs" />
     <Compile Include="Helpers\PropertyInfoHelper.cs" />
+    <Compile Include="IChildObjectExtractConfiguration.cs" />
     <Compile Include="ICriteria.cs" />
     <Compile Include="IDataImporter.cs" />
     <Compile Include="IDataSourceLocation.cs" />
     <Compile Include="IDataToImport.cs" />
     <Compile Include="IExtractConfiguration.cs" />
+    <Compile Include="ISimpleExtractConfiguration.cs" />
     <Compile Include="IExtractedDataset.cs" />
     <Compile Include="IImporterBuilder.cs" />
     <Compile Include="IParser.cs" />
@@ -64,6 +66,7 @@
     <Compile Include="ResultLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResultLevelHelper.cs" />
+    <Compile Include="SimpleExtractConfigurationBase.cs" />
     <Compile Include="ValueAssigners\SimpleValueAssigner.cs" />
     <Compile Include="ValueParsers\BooleanValueParser.cs" />
     <Compile Include="ValueParsers\DateTimeValueParser.cs" />
