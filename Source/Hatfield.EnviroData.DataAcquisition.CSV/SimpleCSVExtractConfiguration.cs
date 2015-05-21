@@ -5,12 +5,9 @@ using System.Text;
 
 namespace Hatfield.EnviroData.DataAcquisition.CSV
 {
-    public class SimpleCSVExtractConfiguration : ISimpleExtractConfiguration
+    public class SimpleCSVExtractConfiguration : SimpleExtractConfigurationBase, ISimpleExtractConfiguration
     {
         private int _columnIndex;
-        private string _propertyPath;
-        private IParser _parser;
-        private IValueAssigner _valueAssigner;
         private Type _propertyType;
 
         /// <summary>
@@ -21,7 +18,7 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV
         /// <param name="parser"></param>
         /// <param name="valueAssigner"></param>
         /// <param name="propertyType"></param>
-        public SimpleCSVExtractConfiguration(int columnIndex, string propertyPath, IParser parser, IValueAssigner valueAssigner, Type propertyType)
+        public SimpleCSVExtractConfiguration(int columnIndex, string propertyPath, IParser parser, IValueAssigner valueAssigner, Type propertyType) : base(propertyPath, parser, valueAssigner)
         {
             _columnIndex = columnIndex;
             _propertyPath = propertyPath;
@@ -36,29 +33,9 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV
                 return _columnIndex;
             }
         }
-        public string PropertyPath
-        {
-            get {
-                return _propertyPath;
-            }
-        }
-
-        public IParser PropertyParser
-        {
-            get {
-                return _parser;
-            }
-        }
-
-        public IValueAssigner PropertyValueAssigner
-        {
-            get {
-                return _valueAssigner;
-            }
-        }
 
 
-        public IEnumerable<IResult> ExtractData(object model, IDataToImport dataToImport, IDataSourceLocation currentLocation)
+        public override IEnumerable<IResult> ExtractData(object model, IDataToImport dataToImport, IDataSourceLocation currentLocation)
         {
             var results = new List<IResult>();            
 
