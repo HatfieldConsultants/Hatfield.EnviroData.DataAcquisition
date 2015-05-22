@@ -47,7 +47,19 @@ namespace Hatfield.EnviroData.DataAcquisition.XML.Parsers
         private string GetRawDataValue(XMLDataSourceLocation location, XMLDataToImport xmlDataToImport)
         {
             var data = xmlDataToImport.Data as XDocument;
-            return data.Root.Element(location.ElementName).ToString();
+            var value = "";
+            foreach (XElement element in data.Descendants())
+            {
+            if (String.IsNullOrEmpty(location.ElementName))
+            {
+                value = element.Elements().ElementAt(location.Index).Attribute(location.AttributeName).Value; 
+            }
+            else
+            {
+                value = element.Elements(location.ElementName).ElementAt(location.Index).Attribute(location.AttributeName).Value; 
+            }
+            }
+            return value;
         }
 
         private object ParseRawValue(Type type, string elementValue)

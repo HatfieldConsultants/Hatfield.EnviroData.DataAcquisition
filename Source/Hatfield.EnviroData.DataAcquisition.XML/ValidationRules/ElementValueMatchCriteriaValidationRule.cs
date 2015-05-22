@@ -7,14 +7,14 @@ using Hatfield.EnviroData.DataAcquisition;
 
 namespace Hatfield.EnviroData.DataAcquisition.XML.ValidationRules
 {
-    public class CellValueMatchCriteriaValidationRule : IValidationRule
+    public class ElementValueMatchCriteriaValidationRule : IValidationRule
     {
         private IDataSourceLocation _location;
         private IXMLParserFactory _parserFactory;
         private Type _elementValueType;
         private ICriteria _criteria;
 
-        public CellValueMatchCriteriaValidationRule(IDataSourceLocation location,
+        public ElementValueMatchCriteriaValidationRule(IDataSourceLocation location,
                                                     IXMLParserFactory parserFactory,
                                                     Type elementValueType,
                                                     ICriteria criteria)

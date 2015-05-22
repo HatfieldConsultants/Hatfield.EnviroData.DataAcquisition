@@ -7,21 +7,21 @@ using System.Xml.Linq;
 
 namespace Hatfield.EnviroData.DataAcquisition.XML.Importers
 {
-    public class SimpleXMLDataImporter
-    {
-        
+    public class SimpleXMLDataImporter: IDataImporter
+    {        
         private IList<IExtractConfiguration> _extractConfigurations;
         private IList<IValidationRule> _validationRules;
         private ResultLevel _thresholdLevel = ResultLevel.ERROR;
+        private XMLDataSourceLocation _location;
 
-        public SimpleXMLDataImporter(ResultLevel thresholdLevel)
+        public SimpleXMLDataImporter(ResultLevel thresholdLevel, XMLDataSourceLocation location)
         {
             _extractConfigurations = new List<IExtractConfiguration>();
             _validationRules = new List<IValidationRule>();
             _thresholdLevel = thresholdLevel;
+            _location = location;
         }
-
-        
+      
         public bool IsDataSupported(IDataToImport dataToImport)
         {
             return ValidateDataToImport(dataToImport).Item1;
@@ -30,24 +30,30 @@ namespace Hatfield.EnviroData.DataAcquisition.XML.Importers
         public IExtractedDataset<T> Extract<T>(IDataToImport dataToImport) where T : new()
         {            
             var extractedDataset = new ExtractedDataset<T>(_thresholdLevel);
-
             var validatedDataToImportResult = ValidateDataToImport(dataToImport);
             extractedDataset.AddParsingResults(validatedDataToImportResult.Item2);
+
             if (!validatedDataToImportResult.Item1)
             {
                 //format not valid, return
                 return extractedDataset;
             }
+            var resultsForSingleElement = new List<IResult>();
+            var model = new T();
 
-            var xmlDataSource = dataToImport as XMLDataToImport;
-            var rawData = xmlDataSource.Data as XDocument;
+            foreach (var configuration in _extractConfigurations)
+            {
+                //if (configuration is SimpleXMLExtractConfiguration)
+                //{
+                //    currentLocation = new XMLDataSourceLocation(_location.ElementName, _location.AttributeName, ((SimpleXMLExtractConfiguration)configuration).ElementIndex);
+                //}
+                resultsForSingleElement.AddRange(configuration.ExtractData(model, dataToImport, _location));
+            }
 
-            //for (var i = _startRow; i < rawData.Length; i++)
-            //{
-            //    var extractResultsForRow = ExtractDataForSingleRow<T>(_extractConfigurations, dataToImport, i);
-            //    extractedDataset.AddParsingResults(extractResultsForRow);
+            var parsingResult = new ParsingResult(ResultLevel.DEBUG, "Extract data from single row success", model);
 
-            //}
+            resultsForSingleElement.Add(parsingResult);
+
 
             return extractedDataset;
         }
@@ -81,21 +87,27 @@ namespace Hatfield.EnviroData.DataAcquisition.XML.Importers
             get { return _thresholdLevel; }
         }
 
-        protected IEnumerable<IResult> ExtractDataForSingleRow<T>(IList<IExtractConfiguration> extractConfigurations, IDataToImport dataSource, int currentRow) where T : new()
+        protected IEnumerable<IResult> ExtractDataForSingleElement<T>(IList<IExtractConfiguration> extractConfigurations, IDataToImport dataSource, string element, string attribute) where T : new()
         {
-            var resultsForSingleRow = new List<IResult>();
+            var resultsForSingleElement = new List<IResult>();
             var model = new T();
+
+            IDataSourceLocation currentLocation = null;
 
             foreach(var configuration in extractConfigurations)
             {
-                resultsForSingleRow.AddRange(configuration.ExtractData(model, dataSource, currentRow));
+                if (configuration is SimpleXMLExtractConfiguration)
+                {
+                    currentLocation = new XMLDataSourceLocation(element, attribute, ((SimpleXMLExtractConfiguration)configuration).ElementIndex);
+                }
+                resultsForSingleElement.AddRange(configuration.ExtractData(model, dataSource, currentLocation));
             }
 
             var parsingResult = new ParsingResult(ResultLevel.DEBUG, "Extract data from single row success", model);
 
-            resultsForSingleRow.Add(parsingResult);
+            resultsForSingleElement.Add(parsingResult);
 
-            return resultsForSingleRow;
+            return resultsForSingleElement;
 
         }
 

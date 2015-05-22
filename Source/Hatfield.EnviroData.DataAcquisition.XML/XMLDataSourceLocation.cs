@@ -6,22 +6,30 @@ using System.Xml.Linq;
 
 namespace Hatfield.EnviroData.DataAcquisition.XML
 {
-    public class XMLDataSourceLocation
+    public class XMLDataSourceLocation: IDataSourceLocation
     {
         public string _elementName;
-        public XElement _element;
+        public string _attributeName;
+        public int _index = 0;
 
-        public XMLDataSourceLocation(string elementName, XElement element)
+        public XMLDataSourceLocation(string elementName, string attributeName)
         {
             _elementName = elementName;
-            _element = element;
+            _attributeName = attributeName;
         }
 
-        public XElement Element
+        public XMLDataSourceLocation(string elementName, string attributeName, int index)
+        {
+            _elementName = elementName;
+            _attributeName = attributeName;
+            _index = index;
+        }
+
+        public string AttributeName
         {
             get
             {
-                return _element;
+                return _attributeName;
             }
         }
 
@@ -33,9 +41,17 @@ namespace Hatfield.EnviroData.DataAcquisition.XML
             }
         }
 
+        public int Index
+        {
+            get
+            {
+                return _index;
+            }
+        }
+
         public override string ToString()
         {
-            return string.Format("Row: {0}, Column: {1}", _element, _elementName);
+            return string.Format("Node: {0}, {1}",  _elementName, _attributeName);
         }
 
     }
