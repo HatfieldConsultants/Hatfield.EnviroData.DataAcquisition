@@ -52,12 +52,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChemistryFileChildObjectExtractConfiguration.cs" />
     <Compile Include="ChemistryFileData.cs" />
     <Compile Include="Common\SampleCode.cs" />
     <Compile Include="Converters\ESDATConverter.cs" />
     <Compile Include="ESDATDataToImport.cs" />
     <Compile Include="ESDATModel.cs" />
+    <Compile Include="Importer\ESDATDataImporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SampleFileChildObjectExtractConfiguration.cs" />
     <Compile Include="SampleFileData.cs" />
   </ItemGroup>
   <ItemGroup>

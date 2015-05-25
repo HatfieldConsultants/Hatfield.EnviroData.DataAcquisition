@@ -64,8 +64,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChemistryFileChildPropertyExtractConfigurationTest.cs" />
     <Compile Include="ChemistryFileTestImporterTest.cs" />
     <Compile Include="Converters\ESDATDataConverterTest.cs" />
+    <Compile Include="ESDATTestHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleDataImporterTest.cs" />
   </ItemGroup>
