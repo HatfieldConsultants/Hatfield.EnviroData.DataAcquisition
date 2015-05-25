@@ -1,5 +1,4 @@
-﻿using Hatfield.EnviroData.DataAcquisition.FileSystems;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,6 +6,7 @@ using System.Xml.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using Hatfield.EnviroData.FileSystems.WindowsFileSystem;
 
 namespace Hatfield.EnviroData.DataAcquisition.XML.Test
 {
@@ -24,9 +24,9 @@ namespace Hatfield.EnviroData.DataAcquisition.XML.Test
         }
 
         [Test]
-        public void CSVDataToImportReadCSVFileTest()
+        public void XMLDataToImportReadXMLFileTest()
         {
-            var dataSource = new LocalFileSystem(_xmlDataFilePath);
+            var dataSource = new WindowsFileSystem(_xmlDataFilePath);
             var dataFromFileSystem = dataSource.FetchData();
 
             var dataToImport = new XMLDataToImport(dataFromFileSystem);
