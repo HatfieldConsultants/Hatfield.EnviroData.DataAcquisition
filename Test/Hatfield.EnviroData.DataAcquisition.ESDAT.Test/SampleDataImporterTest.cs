@@ -28,7 +28,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test
 
             var dataToImport = new CSVDataToImport(dataFromFileSystem);
 
-            var sampleDataFileImporter = BuildSampleDataFileImporter();
+            var sampleDataFileImporter = ESDATTestHelper.BuildSampleDataFileImporter();
 
             var extractResult = sampleDataFileImporter.Extract<SampleFileData>(dataToImport);
 
@@ -58,86 +58,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test
         }
 
 
-        private IDataImporter BuildSampleDataFileImporter()
-        {
-            var simpleValueAssigner = new SimpleValueAssigner();
-
-            var parserFactory = new DefaultCSVParserFactory();
-
-            var testImporter = new SimpleCSVDataImporter(ResultLevel.ERROR, 1);
-
-            testImporter.AddExtractConfiguration(new SimpleCSVExtractConfiguration(0,
-                                                                                    "SampleCode",
-                                                                                    parserFactory.GetCellParser(typeof(string)),
-                                                                                    simpleValueAssigner,
-                                                                                    typeof(string)));
-
-            testImporter.AddExtractConfiguration(new SimpleCSVExtractConfiguration(1,
-                                                                                    "SampledDateTime",
-                                                                                    parserFactory.GetCellParser(typeof(DateTime?)),
-                                                                                    simpleValueAssigner,
-                                                                                    typeof(DateTime?)));
-
-            testImporter.AddExtractConfiguration(new SimpleCSVExtractConfiguration(2,
-                                                                                    "FieldID",
-                                                                                    parserFactory.GetCellParser(typeof(string)),
-                                                                                    simpleValueAssigner,
-                                                                                    typeof(string)));
-
-            testImporter.AddExtractConfiguration(new SimpleCSVExtractConfiguration(4,
-                                                                                    "SampleDepth",
-                                                                                    parserFactory.GetCellParser(typeof(double?)),
-                                                                                    simpleValueAssigner,
-                                                                                    typeof(double?)));
-
-            testImporter.AddExtractConfiguration(new SimpleCSVExtractConfiguration(6,
-                                                                                    "MatrixType",
-                                                                                    parserFactory.GetCellParser(typeof(string)),
-                                                                                    simpleValueAssigner,
-                                                                                    typeof(string)));
-
-            testImporter.AddExtractConfiguration(new SimpleCSVExtractConfiguration(7,
-                                                                                    "SampleType",
-                                                                                    parserFactory.GetCellParser(typeof(string)),
-                                                                                    simpleValueAssigner,
-                                                                                    typeof(string)));
-
-            testImporter.AddExtractConfiguration(new SimpleCSVExtractConfiguration(8,
-                                                                                    "ParentSample",
-                                                                                    parserFactory.GetCellParser(typeof(string)),
-                                                                                    simpleValueAssigner,
-                                                                                    typeof(string)));
-
-            testImporter.AddExtractConfiguration(new SimpleCSVExtractConfiguration(10,
-                                                                                    "SDG",
-                                                                                    parserFactory.GetCellParser(typeof(string)),
-                                                                                    simpleValueAssigner,
-                                                                                    typeof(string)));
-
-            testImporter.AddExtractConfiguration(new SimpleCSVExtractConfiguration(11,
-                                                                                    "LabName",
-                                                                                    parserFactory.GetCellParser(typeof(string)),
-                                                                                    simpleValueAssigner,
-                                                                                    typeof(string)));
-
-            testImporter.AddExtractConfiguration(new SimpleCSVExtractConfiguration(12,
-                                                                                    "LabSampleID",
-                                                                                    parserFactory.GetCellParser(typeof(string)),
-                                                                                    simpleValueAssigner,
-                                                                                    typeof(string)));
-
-            testImporter.AddExtractConfiguration(new SimpleCSVExtractConfiguration(13,
-                                                                                    "Comments",
-                                                                                    parserFactory.GetCellParser(typeof(string)),
-                                                                                    simpleValueAssigner,
-                                                                                    typeof(string)));
-
-            testImporter.AddExtractConfiguration(new SimpleCSVExtractConfiguration(14,
-                                                                                    "LabReportNumber",
-                                                                                    parserFactory.GetCellParser(typeof(string)),
-                                                                                    simpleValueAssigner,
-                                                                                    typeof(string)));
-            return testImporter;
-        }
+        
     }
 }

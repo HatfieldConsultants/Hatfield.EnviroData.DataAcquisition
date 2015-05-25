@@ -45,7 +45,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT
 
             _valueAssigner.AssignValue(model, _propertyPath, extractResult.ExtractedEntities, typeof(ChemistryFileData));
 
-            return extractResult.AllParsingResults;
+            return extractResult.AllParsingResults.Where(x => x is BaseResult);
         }
     }
 }

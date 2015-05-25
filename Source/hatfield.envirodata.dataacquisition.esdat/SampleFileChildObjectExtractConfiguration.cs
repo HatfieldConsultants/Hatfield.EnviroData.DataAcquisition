@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT
 {
-    public class SampleFileChildObjectExtractConfiguration
+    public class SampleFileChildObjectExtractConfiguration : IChildObjectExtractConfiguration
     {
         private IDataImporter _dataImporter;
         private string _propertyPath;
@@ -45,7 +45,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT
 
             _valueAssigner.AssignValue(model, _propertyPath, extractResult.ExtractedEntities, typeof(SampleFileData));
 
-            return extractResult.AllParsingResults;
+            return extractResult.AllParsingResults.Where(x => x is BaseResult);
         }
     }
 }

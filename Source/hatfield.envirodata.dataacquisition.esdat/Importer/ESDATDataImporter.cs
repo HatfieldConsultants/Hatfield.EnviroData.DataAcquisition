@@ -11,7 +11,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Importer
         private IList<IValidationRule> _validationRules;
         private ResultLevel _thresholdLevel = ResultLevel.ERROR;
 
-        public ESDATDataImporter(ResultLevel thresholdLevel, int startRow = 0)
+        public ESDATDataImporter(ResultLevel thresholdLevel)
         {
             _extractConfigurations = new List<IExtractConfiguration>();
             _validationRules = new List<IValidationRule>();
@@ -27,22 +27,97 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Importer
         {
             var extractedDataset = new ExtractedDataset<T>(_thresholdLevel);
 
+            ChemistryFileChildObjectExtractConfiguration chemistryDataExtractConfiguration = null;
+            SampleFileChildObjectExtractConfiguration sampleDataExtractConfiguration = null;
+
+            
+
+            var castedDataToImport = dataToImport as ESDATDataToImport;
+
+            if(castedDataToImport == null)
+            {                
+                extractedDataset.AddParsingResult(new BaseResult(ResultLevel.FATAL, "Data to Import needs to be ESDATDataToImport"));
+            }
+
+            try
+            {
+                chemistryDataExtractConfiguration = _extractConfigurations.Where(x => x is ChemistryFileChildObjectExtractConfiguration)
+                                                                            .Cast<ChemistryFileChildObjectExtractConfiguration>()
+                                                                            .SingleOrDefault();
+            }
+            catch(Exception ex)
+            {
+                chemistryDataExtractConfiguration = null;
+                extractedDataset.AddParsingResult(new BaseResult(ResultLevel.FATAL, "ESDAT data importer needs to have one and only one Chemistry file extract configuration"));
+
+            }
+
+            try
+            {
+                sampleDataExtractConfiguration = _extractConfigurations.Where(x => x is SampleFileChildObjectExtractConfiguration)
+                                                                            .Cast<SampleFileChildObjectExtractConfiguration>()
+                                                                            .SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                sampleDataExtractConfiguration = null;
+                extractedDataset.AddParsingResult(new BaseResult(ResultLevel.FATAL, "ESDAT data importer needs to have one and only one Sample file extract configuration"));
+            }
+
+            if (chemistryDataExtractConfiguration != null && sampleDataExtractConfiguration != null)
+            {
+                var model = new T();
+
+                var chemistryFileExtractResults = ExtractChemistryFileData(model, chemistryDataExtractConfiguration, castedDataToImport.ChemistryFileToImport);
+                extractedDataset.AddParsingResults(chemistryFileExtractResults);
+
+                var sampleFileExtractResults = ExtractSampleFileData(model, sampleDataExtractConfiguration, castedDataToImport.SampleFileToImport);
+                extractedDataset.AddParsingResults(sampleFileExtractResults);
+
+                var parsingResult = new ParsingResult(ResultLevel.DEBUG, "Extract data from ESDAT data success", model);
+
+                extractedDataset.AddParsingResults(new List<IResult>{parsingResult});
+
+            }
+
             return extractedDataset;
         }
 
         public IEnumerable<IValidationRule> AllValidationRules
         {
-            get { throw new NotImplementedException(); }
+            get { return _validationRules; }
         }
 
         public IEnumerable<IExtractConfiguration> ExtractConfigurations
         {
-            get { throw new NotImplementedException(); }
+            get { return _extractConfigurations; }
         }
 
         public ResultLevel ThresholdLevel
         {
-            get { throw new NotImplementedException(); }
+            get { return _thresholdLevel; }
         }
+
+        public void AddExtractConfiguration(IExtractConfiguration extractConfigurationToAdd)
+        {
+            _extractConfigurations.Add(extractConfigurationToAdd);
+        }
+
+        private IEnumerable<IResult> ExtractChemistryFileData(object model, ChemistryFileChildObjectExtractConfiguration configuration, IDataToImport dataToImport)
+        {
+            var extractResults = configuration.ExtractData(model, dataToImport);
+
+            return extractResults;        
+        }
+
+        private IEnumerable<IResult> ExtractSampleFileData(object model, SampleFileChildObjectExtractConfiguration configuration, IDataToImport dataToImport)
+        {
+            var extractResults = configuration.ExtractData(model, dataToImport);
+
+            return extractResults;  
+        }
+
+
+        
     }
 }
