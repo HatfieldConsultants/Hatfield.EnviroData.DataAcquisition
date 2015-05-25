@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Hatfield.EnviroData.DataAcquisition
 {
-    public class ChildObjectExtractConfigurationBase : IChildObjectExtractConfiguration
+    public abstract class ChildObjectExtractConfigurationBase : IChildObjectExtractConfiguration
     {
         public IDataImporter ChildObjectImporter
         {
@@ -27,5 +27,9 @@ namespace Hatfield.EnviroData.DataAcquisition
         {
             get { throw new NotImplementedException(); }
         }
+
+
+        public abstract IEnumerable<IResult> ExtractData(object model, IDataToImport dataToImport);
+
     }
 }

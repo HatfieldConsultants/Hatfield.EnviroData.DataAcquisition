@@ -9,5 +9,6 @@ namespace Hatfield.EnviroData.DataAcquisition
     {
         IDataImporter ChildObjectImporter { get; }
         Type ChildObjectType { get; }
+        IEnumerable<IResult> ExtractData(object model, IDataToImport dataToImport);
     }
 }
