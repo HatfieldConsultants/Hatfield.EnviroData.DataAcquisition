@@ -38,9 +38,9 @@ namespace Hatfield.EnviroData.DataAcquisition.XML.Parsers
 
                 return new ParsingResult(ResultLevel.INFO, "Parsing value successfully", parsedValue);
             }
-            catch (IndexOutOfRangeException)
+            catch (Exception e)
             {
-                return new ParsingResult(ResultLevel.FATAL, "Index is out of range", null);
+                return new ParsingResult(ResultLevel.FATAL, "Exception caught: " + e, null);
             }
         }
 
@@ -48,27 +48,29 @@ namespace Hatfield.EnviroData.DataAcquisition.XML.Parsers
         {
             var data = xmlDataToImport.Data as XDocument;
             var value = "";
+
             foreach (XElement element in data.Descendants())
             {
-            if (String.IsNullOrEmpty(location.ElementName))
-            {
-                value = element.Elements().ElementAt(location.Index).Attribute(location.AttributeName).Value; 
+                if (String.IsNullOrEmpty(location.ElementName))
+                {
+                    return element.Descendants().Attributes().Where(x => x.Name.LocalName == location.AttributeName).FirstOrDefault().Value;
+                }
+                else
+                {
+                    var theElement = element.Descendants().Where(x => x.Name.LocalName == location.ElementName).First();
+                    return theElement.Attributes().Where(x => x.Name.LocalName == location.AttributeName).First().Value;
+                }
             }
-            else
-            {
-                value = element.Elements(location.ElementName).ElementAt(location.Index).Attribute(location.AttributeName).Value; 
-            }
-            }
+
             return value;
         }
 
         private object ParseRawValue(Type type, string elementValue)
         {
             var valueParser = _parserFactory.GetValueParser(type);
-
-            var parsedValue = valueParser.Parse(elementValue);
-
-            return parsedValue;
+            
+            return valueParser.Parse(elementValue);
+            }
         }
     }
-}
+
