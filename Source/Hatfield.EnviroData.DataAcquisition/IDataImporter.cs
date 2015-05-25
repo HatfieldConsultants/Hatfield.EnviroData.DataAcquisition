@@ -12,5 +12,6 @@ namespace Hatfield.EnviroData.DataAcquisition
         IEnumerable<IValidationRule> AllValidationRules { get; }
         IEnumerable<IExtractConfiguration> ExtractConfigurations { get; }
         ResultLevel ThresholdLevel { get; }
+        void AddExtractConfiguration(IExtractConfiguration extractConfigurationToAdd);
     }
 }
