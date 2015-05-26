@@ -52,6 +52,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test
             var entity = extractResult.ExtractedEntities.Cast<ESDATModel>().SingleOrDefault();
 
             Assert.NotNull(entity);
+            Assert.AreEqual("Lab1", entity.LabName);
             Assert.AreEqual(3, entity.SampleFileData.Count());
             Assert.AreEqual(9, entity.ChemistryData.Count());
         }

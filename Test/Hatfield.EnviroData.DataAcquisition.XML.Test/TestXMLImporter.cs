@@ -2,7 +2,7 @@
 using Hatfield.EnviroData.DataAcquisition.ValueAssigners;
 using Hatfield.EnviroData.DataAcquisition.XML.Importers;
 using Hatfield.EnviroData.DataAcquisition.XML.ValidationRules;
-using Hatfield.EnviroData.DataAcquisition.XML.ValidationRules.Hatfield.EnviroData.DataAcquisition.XML.ValidationRules;
+using Hatfield.EnviroData.DataAcquisition.XML.ValidationRules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
