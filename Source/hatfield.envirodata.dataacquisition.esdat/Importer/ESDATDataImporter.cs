@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hatfield.EnviroData.DataAcquisition.XML;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -64,9 +65,13 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Importer
                 extractedDataset.AddParsingResult(new BaseResult(ResultLevel.FATAL, "ESDAT data importer needs to have one and only one Sample file extract configuration"));
             }
 
+            var model = new T();
+
+            var headerFileExtractResults = ExtractHeaderFile(model, _extractConfigurations, castedDataToImport.HeaderFileToImport);
+            extractedDataset.AddParsingResults(headerFileExtractResults);
+
             if (chemistryDataExtractConfiguration != null && sampleDataExtractConfiguration != null)
-            {
-                var model = new T();
+            {                
 
                 var chemistryFileExtractResults = ExtractChemistryFileData(model, chemistryDataExtractConfiguration, castedDataToImport.ChemistryFileToImport);
                 extractedDataset.AddParsingResults(chemistryFileExtractResults);
@@ -101,6 +106,24 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Importer
         public void AddExtractConfiguration(IExtractConfiguration extractConfigurationToAdd)
         {
             _extractConfigurations.Add(extractConfigurationToAdd);
+        }
+
+        private IEnumerable<IResult> ExtractHeaderFile(object model, IList<IExtractConfiguration> extractConfiguration, IDataToImport xmlDataToImport)
+        {
+            var results = new List<IResult>();
+            IDataSourceLocation currentLocation = null;
+            foreach (var configuration in extractConfiguration.Where(x => x is ISimpleExtractConfiguration))
+            {
+                if (configuration is SimpleXMLExtractConfiguration)
+                {
+                    currentLocation = new XMLDataSourceLocation(((SimpleXMLExtractConfiguration)configuration).ElementName, ((SimpleXMLExtractConfiguration)configuration).AttributeName);
+                }
+
+                results.AddRange(((SimpleXMLExtractConfiguration)configuration).ExtractData(model, xmlDataToImport, currentLocation));
+
+            }
+
+            return results;
         }
 
         private IEnumerable<IResult> ExtractChemistryFileData(object model, ChemistryFileChildObjectExtractConfiguration configuration, IDataToImport dataToImport)

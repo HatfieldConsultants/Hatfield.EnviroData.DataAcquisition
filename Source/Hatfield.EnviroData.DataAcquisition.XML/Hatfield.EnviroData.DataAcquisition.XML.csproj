@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{327CF9C6-1298-4887-8B9F-31400E5DBD05}</ProjectGuid>
+    <ProjectGuid>{3DC7A821-C52C-42D7-B769-ABFF94B24EDE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Hatfield.EnviroData.DataAcquisition.ESDAT</RootNamespace>
-    <AssemblyName>Hatfield.EnviroData.DataAcquisition.ESDAT</AssemblyName>
+    <RootNamespace>Hatfield.EnviroData.DataAcquisition.XML</RootNamespace>
+    <AssemblyName>Hatfield.EnviroData.DataAcquisition.XML</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -33,17 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>$(SolutionDir)\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.dll</HintPath>
+    <Reference Include="Hatfield.EnviroData.FileSystems">
+      <HintPath>..\..\packages\Hatfield.EnviroData.FileSystems.WindowsFileSystem.1.0.0\lib\net40\Hatfield.EnviroData.FileSystems.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>$(SolutionDir)\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Hatfield.EnviroData.Core">
-      <HintPath>$(SolutionDir)\packages\Hatfield.EnviroData.Core.1.0.0.0\lib\net40\Hatfield.EnviroData.Core.dll</HintPath>
+    <Reference Include="Hatfield.EnviroData.FileSystems.WindowsFileSystem">
+      <HintPath>..\..\packages\Hatfield.EnviroData.FileSystems.WindowsFileSystem.1.0.0\lib\net40\Hatfield.EnviroData.FileSystems.WindowsFileSystem.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -52,30 +48,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChemistryFileChildObjectExtractConfiguration.cs" />
-    <Compile Include="ChemistryFileData.cs" />
-    <Compile Include="Common\SampleCode.cs" />
-    <Compile Include="Converters\ESDATConverter.cs" />
-    <Compile Include="ESDATDataToImport.cs" />
-    <Compile Include="ESDATModel.cs" />
-    <Compile Include="Importer\ESDATDataImporter.cs" />
+    <Compile Include="DefaultXMLParserFactory.cs" />
+    <Compile Include="Importers\SimpleXMLDataImporter.cs" />
+    <Compile Include="IXMLParserFactory.cs" />
+    <Compile Include="Parsers\ElementParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SampleFileChildObjectExtractConfiguration.cs" />
-    <Compile Include="SampleFileData.cs" />
+    <Compile Include="SimpleXMLExtractConfiguration.cs" />
+    <Compile Include="ValidationRules\ElementValueMatchCriteriaValidationRule.cs" />
+    <Compile Include="ValidationRules\XMLFileNameExtensionMatchValidationRule.cs" />
+    <Compile Include="XMLDataSourceLocation.cs" />
+    <Compile Include="XMLDataToImport.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hatfield.EnviroData.DataAcquisition.CSV\Hatfield.EnviroData.DataAcquisition.CSV.csproj">
-      <Project>{a3dcc824-a35f-4425-b9db-adb876d8a5e3}</Project>
-      <Name>Hatfield.EnviroData.DataAcquisition.CSV</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Hatfield.EnviroData.DataAcquisition.XML\Hatfield.EnviroData.DataAcquisition.XML.csproj">
-      <Project>{3dc7a821-c52c-42d7-b769-abff94b24ede}</Project>
-      <Name>Hatfield.EnviroData.DataAcquisition.XML</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Hatfield.EnviroData.DataAcquisition\Hatfield.EnviroData.DataAcquisition.csproj">
       <Project>{fb279550-18d7-43d5-bc1e-01b651ed1c76}</Project>
       <Name>Hatfield.EnviroData.DataAcquisition</Name>
@@ -83,12 +70,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

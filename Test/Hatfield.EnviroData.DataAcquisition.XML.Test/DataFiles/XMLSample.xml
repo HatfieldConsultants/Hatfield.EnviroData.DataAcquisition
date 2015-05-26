@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ESdat generated="2013-08-16T08:09:51.278+10:00"
+    fileType="eLabResultsHeader"
+    schemaVersion="1.0.1"
+    xmlns="http://www.escis.com.au/2013/XML">
+  <LabReport Lab_Report_Number="LR04927"
+                  Date_Reported="2011-05-16"
+                  Project_ID="1234"
+                  Project_Number="4321"
+                  Lab_Name="Lab1"
+                  Lab_Signatory="John Brown">
+    <Associated_Files xmlns="http://www.escis.com.au/2013/XML/LabReport"/>
+    <Copies_Sent_To xmlns="http://www.escis.com.au/2013/XML/LabReport"/>
+    <eCoCs xmlns="http://www.escis.com.au/2013/XML/LabReport">
+      <eCoC SDG_ID="489" CoC_Number="Test MR 1 for_Lab1_22/10/2012">
+        <Lab_Requests>
+          <Lab_Request ID="414" Number="1" Version="1"/>
+        </Lab_Requests>
+      </eCoC>
+    </eCoCs>
+  </LabReport>
+</ESdat>
