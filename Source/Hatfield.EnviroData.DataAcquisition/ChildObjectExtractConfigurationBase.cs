@@ -7,28 +7,34 @@ namespace Hatfield.EnviroData.DataAcquisition
 {
     public abstract class ChildObjectExtractConfigurationBase : IChildObjectExtractConfiguration
     {
+        protected IDataImporter _dataImporter;
+        protected string _propertyPath;
+        protected IValueAssigner _valueAssigner;
+
+        public ChildObjectExtractConfigurationBase(IDataImporter dataImporter, string propertyPath, IValueAssigner valueAssigner)
+        {
+            _dataImporter = dataImporter;
+            _propertyPath = propertyPath;
+            _valueAssigner = valueAssigner;
+        }
+
         public IDataImporter ChildObjectImporter
         {
-            get { throw new NotImplementedException(); }
+            get { return _dataImporter; }
         }
 
         public string PropertyPath
         {
-            get { throw new NotImplementedException(); }
+            get { return _propertyPath; }
         }
 
         public IValueAssigner PropertyValueAssigner
         {
-            get { throw new NotImplementedException(); }
+            get { return _valueAssigner; }
         }
 
 
-        public Type ChildObjectType
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-
+        public abstract Type ChildObjectType{ get; }
         public abstract IEnumerable<IResult> ExtractData(object model, IDataToImport dataToImport);
 
     }
