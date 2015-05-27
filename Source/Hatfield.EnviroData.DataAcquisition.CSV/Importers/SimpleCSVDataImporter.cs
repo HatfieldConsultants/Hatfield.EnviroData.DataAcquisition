@@ -5,28 +5,23 @@ using System.Text;
 
 namespace Hatfield.EnviroData.DataAcquisition.CSV.Importers
 {
-    public class SimpleCSVDataImporter : IDataImporter
+    public class SimpleCSVDataImporter : DataImporterBase
     {
-        private IList<IExtractConfiguration> _extractConfigurations;
-        private IList<IValidationRule> _validationRules;
         private int _startRow = 0;
-        private ResultLevel _thresholdLevel = ResultLevel.ERROR;
+        
 
         public SimpleCSVDataImporter(ResultLevel thresholdLevel, int startRow = 0)
+            : base(thresholdLevel)
         {
-            _extractConfigurations = new List<IExtractConfiguration>();
-            _validationRules = new List<IValidationRule>();
-            _startRow = startRow;
-            _thresholdLevel = thresholdLevel;
+            _startRow = startRow;            
         }
-
         
-        public bool IsDataSupported(IDataToImport dataToImport)
+        public override bool IsDataSupported(IDataToImport dataToImport)
         {
             return ValidateDataToImport(dataToImport).Item1;
         }
 
-        public IExtractedDataset<T> Extract<T>(IDataToImport dataToImport) where T : new()
+        public override IExtractedDataset<T> Extract<T>(IDataToImport dataToImport)
         {            
             var extractedDataset = new ExtractedDataset<T>(_thresholdLevel);
 
@@ -51,34 +46,6 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Importers
             return extractedDataset;
         }
 
-        public IEnumerable<IValidationRule> AllValidationRules
-        {
-            get {
-                return _validationRules;
-            }
-        }
-
-        public IEnumerable<IExtractConfiguration> ExtractConfigurations
-        {
-            get {
-                return _extractConfigurations;
-            }
-        }
-
-        public void AddExtractConfiguration(IExtractConfiguration extractConfigurationToAdd)
-        {
-            _extractConfigurations.Add(extractConfigurationToAdd);
-        }
-
-        public void AddValidationRule(IValidationRule validationRuleToAdd)
-        {
-            _validationRules.Add(validationRuleToAdd);
-        }
-
-        public ResultLevel ThresholdLevel
-        {
-            get { return _thresholdLevel; }
-        }
 
         protected IEnumerable<IResult> ExtractDataForSingleRow<T>(IList<IExtractConfiguration> extractConfigurations, IDataToImport dataSource, int currentRow) where T : new()
         {

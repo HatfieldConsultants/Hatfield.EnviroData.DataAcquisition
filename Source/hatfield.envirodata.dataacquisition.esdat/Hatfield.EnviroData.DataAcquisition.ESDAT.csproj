@@ -54,7 +54,6 @@
   <ItemGroup>
     <Compile Include="ChemistryFileChildObjectExtractConfiguration.cs" />
     <Compile Include="ChemistryFileData.cs" />
-    <Compile Include="Common\SampleCode.cs" />
     <Compile Include="Converters\ESDATConverter.cs" />
     <Compile Include="ESDATDataToImport.cs" />
     <Compile Include="ESDATModel.cs" />

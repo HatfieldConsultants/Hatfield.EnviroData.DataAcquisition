@@ -6,25 +6,20 @@ using System.Text;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Importer
 {
-    public class ESDATDataImporter : IDataImporter
+    public class ESDATDataImporter : DataImporterBase
     {
-        private IList<IExtractConfiguration> _extractConfigurations;
-        private IList<IValidationRule> _validationRules;
-        private ResultLevel _thresholdLevel = ResultLevel.ERROR;
 
         public ESDATDataImporter(ResultLevel thresholdLevel)
+            : base(thresholdLevel)
         {
-            _extractConfigurations = new List<IExtractConfiguration>();
-            _validationRules = new List<IValidationRule>();
-            _thresholdLevel = thresholdLevel;
         }
 
-        public bool IsDataSupported(IDataToImport dataToImport)
+        public override bool IsDataSupported(IDataToImport dataToImport)
         {
             return dataToImport is ESDATDataToImport;
         }
 
-        public IExtractedDataset<T> Extract<T>(IDataToImport dataToImport) where T : new()
+        public override IExtractedDataset<T> Extract<T>(IDataToImport dataToImport)
         {
             var extractedDataset = new ExtractedDataset<T>(_thresholdLevel);
 
@@ -86,26 +81,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Importer
             }
 
             return extractedDataset;
-        }
-
-        public IEnumerable<IValidationRule> AllValidationRules
-        {
-            get { return _validationRules; }
-        }
-
-        public IEnumerable<IExtractConfiguration> ExtractConfigurations
-        {
-            get { return _extractConfigurations; }
-        }
-
-        public ResultLevel ThresholdLevel
-        {
-            get { return _thresholdLevel; }
-        }
-
-        public void AddExtractConfiguration(IExtractConfiguration extractConfigurationToAdd)
-        {
-            _extractConfigurations.Add(extractConfigurationToAdd);
         }
 
         private IEnumerable<IResult> ExtractHeaderFile(object model, IList<IExtractConfiguration> extractConfiguration, IDataToImport xmlDataToImport)
