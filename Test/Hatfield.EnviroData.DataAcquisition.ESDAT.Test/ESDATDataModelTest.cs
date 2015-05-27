@@ -85,5 +85,38 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test
             Assert.AreEqual(3.3, chemistryFileData.UCL);
             Assert.AreEqual(4.4, chemistryFileData.LCL);
         }
+
+        [Test]
+        public void ESDATModeTest()
+        {
+            var esdatModel = new ESDATModel(new DateTime(2014, 1, 1),
+                                            1,
+                                            "lab name",
+                                            "lab signatory",
+                                            new List<string>() { "associate file" },
+                                            new List<string>() { "copy sent to" },
+                                            2,
+                                            3,
+                                            4,
+                                            5,
+                                            (decimal)6.0,                                            
+                                            new List<SampleFileData>(),
+                                            new List<ChemistryFileData>());
+
+            Assert.NotNull(esdatModel);
+            Assert.AreEqual(new DateTime(2014, 1, 1), esdatModel.DateReported);
+            Assert.AreEqual(1, esdatModel.ProjectId);
+            Assert.AreEqual("lab name", esdatModel.LabName);
+            Assert.AreEqual("lab signatory", esdatModel.LabSignatory);
+            Assert.AreEqual("associate file", esdatModel.AssociatedFiles[0]);
+            Assert.AreEqual("copy sent to", esdatModel.CopiesSentTo[0]);
+            Assert.AreEqual(2, esdatModel.SDGID);
+            Assert.AreEqual(3, esdatModel.COCNumber);
+            Assert.AreEqual(4, esdatModel.LabRequestId);
+            Assert.AreEqual(5, esdatModel.LabRequestNumber);
+            Assert.AreEqual(6.0, esdatModel.LabRequestVersion);
+            Assert.AreEqual(0, esdatModel.SampleFileData.Count());
+            Assert.AreEqual(0, esdatModel.ChemistryData.Count());
+        }
     }
 }
