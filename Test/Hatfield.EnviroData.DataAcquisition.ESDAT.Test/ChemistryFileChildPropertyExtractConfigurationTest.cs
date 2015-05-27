@@ -33,6 +33,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test
 
             var childObjectExtractConfiguration = new ChemistryFileChildObjectExtractConfiguration(chemistryImporter, "ChemistryData", simpleValueAssginer);
 
+            Assert.AreEqual(typeof(ChemistryFileData), childObjectExtractConfiguration.ChildObjectType);
+
             var testESDATModel = new ESDATModel();
 
             var extractResult = childObjectExtractConfiguration.ExtractData(testESDATModel, dataToImport);

@@ -15,7 +15,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT
 
         public override Type ChildObjectType
         {
-            get { return typeof (ChemistryFileData); }
+            get { return typeof (SampleFileData); }
         }
 
         public override IEnumerable<IResult> ExtractData(object model, IDataToImport dataToImport)

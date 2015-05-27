@@ -4,16 +4,17 @@ using System.Linq;
 using System.Text;
 
 using Hatfield.EnviroData.DataAcquisition.CSV;
+using Hatfield.EnviroData.DataAcquisition.XML;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT
 {
     public class ESDATDataToImport : IDataToImport
     {
-        private IDataToImport _headerFileToImport;
+        private XMLDataToImport _headerFileToImport;
         private CSVDataToImport _sampleFileToImport;
         private CSVDataToImport _chemistryFileToImport;
 
-        public ESDATDataToImport(IDataToImport headerFileToImport, CSVDataToImport sampleFileToImport, CSVDataToImport chemistryFileToImport)
+        public ESDATDataToImport(XMLDataToImport headerFileToImport, CSVDataToImport sampleFileToImport, CSVDataToImport chemistryFileToImport)
         {
             _headerFileToImport = headerFileToImport;
             _sampleFileToImport = sampleFileToImport;
@@ -27,7 +28,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT
             }
         }
 
-        public IDataToImport HeaderFileToImport
+        public XMLDataToImport HeaderFileToImport
         {
             get
             {

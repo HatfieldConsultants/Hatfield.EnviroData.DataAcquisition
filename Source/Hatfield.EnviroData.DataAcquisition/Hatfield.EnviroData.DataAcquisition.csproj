@@ -44,6 +44,7 @@
     <Compile Include="BaseResult.cs" />
     <Compile Include="ChildObjectExtractConfigurationBase.cs" />
     <Compile Include="Criterias\RegexCriteria.cs" />
+    <Compile Include="DataImporterBase.cs" />
     <Compile Include="DefaultParserFactory.cs" />
     <Compile Include="ExtractedDataset.cs" />
     <Compile Include="Helpers\PropertyInfoHelper.cs" />
