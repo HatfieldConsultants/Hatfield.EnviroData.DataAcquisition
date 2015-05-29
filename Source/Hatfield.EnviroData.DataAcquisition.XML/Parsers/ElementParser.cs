@@ -49,6 +49,19 @@ namespace Hatfield.EnviroData.DataAcquisition.XML.Parsers
             var data = xmlDataToImport.Data as XDocument;
             var value = "";
 
+            if (data.Root.Name.LocalName == location.ElementName)
+            {
+                if (String.IsNullOrEmpty(location.AttributeName))
+                {
+                    return data.Root.Value;
+                }
+                else
+                {
+                    return data.Root.Attributes().Where(x => x.Name.LocalName ==location.AttributeName).FirstOrDefault().Value;
+                }
+            }
+            else
+            {
             foreach (XElement element in data.Descendants())
             {
                 if (String.IsNullOrEmpty(location.ElementName))
@@ -65,6 +78,7 @@ namespace Hatfield.EnviroData.DataAcquisition.XML.Parsers
                     var theElement = element.Descendants().Where(x => x.Name.LocalName == location.ElementName).First();
                     return theElement.Attributes().Where(x => x.Name.LocalName == location.AttributeName).First().Value;
                 }
+            }
             }
 
             return value;

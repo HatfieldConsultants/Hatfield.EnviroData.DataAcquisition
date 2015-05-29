@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DefaultXMLParserFactory.cs" />
+    <Compile Include="Importers\MultiLevelXMLDataImporter.cs" />
     <Compile Include="Importers\SimpleXMLDataImporter.cs" />
     <Compile Include="IXMLParserFactory.cs" />
     <Compile Include="Parsers\ElementParser.cs" />
