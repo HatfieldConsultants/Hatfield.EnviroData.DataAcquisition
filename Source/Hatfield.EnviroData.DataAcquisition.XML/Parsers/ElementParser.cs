@@ -55,6 +55,11 @@ namespace Hatfield.EnviroData.DataAcquisition.XML.Parsers
                 {
                     return element.Descendants().Attributes().Where(x => x.Name.LocalName == location.AttributeName).FirstOrDefault().Value;
                 }
+                else if(String.IsNullOrEmpty(location.AttributeName))
+                {
+                    var theElement = element.Descendants().Where(x => x.Name.LocalName == location.ElementName).First();
+                    return theElement.Value;
+                }
                 else
                 {
                     var theElement = element.Descendants().Where(x => x.Name.LocalName == location.ElementName).First();
