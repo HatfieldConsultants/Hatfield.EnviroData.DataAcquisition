@@ -13,7 +13,7 @@ using System.IO;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 {
-    class ODM2ActionConverterTest
+    class ESDATDataConverterBaseTest
     {
         protected ActionByConverter actionByConverter = new ActionByConverter(new Mock<IDbContext>().Object);
         protected ActionConverter actionConverter = new ActionConverter(new Mock<IDbContext>().Object);

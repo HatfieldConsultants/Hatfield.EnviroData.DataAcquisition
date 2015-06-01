@@ -6,7 +6,7 @@ using Hatfield.EnviroData.Core;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public class OrganizationConverter : ODM2ActionConverter
+    public class OrganizationConverter : ESDATDataConverterBase
     {
         // Constants
         private const string OrganizationTypeCV = "Company";

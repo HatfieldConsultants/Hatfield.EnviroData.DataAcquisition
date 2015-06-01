@@ -6,7 +6,7 @@ using Hatfield.EnviroData.Core;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public class MeasurementResultConverter : ODM2ActionConverter
+    public class MeasurementResultConverter : ESDATDataConverterBase
     {
         // Constants
         private const string CensorCodeCV = "notCensored";

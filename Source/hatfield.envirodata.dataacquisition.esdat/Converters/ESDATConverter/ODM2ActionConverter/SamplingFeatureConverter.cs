@@ -6,7 +6,7 @@ using Hatfield.EnviroData.Core;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public class SamplingFeatureConverter : ODM2ActionConverter
+    public class SamplingFeatureConverter : ESDATDataConverterBase
     {
         // Sample Collection Constants
         private const string SamplingFeatureTypeCVSampleCollection = "Site";
