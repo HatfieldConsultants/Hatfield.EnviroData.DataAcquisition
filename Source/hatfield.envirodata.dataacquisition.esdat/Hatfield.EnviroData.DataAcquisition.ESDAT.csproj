@@ -54,7 +54,24 @@
   <ItemGroup>
     <Compile Include="ChemistryFileChildObjectExtractConfiguration.cs" />
     <Compile Include="ChemistryFileData.cs" />
-    <Compile Include="Converters\ESDATConverter.cs" />
+    <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\ActionConverter.cs" />
+    <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\ActionByConverter.cs" />
+    <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\AffiliationConverter.cs" />
+    <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\DatasetConverter.cs" />
+    <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\DataSetsResultConverter.cs" />
+    <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\FeatureActionConverter.cs" />
+    <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\MeasurementResultConverter.cs" />
+    <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\MeasurementResultValueConverter.cs" />
+    <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\MethodConverter.cs" />
+    <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\ODM2ActionConverter.cs" />
+    <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\OrganizationConverter.cs" />
+    <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\PersonConverter.cs" />
+    <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\ProcessingLevelConverter.cs" />
+    <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\RelatedActionConverter.cs" />
+    <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\ResultConverter.cs" />
+    <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\SamplingFeatureConverter.cs" />
+    <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\UnitConverter.cs" />
+    <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\VariableConverter.cs" />
     <Compile Include="ESDATDataToImport.cs" />
     <Compile Include="ESDATModel.cs" />
     <Compile Include="Importer\ESDATDataImporter.cs" />
