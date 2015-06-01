@@ -66,7 +66,25 @@
   <ItemGroup>
     <Compile Include="ChemistryFileChildPropertyExtractConfigurationTest.cs" />
     <Compile Include="ChemistryFileTestImporterTest.cs" />
-    <Compile Include="Converters\ESDATDataConverterTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ConverterToODMAction\ESDATConverterSaveToDBTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ConverterToODMAction\ESDATConverterToActionByTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ConverterToODMAction\ESDATConverterToActionTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ConverterToODMAction\ESDATConverterToAffiliationTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ConverterToODMAction\ESDATConverterToDataSetsResultTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ConverterToODMAction\ESDATConverterToDatasetTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ConverterToODMAction\ESDATConverterToFeatureActionTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ConverterToODMAction\ESDATConverterToMeasurementResultTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ConverterToODMAction\ESDATConverterToMeasurementResultValueTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ConverterToODMAction\ESDATConverterToMethodTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ConverterToODMAction\ESDATConverterToODMActionTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ConverterToODMAction\ESDATConverterToOrganizationTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ConverterToODMAction\ESDATConverterToPersonTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ConverterToODMAction\ESDATConverterToProcessingLevelTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ConverterToODMAction\ESDATConverterToRelatedActionTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ConverterToODMAction\ESDATConverterToResultTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ConverterToODMAction\ESDATConverterToSamplingFeatureTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ConverterToODMAction\ESDATConverterToUnitTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ConverterToODMAction\ESDATConverterToVariableTest.cs" />
     <Compile Include="ESDATDataImporterTest.cs" />
     <Compile Include="ESDATDataToImportTest.cs" />
     <Compile Include="ESDATTestHelper.cs" />
