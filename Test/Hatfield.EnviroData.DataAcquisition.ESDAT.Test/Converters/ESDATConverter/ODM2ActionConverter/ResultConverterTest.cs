@@ -5,9 +5,9 @@ using System.Text;
 using NUnit.Framework;
 using Moq;
 using Hatfield.EnviroData.Core;
-using Hatfield.EnviroData.DataAcquisition.ESDAT.Converters.ESDATConverter.ODM2ActionConverter;
+using Hatfield.EnviroData.DataAcquisition.ESDAT.Converters;
 
-namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters.ESDATConverter.ODMActionConverter
+namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 {
     [TestFixture]
     class ResultConverterTest : ODM2ActionConverterTest
