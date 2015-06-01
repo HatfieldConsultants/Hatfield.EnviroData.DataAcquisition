@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Hatfield.EnviroData.Core;
 
-namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters.ESDATConverter.ODM2ActionConverter
+namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class DatasetConverter : ODM2ActionConverter
     {
