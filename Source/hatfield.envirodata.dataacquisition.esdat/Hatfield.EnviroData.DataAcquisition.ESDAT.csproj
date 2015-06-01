@@ -59,11 +59,12 @@
     <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\AffiliationConverter.cs" />
     <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\DatasetConverter.cs" />
     <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\DataSetsResultConverter.cs" />
+    <Compile Include="ESDATDataConverterFactory.cs" />
     <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\FeatureActionConverter.cs" />
     <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\MeasurementResultConverter.cs" />
     <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\MeasurementResultValueConverter.cs" />
     <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\MethodConverter.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\ODM2ActionConverter.cs" />
+    <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\ESDATDataConverterBase.cs" />
     <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\OrganizationConverter.cs" />
     <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\PersonConverter.cs" />
     <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\ProcessingLevelConverter.cs" />
@@ -74,6 +75,8 @@
     <Compile Include="Converters\ESDATConverter\ODM2ActionConverter\VariableConverter.cs" />
     <Compile Include="ESDATDataToImport.cs" />
     <Compile Include="ESDATModel.cs" />
+    <Compile Include="IESDATDataConverter.cs" />
+    <Compile Include="IESDATDataConverterFactory.cs" />
     <Compile Include="Importer\ESDATDataImporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleFileChildObjectExtractConfiguration.cs" />

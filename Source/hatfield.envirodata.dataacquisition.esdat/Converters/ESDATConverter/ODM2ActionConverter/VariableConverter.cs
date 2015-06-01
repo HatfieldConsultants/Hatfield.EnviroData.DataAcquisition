@@ -6,7 +6,7 @@ using Hatfield.EnviroData.Core;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public class VariableConverter : ODM2ActionConverter
+    public class VariableConverter : ESDATDataConverterBase
     {
         // Shared Constants
         private const string SpeciationCV = "notApplicable";

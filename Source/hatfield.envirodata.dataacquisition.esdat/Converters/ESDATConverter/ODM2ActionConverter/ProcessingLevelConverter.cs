@@ -6,7 +6,7 @@ using Hatfield.EnviroData.Core;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public class ProcessingLevelConverter : ODM2ActionConverter
+    public class ProcessingLevelConverter : ESDATDataConverterBase
     {
         public ProcessingLevelConverter(IDbContext dbContext)
             : base(dbContext)

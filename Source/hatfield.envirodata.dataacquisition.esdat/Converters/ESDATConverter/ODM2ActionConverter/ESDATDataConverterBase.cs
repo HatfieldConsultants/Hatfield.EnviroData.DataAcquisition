@@ -6,13 +6,19 @@ using Hatfield.EnviroData.Core;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public class ODM2ActionConverter
+    public class ESDATDataConverterBase : IESDATDataConverter
     {
         protected IDbContext _dbContext;
 
-        public ODM2ActionConverter(IDbContext dbContext)
+        public ESDATDataConverterBase(IDbContext dbContext)
         {
             _dbContext = dbContext;
+        }
+
+
+        public IDbContext DbContext
+        {
+            get { return _dbContext; }
         }
     }
 }

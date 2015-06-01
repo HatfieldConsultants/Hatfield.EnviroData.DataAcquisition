@@ -6,7 +6,7 @@ using Hatfield.EnviroData.Core;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public class AffiliationConverter : ODM2ActionConverter
+    public class AffiliationConverter : ESDATDataConverterBase
     {
         public AffiliationConverter(IDbContext dbContext)
             : base(dbContext)

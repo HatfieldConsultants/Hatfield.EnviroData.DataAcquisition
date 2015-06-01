@@ -6,7 +6,7 @@ using Hatfield.EnviroData.Core;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public class DatasetConverter : ODM2ActionConverter
+    public class DatasetConverter : ESDATDataConverterBase
     {
         // Constants
         private const string DataSetTypeCV = "other";

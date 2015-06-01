@@ -6,7 +6,7 @@ using Hatfield.EnviroData.Core;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public class ActionConverter : ODM2ActionConverter
+    public class ActionConverter : ESDATDataConverterBase
     {
         // Sample Collection Constants
         private const string ActionTypeCVSampleCollection = "specimenCollection";
@@ -14,9 +14,29 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         // Chemistry Constants
         private const string ActionTypeCVChemistry = "specimenAnalysis";
 
+        private IESDATDataConverterFactory _converterFactory;
+
         public ActionConverter(IDbContext dbContext)
             : base(dbContext)
         {
+        }
+
+        public ActionConverter(IDbContext dbContext, IESDATDataConverterFactory converterFactory)
+            :base(dbContext)
+        {
+            _converterFactory = converterFactory;
+        }
+
+        public Core.Action Convert(ESDATModel esdatModel)
+        {
+            //Core.Action sampleCollectionAction = new Core.Action();
+
+            //// Set Member Variables
+            //sampleCollectionAction.ActionTypeCV = ActionTypeCVSampleCollection;
+            //sampleCollectionAction.BeginDateTime = esdatModel.DateReported;
+
+            //var featureActionConverter = _converterFactory.BuildDataConverter(typeof(ESDATModel), typeof(Hatfield.EnviroData.Core.FeatureAction)) as FeatureActionConverter;
+            throw new NotImplementedException();
         }
 
         public Core.Action Convert(ESDATModel esdatModel, ActionByConverter actionByConverter, FeatureActionConverter featureActionConverter, MethodConverter methodConverter, OrganizationConverter organizationConverter, AffiliationConverter affiliationConverter, PersonConverter personConverter, RelatedActionConverter relatedActionConverter, SamplingFeatureConverter samplingFeatureConverter, ResultConverter resultConverter, DataSetsResultConverter datasetsResultConverter, DatasetConverter datasetConverter, ProcessingLevelConverter processingLevelConverter, UnitConverter unitConverter, VariableConverter variableConverter, MeasurementResultConverter measurementResultConverter, MeasurementResultValueConverter measurementResultValueConverter)

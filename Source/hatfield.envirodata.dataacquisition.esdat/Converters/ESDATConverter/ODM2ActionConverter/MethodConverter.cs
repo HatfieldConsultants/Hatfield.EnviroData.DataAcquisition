@@ -6,7 +6,7 @@ using Hatfield.EnviroData.Core;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public class MethodConverter : ODM2ActionConverter
+    public class MethodConverter : ESDATDataConverterBase
     {
         // Sample Collection Constants
         private const string MethodTypeCVSampleCollection = "fieldActivity";

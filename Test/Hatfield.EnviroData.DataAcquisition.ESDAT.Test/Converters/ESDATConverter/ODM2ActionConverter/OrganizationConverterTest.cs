@@ -10,7 +10,7 @@ using Hatfield.EnviroData.DataAcquisition.ESDAT.Converters;
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 {
     [TestFixture]
-    class OrganizationConverterTest : ODM2ActionConverterTest
+    class OrganizationConverterTest : ESDATDataConverterBaseTest
     {
         [Test]
         public void OrganizationTest()
