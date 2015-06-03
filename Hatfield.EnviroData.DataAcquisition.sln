@@ -33,6 +33,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.DataAcq
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.DataAcquisition.XML.Test", "Test\Hatfield.EnviroData.DataAcquisition.XML.Test\Hatfield.EnviroData.DataAcquisition.XML.Test.csproj", "{3A805DFD-429B-4C17-B2E6-F7D23A760538}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.DataAcquisition.JSON", "Source\Hatfield.EnviroData.DataAcquisition.JSON\Hatfield.EnviroData.DataAcquisition.JSON.csproj", "{0FEA5B18-6ACD-41D4-980D-870BF5174132}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.DataAcquisition.JSON.Test", "Test\Hatfield.EnviroData.DataAcquisition.JSON.Test\Hatfield.EnviroData.DataAcquisition.JSON.Test.csproj", "{80F1A678-E77E-415D-9097-64A25DB32C9D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +75,14 @@ Global
 		{3A805DFD-429B-4C17-B2E6-F7D23A760538}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A805DFD-429B-4C17-B2E6-F7D23A760538}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A805DFD-429B-4C17-B2E6-F7D23A760538}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FEA5B18-6ACD-41D4-980D-870BF5174132}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FEA5B18-6ACD-41D4-980D-870BF5174132}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FEA5B18-6ACD-41D4-980D-870BF5174132}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FEA5B18-6ACD-41D4-980D-870BF5174132}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80F1A678-E77E-415D-9097-64A25DB32C9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80F1A678-E77E-415D-9097-64A25DB32C9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80F1A678-E77E-415D-9097-64A25DB32C9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80F1A678-E77E-415D-9097-64A25DB32C9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,5 +92,6 @@ Global
 		{9E1053F8-8FB1-4591-A951-307FF6F928AF} = {4FDB23DD-4C5E-44DC-BC91-AB17F1E04D1D}
 		{7C4D04A4-1F88-49CE-9398-2DDA04AAA687} = {4FDB23DD-4C5E-44DC-BC91-AB17F1E04D1D}
 		{3A805DFD-429B-4C17-B2E6-F7D23A760538} = {4FDB23DD-4C5E-44DC-BC91-AB17F1E04D1D}
+		{80F1A678-E77E-415D-9097-64A25DB32C9D} = {4FDB23DD-4C5E-44DC-BC91-AB17F1E04D1D}
 	EndGlobalSection
 EndGlobal
