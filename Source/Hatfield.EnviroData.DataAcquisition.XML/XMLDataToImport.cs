@@ -13,7 +13,7 @@ using System.Xml.Linq;
 
 namespace Hatfield.EnviroData.DataAcquisition.XML
 {
-    public class XMLDataToImport:IDataToImport
+    public class XMLDataToImport : IDataToImport
     {
         public XDocument _document;
         private string _fileName;
