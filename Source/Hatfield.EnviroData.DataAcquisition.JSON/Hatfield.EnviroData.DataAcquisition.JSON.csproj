@@ -55,6 +55,7 @@
     <Compile Include="JSONDataToImport.cs" />
     <Compile Include="Parsers\SimpleJSONObjectParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleJSONExtractConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hatfield.EnviroData.DataAcquisition\Hatfield.EnviroData.DataAcquisition.csproj">
