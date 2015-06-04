@@ -31,9 +31,15 @@ namespace Hatfield.EnviroData.DataAcquisition.JSON.Test
 
             var testParser = new SimpleJSONObjectParser(parserFactory);
 
-            var parseResults = testParser.Parse(dataToImport, dataSourceLocation, typeof(string));
+            var parseResults = testParser.Parse(dataToImport, dataSourceLocation, typeof(string)) as ParsingResult;
+
+            dynamic result = parseResults.Value;
 
             Assert.NotNull(parseResults);
+            Assert.AreEqual("Cruise", result[0]);
+            Assert.AreEqual("Data retrieval", result[1]);
+            Assert.AreEqual("Derivation", result[2]);
+            
         }
     }
 }

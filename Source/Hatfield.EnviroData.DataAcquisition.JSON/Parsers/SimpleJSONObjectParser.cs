@@ -27,18 +27,19 @@ namespace Hatfield.EnviroData.DataAcquisition.JSON.Parsers
 
             if (castedDataSourceLocation.IsArray)
             {
-                var rawValue = castedJObject.SelectTokens(locationPath).Cast<JValue>();
+                var rawValues = castedJObject.SelectTokens(locationPath).Values<string>();
                 var valueParser = _parserFactory.GetValueParser(type);
 
-                var parsedValue = from value in rawValue
+                var parsedValue = from value in rawValues
                                   select valueParser.Parse(value);
 
-                return new ParsingResult(ResultLevel.INFO, "Parse value from " + dataToImport.ToString() + " successfully, the value is " + parsedValue.ToString(), parsedValue);
+                
+                return new ParsingResult(ResultLevel.INFO, "Parse value from " + dataToImport.ToString() + " successfully, the value is " + parsedValue.ToString(), parsedValue.ToList());
                 
             }
             else
             {
-                var rawValue = (castedJObject.SelectToken(locationPath) as JValue).Value;
+                var rawValue = (castedJObject.SelectTokens(locationPath).ElementAt(castedDataSourceLocation.Index.Value) as JValue).Value;
                 var valueParser = _parserFactory.GetValueParser(type);
                 var parsedValue = valueParser.Parse(rawValue);
 
