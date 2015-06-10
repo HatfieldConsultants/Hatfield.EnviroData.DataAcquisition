@@ -2,7 +2,6 @@
 using Hatfield.EnviroData.DataAcquisition.ValueAssigners;
 using Hatfield.EnviroData.DataAcquisition.XML.Importers;
 using Hatfield.EnviroData.DataAcquisition.XML.ValidationRules;
-using Hatfield.EnviroData.DataAcquisition.XML.ValidationRules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +18,9 @@ namespace Hatfield.EnviroData.DataAcquisition.XML.Test
 
             var extensionValidationRule = new XMLFileNameExtensionMatchValidationRule(".xml", false);
             testImporter.AddValidationRule(extensionValidationRule);
+
+            var labNameValidationRule = new ElementValueMatchCriteriaValidationRule(new XMLDataSourceLocation("LabReport", "Lab_Name"), parserFactory, typeof(string), new RegexCriteria("^Lab1$"));
+            testImporter.AddValidationRule(labNameValidationRule);
 
             var labNameFieldExtractConfiguration = new SimpleXMLExtractConfiguration("", "Lab_Name", parserFactory.GetElementParser(typeof(string)), new SimpleValueAssigner(), typeof(string), "LabName");
 
