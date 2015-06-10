@@ -15,7 +15,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ValueParsers
             }
             else
             {
-                return value.ToString().Trim();
+                return Convert.ToString(value).Trim();
             }
         }
     }
