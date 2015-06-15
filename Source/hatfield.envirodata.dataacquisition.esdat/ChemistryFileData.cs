@@ -38,24 +38,24 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT
             string methodType, string methodName, DateTime extractionDate, DateTime analysedDate,
             double? eql, string eqlUnits, string comments, string labQualifier, double? ucl, double? lcl)
         {
-            this.SampleCode = sampleCode;
-            this.OriginalChemName = originalChemName;
-            this.ChemCode = chemCode;
-            this.Prefix = prefix;
-            this.Result = result;
-            this.ResultUnit = resultUnit;
-            this.TotalOrFiltered = totalOrFiltered;
-            this.ResultType = resultType;
-            this.MethodType = methodType;
-            this.MethodName = methodName;
-            this.ExtractionDate = extractionDate;
-            this.AnalysedDate = analysedDate;
-            this.EQL = eql;
-            this.EQLUnits = eqlUnits;
-            this.Comments = comments;
-            this.LabQualifier = labQualifier;
-            this.UCL = ucl;
-            this.LCL = lcl;
+            SampleCode = sampleCode;
+            OriginalChemName = originalChemName;
+            ChemCode = chemCode;
+            Prefix = prefix;
+            Result = result;
+            ResultUnit = resultUnit;
+            TotalOrFiltered = totalOrFiltered;
+            ResultType = resultType;
+            MethodType = methodType;
+            MethodName = methodName;
+            ExtractionDate = extractionDate;
+            AnalysedDate = analysedDate;
+            EQL = eql;
+            EQLUnits = eqlUnits;
+            Comments = comments;
+            LabQualifier = labQualifier;
+            UCL = ucl;
+            LCL = lcl;
         }
     }
 }

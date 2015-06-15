@@ -34,19 +34,19 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT
 
         public ESDATModel(DateTime dateReported, int projectID, string labName, string labSignatory, List<string> associatedFiles, List<string> copiesSentTo, int sdgid, int cocNumber, int labRequestID, int labRequestNumber, decimal labRequestVersion, IEnumerable<SampleFileData> sampleFileData, IEnumerable<ChemistryFileData> chemistryData)
         {
-            this.DateReported = dateReported;
-            this.ProjectId = projectID;
-            this.LabName = labName;
-            this.LabSignatory = labSignatory;
-            this.AssociatedFiles = associatedFiles;
-            this.CopiesSentTo = copiesSentTo;
-            this.SDGID = sdgid;
-            this.COCNumber = cocNumber;
-            this.LabRequestId = labRequestID;
-            this.LabRequestNumber = labRequestNumber;
-            this.LabRequestVersion = labRequestVersion;
-            this.SampleFileData = sampleFileData;
-            this.ChemistryData = chemistryData;
+            DateReported = dateReported;
+            ProjectId = projectID;
+            LabName = labName;
+            LabSignatory = labSignatory;
+            AssociatedFiles = associatedFiles;
+            CopiesSentTo = copiesSentTo;
+            SDGID = sdgid;
+            COCNumber = cocNumber;
+            LabRequestId = labRequestID;
+            LabRequestNumber = labRequestNumber;
+            LabRequestVersion = labRequestVersion;
+            SampleFileData = sampleFileData;
+            ChemistryData = chemistryData;
         }
 
     }

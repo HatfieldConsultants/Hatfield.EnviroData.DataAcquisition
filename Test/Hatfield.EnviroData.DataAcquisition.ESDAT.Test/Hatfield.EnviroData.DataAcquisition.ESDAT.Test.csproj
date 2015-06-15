@@ -38,9 +38,6 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>$(SolutionDir)\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Hatfield.EnviroData.Core">
-      <HintPath>$(SolutionDir)\packages\Hatfield.EnviroData.Core.1.0.0.0\lib\net40\Hatfield.EnviroData.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Hatfield.EnviroData.FileSystems, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Hatfield.EnviroData.FileSystems.WindowsFileSystem.1.0.0\lib\net40\Hatfield.EnviroData.FileSystems.dll</HintPath>
@@ -57,6 +54,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -66,24 +65,25 @@
   <ItemGroup>
     <Compile Include="ChemistryFileChildPropertyExtractConfigurationTest.cs" />
     <Compile Include="ChemistryFileTestImporterTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\ActionByConverterTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\ActionConverterTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\AffiliationConverterTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\DataSetsResultConverterTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\DatasetConverterTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\FeatureActionConverterTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\MeasurementResultConverterTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\MeasurementResultValueConverterTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\MethodConverterTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\OrganizationConverterTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\PersonConverterTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\ProcessingLevelConverterTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\RelatedActionConverterTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\ResultConverterTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\SamplingFeatureConverterTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\ODM2ConverterBaseTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\UnitConverterTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\VariableConverterTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATDataMapperFactoryTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapper\MeasurementResultValueMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapper\MeasurementResultMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapper\PersonMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapper\RelatedActionMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapper\ProcessingLevelMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapper\ResultMapperTest .cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapper\SamplingFeatureMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapper\UnitMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapper\OrganizationMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapper\MethodMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapper\FeatureActionMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapper\DataSetsResultMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapper\DataSetMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapper\AffiliationMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapper\ActionMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapper\VariableMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapper\ActionByMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ODM2LinkerTest.cs" />
     <Compile Include="ESDATDataImporterTest.cs" />
     <Compile Include="ESDATDataToImportTest.cs" />
     <Compile Include="ESDATTestHelper.cs" />
@@ -96,6 +96,10 @@
     <ProjectReference Include="$(SolutionDir)\Source\Hatfield.EnviroData.DataAcquisition.ESDAT\Hatfield.EnviroData.DataAcquisition.ESDAT.csproj">
       <Project>{327cf9c6-1298-4887-8b9f-31400e5dbd05}</Project>
       <Name>Hatfield.EnviroData.DataAcquisition.ESDAT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hatfield.EnviroData.Core\Source\Hatfield.EnviroData.Core\Hatfield.EnviroData.Core.csproj">
+      <Project>{b578fe6d-b7b8-4324-bb91-f9a6d5c801e9}</Project>
+      <Name>Hatfield.EnviroData.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Source\Hatfield.EnviroData.DataAcquisition.CSV\Hatfield.EnviroData.DataAcquisition.CSV.csproj">
       <Project>{a3dcc824-a35f-4425-b9db-adb876d8a5e3}</Project>

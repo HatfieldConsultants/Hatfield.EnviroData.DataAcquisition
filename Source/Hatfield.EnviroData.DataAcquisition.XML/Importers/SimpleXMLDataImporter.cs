@@ -12,7 +12,6 @@ namespace Hatfield.EnviroData.DataAcquisition.XML.Importers
         private IList<IExtractConfiguration> _extractConfigurations;
         private IList<IValidationRule> _validationRules;
         private ResultLevel _thresholdLevel = ResultLevel.ERROR;
-        private XMLDataSourceLocation _location;
 
         public SimpleXMLDataImporter(ResultLevel thresholdLevel)
         {
