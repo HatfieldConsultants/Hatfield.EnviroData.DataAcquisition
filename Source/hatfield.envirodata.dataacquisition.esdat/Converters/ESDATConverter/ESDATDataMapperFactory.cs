@@ -8,46 +8,46 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class ESDATDataMapperFactory : IESDATDataConverterFactory
     {
-        private ODM2MapperBase _actionByMapper;
-        private ODM2MapperBase _actionMapper;
-        private ODM2MapperBase _affiliationMapper;
-        private ODM2MapperBase _dataSetMapper;
-        private ODM2MapperBase _dataSetsResultMapper;
-        private ODM2MapperBase _featureActionMapper;
-        private ODM2MapperBase _measurementResultMapper;
-        private ODM2MapperBase _measurementResultValueMapper;
-        private ODM2MapperBase _methodMapper;
-        private ODM2MapperBase _organizationMapper;
-        private ODM2MapperBase _personMapper;
-        private ODM2MapperBase _processingLevelMapper;
-        private ODM2MapperBase _relatedActionMapper;
-        private ODM2MapperBase _resultMapper;
-        private ODM2MapperBase _samplingFeatureMapper;
-        private ODM2MapperBase _unitMapper;
-        private ODM2MapperBase _variableMapper;
+        private ESDATMapper _actionByMapper;
+        private ESDATMapper _actionMapper;
+        private ESDATMapper _affiliationMapper;
+        private ESDATMapper _DatasetMapper;
+        private ESDATMapper _DatasetsResultMapper;
+        private ESDATMapper _featureActionMapper;
+        private ESDATMapper _measurementResultMapper;
+        private ESDATMapper _measurementResultValueMapper;
+        private ESDATMapper _methodMapper;
+        private ESDATMapper _organizationMapper;
+        private ESDATMapper _personMapper;
+        private ESDATMapper _processingLevelMapper;
+        private ESDATMapper _relatedActionMapper;
+        private ESDATMapper _resultMapper;
+        private ESDATMapper _samplingFeatureMapper;
+        private ESDATMapper _unitMapper;
+        private ESDATMapper _variableMapper;
 
-        public ESDATDataMapperFactory(IDbContext dbContext, DuplicateChecker duplicateChecker)
+        public ESDATDataMapperFactory(IDbContext dbContext, ODM2DuplicateChecker duplicateChecker, ESDATLinker linker)
         {
-            _actionByMapper = new ActionByMapper(dbContext, duplicateChecker);
-            _actionMapper = new ActionMapper(dbContext, duplicateChecker);
-            _affiliationMapper = new AffiliationMapper(dbContext, duplicateChecker);
-            _dataSetMapper = new DatasetMapper(dbContext, duplicateChecker);
-            _dataSetsResultMapper = new DataSetsResultMapper(dbContext, duplicateChecker);
-            _featureActionMapper = new FeatureActionMapper(dbContext, duplicateChecker);
-            _measurementResultMapper = new MeasurementResultMapper(dbContext, duplicateChecker);
-            _measurementResultValueMapper = new MeasurementResultValueMapper(dbContext, duplicateChecker);
-            _methodMapper = new MethodMapper(dbContext, duplicateChecker);
-            _organizationMapper = new OrganizationMapper(dbContext, duplicateChecker);
-            _personMapper = new PersonMapper(dbContext, duplicateChecker);
-            _processingLevelMapper = new ProcessingLevelMapper(dbContext, duplicateChecker);
-            _relatedActionMapper = new RelatedActionMapper(dbContext, duplicateChecker);
-            _resultMapper = new ResultMapper(dbContext, duplicateChecker);
-            _samplingFeatureMapper = new SamplingFeatureMapper(dbContext, duplicateChecker);
-            _unitMapper = new UnitMapper(dbContext, duplicateChecker);
-            _variableMapper = new VariableMapper(dbContext, duplicateChecker);
+            _actionByMapper = new ActionByMapper(dbContext, this, duplicateChecker, linker);
+            _actionMapper = new ActionMapper(dbContext, this, duplicateChecker, linker);
+            _affiliationMapper = new AffiliationMapper(dbContext, this, duplicateChecker, linker);
+            _DatasetMapper = new DatasetMapper(dbContext, this, duplicateChecker, linker);
+            _DatasetsResultMapper = new DatasetsResultMapper(dbContext, this, duplicateChecker, linker);
+            _featureActionMapper = new FeatureActionMapper(dbContext, this, duplicateChecker, linker);
+            _measurementResultMapper = new MeasurementResultMapper(dbContext, this, duplicateChecker, linker);
+            _measurementResultValueMapper = new MeasurementResultValueMapper(dbContext, this, duplicateChecker, linker);
+            _methodMapper = new MethodMapper(dbContext, this, duplicateChecker, linker);
+            _organizationMapper = new OrganizationMapper(dbContext, this, duplicateChecker, linker);
+            _personMapper = new PersonMapper(dbContext, this, duplicateChecker, linker);
+            _processingLevelMapper = new ProcessingLevelMapper(dbContext, this, duplicateChecker, linker);
+            _relatedActionMapper = new RelatedActionMapper(dbContext, this, duplicateChecker, linker);
+            _resultMapper = new ResultMapper(dbContext, this, duplicateChecker, linker);
+            _samplingFeatureMapper = new SamplingFeatureMapper(dbContext, this, duplicateChecker, linker);
+            _unitMapper = new UnitMapper(dbContext, this, duplicateChecker, linker);
+            _variableMapper = new VariableMapper(dbContext, this, duplicateChecker, linker);
         }
 
-        public IESDATDataConverter BuildDataConverter(Type dataType, Type odm2DomainType)
+        public IESDATDataConverter BuildESDATMapper(Type dataType, Type odm2DomainType)
         {
             if (dataType == typeof(ESDATModel) && odm2DomainType == typeof(ActionBy))
             {
@@ -61,13 +61,13 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             {
                 return _affiliationMapper;
             }
-            else if (dataType == typeof(ESDATModel) && odm2DomainType == typeof(DataSet))
+            else if (dataType == typeof(ESDATModel) && odm2DomainType == typeof(Dataset))
             {
-                return _dataSetMapper;
+                return _DatasetMapper;
             }
-            else if (dataType == typeof(ESDATModel) && odm2DomainType == typeof(DataSetsResult))
+            else if (dataType == typeof(ESDATModel) && odm2DomainType == typeof(DatasetsResult))
             {
-                return _dataSetsResultMapper;
+                return _DatasetsResultMapper;
             }
             else if (dataType == typeof(ESDATModel) && odm2DomainType == typeof(FeatureAction))
             {

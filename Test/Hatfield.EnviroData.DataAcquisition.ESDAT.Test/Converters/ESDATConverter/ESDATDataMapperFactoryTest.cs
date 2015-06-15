@@ -17,8 +17,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
         [TestCase(typeof(ActionBy), typeof(ActionByMapper))]
         [TestCase(typeof(Core.Action), typeof(ActionMapper))]
         [TestCase(typeof(Affiliation), typeof(AffiliationMapper))]
-        [TestCase(typeof(DataSet), typeof(DatasetMapper))]
-        [TestCase(typeof(DataSetsResult), typeof(DataSetsResultMapper))]
+        [TestCase(typeof(Dataset), typeof(DatasetMapper))]
+        [TestCase(typeof(DatasetsResult), typeof(DatasetsResultMapper))]
         [TestCase(typeof(FeatureAction), typeof(FeatureActionMapper))]
         [TestCase(typeof(MeasurementResult), typeof(MeasurementResultMapper))]
         [TestCase(typeof(MeasurementResultValue), typeof(MeasurementResultValueMapper))]
@@ -33,11 +33,12 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
         [TestCase(typeof(Variable), typeof(VariableMapper))]
         public void ValidFactoryTest(Type typeToConvert, Type expectedMapperType)
         {
-            var mockDbContext = new Mock<IDbContext>().Object;
-            var mockDuplicateChecker = new Mock<DuplicateChecker>(mockDbContext).Object;
-            var factory = new ESDATDataMapperFactory(mockDbContext, mockDuplicateChecker);
-
-            var mapper = factory.BuildDataConverter(typeof(ESDATModel), typeToConvert);
+            var mockDb = new Mock<IDbContext>();
+            var mockDbContext = mockDb.Object;
+            var duplicateChecker = new ODM2DuplicateChecker(mockDbContext);
+            var esdatLinker = new ESDATLinker();
+            var factory = new ESDATDataMapperFactory(mockDbContext, duplicateChecker, esdatLinker);
+            var mapper = factory.BuildESDATMapper(typeof(ESDATModel), typeToConvert);
 
             Assert.IsTrue(object.ReferenceEquals(expectedMapperType, mapper.GetType()));
         }
@@ -46,11 +47,12 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
         [ExpectedException(typeof(ArgumentException))]
         public void InvalidFactoryTest()
         {
-            var mockDbContext = new Mock<IDbContext>().Object;
-            var mockDuplicateChecker = new Mock<DuplicateChecker>(mockDbContext).Object;
-            var factory = new ESDATDataMapperFactory(mockDbContext, mockDuplicateChecker);
-
-            var mapper = factory.BuildDataConverter(typeof(ESDATModel), null);
+            var mockDb = new Mock<IDbContext>();
+            var mockDbContext = mockDb.Object;
+            var duplicateChecker = new ODM2DuplicateChecker(mockDbContext);
+            var esdatLinker = new ESDATLinker();
+            var factory = new ESDATDataMapperFactory(mockDbContext, duplicateChecker, esdatLinker);
+            var mapper = factory.BuildESDATMapper(typeof(ESDATModel), null);
         }
     }
 }

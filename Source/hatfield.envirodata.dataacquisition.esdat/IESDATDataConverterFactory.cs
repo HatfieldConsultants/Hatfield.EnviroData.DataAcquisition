@@ -8,6 +8,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT
 {
     public interface IESDATDataConverterFactory
     {
-        IESDATDataConverter BuildDataConverter(Type dataType, Type odm2DomainType);
+        IESDATDataConverter BuildESDATMapper(Type dataType, Type odm2DomainType);
     }
 }

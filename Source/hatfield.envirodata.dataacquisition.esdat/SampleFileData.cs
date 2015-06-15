@@ -30,18 +30,18 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT
             double? sampleDepth, string matrixType, string sampleType, string parentSample,
             string sdg, string labName, string labSampleID, string comments, string labReportNumber)
         {
-            this.SampleCode = sampleCode;
-            this.SampledDateTime = sampledDateTime;
-            this.FieldID = fieldID;
-            this.SampleDepth = sampleDepth;
-            this.MatrixType = matrixType;
-            this.SampleType = sampleType;
-            this.ParentSample = parentSample;
-            this.SDG = sdg;
-            this.LabName = labName;
-            this.LabSampleID = labSampleID;
-            this.Comments = comments;
-            this.LabReportNumber = labReportNumber;
+            SampleCode = sampleCode;
+            SampledDateTime = sampledDateTime;
+            FieldID = fieldID;
+            SampleDepth = sampleDepth;
+            MatrixType = matrixType;
+            SampleType = sampleType;
+            ParentSample = parentSample;
+            SDG = sdg;
+            LabName = labName;
+            LabSampleID = labSampleID;
+            Comments = comments;
+            LabReportNumber = labReportNumber;
         }
     }
 }

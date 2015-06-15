@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Hatfield.EnviroData.DataAcquisition.ESDAT.Converters.ESDATMapper">
+    <Position X="5.25" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>BAABAAAgAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\ESDATConverter\ESDATMapper.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Hatfield.EnviroData.DataAcquisition.ESDAT.Converters.VariableMapper" Collapsed="true">
+    <Position X="7" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAgARAIAAAAAAAAAAAAAAAAACAAAAAQAAAAAAA=</HashCode>
+      <FileName>Converters\ESDATConverter\ESDATMapper\VariableMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hatfield.EnviroData.DataAcquisition.ESDAT.Converters.ActionByMapper" Collapsed="true">
+    <Position X="4.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAARAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Converters\ESDATConverter\ESDATMapper\ActionByMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hatfield.EnviroData.DataAcquisition.ESDAT.Converters.AffiliationMapper" Collapsed="true">
+    <Position X="9.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgARAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\ESDATConverter\ESDATMapper\AffiliationMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hatfield.EnviroData.DataAcquisition.ESDAT.Converters.DatasetMapper" Collapsed="true">
+    <Position X="2.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAARAAAAAAAAAAAAAgAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\ESDATConverter\ESDATMapper\DatasetMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hatfield.EnviroData.DataAcquisition.ESDAT.Converters.DatasetsResultMapper" Collapsed="true">
+    <Position X="4.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAARAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\ESDATConverter\ESDATMapper\DataSetsResultMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hatfield.EnviroData.DataAcquisition.ESDAT.Converters.FeatureActionMapper" Collapsed="true">
+    <Position X="2.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAARAAAAAQQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\ESDATConverter\ESDATMapper\FeatureActionMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hatfield.EnviroData.DataAcquisition.ESDAT.Converters.MeasurementResultMapper" Collapsed="true">
+    <Position X="4.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIBAARAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Converters\ESDATConverter\ESDATMapper\MeasurementResultMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hatfield.EnviroData.DataAcquisition.ESDAT.Converters.MeasurementResultValueMapper" Collapsed="true">
+    <Position X="2.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAARAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\ESDATConverter\ESDATMapper\MeasurementResultValueMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hatfield.EnviroData.DataAcquisition.ESDAT.Converters.MethodMapper" Collapsed="true">
+    <Position X="9.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgARAAAAAAAAAAAAAAAAAAAAQAIAIAAAAAAAA=</HashCode>
+      <FileName>Converters\ESDATConverter\ESDATMapper\MethodMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hatfield.EnviroData.DataAcquisition.ESDAT.Converters.OrganizationMapper" Collapsed="true">
+    <Position X="7" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAgARAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Converters\ESDATConverter\ESDATMapper\OrganizationMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hatfield.EnviroData.DataAcquisition.ESDAT.Converters.PersonMapper" Collapsed="true">
+    <Position X="7" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgARAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\ESDATConverter\ESDATMapper\PersonMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hatfield.EnviroData.DataAcquisition.ESDAT.Converters.ProcessingLevelMapper" Collapsed="true">
+    <Position X="9.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgARAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\ESDATConverter\ESDATMapper\ProcessingLevelMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hatfield.EnviroData.DataAcquisition.ESDAT.Converters.RelatedActionMapper" Collapsed="true">
+    <Position X="9.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgARAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\ESDATConverter\ESDATMapper\RelatedActionMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hatfield.EnviroData.DataAcquisition.ESDAT.Converters.ResultMapper" Collapsed="true">
+    <Position X="9.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAgAAAARAAAAYAAAABAAAEAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\ESDATConverter\ESDATMapper\ResultMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hatfield.EnviroData.DataAcquisition.ESDAT.Converters.SamplingFeatureMapper" Collapsed="true">
+    <Position X="7" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgARAAAAAAEAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\ESDATConverter\ESDATMapper\SamplingFeatureMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hatfield.EnviroData.DataAcquisition.ESDAT.Converters.UnitMapper" Collapsed="true">
+    <Position X="7" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgARAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\ESDATConverter\ESDATMapper\UnitMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
