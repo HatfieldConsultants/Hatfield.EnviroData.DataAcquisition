@@ -65,25 +65,31 @@
   <ItemGroup>
     <Compile Include="ChemistryFileChildPropertyExtractConfigurationTest.cs" />
     <Compile Include="ChemistryFileTestImporterTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATDataMapperFactoryTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapper\MeasurementResultValueMapperTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapper\MeasurementResultMapperTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapper\PersonMapperTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapper\RelatedActionMapperTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapper\ProcessingLevelMapperTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapper\ResultMapperTest .cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapper\SamplingFeatureMapperTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapper\UnitMapperTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapper\OrganizationMapperTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapper\MethodMapperTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapper\FeatureActionMapperTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapper\DataSetsResultMapperTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapper\DataSetMapperTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapper\AffiliationMapperTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapper\ActionMapperTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapper\VariableMapperTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapper\ActionByMapperTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2LinkerTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATConverterTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryActionMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryUnitMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryResultMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistrySamplingFeatureMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryMethodMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryMeasurementResultValueMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryMeasurementResultMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryFeatureActionMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryVariableMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionFeatureActionMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionMethodMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SamplingFeatureSamplingFeatureMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionResultMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionUnitMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionVariableMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionActionMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\DatasetMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\AffiliationMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\ActionByMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\DataSetsResultMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\OrganizationMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\PersonMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\ProcessingLevelMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\RelatedActionMapperTest.cs" />
     <Compile Include="ESDATDataImporterTest.cs" />
     <Compile Include="ESDATDataToImportTest.cs" />
     <Compile Include="ESDATTestHelper.cs" />
@@ -135,6 +141,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

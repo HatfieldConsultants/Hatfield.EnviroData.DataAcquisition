@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Hatfield.EnviroData.DataAcquisition.ESDAT
+namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public interface IESDATDataConverter
     {
-        IDbContext DbContext { get; }
+        Core.Action Convert(ESDATSampleCollectionParameters parameters);
     }
 }
