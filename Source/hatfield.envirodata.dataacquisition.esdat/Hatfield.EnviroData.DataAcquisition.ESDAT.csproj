@@ -39,9 +39,6 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>$(SolutionDir)\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Hatfield.EnviroData.Core">
-      <HintPath>$(SolutionDir)\packages\Hatfield.EnviroData.Core.1.0.0.0\lib\net40\Hatfield.EnviroData.Core.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -54,29 +51,64 @@
   <ItemGroup>
     <Compile Include="ChemistryFileChildObjectExtractConfiguration.cs" />
     <Compile Include="ChemistryFileData.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\ActionConverter.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\ActionByConverter.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\AffiliationConverter.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\DatasetConverter.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\DataSetsResultConverter.cs" />
-    <Compile Include="ESDATDataConverterFactory.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\FeatureActionConverter.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\MeasurementResultConverter.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\MeasurementResultValueConverter.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\MethodConverter.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\ODM2ConverterBase.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\OrganizationConverter.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\PersonConverter.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\ProcessingLevelConverter.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\RelatedActionConverter.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\ResultConverter.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\SamplingFeatureConverter.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\UnitConverter.cs" />
-    <Compile Include="Converters\ESDATConverter\ODM2Converter\VariableConverter.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapperParameters\ESDATMapperParametersBase.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATConverter.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapperSingletonFactory\ESDATChemistryMapperSingletonFactory.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapperSingletonFactory\ESDATMapperSingletonFactoryBase.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapperSingletonFactory\ESDATSampleCollectionMapperSingletonFactory.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryMethodMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryUnitMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryResultMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistrySamplingFeatureMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryMeasurementResultValueMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryMeasurementResultMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryFeatureActionMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionOrganizationMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionFeatureActionMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionMethodMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionSamplingFeatureMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionResultMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionUnitMapper.cs" />
+    <Compile Include="Converters\ODM2MapperParameters.cs" />
+    <Compile Include="Converters\ODM2Mappers\ResultMapperBase.cs" />
+    <Compile Include="Converters\ODM2Mappers\SamplingFeatureMapperBase.cs" />
+    <Compile Include="Converters\ODM2Mappers\UnitMapperBase.cs" />
+    <Compile Include="Converters\ODM2Mappers\MethodMapperBase.cs" />
+    <Compile Include="Converters\ODM2Mappers\MeasurementResultValueMapperBase.cs" />
+    <Compile Include="Converters\ODM2Mappers\MeasurementResultMapperBase.cs" />
+    <Compile Include="Converters\ODM2Mappers\FeatureActionMapperBase.cs" />
+    <Compile Include="Converters\IODM2DuplicableMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapperParameters\ESDATSampleCollectionParameters.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapperParameters\ESDATChemistryParameters.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryVariableMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionVariableMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\AffiliationMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryActionMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionActionMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\ActionByMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\DatasetMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\DatasetsResultMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryOrganizationMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\PersonMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\ProcessingLevelMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\RelatedActionMapper.cs" />
+    <Compile Include="Converters\ODM2Mappers\OrganizationMapperBase.cs" />
+    <Compile Include="Converters\ODM2Mappers\VariableMapperBase.cs" />
+    <Compile Include="Converters\ODM2Mappers\RelatedActionMapperBase.cs" />
+    <Compile Include="Converters\ODM2Mappers\ProcessingLevelMapperBase.cs" />
+    <Compile Include="Converters\ODM2Mappers\PersonMapperBase.cs" />
+    <Compile Include="Converters\ODM2Mappers\DatasetsResultMapperBase.cs" />
+    <Compile Include="Converters\ODM2Mappers\DatasetMapperBase.cs" />
+    <Compile Include="Converters\ODM2Mappers\AffiliationMapperBase.cs" />
+    <Compile Include="Converters\IODM2Mapper.cs" />
+    <Compile Include="Converters\ODM2EntityLinker.cs" />
+    <Compile Include="Converters\ODM2DuplicateChecker.cs" />
+    <Compile Include="Converters\ODM2Mappers\ActionMapperBase.cs" />
+    <Compile Include="Converters\ODM2Mappers\ActionByMapperBase.cs" />
+    <Compile Include="Converters\ODM2MapperSingletonFactory.cs" />
     <Compile Include="ESDATDataToImport.cs" />
     <Compile Include="ESDATModel.cs" />
     <Compile Include="IESDATDataConverter.cs" />
-    <Compile Include="IESDATDataConverterFactory.cs" />
     <Compile Include="Importer\ESDATDataImporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleFileChildObjectExtractConfiguration.cs" />
@@ -84,9 +116,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Converters\ESDATConverter\ESDATMapperParameters\ESDATMapperParameters.cd" />
+    <None Include="Converters\ESDATConverter\ESDATConverter.cd" />
+    <None Include="Converters\ESDATConverter\ESDATMapperSingletonFactory\ESDATMapperSingletonFactory.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Hatfield.EnviroData.Core\Source\Hatfield.EnviroData.Core\Hatfield.EnviroData.Core.csproj">
+      <Project>{b578fe6d-b7b8-4324-bb91-f9a6d5c801e9}</Project>
+      <Name>Hatfield.EnviroData.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hatfield.EnviroData.DataAcquisition.CSV\Hatfield.EnviroData.DataAcquisition.CSV.csproj">
       <Project>{a3dcc824-a35f-4425-b9db-adb876d8a5e3}</Project>
       <Name>Hatfield.EnviroData.DataAcquisition.CSV</Name>
@@ -100,6 +139,7 @@
       <Name>Hatfield.EnviroData.DataAcquisition</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Hatfield.EnviroData.DataAcquisition.ESDAT.Converters.ESDATChemistryParameters">
+    <Position X="8" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\ESDATConverter\ESDATMapperParameters\ESDATChemistryParameters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hatfield.EnviroData.DataAcquisition.ESDAT.Converters.ESDATSampleCollectionParameters">
+    <Position X="5.25" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\ESDATConverter\ESDATMapperParameters\ESDATSampleCollectionParameters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hatfield.EnviroData.DataAcquisition.ESDAT.Converters.ESDATMapperParametersBase" Collapsed="true">
+    <Position X="6.5" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAEAAAAAAAAEAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Converters\ESDATConverter\ESDATMapperParameters\ESDATMapperParametersBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hatfield.EnviroData.DataAcquisition.ESDAT.Converters.ODM2MapperParameters" Collapsed="true">
+    <Position X="6.5" Y="1.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAEAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Converters\ODM2MapperParameters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
