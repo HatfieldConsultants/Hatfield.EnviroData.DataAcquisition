@@ -38,6 +38,9 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>$(SolutionDir)\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Hatfield.EnviroData.Core">
+      <HintPath>..\..\packages\Hatfield.EnviroData.Core.1.0.0.1\lib\Hatfield.EnviroData.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Hatfield.EnviroData.FileSystems, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Hatfield.EnviroData.FileSystems.WindowsFileSystem.1.0.0\lib\net40\Hatfield.EnviroData.FileSystems.dll</HintPath>
@@ -102,10 +105,6 @@
     <ProjectReference Include="$(SolutionDir)\Source\Hatfield.EnviroData.DataAcquisition.ESDAT\Hatfield.EnviroData.DataAcquisition.ESDAT.csproj">
       <Project>{327cf9c6-1298-4887-8b9f-31400e5dbd05}</Project>
       <Name>Hatfield.EnviroData.DataAcquisition.ESDAT</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Hatfield.EnviroData.Core\Source\Hatfield.EnviroData.Core\Hatfield.EnviroData.Core.csproj">
-      <Project>{b578fe6d-b7b8-4324-bb91-f9a6d5c801e9}</Project>
-      <Name>Hatfield.EnviroData.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Source\Hatfield.EnviroData.DataAcquisition.CSV\Hatfield.EnviroData.DataAcquisition.CSV.csproj">
       <Project>{a3dcc824-a35f-4425-b9db-adb876d8a5e3}</Project>
