@@ -33,8 +33,8 @@ namespace Hatfield.EnviroData.DataAcquisition.JSON.Parsers
                 var parsedValue = from value in rawValues
                                   select valueParser.Parse(value);
 
-                
-                return new ParsingResult(ResultLevel.INFO, "Parse value from " + dataToImport.ToString() + " successfully, the value is " + parsedValue.ToString(), parsedValue.ToList());
+
+                return new ParsingResult(ResultLevel.INFO, "Parse value from " + dataToImport.ToString() + " successfully, the value is " + parsedValue.ToString(), parsedValue.ToList(), castedDataSourceLocation);
                 
             }
             else
@@ -43,7 +43,7 @@ namespace Hatfield.EnviroData.DataAcquisition.JSON.Parsers
                 var valueParser = _parserFactory.GetValueParser(type);
                 var parsedValue = valueParser.Parse(rawValue);
 
-                return new ParsingResult(ResultLevel.INFO, "Parse value from " + dataToImport.ToString() + " successfully " + parsedValue, parsedValue);
+                return new ParsingResult(ResultLevel.INFO, "Parse value from " + dataToImport.ToString() + " successfully " + parsedValue, parsedValue, castedDataSourceLocation);
             }
                         
         }

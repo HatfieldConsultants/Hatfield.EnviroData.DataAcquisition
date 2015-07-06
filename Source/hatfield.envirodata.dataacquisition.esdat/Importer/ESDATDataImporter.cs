@@ -1,8 +1,11 @@
-﻿using Hatfield.EnviroData.DataAcquisition.XML;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
+using Hatfield.EnviroData.DataAcquisition.XML;
+using Hatfield.EnviroData.DataAcquisition.CSV;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Importer
 {
@@ -74,7 +77,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Importer
                 var sampleFileExtractResults = ExtractSampleFileData(model, sampleDataExtractConfiguration, castedDataToImport.SampleFileToImport);
                 extractedDataset.AddParsingResults(sampleFileExtractResults);
 
-                var parsingResult = new ParsingResult(ResultLevel.DEBUG, "Extract data from ESDAT data success", model);
+                var parsingResult = new ParsingResult(ResultLevel.DEBUG, "Extract data from ESDAT data success", model, new CSVDataSourceLocation(1, 1));
 
                 extractedDataset.AddParsingResults(new List<IResult>{parsingResult});
 

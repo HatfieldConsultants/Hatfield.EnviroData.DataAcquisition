@@ -70,7 +70,7 @@ namespace Hatfield.EnviroData.DataAcquisition.XML.Importers
                     resultsForSingleNode.AddRange(((SimpleXMLExtractConfiguration)configuration).ExtractData(model, dataToImport, currentLocation));
 
                 }
-                var parsingResult = new ParsingResult(ResultLevel.DEBUG, "Extract data from single row success", model);
+                var parsingResult = new ParsingResult(ResultLevel.DEBUG, "Extract data from single row success", model, new XMLDataSourceLocation("", ""));
 
                 resultsForSingleNode.Add(parsingResult);
 

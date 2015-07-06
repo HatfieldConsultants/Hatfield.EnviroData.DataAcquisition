@@ -63,7 +63,7 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Importers
                 resultsForSingleRow.AddRange(configuration.ExtractData(model, dataSource, currentLocation));
             }
 
-            var parsingResult = new ParsingResult(ResultLevel.DEBUG, "Extract data from single row success", model);
+            var parsingResult = new ParsingResult(ResultLevel.DEBUG, "Extract data from single row success", model, new CSVDataSourceLocation(currentRow, 1));
 
             resultsForSingleRow.Add(parsingResult);
 

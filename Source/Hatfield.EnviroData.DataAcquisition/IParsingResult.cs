@@ -8,5 +8,6 @@ namespace Hatfield.EnviroData.DataAcquisition
     public interface IParsingResult : IResult
     {
         object Value { get; }
+        IDataSourceLocation DataSourceLocation { get; }
     }
 }

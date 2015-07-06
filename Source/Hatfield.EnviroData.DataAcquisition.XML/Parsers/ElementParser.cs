@@ -19,12 +19,12 @@ namespace Hatfield.EnviroData.DataAcquisition.XML.Parsers
         {
             if (!(dataSourceLocation is XMLDataSourceLocation))
             {
-                return new ParsingResult(ResultLevel.FATAL, dataSourceLocation.GetType().ToString() + " is not supported by XML Node Parser", null);
+                return new ParsingResult(ResultLevel.FATAL, dataSourceLocation.GetType().ToString() + " is not supported by XML Node Parser", null, dataSourceLocation);
             }
 
             if (!(dataToImport is XMLDataToImport))
             {
-                return new ParsingResult(ResultLevel.FATAL, dataToImport.GetType().ToString() + " is not supported by XML Node Parser", null);
+                return new ParsingResult(ResultLevel.FATAL, dataToImport.GetType().ToString() + " is not supported by XML Node Parser", null, dataSourceLocation);
             }
 
 
@@ -36,11 +36,11 @@ namespace Hatfield.EnviroData.DataAcquisition.XML.Parsers
                 var rawData = GetRawDataValue(castedDataSourceLocation, castedDataToImport);
                 var parsedValue = ParseRawValue(type, rawData);
 
-                return new ParsingResult(ResultLevel.INFO, "Parsing value successfully", parsedValue);
+                return new ParsingResult(ResultLevel.INFO, "Parsing value successfully", parsedValue, dataSourceLocation);
             }
             catch (Exception e)
             {
-                return new ParsingResult(ResultLevel.FATAL, "Exception caught: " + e, null);
+                return new ParsingResult(ResultLevel.FATAL, "Exception caught: " + e, null, dataSourceLocation);
             }
         }
 

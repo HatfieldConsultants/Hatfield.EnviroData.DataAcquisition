@@ -51,7 +51,8 @@ namespace Hatfield.EnviroData.DataAcquisition.XML.Importers
                 results.AddRange(((SimpleXMLExtractConfiguration)configuration).ExtractData(model, dataToImport, currentLocation));
                               
             }
-            var parsingResult = new ParsingResult(ResultLevel.DEBUG, "Extract data from single row success", model);
+
+            var parsingResult = new ParsingResult(ResultLevel.DEBUG, "Extract data from single row success", model, null);
             
             results.Add(parsingResult);
 
