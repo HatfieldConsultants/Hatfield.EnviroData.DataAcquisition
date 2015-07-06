@@ -17,7 +17,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
     class ESDATConverterTest
     {
         //Commment this out so auto-build would not run this unit test
-        [Test]
+        //[Test]
         public void MapTest()
         {
             var dbContext = new ODM2Entities();
