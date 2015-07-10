@@ -9,7 +9,6 @@ namespace Hatfield.EnviroData.DataAcquisition
     {
         private ResultLevel _level;
         private string _message;
-        
 
         public BaseResult(ResultLevel level, string message)
         {
@@ -32,6 +31,5 @@ namespace Hatfield.EnviroData.DataAcquisition
                 return _message;
             }
         }
-
     }
 }

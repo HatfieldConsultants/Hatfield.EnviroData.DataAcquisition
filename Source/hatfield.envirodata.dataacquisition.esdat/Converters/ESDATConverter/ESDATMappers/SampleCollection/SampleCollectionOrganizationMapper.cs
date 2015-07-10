@@ -3,34 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Hatfield.EnviroData.Core;
+using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public class SampleCollectionOrganizationMapper : OrganizationMapperBase
+    public class SampleCollectionOrganizationMapper : OrganizationMapperBase, IESDATSampleCollectionMapper<Organization>
     {
         // Constants
         private const string OrganizationTypeCV = "Company";
 
-        protected ESDATSampleCollectionParameters _parameters;
-
-        public SampleCollectionOrganizationMapper(ESDATSampleCollectionParameters parameters)
+        public SampleCollectionOrganizationMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
-            _parameters = parameters;
         }
 
-        public override Organization Map()
+        public Organization Map(ESDATModel esdatModel)
         {
-            var entity = Scaffold();
-            entity = GetDuplicate(_parameters.DuplicateChecker, entity);
+            var entity = Scaffold(esdatModel);
+            entity = GetDuplicate(_duplicateChecker, _wayToHandleNewData, entity);
 
             return entity;
         }
 
-        public override Organization Scaffold()
+        public Organization Scaffold(ESDATModel esdatModel)
         {
             Organization organization = new Organization();
-
-            var esdatModel = _parameters.EsdatModel;
 
             var organizationName = "Hatfield";
 

@@ -3,38 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Hatfield.EnviroData.Core;
+using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public class SampleCollectionResultMapper : ResultMapperBase
+    public class SampleCollectionResultMapper : ResultMapperBase, IESDATSampleCollectionMapper<Result>
     {
         // Constants
         private const string ResultTypeCV = "measurement";
         private const string SampledMediumCV = "Liquid aqueous";
 
-        protected ESDATSampleCollectionParameters _parameters;
+        public SampleFileData Sample { get; set; }
 
-        public SampleCollectionResultMapper(ESDATSampleCollectionParameters parameters)
+        public SampleCollectionResultMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
-            _parameters = parameters;
         }
 
-        public override Result Map()
+        public Result Map(ESDATModel esdatModel)
         {
-            var result = Scaffold();
+            var result = Scaffold(esdatModel);
 
             return result;
         }
 
-        public override Result Scaffold()
+        public Result Scaffold(ESDATModel esdatModel)
         {
             var result = new Result();
 
-            var parameters = _parameters as ESDATSampleCollectionParameters;
-            var sample = parameters.SampleFileData;
-
             result.ResultTypeCV = ResultTypeCV;
-            result.ResultDateTime = sample.SampledDateTime;
+            result.ResultDateTime = Sample.SampledDateTime;
             result.SampledMediumCV = SampledMediumCV;
             result.ValueCount = 1;
 

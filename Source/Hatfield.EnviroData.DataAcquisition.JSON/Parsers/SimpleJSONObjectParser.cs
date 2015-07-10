@@ -35,7 +35,7 @@ namespace Hatfield.EnviroData.DataAcquisition.JSON.Parsers
 
 
                 return new ParsingResult(ResultLevel.INFO, "Parse value from " + dataToImport.ToString() + " successfully, the value is " + parsedValue.ToString(), parsedValue.ToList(), castedDataSourceLocation);
-                
+
             }
             else
             {
@@ -45,7 +45,7 @@ namespace Hatfield.EnviroData.DataAcquisition.JSON.Parsers
 
                 return new ParsingResult(ResultLevel.INFO, "Parse value from " + dataToImport.ToString() + " successfully " + parsedValue, parsedValue, castedDataSourceLocation);
             }
-                        
+
         }
     }
 }

@@ -7,6 +7,7 @@ using Moq;
 using Hatfield.EnviroData.Core;
 using Hatfield.EnviroData.DataAcquisition.ESDAT.Converters;
 using System.Data.Entity;
+using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 {
@@ -26,10 +27,14 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 
             var mockDb = new Mock<IDbContext>();
             var mockDbContext = mockDb.Object;
-            var parameters = new ESDATChemistryParameters(mockDbContext, esdatModel, sample, chemistry);
-            var mapper = new ChemistryOrganizationMapper(parameters);
-            
-            var organization = mapper.Scaffold();
+            var duplicateChecker = new ESDATDuplicateChecker(mockDbContext);
+            var defaultValueProvider = new StaticWQDefaultValueProvider();
+            var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
+            var mapper = new ChemistryOrganizationMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData);
+
+            mapper.SampleFileData = sample;
+
+            var organization = mapper.Scaffold(esdatModel, chemistry);
 
             Assert.AreEqual(0, organization.OrganizationID);
             Assert.AreEqual("Laboratory", organization.OrganizationTypeCV);

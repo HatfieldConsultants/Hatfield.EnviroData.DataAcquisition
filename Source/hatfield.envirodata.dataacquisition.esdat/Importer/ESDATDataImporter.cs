@@ -32,12 +32,12 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Importer
             ChemistryFileChildObjectExtractConfiguration chemistryDataExtractConfiguration = null;
             SampleFileChildObjectExtractConfiguration sampleDataExtractConfiguration = null;
 
-            
+
 
             var castedDataToImport = dataToImport as ESDATDataToImport;
 
-            if(castedDataToImport == null)
-            {                
+            if (castedDataToImport == null)
+            {
                 extractedDataset.AddParsingResult(new BaseResult(ResultLevel.FATAL, "Data to Import needs to be ESDATDataToImport"));
             }
 
@@ -47,7 +47,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Importer
                                                                             .Cast<ChemistryFileChildObjectExtractConfiguration>()
                                                                             .SingleOrDefault();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 chemistryDataExtractConfiguration = null;
                 extractedDataset.AddParsingResult(new BaseResult(ResultLevel.FATAL, "ESDAT data importer needs to have one and only one Chemistry file extract configuration"));
@@ -81,10 +81,10 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Importer
                 var headerFileExtractResults = ExtractHeaderFile(model, _extractConfigurations, castedDataToImport.HeaderFileToImport);
                 extractedDataset.AddParsingResults(headerFileExtractResults);
             }
-            
+
 
             if (chemistryDataExtractConfiguration != null && sampleDataExtractConfiguration != null)
-            {                
+            {
 
                 var chemistryFileExtractResults = ExtractChemistryFileData(model, chemistryDataExtractConfiguration, castedDataToImport.ChemistryFileToImport);
                 extractedDataset.AddParsingResults(chemistryFileExtractResults);
@@ -95,7 +95,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Importer
 
             }
 
-            extractedDataset.AddParsingResults(new List<IResult>{new ParsingResult(ResultLevel.DEBUG, "Extract data into ESDAT model", model, null)});
+            extractedDataset.AddParsingResults(new List<IResult> { new ParsingResult(ResultLevel.DEBUG, "Extract data into ESDAT model", model, null) });
 
             return extractedDataset;
         }
@@ -122,17 +122,17 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Importer
         {
             var extractResults = configuration.ExtractData(model, dataToImport);
 
-            return extractResults;        
+            return extractResults;
         }
 
         private IEnumerable<IResult> ExtractSampleFileData(object model, SampleFileChildObjectExtractConfiguration configuration, IDataToImport dataToImport)
         {
             var extractResults = configuration.ExtractData(model, dataToImport);
 
-            return extractResults;  
+            return extractResults;
         }
 
 
-        
+
     }
 }

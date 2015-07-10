@@ -8,21 +8,21 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Importers
     public class SimpleCSVDataImporter : DataImporterBase
     {
         private int _startRow = 0;
-        
+
 
         public SimpleCSVDataImporter(ResultLevel thresholdLevel, int startRow = 0)
             : base(thresholdLevel)
         {
-            _startRow = startRow;            
+            _startRow = startRow;
         }
-        
+
         public override bool IsDataSupported(IDataToImport dataToImport)
         {
             return ValidateDataToImport(dataToImport).Item1;
         }
 
         public override IExtractedDataset<T> Extract<T>(IDataToImport dataToImport)
-        {            
+        {
             var extractedDataset = new ExtractedDataset<T>(_thresholdLevel);
 
             var validatedDataToImportResult = ValidateDataToImport(dataToImport);
@@ -54,9 +54,9 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Importers
 
             IDataSourceLocation currentLocation = null;
 
-            foreach(var configuration in extractConfigurations.Where(x => x is ISimpleExtractConfiguration).Cast<ISimpleExtractConfiguration>())
+            foreach (var configuration in extractConfigurations.Where(x => x is ISimpleExtractConfiguration).Cast<ISimpleExtractConfiguration>())
             {
-                if(configuration is SimpleCSVExtractConfiguration)
+                if (configuration is SimpleCSVExtractConfiguration)
                 {
                     currentLocation = new CSVDataSourceLocation(currentRow, ((SimpleCSVExtractConfiguration)configuration).ColumnIndex);
                 }

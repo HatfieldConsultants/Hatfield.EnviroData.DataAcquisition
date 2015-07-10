@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Hatfield.EnviroData.Core;
+using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public abstract class FeatureActionMapperBase : IODM2Mapper<FeatureAction>
+    public abstract class FeatureActionMapperBase : ESDATMapperBase<FeatureAction>
     {
-        public abstract FeatureAction Scaffold();
-        public abstract FeatureAction Map();
+        public FeatureActionMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData)
+            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        {
+        }
+
     }
 }

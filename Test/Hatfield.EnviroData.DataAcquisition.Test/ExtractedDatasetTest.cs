@@ -50,7 +50,7 @@ namespace Hatfield.EnviroData.DataAcquisition.Test
 
             var entities = dataSet.ExtractedEntities;
 
-            Assert.Null(entities);            
+            Assert.Null(entities);
 
         }
     }

@@ -46,7 +46,8 @@ namespace Hatfield.EnviroData.DataAcquisition
 
         public IDataSourceLocation DataSourceLocation
         {
-            get {
+            get
+            {
                 return _dataSourceLocation;
             }
         }

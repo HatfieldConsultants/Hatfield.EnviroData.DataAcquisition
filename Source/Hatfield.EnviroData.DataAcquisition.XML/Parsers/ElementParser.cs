@@ -57,28 +57,28 @@ namespace Hatfield.EnviroData.DataAcquisition.XML.Parsers
                 }
                 else
                 {
-                    return data.Root.Attributes().Where(x => x.Name.LocalName ==location.AttributeName).FirstOrDefault().Value;
+                    return data.Root.Attributes().Where(x => x.Name.LocalName == location.AttributeName).FirstOrDefault().Value;
                 }
             }
             else
             {
-            foreach (XElement element in data.Descendants())
-            {
-                if (String.IsNullOrEmpty(location.ElementName))
+                foreach (XElement element in data.Descendants())
                 {
-                    return element.Descendants().Attributes().Where(x => x.Name.LocalName == location.AttributeName).FirstOrDefault().Value;
+                    if (String.IsNullOrEmpty(location.ElementName))
+                    {
+                        return element.Descendants().Attributes().Where(x => x.Name.LocalName == location.AttributeName).FirstOrDefault().Value;
+                    }
+                    else if (String.IsNullOrEmpty(location.AttributeName))
+                    {
+                        var theElement = element.Descendants().Where(x => x.Name.LocalName == location.ElementName).First();
+                        return theElement.Value;
+                    }
+                    else
+                    {
+                        var theElement = element.Descendants().Where(x => x.Name.LocalName == location.ElementName).First();
+                        return theElement.Attributes().Where(x => x.Name.LocalName == location.AttributeName).First().Value;
+                    }
                 }
-                else if(String.IsNullOrEmpty(location.AttributeName))
-                {
-                    var theElement = element.Descendants().Where(x => x.Name.LocalName == location.ElementName).First();
-                    return theElement.Value;
-                }
-                else
-                {
-                    var theElement = element.Descendants().Where(x => x.Name.LocalName == location.ElementName).First();
-                    return theElement.Attributes().Where(x => x.Name.LocalName == location.AttributeName).First().Value;
-                }
-            }
             }
 
             return value;
@@ -87,9 +87,8 @@ namespace Hatfield.EnviroData.DataAcquisition.XML.Parsers
         private object ParseRawValue(Type type, string elementValue)
         {
             var valueParser = _parserFactory.GetValueParser(type);
-            
+
             return valueParser.Parse(elementValue);
-            }
         }
     }
-
+}

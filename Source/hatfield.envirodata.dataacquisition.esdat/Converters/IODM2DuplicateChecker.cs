@@ -8,8 +8,8 @@ using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public interface IODM2DuplicableMapper<T> where T : class
+    public interface IODM2DuplicateChecker
     {
-        T GetDuplicate(ESDATDuplicateChecker duplicateChecker, WayToHandleNewData wayToHandleNewData, T entity);
+        T GetDuplicate<T>(T entity, Expression<Func<T, bool>> predicate, WayToHandleNewData wayToHandleNewData) where T : class;
     }
 }
