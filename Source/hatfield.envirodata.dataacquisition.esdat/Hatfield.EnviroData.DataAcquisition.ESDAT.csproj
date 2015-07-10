@@ -40,10 +40,10 @@
       <HintPath>$(SolutionDir)\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Hatfield.EnviroData.Core">
-      <HintPath>..\..\packages\Hatfield.EnviroData.Core.1.0.0.1\lib\Hatfield.EnviroData.Core.dll</HintPath>
+      <HintPath>$(SolutionDir)\packages\Hatfield.EnviroData.Core.1.0.0.1\lib\Hatfield.EnviroData.Core.dll</HintPath>
     </Reference>
     <Reference Include="Hatfield.EnviroData.WQDataProfile">
-      <HintPath>..\..\packages\Hatfield.EnviroData.WQDataProfile.dll.1.0.0.0\lib\net40\Hatfield.EnviroData.WQDataProfile.dll</HintPath>
+      <HintPath>$(SolutionDir)\packages\Hatfield.EnviroData.WQDataProfile.dll.1.0.0.0\lib\net40\Hatfield.EnviroData.WQDataProfile.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
