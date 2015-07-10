@@ -38,12 +38,20 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>$(SolutionDir)\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Hatfield.EnviroData.Core, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Hatfield.EnviroData.Core.1.0.0.1\lib\Hatfield.EnviroData.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Hatfield.EnviroData.FileSystems, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Hatfield.EnviroData.FileSystems.WindowsFileSystem.1.0.0\lib\net40\Hatfield.EnviroData.FileSystems.dll</HintPath>
+      <HintPath>$(SolutionDir)\packages\Hatfield.EnviroData.FileSystems.WindowsFileSystem.1.0.0\lib\net40\Hatfield.EnviroData.FileSystems.dll</HintPath>
     </Reference>
     <Reference Include="Hatfield.EnviroData.FileSystems.WindowsFileSystem">
-      <HintPath>..\..\packages\Hatfield.EnviroData.FileSystems.WindowsFileSystem.1.0.0\lib\net40\Hatfield.EnviroData.FileSystems.WindowsFileSystem.dll</HintPath>
+      <HintPath>$(SolutionDir)\packages\Hatfield.EnviroData.FileSystems.WindowsFileSystem.1.0.0\lib\net40\Hatfield.EnviroData.FileSystems.WindowsFileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Hatfield.EnviroData.WQDataProfile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Hatfield.EnviroData.WQDataProfile.dll.1.0.0.0\lib\net40\Hatfield.EnviroData.WQDataProfile.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
       <HintPath>$(SolutionDir)\packages\Moq.4.2.1502.0911\lib\net40\Moq.dll</HintPath>
@@ -54,6 +62,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -103,27 +112,15 @@
       <Project>{327cf9c6-1298-4887-8b9f-31400e5dbd05}</Project>
       <Name>Hatfield.EnviroData.DataAcquisition.ESDAT</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Hatfield.EnviroData.Core\Source\Hatfield.EnviroData.Core\Hatfield.EnviroData.Core.csproj">
-      <Project>{b578fe6d-b7b8-4324-bb91-f9a6d5c801e9}</Project>
-      <Name>Hatfield.EnviroData.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Hatfield.EnviroData.WQDataProfile\Source\Hatfield.EnviroData.WQDataProfile\Hatfield.EnviroData.WQDataProfile.csproj">
-      <Project>{5413d97c-1da9-48b7-b1e8-547b4daa463b}</Project>
-      <Name>Hatfield.EnviroData.WQDataProfile</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Hatfield.EnviroData.WQDataProfile\Source\Hatfield.WQDefaultValueProvider.JSON\Hatfield.WQDefaultValueProvider.JSON.csproj">
-      <Project>{954056af-92ec-48c0-b537-5f636dd464f0}</Project>
-      <Name>Hatfield.WQDefaultValueProvider.JSON</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Source\Hatfield.EnviroData.DataAcquisition.CSV\Hatfield.EnviroData.DataAcquisition.CSV.csproj">
+    <ProjectReference Include="$(SolutionDir)\Source\Hatfield.EnviroData.DataAcquisition.CSV\Hatfield.EnviroData.DataAcquisition.CSV.csproj">
       <Project>{a3dcc824-a35f-4425-b9db-adb876d8a5e3}</Project>
       <Name>Hatfield.EnviroData.DataAcquisition.CSV</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Source\Hatfield.EnviroData.DataAcquisition.XML\Hatfield.EnviroData.DataAcquisition.XML.csproj">
+    <ProjectReference Include="$(SolutionDir)\Source\Hatfield.EnviroData.DataAcquisition.XML\Hatfield.EnviroData.DataAcquisition.XML.csproj">
       <Project>{3dc7a821-c52c-42d7-b769-abff94b24ede}</Project>
       <Name>Hatfield.EnviroData.DataAcquisition.XML</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Source\Hatfield.EnviroData.DataAcquisition\Hatfield.EnviroData.DataAcquisition.csproj">
+    <ProjectReference Include="$(SolutionDir)\Source\Hatfield.EnviroData.DataAcquisition\Hatfield.EnviroData.DataAcquisition.csproj">
       <Project>{fb279550-18d7-43d5-bc1e-01b651ed1c76}</Project>
       <Name>Hatfield.EnviroData.DataAcquisition</Name>
     </ProjectReference>
