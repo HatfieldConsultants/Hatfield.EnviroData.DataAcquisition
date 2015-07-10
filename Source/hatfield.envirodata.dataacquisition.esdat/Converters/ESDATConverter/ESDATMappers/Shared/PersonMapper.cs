@@ -3,33 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Hatfield.EnviroData.Core;
+using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public class PersonMapper : PersonMapperBase
+    public class PersonMapper : PersonMapperBase, IESDATSharedMapper<Person>
     {
-        protected ESDATMapperParametersBase _parameters;
-
-        public PersonMapper(ESDATMapperParametersBase parameters)
+        public PersonMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
-            _parameters = parameters;
         }
 
-        public override Person Map()
+        public Person Map(ESDATModel esdatModel)
         {
-            var entity = Scaffold();
-            entity = GetDuplicate(_parameters.DuplicateChecker, entity);
+            var entity = Scaffold(esdatModel);
+            entity = GetDuplicate(_duplicateChecker, _wayToHandleNewData, entity);
 
             return entity;
         }
 
-        public override Person Scaffold()
+        public Person Scaffold(ESDATModel esdatModel)
         {
             Person person = new Person();
 
-            person.PersonFirstName = string.Empty;
-            person.PersonMiddleName = string.Empty;
-            person.PersonLastName = string.Empty;
+            person.PersonFirstName = _WQDefaultValueProvider.DefaultPersonFirstName;
+            person.PersonMiddleName = _WQDefaultValueProvider.DefaultPersonMiddleName;
+            person.PersonLastName = _WQDefaultValueProvider.DefaultPersonLastName;
 
             return person;
         }

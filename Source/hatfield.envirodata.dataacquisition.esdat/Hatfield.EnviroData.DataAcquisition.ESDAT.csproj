@@ -51,11 +51,9 @@
   <ItemGroup>
     <Compile Include="ChemistryFileChildObjectExtractConfiguration.cs" />
     <Compile Include="ChemistryFileData.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapperParameters\ESDATMapperParametersBase.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATConverter.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapperSingletonFactory\ESDATChemistryMapperSingletonFactory.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapperSingletonFactory\ESDATMapperSingletonFactoryBase.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapperSingletonFactory\ESDATSampleCollectionMapperSingletonFactory.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapperFactory\ESDATChemistryMapperFactory.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapperFactory\ESDATSampleCollectionMapperFactory.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryMethodMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryUnitMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryResultMapper.cs" />
@@ -63,13 +61,16 @@
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryMeasurementResultValueMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryMeasurementResultMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryFeatureActionMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\IESDATSharedMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\IESDATChemistryMapper.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\IESDATSampleCollectionMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionOrganizationMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionFeatureActionMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionMethodMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionSamplingFeatureMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionResultMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionUnitMapper.cs" />
-    <Compile Include="Converters\ODM2MapperParameters.cs" />
+    <Compile Include="Converters\IODM2DuplicateChecker.cs" />
     <Compile Include="Converters\ODM2Mappers\ResultMapperBase.cs" />
     <Compile Include="Converters\ODM2Mappers\SamplingFeatureMapperBase.cs" />
     <Compile Include="Converters\ODM2Mappers\UnitMapperBase.cs" />
@@ -78,8 +79,6 @@
     <Compile Include="Converters\ODM2Mappers\MeasurementResultMapperBase.cs" />
     <Compile Include="Converters\ODM2Mappers\FeatureActionMapperBase.cs" />
     <Compile Include="Converters\IODM2DuplicableMapper.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapperParameters\ESDATSampleCollectionParameters.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapperParameters\ESDATChemistryParameters.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryVariableMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionVariableMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\AffiliationMapper.cs" />
@@ -100,12 +99,12 @@
     <Compile Include="Converters\ODM2Mappers\DatasetsResultMapperBase.cs" />
     <Compile Include="Converters\ODM2Mappers\DatasetMapperBase.cs" />
     <Compile Include="Converters\ODM2Mappers\AffiliationMapperBase.cs" />
-    <Compile Include="Converters\IODM2Mapper.cs" />
+    <Compile Include="Converters\ESDATMapperBase.cs" />
     <Compile Include="Converters\ODM2EntityLinker.cs" />
-    <Compile Include="Converters\ODM2DuplicateChecker.cs" />
+    <Compile Include="Converters\ESDATDuplicateChecker.cs" />
     <Compile Include="Converters\ODM2Mappers\ActionMapperBase.cs" />
     <Compile Include="Converters\ODM2Mappers\ActionByMapperBase.cs" />
-    <Compile Include="Converters\ODM2MapperSingletonFactory.cs" />
+    <Compile Include="Converters\ODM2MapperFactory.cs" />
     <Compile Include="ESDATDataToImport.cs" />
     <Compile Include="ESDATModel.cs" />
     <Compile Include="IESDATDataConverter.cs" />
@@ -116,15 +115,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Converters\ESDATConverter\ESDATMapperParameters\ESDATMapperParameters.cd" />
     <None Include="Converters\ESDATConverter\ESDATConverter.cd" />
-    <None Include="Converters\ESDATConverter\ESDATMapperSingletonFactory\ESDATMapperSingletonFactory.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Hatfield.EnviroData.Core\Source\Hatfield.EnviroData.Core\Hatfield.EnviroData.Core.csproj">
       <Project>{b578fe6d-b7b8-4324-bb91-f9a6d5c801e9}</Project>
       <Name>Hatfield.EnviroData.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hatfield.EnviroData.WQDataProfile\Source\Hatfield.EnviroData.WQDataProfile\Hatfield.EnviroData.WQDataProfile.csproj">
+      <Project>{5413d97c-1da9-48b7-b1e8-547b4daa463b}</Project>
+      <Name>Hatfield.EnviroData.WQDataProfile</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hatfield.EnviroData.WQDataProfile\Source\Hatfield.WQDefaultValueProvider.JSON\Hatfield.WQDefaultValueProvider.JSON.csproj">
+      <Project>{954056af-92ec-48c0-b537-5f636dd464f0}</Project>
+      <Name>Hatfield.WQDefaultValueProvider.JSON</Name>
     </ProjectReference>
     <ProjectReference Include="..\Hatfield.EnviroData.DataAcquisition.CSV\Hatfield.EnviroData.DataAcquisition.CSV.csproj">
       <Project>{a3dcc824-a35f-4425-b9db-adb876d8a5e3}</Project>

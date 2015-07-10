@@ -3,30 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Hatfield.EnviroData.Core;
+using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public class ChemistrySamplingFeatureMapper : SamplingFeatureMapperBase
+    public class ChemistrySamplingFeatureMapper : SamplingFeatureMapperBase, IESDATChemistryMapper<SamplingFeature>
     {
         // Chemistry Constants
         private const string SamplingFeatureTypeCVChemistry = "Specimen";
 
-        protected ESDATChemistryParameters _parameters;
-
-        public ChemistrySamplingFeatureMapper(ESDATChemistryParameters parameters)
+        public ChemistrySamplingFeatureMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
-            _parameters = parameters;
         }
 
-        public override SamplingFeature Map()
+        public SamplingFeature Map(ESDATModel esdatModel, ChemistryFileData chemistry)
         {
-            var entity = Scaffold();
-            entity = GetDuplicate(_parameters.DuplicateChecker, entity);
+            var entity = Scaffold(esdatModel, chemistry);
+            entity = GetDuplicate(_duplicateChecker, _wayToHandleNewData, entity);
 
             return entity;
         }
 
-        public override SamplingFeature Scaffold()
+        public SamplingFeature Scaffold(ESDATModel esdatModel, ChemistryFileData chemistry)
         {
             SamplingFeature samplingFeature = new SamplingFeature();
 

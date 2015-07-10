@@ -7,6 +7,7 @@ using Moq;
 using Hatfield.EnviroData.Core;
 using Hatfield.EnviroData.DataAcquisition.ESDAT.Converters;
 using System.Data.Entity;
+using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 {
@@ -20,8 +21,10 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 
             var mockDb = new Mock<IDbContext>();
             var mockDbContext = mockDb.Object;
-            var parameters = new ESDATSampleCollectionParameters(mockDbContext, esdatModel);
-            var mapper = new RelatedActionMapper(parameters);
+            var duplicateChecker = new ESDATDuplicateChecker(mockDbContext);
+            var defaultValueProvider = new StaticWQDefaultValueProvider();
+            var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
+            var mapper = new RelatedActionMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData);
 
             var action1 = new Core.Action();
             action1.ActionID = 101;
@@ -31,7 +34,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 
             mapper.SetRelationship(action1, "relationshipTypeCV", action2);
 
-            var relatedAction = mapper.Scaffold();
+            var relatedAction = mapper.Scaffold(esdatModel);
 
             Assert.AreEqual(0, relatedAction.RelationID);
             Assert.AreEqual(action1.ActionID, relatedAction.ActionID);

@@ -7,6 +7,7 @@ using Moq;
 using Hatfield.EnviroData.Core;
 using Hatfield.EnviroData.DataAcquisition.ESDAT.Converters;
 using System.Data.Entity;
+using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 {
@@ -20,10 +21,12 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 
             var mockDb = new Mock<IDbContext>();
             var mockDbContext = mockDb.Object;
-            var parameters = new ESDATSampleCollectionParameters(mockDbContext, esdatModel);
-            var mapper = new SampleCollectionMethodMapper(parameters);
+            var duplicateChecker = new ESDATDuplicateChecker(mockDbContext);
+            var defaultValueProvider = new StaticWQDefaultValueProvider();
+            var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
+            var mapper = new SampleCollectionMethodMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData);
 
-            var method = mapper.Scaffold();
+            var method = mapper.Scaffold(esdatModel);
 
             Assert.AreEqual(0, method.MethodID);
             Assert.AreEqual("Specimen collection", method.MethodTypeCV);

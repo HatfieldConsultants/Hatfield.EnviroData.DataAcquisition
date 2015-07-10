@@ -10,10 +10,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
     /// Contains converter parameters
     /// Each mapper base is an implementor (bridge design pattern)
     /// </summary>
-    public abstract class ODM2MapperParameters
+    public abstract class ODM2MapperFactory
     {
-        public IDbContext DbContext { get; protected set; }
-        public ODM2DuplicateChecker DuplicateChecker { get; protected set; }
-        public ODM2EntityLinker Linker { get; protected set; }
     }
 }

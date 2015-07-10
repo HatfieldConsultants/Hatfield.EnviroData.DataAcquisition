@@ -10,6 +10,7 @@ using System.Data.Entity;
 using Hatfield.EnviroData.DataAcquisition.ESDAT.Importer;
 using Hatfield.EnviroData.DataAcquisition.ValueAssigners;
 using System.IO;
+using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 {
@@ -20,10 +21,19 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
         public void MapTest()
         {
             var dbContext = new ODM2Entities();
+            var duplicateChecker = new ESDATDuplicateChecker(dbContext);
             var esdatModel = extractEsdatModel();
-            var parameters = new ESDATSampleCollectionParameters(dbContext, esdatModel);
-            var converter = new ESDATConverter();
-            var action = converter.Convert(parameters);
+            var WQDefaultValueProvider = new StaticWQDefaultValueProvider();
+            var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
+
+            var sampleCollectionFactory = new ESDATSampleCollectionMapperFactory(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            var chemistryFactory = new ESDATChemistryMapperFactory(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+
+            var mapper = new SampleCollectionActionMapper(duplicateChecker, sampleCollectionFactory, WQDefaultValueProvider, chemistryFactory, wayToHandleNewData);
+
+            var converter = new ESDATConverter(mapper);
+            var action = converter.Convert(esdatModel);
+
             dbContext.Add(action);
             dbContext.SaveChanges();
         }

@@ -3,107 +3,103 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Hatfield.EnviroData.Core;
+using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public class SampleCollectionActionMapper : ActionMapperBase
+    public class SampleCollectionActionMapper : ActionMapperBase, IESDATSampleCollectionMapper<Core.Action>
     {
         // Sample Collection Constants
         private const string ActionTypeCVSampleCollection = "Specimen collection";
         private const string isRelatedToCV = "Is related to";
 
-        protected ESDATSampleCollectionParameters _parameters;
-        protected ESDATSampleCollectionMapperSingletonFactory _factory;
+        protected ESDATSampleCollectionMapperFactory _sampleCollectionFactory;
+        protected ESDATChemistryMapperFactory _chemistryFactory;
 
-        public SampleCollectionActionMapper(ESDATSampleCollectionMapperSingletonFactory factory, ESDATSampleCollectionParameters parameters)
+        public SampleCollectionActionMapper(ESDATDuplicateChecker duplicateChecker, ESDATSampleCollectionMapperFactory sampleCollectionFactory, IWQDefaultValueProvider WQDefaultValueProvider, ESDATChemistryMapperFactory chemistryFactory, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
-            _factory = factory;
-            _parameters = parameters;
+            _sampleCollectionFactory = sampleCollectionFactory;
+            _chemistryFactory = chemistryFactory;
         }
 
-        public override Core.Action Map()
+        public Core.Action Map(ESDATModel esdatModel)
         {
-            var action = Scaffold();
+            var action = Scaffold(esdatModel);
 
             // Feature Actions
-            var featureAction = _factory.FeatureActionMapper.Map();
-            _parameters.Linker.Link(action, featureAction);
+            var featureAction = _sampleCollectionFactory.FeatureActionMapper.Map(esdatModel);
+            ODM2EntityLinker.Link(action, featureAction);
 
             // Sampling Feature
-            var samplingFeature = _factory.SamplingFeatureMapper.Map();
-            _parameters.Linker.Link(featureAction, samplingFeature);
+            var samplingFeature = _sampleCollectionFactory.SamplingFeatureMapper.Map(esdatModel);
+            ODM2EntityLinker.Link(featureAction, samplingFeature);
 
             // Results
             // Each Feature Action can contain many results (Samples)
-            var esdatModel = _parameters.EsdatModel;
-
-            foreach (SampleFileData sample in esdatModel.SampleFileData)
+            foreach (SampleFileData sample_ in esdatModel.SampleFileData)
             {
-                _parameters.SampleFileData = sample;
-                Result result = _factory.ResultMapper.Map();
+                _sampleCollectionFactory.ResultMapper.Sample = sample_;
+                Result result = _sampleCollectionFactory.ResultMapper.Map(esdatModel);
 
-                _parameters.Linker.Link(featureAction, result);
+                ODM2EntityLinker.Link(featureAction, result);
 
                 // Unit
-                var unit = _factory.UnitMapper.Map();
-                _parameters.Linker.Link(result, unit);
+                var unit = _sampleCollectionFactory.UnitMapper.Map(esdatModel);
+                ODM2EntityLinker.Link(result, unit);
 
                 // Variable
-                var variable = _factory.VariableMapper.Map();
-                _parameters.Linker.Link(result, variable);
+                var variable = _sampleCollectionFactory.VariableMapper.Map(esdatModel);
+                ODM2EntityLinker.Link(result, variable);
 
                 // Processing Level
-                var processingLevel = _factory.ProcessingLevelMapper.Map();
-                _parameters.Linker.Link(result, processingLevel);
+                var processingLevel = _sampleCollectionFactory.ProcessingLevelMapper.Map(esdatModel);
+                ODM2EntityLinker.Link(result, processingLevel);
 
                 // Related Actions
                 // Create a new related Action for each chemistry file
                 // Assume that 1 unique sample maps to one or more chemistry files
-                var chemistryData = esdatModel.ChemistryData.Where(x => x.SampleCode.Equals(sample.SampleCode));
+                var chemistryData = esdatModel.ChemistryData.Where(x => x.SampleCode.Equals(sample_.SampleCode));
 
-                foreach (ChemistryFileData chemistry in chemistryData)
+                foreach (ChemistryFileData chemistry_ in chemistryData)
                 {
-                    var parameters = new ESDATChemistryParameters(_parameters.DbContext, esdatModel, sample, chemistry);
-                    var factory = new ESDATChemistryMapperSingletonFactory(parameters);
-                    parameters.ParentAction = action;
-                    var chemistryAction = factory.ActionMapper.Map();
+                    _chemistryFactory.ActionMapper.ParentAction = action;
+                    _chemistryFactory.ActionMapper.SampleFileData = sample_;
+                    var chemistryAction = _chemistryFactory.ActionMapper.Map(esdatModel, chemistry_);
 
-                    factory.RelatedActionMapper.SetRelationship(action, isRelatedToCV, chemistryAction);
-                    var relatedAction = factory.RelatedActionMapper.Map();
+                    _chemistryFactory.RelatedActionMapper.SetRelationship(action, isRelatedToCV, chemistryAction);
+                    var relatedAction = _chemistryFactory.RelatedActionMapper.Map(esdatModel);
 
-                    _parameters.Linker.Link(action, relatedAction);
+                    ODM2EntityLinker.Link(action, relatedAction);
                 }
             }
 
             // Action Bies
             {
-                ActionBy actionBy = _factory.ActionByMapper.Map();
-                _parameters.Linker.Link(action, actionBy);
+                ActionBy actionBy = _sampleCollectionFactory.ActionByMapper.Map(esdatModel);
+                ODM2EntityLinker.Link(action, actionBy);
 
-                var affiliation = _factory.AffiliationMapper.Map();
-                _parameters.Linker.Link(actionBy, affiliation);
+                var affiliation = _sampleCollectionFactory.AffiliationMapper.Map(esdatModel);
+                ODM2EntityLinker.Link(actionBy, affiliation);
 
-                var person = _factory.PersonMapper.Map();
-                _parameters.Linker.Link(affiliation, person);
+                var person = _sampleCollectionFactory.PersonMapper.Map(esdatModel);
+                ODM2EntityLinker.Link(affiliation, person);
             }
 
 
             // Method
             {
-                var method = _factory.MethodMapper.Map();
-                _parameters.Linker.Link(action, method);
+                var method = _sampleCollectionFactory.MethodMapper.Map(esdatModel);
+                ODM2EntityLinker.Link(action, method);
 
-                var organization = _factory.OrganizationMapper.Map();
-                _parameters.Linker.Link(method, organization);
+                var organization = _sampleCollectionFactory.OrganizationMapper.Map(esdatModel);
+                ODM2EntityLinker.Link(method, organization);
             }
 
             return action;
         }
 
-        public override Core.Action Scaffold()
+        public Core.Action Scaffold(ESDATModel esdatModel)
         {
-            var esdatModel = _parameters.EsdatModel;
-
             Core.Action entity = new Core.Action();
 
             entity.ActionTypeCV = ActionTypeCVSampleCollection;

@@ -3,26 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Hatfield.EnviroData.Core;
+using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public class ActionByMapper : ActionByMapperBase
+    public class ActionByMapper : ActionByMapperBase, IESDATSharedMapper<ActionBy>
     {
-        protected ESDATMapperParametersBase _parameters;
-
-        public ActionByMapper(ESDATMapperParametersBase parameters)
+        public ActionByMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
-            _parameters = parameters;
         }
 
-        public override ActionBy Map()
+        public ActionBy Map(ESDATModel esdatModel)
         {
-            var entity = Scaffold();
+            var entity = Scaffold(esdatModel);
 
             return entity;
         }
 
-        public override ActionBy Scaffold()
+        public ActionBy Scaffold(ESDATModel esdatModel)
         {
             var entity = new ActionBy();
 

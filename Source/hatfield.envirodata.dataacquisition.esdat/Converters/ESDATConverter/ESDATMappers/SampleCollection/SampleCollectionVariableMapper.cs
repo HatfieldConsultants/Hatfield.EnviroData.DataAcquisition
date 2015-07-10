@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Hatfield.EnviroData.Core;
+using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public class SampleCollectionVariableMapper : VariableMapperBase
+    public class SampleCollectionVariableMapper : VariableMapperBase, IESDATSampleCollectionMapper<Variable>
     {
         // Shared Constants
         private const string SpeciationCV = "Unknown";
@@ -15,22 +16,19 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         // Sample Collection Constants
         private const string VariableTypeCVSampleCollection = "Unknown";
 
-        protected ESDATSampleCollectionParameters _parameters;
-
-        public SampleCollectionVariableMapper(ESDATSampleCollectionParameters parameters)
+        public SampleCollectionVariableMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
-            _parameters = parameters;
         }
 
-        public override Variable Map()
+        public Variable Map(ESDATModel esdatModel)
         {
-            var entity = Scaffold();
-            entity = GetDuplicate(_parameters.DuplicateChecker, entity);
+            var entity = Scaffold(esdatModel);
+            entity = GetDuplicate(_duplicateChecker, _wayToHandleNewData, entity);
 
             return entity;
         }
 
-        public override Variable Scaffold()
+        public Variable Scaffold(ESDATModel esdatModel)
         {
             Variable variable = new Variable();
 

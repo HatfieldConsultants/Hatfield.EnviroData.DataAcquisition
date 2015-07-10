@@ -3,29 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Hatfield.EnviroData.Core;
+using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public class ChemistryMeasurementResultValueMapper : MeasurementResultValueMapperBase
+    public class ChemistryMeasurementResultValueMapper : MeasurementResultValueMapperBase, IESDATChemistryMapper<MeasurementResultValue>
     {
-        protected ESDATChemistryParameters _parameters;
-
-        public ChemistryMeasurementResultValueMapper(ESDATChemistryParameters parameters)
+        public ChemistryMeasurementResultValueMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
-            _parameters = parameters;
         }
 
-
-        public override MeasurementResultValue Map()
+        public MeasurementResultValue Map(ESDATModel esdatModel, ChemistryFileData chemistry)
         {
-            return Scaffold();
+            return Scaffold(esdatModel, chemistry);
         }
 
-        public override MeasurementResultValue Scaffold()
+        public MeasurementResultValue Scaffold(ESDATModel esdatModel, ChemistryFileData chemistry)
         {
             var measurementResultValue = new MeasurementResultValue();
-
-            var chemistry = _parameters.ChemistryFileData;
 
             if (chemistry.Result.HasValue)
             {

@@ -3,35 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Hatfield.EnviroData.Core;
+using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public class RelatedActionMapper : RelatedActionMapperBase
+    public class RelatedActionMapper : RelatedActionMapperBase, IESDATSharedMapper<RelatedAction>
     {
         private Core.Action _action;
         private Core.Action _action1;
         private string _relationshipTypeCV;
 
-        protected ESDATMapperParametersBase _parameters;
-
-        public RelatedActionMapper(ESDATMapperParametersBase parameters)
+        public RelatedActionMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
-            _parameters = parameters;
         }
 
-        public override RelatedAction Map()
+        public RelatedAction Map(ESDATModel esdatModel)
         {
             if (ParamsAreNull())
             {
                 throw new ArgumentNullException("Please set relationship (parameters).");
             }
 
-            var relatedAction = Scaffold();
+            var relatedAction = Scaffold(esdatModel);
 
             return relatedAction;
         }
 
-        public override RelatedAction Scaffold()
+        public RelatedAction Scaffold(ESDATModel esdatModel)
         {
             RelatedAction relatedAction = new RelatedAction();
 

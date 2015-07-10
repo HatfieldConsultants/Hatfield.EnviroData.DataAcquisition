@@ -1,20 +1,12 @@
 USE [ODM2]
 
-INSERT INTO [ODM2].[CV_UnitsType]
-           ([Term],[Name])
-     VALUES
-           ('dimensionless','dimensionless'),
-		   ('mg/L','mg/L'),
-		   ('ug/mL','ug/mL'),
-		   ('%','%')
-
 INSERT INTO [ODM2].[Units]
            ([UnitsTypeCV],[UnitsAbbreviation],[UnitsName],[UnitsLink])
      VALUES
-           ('dimensionless','di','dimensionless',NULL),
-		   ('mg/L','mg','mg/L',NULL),
-		   ('ug/mL','ug','ug/mL',NULL),
-		   ('%','%','%',NULL)
+           ('Dimensionless','Di','Dimensionless',NULL),
+		   ('Action','mg','mg/L',NULL),
+		   ('Action','ug','ug/mL',NULL),
+		   ('Action','%','%',NULL)
 
 INSERT INTO [ODM2].[Variables]
            ([VariableTypeCV],[VariableCode],[VariableNameCV],[VariableDefinition],[SpeciationCV],[NoDataValue])
@@ -37,12 +29,12 @@ INSERT INTO [ODM2].[SamplingFeatures]
 INSERT INTO [ODM2].[ProcessingLevels]
            ([ProcessingLevelCode])
      VALUES
-           ('')
+           ('Unknown')
 
 INSERT INTO [ODM2].[People]
            ([PersonFirstName],[PersonMiddleName],[PersonLastName])
      VALUES
-           ('','','')
+           ('Unknown','Unknown','Unknown')
 
 INSERT INTO [ODM2].[Organizations]
            ([OrganizationTypeCV],[OrganizationName],[OrganizationCode])

@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class ESDATConverter : IESDATDataConverter
     {
-        public Core.Action Convert(ESDATSampleCollectionParameters parameters)
-        {
-            var factory = new ESDATSampleCollectionMapperSingletonFactory(parameters);
-            var mapper = new SampleCollectionActionMapper(factory, parameters);
+        private SampleCollectionActionMapper _mapper;
 
-            return mapper.Map();
+        public ESDATConverter(SampleCollectionActionMapper mapper)
+        {
+            _mapper = mapper;
+        }
+
+        public Core.Action Convert(ESDATModel model)
+        {
+            return _mapper.Map(model);
         }
     }
 }

@@ -3,34 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Hatfield.EnviroData.Core;
+using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public class ChemistryMethodMapper : MethodMapperBase
+    public class ChemistryMethodMapper : MethodMapperBase, IESDATChemistryMapper<Method>
     {
         // Chemistry Constants
         private const string MethodTypeCVChemistry = "Specimen analysis";
 
-        protected ESDATChemistryParameters _parameters;
-
-        public ChemistryMethodMapper(ESDATChemistryParameters parameters)
+        public ChemistryMethodMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
-            _parameters = parameters;
         }
 
-        public override Method Map()
+        public Method Map(ESDATModel esdatModel, ChemistryFileData chemistry)
         {
-            var entity = Scaffold();
-            entity = GetDuplicate(_parameters.DuplicateChecker, entity);
+            var entity = Scaffold(esdatModel, chemistry);
+            entity = GetDuplicate(_duplicateChecker, _wayToHandleNewData, entity);
 
             return entity;
         }
 
-        public override Method Scaffold()
+        public Method Scaffold(ESDATModel esdatModel, ChemistryFileData chemistry)
         {
             Method method = new Method();
-
-            var chemistry = _parameters.ChemistryFileData;
 
             method.MethodID = 0;
             method.MethodTypeCV = MethodTypeCVChemistry;

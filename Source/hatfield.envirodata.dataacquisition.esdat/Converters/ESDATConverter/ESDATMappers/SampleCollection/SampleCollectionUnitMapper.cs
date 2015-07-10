@@ -3,30 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Hatfield.EnviroData.Core;
+using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public class SampleCollectionUnitMapper : UnitMapperBase
+    public class SampleCollectionUnitMapper : UnitMapperBase, IESDATSampleCollectionMapper<Unit>
     {
         // Sample Collection Constants
-        private const string UnitsTypeCVSampleCollection = "dimensionless";
+        private const string UnitsTypeCVSampleCollection = "Dimensionless";
 
-        protected ESDATSampleCollectionParameters _parameters;
-
-        public SampleCollectionUnitMapper(ESDATSampleCollectionParameters parameters)
+        public SampleCollectionUnitMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
-            _parameters = parameters;
         }
 
-        public override Unit Map()
+        public Unit Map(ESDATModel esdatModel)
         {
-            var entity = Scaffold();
-            entity = GetDuplicate(_parameters.DuplicateChecker, entity);
+            var entity = Scaffold(esdatModel);
+            entity = GetDuplicate(_duplicateChecker, _wayToHandleNewData, entity);
 
             return entity;
         }
 
-        public override Unit Scaffold()
+        public Unit Scaffold(ESDATModel esdatModel)
         {
             var unit = new Unit();
 
