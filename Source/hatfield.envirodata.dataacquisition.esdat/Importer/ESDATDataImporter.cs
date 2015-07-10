@@ -6,15 +6,18 @@ using System.Text;
 
 using Hatfield.EnviroData.DataAcquisition.XML;
 using Hatfield.EnviroData.DataAcquisition.CSV;
+using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Importer
 {
     public class ESDATDataImporter : DataImporterBase
     {
+        private IWQDefaultValueProvider _wqDefaultValueProvider;
 
-        public ESDATDataImporter(ResultLevel thresholdLevel)
+        public ESDATDataImporter(ResultLevel thresholdLevel, IWQDefaultValueProvider wqDefaultValueProvider)
             : base(thresholdLevel)
         {
+            _wqDefaultValueProvider = wqDefaultValueProvider;
         }
 
         public override bool IsDataSupported(IDataToImport dataToImport)
@@ -65,8 +68,20 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Importer
 
             var model = new T();
 
-            var headerFileExtractResults = ExtractHeaderFile(model, _extractConfigurations, castedDataToImport.HeaderFileToImport);
-            extractedDataset.AddParsingResults(headerFileExtractResults);
+            if (castedDataToImport.HeaderFileToImport == null)
+            {
+                var castedModel = model as ESDATModel;
+                castedModel.LabName = _wqDefaultValueProvider.DefaultOrganizationName;
+                extractedDataset.AddParsingResults(new List<IResult> { 
+                    new BaseResult(ResultLevel.WARN, "Header file is null, use the default organization name in the default value provider")
+                });
+            }
+            else
+            {
+                var headerFileExtractResults = ExtractHeaderFile(model, _extractConfigurations, castedDataToImport.HeaderFileToImport);
+                extractedDataset.AddParsingResults(headerFileExtractResults);
+            }
+            
 
             if (chemistryDataExtractConfiguration != null && sampleDataExtractConfiguration != null)
             {                
@@ -77,11 +92,10 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Importer
                 var sampleFileExtractResults = ExtractSampleFileData(model, sampleDataExtractConfiguration, castedDataToImport.SampleFileToImport);
                 extractedDataset.AddParsingResults(sampleFileExtractResults);
 
-                var parsingResult = new ParsingResult(ResultLevel.DEBUG, "Extract data from ESDAT data success", model, new CSVDataSourceLocation(1, 1));
-
-                extractedDataset.AddParsingResults(new List<IResult>{parsingResult});
 
             }
+
+            extractedDataset.AddParsingResults(new List<IResult>{new ParsingResult(ResultLevel.DEBUG, "Extract data into ESDAT model", model, null)});
 
             return extractedDataset;
         }

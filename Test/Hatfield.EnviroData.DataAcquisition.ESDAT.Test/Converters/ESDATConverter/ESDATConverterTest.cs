@@ -11,6 +11,8 @@ using Hatfield.EnviroData.DataAcquisition.ESDAT.Importer;
 using Hatfield.EnviroData.DataAcquisition.ValueAssigners;
 using System.IO;
 
+using Hatfield.EnviroData.WQDataProfile;
+
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 {
     [TestFixture]
@@ -31,6 +33,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 
         private ESDATModel extractEsdatModel()
         {
+            var mockDefaultValueProvider = new Mock<IWQDefaultValueProvider>();
+
             var headerFileToImport = ESDATTestHelper.CreateXMLDatoToImport(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataFiles", "XMLSample.xml"));
             var chemistryFileToImport = ESDATTestHelper.CreateCSVDataToImport(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataFiles", "ChemistryFileExample.csv"));
             var sampleFileToImport = ESDATTestHelper.CreateCSVDataToImport(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataFiles", "SampleFileExample.csv"));
@@ -46,7 +50,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
             var chemistryDataImporter = ESDATTestHelper.BuildChemistryFileImporter();
             var chemistryFileChildObjectExtractConfiguration = new ChemistryFileChildObjectExtractConfiguration(chemistryDataImporter, "ChemistryData", simpleValueAssginer);
 
-            var testESDATDataImporter = new ESDATDataImporter(ResultLevel.ERROR);
+            var testESDATDataImporter = new ESDATDataImporter(ResultLevel.ERROR, mockDefaultValueProvider.Object);
 
             ESDATTestHelper.AddXMLExtractConfigurationsToImporter(testESDATDataImporter);
             testESDATDataImporter.AddExtractConfiguration(sampleFileChildObjectExtractConfiguration);
