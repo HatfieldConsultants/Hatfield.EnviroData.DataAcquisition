@@ -9,16 +9,24 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public abstract class MethodMapperBase : ESDATMapperBase<Method>, IODM2DuplicableMapper<Method>
     {
+        List<Method> _backingStore;
+
         public MethodMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData)
             : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
         }
 
-        public Method GetDuplicate(ESDATDuplicateChecker duplicateChecker, WayToHandleNewData wayToHandleNewData, Method entity)
+        public void SetBackingStore(List<Method> backingStore)
         {
-            return duplicateChecker.GetDuplicate<Method>(entity, x =>
+            _backingStore = backingStore;
+        }
+
+        public Method GetDuplicate(WayToHandleNewData wayToHandleNewData, Method entity)
+        {
+            return _duplicateChecker.GetDuplicate<Method>(entity, x =>
                 x.MethodTypeCV.Equals(entity.MethodTypeCV),
-                wayToHandleNewData
+                wayToHandleNewData,
+                _backingStore
             );
         }
     }

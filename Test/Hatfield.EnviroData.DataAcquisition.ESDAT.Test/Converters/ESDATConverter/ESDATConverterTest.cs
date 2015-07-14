@@ -24,7 +24,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
             var duplicateChecker = new ESDATDuplicateChecker(dbContext);
             var esdatModel = extractEsdatModel();
             var WQDefaultValueProvider = new StaticWQDefaultValueProvider();
-            var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
+            var wayToHandleNewData = WayToHandleNewData.WarningForNewData;
 
             var sampleCollectionFactory = new ESDATSampleCollectionMapperFactory(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
             var chemistryFactory = new ESDATChemistryMapperFactory(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);

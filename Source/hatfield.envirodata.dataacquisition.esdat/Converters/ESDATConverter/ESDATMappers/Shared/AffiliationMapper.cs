@@ -16,6 +16,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         public Affiliation Map(ESDATModel esdatModel)
         {
             var entity = Scaffold(esdatModel);
+            entity = GetDuplicate(_wayToHandleNewData, entity);
 
             return entity;
         }

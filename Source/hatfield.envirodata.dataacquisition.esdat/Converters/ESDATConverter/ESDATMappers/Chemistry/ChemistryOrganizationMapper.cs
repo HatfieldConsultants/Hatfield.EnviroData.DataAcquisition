@@ -21,7 +21,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         public Organization Map(ESDATModel esdatModel, ChemistryFileData chemistry)
         {
             var entity = Scaffold(esdatModel, chemistry);
-            entity = GetDuplicate(_duplicateChecker, _wayToHandleNewData, entity);
+            entity = GetDuplicate(_wayToHandleNewData, entity);
 
             return entity;
         }

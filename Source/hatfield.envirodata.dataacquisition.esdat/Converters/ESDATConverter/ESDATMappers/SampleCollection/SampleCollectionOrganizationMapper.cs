@@ -19,7 +19,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         public Organization Map(ESDATModel esdatModel)
         {
             var entity = Scaffold(esdatModel);
-            entity = GetDuplicate(_duplicateChecker, _wayToHandleNewData, entity);
+            entity = GetDuplicate(_wayToHandleNewData, entity);
 
             return entity;
         }
