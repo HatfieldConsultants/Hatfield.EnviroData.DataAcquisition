@@ -65,7 +65,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test
         public void ExtractESDATDataFromNoHeaderFileTest()
         {
             var mockDefaultValueProvider = new Mock<IWQDefaultValueProvider>();
-            mockDefaultValueProvider.Setup(x => x.DefaultOrganizationName).Returns("Default organization name from provider");
+            mockDefaultValueProvider.Setup(x => x.OrganizationNameSampleCollection).Returns("Default organization name from provider");
 
             var chemistryFileToImport = CreateCSVDataToImport(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataFiles", "ChemistryFileExample.csv"));
             var sampleFileToImport = CreateCSVDataToImport(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataFiles", "SampleFileExample.csv"));
