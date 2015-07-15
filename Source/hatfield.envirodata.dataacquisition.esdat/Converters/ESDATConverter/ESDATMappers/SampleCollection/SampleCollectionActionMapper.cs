@@ -9,10 +9,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class SampleCollectionActionMapper : ActionMapperBase, IESDATSampleCollectionMapper<Core.Action>
     {
-        // Sample Collection Constants
-        private const string ActionTypeCVSampleCollection = "Specimen collection";
-        private const string isRelatedToCV = "Is related to";
-
         protected ESDATSampleCollectionMapperFactory _sampleCollectionFactory;
         protected ESDATChemistryMapperFactory _chemistryFactory;
 
@@ -66,7 +62,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
                     _chemistryFactory.ActionMapper.SampleFileData = sample_;
                     var chemistryAction = _chemistryFactory.ActionMapper.Map(esdatModel, chemistry_);
 
-                    _chemistryFactory.RelatedActionMapper.SetRelationship(action, isRelatedToCV, chemistryAction);
+                    _chemistryFactory.RelatedActionMapper.SetRelationship(action, _WQDefaultValueProvider.ActionRelationshipTypeCVSampleCollection, chemistryAction);
                     var relatedAction = _chemistryFactory.RelatedActionMapper.Map(esdatModel);
 
                     ODM2EntityLinker.Link(action, relatedAction);
@@ -102,7 +98,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         {
             Core.Action entity = new Core.Action();
 
-            entity.ActionTypeCV = ActionTypeCVSampleCollection;
+            entity.ActionTypeCV = _WQDefaultValueProvider.ActionTypeCVSampleCollection;
             entity.BeginDateTime = esdatModel.DateReported;
 
             return entity;

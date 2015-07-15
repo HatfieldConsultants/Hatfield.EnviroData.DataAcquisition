@@ -32,7 +32,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             );
         }
 
-        protected string AbbereviateUnit(string name)
+        protected string Abbereviate(string name)
         {
             const int unitAbbrevLength = 2;
 

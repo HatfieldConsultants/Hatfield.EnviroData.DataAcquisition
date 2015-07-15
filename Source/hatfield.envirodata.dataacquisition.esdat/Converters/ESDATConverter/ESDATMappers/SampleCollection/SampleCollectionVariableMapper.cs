@@ -9,13 +9,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class SampleCollectionVariableMapper : VariableMapperBase, IESDATSampleCollectionMapper<Variable>
     {
-        // Shared Constants
-        private const string SpeciationCV = "Unknown";
-        private const int NoDataValue = -9999;
-
-        // Sample Collection Constants
-        private const string VariableTypeCVSampleCollection = "Unknown";
-
         public SampleCollectionVariableMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
         }
@@ -32,11 +25,11 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         {
             Variable variable = new Variable();
 
-            variable.VariableTypeCV = VariableTypeCVSampleCollection;
-            variable.VariableCode = string.Empty;
-            variable.VariableNameCV = string.Empty;
-            variable.SpeciationCV = SpeciationCV;
-            variable.NoDataValue = NoDataValue;
+            variable.VariableTypeCV = _WQDefaultValueProvider.DefaultVariableTypeCVSampleCollection;
+            variable.VariableCode = _WQDefaultValueProvider.DefaultVariableCode;
+            variable.VariableNameCV = _WQDefaultValueProvider.DefaultVariableNameCV;
+            variable.SpeciationCV = _WQDefaultValueProvider.DefaultVariableSpeciationCV;
+            variable.NoDataValue = _WQDefaultValueProvider.DefaultVariableNoDataValue;
 
             return variable;
         }

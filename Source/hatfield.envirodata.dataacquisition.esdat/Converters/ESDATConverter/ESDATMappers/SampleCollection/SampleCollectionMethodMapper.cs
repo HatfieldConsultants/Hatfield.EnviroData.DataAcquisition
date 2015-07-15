@@ -9,10 +9,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class SampleCollectionMethodMapper : MethodMapperBase, IESDATSampleCollectionMapper<Method>
     {
-        // Sample Collection Constants
-        private const string MethodTypeCVSampleCollection = "Specimen collection";
-        private const string MethodNameSampleCollection = "Specimen collection";
-
         public SampleCollectionMethodMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
         }
@@ -30,9 +26,9 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             Method method = new Method();
 
             method.MethodID = 0;
-            method.MethodTypeCV = MethodTypeCVSampleCollection;
+            method.MethodTypeCV = _WQDefaultValueProvider.DefaultMethodTypeCVSampleCollection;
             method.MethodCode = string.Empty;
-            method.MethodName = MethodNameSampleCollection;
+            method.MethodName = _WQDefaultValueProvider.DefaultMethodTypeCVSampleCollection;
 
             return method;
         }

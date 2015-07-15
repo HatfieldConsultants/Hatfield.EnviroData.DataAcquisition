@@ -9,11 +9,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class ChemistryMeasurementResultMapper : MeasurementResultMapperBase, IESDATChemistryMapper<MeasurementResult>
     {
-        // Constants
-        private const string CensorCodeCV = "Not censored";
-        private const string QualityCodeCV = "Unknown";
-        private const string AggregationStatisticCV = "Unknown";
-
         public ChemistryMeasurementResultMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
         }
@@ -29,9 +24,9 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         {
             var measurementResult = new MeasurementResult();
 
-            measurementResult.CensorCodeCV = CensorCodeCV;
-            measurementResult.QualityCodeCV = QualityCodeCV;
-            measurementResult.AggregationStatisticCV = AggregationStatisticCV;
+            measurementResult.CensorCodeCV = _WQDefaultValueProvider.MeasurementResultCensorCodeCVChemistry ;
+            measurementResult.QualityCodeCV = _WQDefaultValueProvider.MeasurementResultQualityCodeCVChemistry;
+            measurementResult.AggregationStatisticCV = _WQDefaultValueProvider.MeasurementResultAggregationStatisticCVChemistry;
 
             return measurementResult;
         }

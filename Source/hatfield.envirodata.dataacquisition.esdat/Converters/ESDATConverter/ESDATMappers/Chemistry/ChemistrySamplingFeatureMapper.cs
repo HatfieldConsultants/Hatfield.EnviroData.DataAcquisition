@@ -9,9 +9,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class ChemistrySamplingFeatureMapper : SamplingFeatureMapperBase, IESDATChemistryMapper<SamplingFeature>
     {
-        // Chemistry Constants
-        private const string SamplingFeatureTypeCVChemistry = "Specimen";
-
         public ChemistrySamplingFeatureMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
         }
@@ -28,7 +25,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         {
             SamplingFeature samplingFeature = new SamplingFeature();
 
-            samplingFeature.SamplingFeatureTypeCV = SamplingFeatureTypeCVChemistry;
+            samplingFeature.SamplingFeatureTypeCV = _WQDefaultValueProvider.DefaultSamplingFeatureTypeCVChemistry;
             samplingFeature.SamplingFeatureCode = string.Empty;
             samplingFeature.SamplingFeatureUUID = new Guid();
 

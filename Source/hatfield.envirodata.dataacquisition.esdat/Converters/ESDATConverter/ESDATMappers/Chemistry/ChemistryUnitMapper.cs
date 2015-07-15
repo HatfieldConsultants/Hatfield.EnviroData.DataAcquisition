@@ -9,8 +9,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class ChemistryUnitMapper : UnitMapperBase, IESDATChemistryMapper<Unit>
     {
-        const string UnitsTypeCVChemistry = "Action";
-
         public ChemistryUnitMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
         }
@@ -34,8 +32,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
                 throw new ArgumentNullException("Please ensure that the chemistry result unit is not null.");
             }
 
-            unit.UnitsTypeCV = UnitsTypeCVChemistry;
-            unit.UnitsAbbreviation = AbbereviateUnit(resultUnit);
+            unit.UnitsTypeCV = _WQDefaultValueProvider.DefaultUnitsTypeCVChemistry;
+            unit.UnitsAbbreviation = Abbereviate(resultUnit);
             unit.UnitsName = resultUnit;
 
             return unit;

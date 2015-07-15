@@ -10,11 +10,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
     public class ChemistryActionMapper : ActionMapperBase, IESDATChemistryMapper<Core.Action>
     {
         public SampleFileData SampleFileData { get; set; }
-
-        // Chemistry Constants
-        private const string ActionTypeCVChemistry = "Specimen analysis";
-        private const string isChildOfCV = "Is child of";
-
         protected ESDATChemistryMapperFactory _chemistryFactory;
         public  Core.Action ParentAction { get; set; }
 
@@ -97,7 +92,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             }
 
             // Related Actions
-            _chemistryFactory.RelatedActionMapper.SetRelationship(action, isChildOfCV, ParentAction);
+            _chemistryFactory.RelatedActionMapper.SetRelationship(action, _WQDefaultValueProvider.ActionRelationshipTypeCVChemistry, ParentAction);
             RelatedAction relatedAction = _chemistryFactory.RelatedActionMapper.Map(esdatModel);
 
             ODM2EntityLinker.Link(action, relatedAction);
@@ -109,7 +104,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         {
             var entity = new Core.Action();
 
-            entity.ActionTypeCV = ActionTypeCVChemistry;
+            entity.ActionTypeCV = _WQDefaultValueProvider.ActionTypeCVChemistry;
             entity.BeginDateTime = chemistry.AnalysedDate;
 
             return entity;

@@ -25,7 +25,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         {
             ProcessingLevel processingLevel = new ProcessingLevel();
 
-            processingLevel.ProcessingLevelCode = _WQDefaultValueProvider.DefaultProcessingLevels;
+            processingLevel.ProcessingLevelCode = _WQDefaultValueProvider.DefaultProcessingLevelCode;
 
             return processingLevel;
         }
