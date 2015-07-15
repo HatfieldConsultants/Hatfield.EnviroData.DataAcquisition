@@ -25,7 +25,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT
 
         public ESDATModel()
         {
-            DateReported = new DateTime();
+            DateReported = DateTime.Now;
             AssociatedFiles = new List<string>();
             CopiesSentTo = new List<string>();
             SampleFileData = new List<SampleFileData>();                        

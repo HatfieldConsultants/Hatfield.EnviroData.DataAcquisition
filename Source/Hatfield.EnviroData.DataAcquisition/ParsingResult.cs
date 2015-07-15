@@ -10,12 +10,14 @@ namespace Hatfield.EnviroData.DataAcquisition
         private ResultLevel _level;
         private string _message;
         private object _value;
-        
-        public ParsingResult(ResultLevel level, string message, object value)
+        private IDataSourceLocation _dataSourceLocation;
+
+        public ParsingResult(ResultLevel level, string message, object value, IDataSourceLocation dataSourceLocation)
         {
             _level = level;
             _message = message;
             _value = value;
+            _dataSourceLocation = dataSourceLocation;
         }
 
         public object Value
@@ -39,6 +41,14 @@ namespace Hatfield.EnviroData.DataAcquisition
             get
             {
                 return _message;
+            }
+        }
+
+        public IDataSourceLocation DataSourceLocation
+        {
+            get
+            {
+                return _dataSourceLocation;
             }
         }
     }

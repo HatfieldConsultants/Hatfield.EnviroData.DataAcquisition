@@ -33,11 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>$(SolutionDir)\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.dll</HintPath>
+    <Reference Include="Hatfield.EnviroData.Core, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Hatfield.EnviroData.Core.1.0.0.1\lib\Hatfield.EnviroData.Core.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>$(SolutionDir)\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="Hatfield.EnviroData.WQDataProfile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Hatfield.EnviroData.WQDataProfile.dll.1.0.0.0\lib\net40\Hatfield.EnviroData.WQDataProfile.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -119,18 +121,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Hatfield.EnviroData.Core\Source\Hatfield.EnviroData.Core\Hatfield.EnviroData.Core.csproj">
-      <Project>{b578fe6d-b7b8-4324-bb91-f9a6d5c801e9}</Project>
-      <Name>Hatfield.EnviroData.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Hatfield.EnviroData.WQDataProfile\Source\Hatfield.EnviroData.WQDataProfile\Hatfield.EnviroData.WQDataProfile.csproj">
-      <Project>{5413d97c-1da9-48b7-b1e8-547b4daa463b}</Project>
-      <Name>Hatfield.EnviroData.WQDataProfile</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Hatfield.EnviroData.WQDataProfile\Source\Hatfield.WQDefaultValueProvider.JSON\Hatfield.WQDefaultValueProvider.JSON.csproj">
-      <Project>{954056af-92ec-48c0-b537-5f636dd464f0}</Project>
-      <Name>Hatfield.WQDefaultValueProvider.JSON</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Hatfield.EnviroData.DataAcquisition.CSV\Hatfield.EnviroData.DataAcquisition.CSV.csproj">
       <Project>{a3dcc824-a35f-4425-b9db-adb876d8a5e3}</Project>
       <Name>Hatfield.EnviroData.DataAcquisition.CSV</Name>

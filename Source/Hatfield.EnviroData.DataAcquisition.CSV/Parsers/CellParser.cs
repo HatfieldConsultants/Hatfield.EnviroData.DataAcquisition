@@ -22,12 +22,12 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Parsers
         {
             if (!(dataSourceLocation is CSVDataSourceLocation))
             {
-                return new ParsingResult(ResultLevel.FATAL, dataSourceLocation.GetType().ToString() + " is not supported by CSV Cell Parser", null);                
+                return new ParsingResult(ResultLevel.FATAL, dataSourceLocation.GetType().ToString() + " is not supported by CSV Cell Parser", null, null);
             }
 
             if (!(dataToImport is CSVDataToImport))
             {
-                return new ParsingResult(ResultLevel.FATAL, dataToImport.GetType().ToString() + " is not supported by CSV Cell Parser", null);                
+                return new ParsingResult(ResultLevel.FATAL, dataToImport.GetType().ToString() + " is not supported by CSV Cell Parser", null, null);
             }
 
 
@@ -39,11 +39,11 @@ namespace Hatfield.EnviroData.DataAcquisition.CSV.Parsers
                 var rawData = GetRawDataValue(castedDataSourceLocation, castedDataToImport);
                 var parsedValue = ParseRawValue(type, rawData);
 
-                return new ParsingResult(ResultLevel.INFO, "Parsing value successfully", parsedValue);
+                return new ParsingResult(ResultLevel.INFO, "Parsing value successfully", parsedValue, castedDataSourceLocation);
             }
-            catch(IndexOutOfRangeException)
+            catch (IndexOutOfRangeException)
             {
-                return new ParsingResult(ResultLevel.FATAL, "Index is out of range", null);                
+                return new ParsingResult(ResultLevel.FATAL, "Index is out of range", null, castedDataSourceLocation);
             }
         }
 

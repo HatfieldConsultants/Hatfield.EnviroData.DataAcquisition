@@ -7,8 +7,8 @@ using System.Xml.Linq;
 
 namespace Hatfield.EnviroData.DataAcquisition.XML.Importers
 {
-    public class SimpleXMLDataImporter: IDataImporter
-    {        
+    public class SimpleXMLDataImporter : IDataImporter
+    {
         private IList<IExtractConfiguration> _extractConfigurations;
         private IList<IValidationRule> _validationRules;
         private ResultLevel _thresholdLevel = ResultLevel.ERROR;
@@ -20,14 +20,14 @@ namespace Hatfield.EnviroData.DataAcquisition.XML.Importers
             _thresholdLevel = thresholdLevel;
             //_location = location;
         }
-      
+
         public bool IsDataSupported(IDataToImport dataToImport)
         {
             return ValidateDataToImport(dataToImport).Item1;
         }
 
         public IExtractedDataset<T> Extract<T>(IDataToImport dataToImport) where T : new()
-        {            
+        {
             var extractedDataset = new ExtractedDataset<T>(_thresholdLevel);
             var validatedDataToImportResult = ValidateDataToImport(dataToImport);
             extractedDataset.AddParsingResults(validatedDataToImportResult.Item2);
@@ -42,17 +42,18 @@ namespace Hatfield.EnviroData.DataAcquisition.XML.Importers
             IDataSourceLocation currentLocation = null;
 
             foreach (var configuration in _extractConfigurations)
-            {               
+            {
                 if (configuration is SimpleXMLExtractConfiguration)
                 {
                     currentLocation = new XMLDataSourceLocation(((SimpleXMLExtractConfiguration)configuration).ElementName, ((SimpleXMLExtractConfiguration)configuration).AttributeName);
                 }
 
                 results.AddRange(((SimpleXMLExtractConfiguration)configuration).ExtractData(model, dataToImport, currentLocation));
-                              
+
             }
-            var parsingResult = new ParsingResult(ResultLevel.DEBUG, "Extract data from single row success", model);
-            
+
+            var parsingResult = new ParsingResult(ResultLevel.DEBUG, "Extract data from single row success", model, null);
+
             results.Add(parsingResult);
 
             extractedDataset.AddParsingResults(results);
@@ -62,14 +63,16 @@ namespace Hatfield.EnviroData.DataAcquisition.XML.Importers
 
         public IEnumerable<IValidationRule> AllValidationRules
         {
-            get {
+            get
+            {
                 return _validationRules;
             }
         }
 
         public IEnumerable<IExtractConfiguration> ExtractConfigurations
         {
-            get {
+            get
+            {
                 return _extractConfigurations;
             }
         }

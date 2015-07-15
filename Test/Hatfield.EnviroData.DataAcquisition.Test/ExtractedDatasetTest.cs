@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Moq;
 using NUnit.Framework;
 
 namespace Hatfield.EnviroData.DataAcquisition.Test
@@ -13,10 +14,11 @@ namespace Hatfield.EnviroData.DataAcquisition.Test
         [Test]
         public void AssertExtractedSuccessDataset()
         {
+            var mockDataSourceLocation = new Mock<IDataSourceLocation>();
             var dataSet = new ExtractedDataset<int>(ResultLevel.ERROR);
 
             var baseResult = new BaseResult(ResultLevel.INFO, "Base result message");
-            var parsingResult = new ParsingResult(ResultLevel.INFO, "Parsing result", 123);
+            var parsingResult = new ParsingResult(ResultLevel.INFO, "Parsing result", 123, mockDataSourceLocation.Object);
 
             dataSet.AddParsingResult(baseResult);
             dataSet.AddParsingResult(parsingResult);
@@ -34,10 +36,11 @@ namespace Hatfield.EnviroData.DataAcquisition.Test
         [Test]
         public void AssertExtractedFailDataset()
         {
+            var mockDataSourceLocation = new Mock<IDataSourceLocation>();
             var dataSet = new ExtractedDataset<int>(ResultLevel.FATAL);
 
             var baseResult = new BaseResult(ResultLevel.FATAL, "Base result message");
-            var parsingResult = new ParsingResult(ResultLevel.ERROR, "Parsing result", 123);
+            var parsingResult = new ParsingResult(ResultLevel.ERROR, "Parsing result", 123, mockDataSourceLocation.Object);
 
             dataSet.AddParsingResult(baseResult);
             dataSet.AddParsingResult(parsingResult);
@@ -47,7 +50,7 @@ namespace Hatfield.EnviroData.DataAcquisition.Test
 
             var entities = dataSet.ExtractedEntities;
 
-            Assert.Null(entities);            
+            Assert.Null(entities);
 
         }
     }

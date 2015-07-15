@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 
 using NUnit.Framework;
+using Moq;
 
 using Hatfield.EnviroData.DataAcquisition.Criterias;
 using Hatfield.EnviroData.DataAcquisition.ValueAssigners;
@@ -15,6 +16,7 @@ using Hatfield.EnviroData.DataAcquisition.CSV;
 using Hatfield.EnviroData.FileSystems.WindowsFileSystem;
 using Hatfield.EnviroData.DataAcquisition.ESDAT.Importer;
 using Hatfield.EnviroData.DataAcquisition.XML;
+using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test
 {
@@ -24,13 +26,15 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test
         [Test]
         public void ExtractESDATDataTest()
         {
+            var mockDefaultValueProvider = new Mock<IWQDefaultValueProvider>();
+
             var headerFileToImport = CreateXMLDatoToImport(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataFiles", "XMLSample.xml"));
             var chemistryFileToImport = CreateCSVDataToImport(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataFiles", "ChemistryFileExample.csv"));
             var sampleFileToImport = CreateCSVDataToImport(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataFiles", "SampleFileExample.csv"));
 
             var testESDATDataToImport = new ESDATDataToImport(headerFileToImport, sampleFileToImport, chemistryFileToImport);
 
-            
+
             var simpleValueAssginer = new SimpleValueAssigner();
 
             var sampleDataImporter = ESDATTestHelper.BuildSampleDataFileImporter();
@@ -39,7 +43,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test
             var chemistryDataImporter = ESDATTestHelper.BuildChemistryFileImporter();
             var chemistryFileChildObjectExtractConfiguration = new ChemistryFileChildObjectExtractConfiguration(chemistryDataImporter, "ChemistryData", simpleValueAssginer);
 
-            var testESDATDataImporter = new ESDATDataImporter(ResultLevel.ERROR);
+            var testESDATDataImporter = new ESDATDataImporter(ResultLevel.ERROR, mockDefaultValueProvider.Object);
 
             AddXMLExtractConfigurationsToImporter(testESDATDataImporter);
             testESDATDataImporter.AddExtractConfiguration(sampleFileChildObjectExtractConfiguration);
@@ -53,6 +57,42 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test
 
             Assert.NotNull(entity);
             Assert.AreEqual("Lab1", entity.LabName);
+            Assert.AreEqual(3, entity.SampleFileData.Count());
+            Assert.AreEqual(9, entity.ChemistryData.Count());
+        }
+
+        [Test]
+        public void ExtractESDATDataFromNoHeaderFileTest()
+        {
+            var mockDefaultValueProvider = new Mock<IWQDefaultValueProvider>();
+            mockDefaultValueProvider.Setup(x => x.DefaultOrganizationName).Returns("Default organization name from provider");
+
+            var chemistryFileToImport = CreateCSVDataToImport(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataFiles", "ChemistryFileExample.csv"));
+            var sampleFileToImport = CreateCSVDataToImport(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataFiles", "SampleFileExample.csv"));
+
+            var testESDATDataToImport = new ESDATDataToImport(null, sampleFileToImport, chemistryFileToImport);
+            var simpleValueAssginer = new SimpleValueAssigner();
+
+            var sampleDataImporter = ESDATTestHelper.BuildSampleDataFileImporter();
+            var sampleFileChildObjectExtractConfiguration = new SampleFileChildObjectExtractConfiguration(sampleDataImporter, "SampleFileData", simpleValueAssginer);
+
+            var chemistryDataImporter = ESDATTestHelper.BuildChemistryFileImporter();
+            var chemistryFileChildObjectExtractConfiguration = new ChemistryFileChildObjectExtractConfiguration(chemistryDataImporter, "ChemistryData", simpleValueAssginer);
+
+            var testESDATDataImporter = new ESDATDataImporter(ResultLevel.ERROR, mockDefaultValueProvider.Object);
+
+            AddXMLExtractConfigurationsToImporter(testESDATDataImporter);
+            testESDATDataImporter.AddExtractConfiguration(sampleFileChildObjectExtractConfiguration);
+            testESDATDataImporter.AddExtractConfiguration(chemistryFileChildObjectExtractConfiguration);
+
+            var extractResult = testESDATDataImporter.Extract<ESDATModel>(testESDATDataToImport);
+
+            Assert.NotNull(extractResult);
+
+            var entity = extractResult.ExtractedEntities.Cast<ESDATModel>().SingleOrDefault();
+
+            Assert.NotNull(entity);
+            Assert.AreEqual("Default organization name from provider", entity.LabName);
             Assert.AreEqual(3, entity.SampleFileData.Count());
             Assert.AreEqual(9, entity.ChemistryData.Count());
         }
@@ -88,13 +128,13 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test
         }
 
         private CSVDataToImport CreateCSVDataToImport(string filePath)
-        {            
+        {
             var dataSource = new WindowsFileSystem(filePath);
             var dataFromFileSystem = dataSource.FetchData();
             var dataToImport = new CSVDataToImport(dataFromFileSystem);
 
-            return dataToImport;        
-        }        
+            return dataToImport;
+        }
 
         private IExtractConfiguration CreateChemistryFileDataExtractConfiguration()
         {
