@@ -9,9 +9,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class SampleCollectionUnitMapper : UnitMapperBase, IESDATSampleCollectionMapper<Unit>
     {
-        // Sample Collection Constants
-        private const string UnitsTypeCVSampleCollection = "Dimensionless";
-
         public SampleCollectionUnitMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
         }
@@ -19,7 +16,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         public Unit Map(ESDATModel esdatModel)
         {
             var entity = Scaffold(esdatModel);
-            entity = GetDuplicate(_duplicateChecker, _wayToHandleNewData, entity);
+            entity = GetDuplicate(_wayToHandleNewData, entity);
 
             return entity;
         }
@@ -28,9 +25,9 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         {
             var unit = new Unit();
 
-            unit.UnitsTypeCV = UnitsTypeCVSampleCollection;
-            unit.UnitsAbbreviation = AbbereviateUnit(UnitsTypeCVSampleCollection);
-            unit.UnitsName = UnitsTypeCVSampleCollection;
+            unit.UnitsTypeCV = _WQDefaultValueProvider.DefaultUnitsTypeCVSampleCollection;
+            unit.UnitsAbbreviation = Abbereviate(_WQDefaultValueProvider.DefaultUnitsTypeCVSampleCollection);
+            unit.UnitsName = _WQDefaultValueProvider.DefaultUnitsTypeCVSampleCollection;
 
             return unit;
         }

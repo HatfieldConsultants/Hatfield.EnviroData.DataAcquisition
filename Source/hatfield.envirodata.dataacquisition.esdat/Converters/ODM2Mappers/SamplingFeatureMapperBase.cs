@@ -9,16 +9,24 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {                
     public abstract class SamplingFeatureMapperBase : ESDATMapperBase<SamplingFeature>, IODM2DuplicableMapper<SamplingFeature>
     {
+        List<SamplingFeature> _backingStore;
+
         public SamplingFeatureMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData)
             : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
         }
 
-        public SamplingFeature GetDuplicate(ESDATDuplicateChecker duplicateChecker, WayToHandleNewData wayToHandleNewData, SamplingFeature entity)
+        public void SetBackingStore(List<SamplingFeature> backingStore)
         {
-            return duplicateChecker.GetDuplicate<SamplingFeature>(entity, x =>
+            _backingStore = backingStore;
+        }
+
+        public SamplingFeature GetDuplicate(WayToHandleNewData wayToHandleNewData, SamplingFeature entity)
+        {
+            return _duplicateChecker.GetDuplicate<SamplingFeature>(entity, x =>
                 x.SamplingFeatureTypeCV.Equals(entity.SamplingFeatureTypeCV),
-                wayToHandleNewData
+                wayToHandleNewData,
+                _backingStore
             );
         }
     }

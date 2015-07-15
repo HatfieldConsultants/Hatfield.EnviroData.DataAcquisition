@@ -9,9 +9,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class ChemistryMethodMapper : MethodMapperBase, IESDATChemistryMapper<Method>
     {
-        // Chemistry Constants
-        private const string MethodTypeCVChemistry = "Specimen analysis";
-
         public ChemistryMethodMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
         }
@@ -19,7 +16,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         public Method Map(ESDATModel esdatModel, ChemistryFileData chemistry)
         {
             var entity = Scaffold(esdatModel, chemistry);
-            entity = GetDuplicate(_duplicateChecker, _wayToHandleNewData, entity);
+            entity = GetDuplicate(_wayToHandleNewData, entity);
 
             return entity;
         }
@@ -29,7 +26,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             Method method = new Method();
 
             method.MethodID = 0;
-            method.MethodTypeCV = MethodTypeCVChemistry;
+            method.MethodTypeCV = _WQDefaultValueProvider.DefaultMethodTypeCVChemistry;
             method.MethodCode = string.Empty;
             method.MethodName = chemistry.MethodName;
 

@@ -9,22 +9,30 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public abstract class UnitMapperBase : ESDATMapperBase<Unit>, IODM2DuplicableMapper<Unit>
     {
+        List<Unit> _backingStore;
+
         public UnitMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData)
             : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
         }
 
-        public Unit GetDuplicate(ESDATDuplicateChecker duplicateChecker, WayToHandleNewData wayToHandleNewData, Unit entity)
+        public void SetBackingStore(List<Unit> backingStore)
         {
-            return duplicateChecker.GetDuplicate<Unit>(entity, x =>
+            _backingStore = backingStore;
+        }
+
+        public Unit GetDuplicate(WayToHandleNewData wayToHandleNewData, Unit entity)
+        {
+            return _duplicateChecker.GetDuplicate<Unit>(entity, x =>
                 x.UnitsTypeCV.Equals(entity.UnitsTypeCV) &&
                 x.UnitsAbbreviation.Equals(entity.UnitsAbbreviation) &&
                 x.UnitsName.Equals(entity.UnitsName),
-                wayToHandleNewData
+                wayToHandleNewData,
+                _backingStore
             );
         }
 
-        protected string AbbereviateUnit(string name)
+        protected string Abbereviate(string name)
         {
             const int unitAbbrevLength = 2;
 

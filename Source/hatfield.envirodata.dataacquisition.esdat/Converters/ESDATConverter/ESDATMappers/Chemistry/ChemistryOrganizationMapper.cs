@@ -11,9 +11,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
     {
         public SampleFileData SampleFileData { get; set; }
 
-        // Constants
-        private const string OrganizationTypeCV = "Laboratory";
-
         public ChemistryOrganizationMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
         }
@@ -21,7 +18,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         public Organization Map(ESDATModel esdatModel, ChemistryFileData chemistry)
         {
             var entity = Scaffold(esdatModel, chemistry);
-            entity = GetDuplicate(_duplicateChecker, _wayToHandleNewData, entity);
+            entity = GetDuplicate(_wayToHandleNewData, entity);
 
             return entity;
         }
@@ -32,7 +29,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
             var organizationName = SampleFileData.LabName;
 
-            organization.OrganizationTypeCV = OrganizationTypeCV;
+            organization.OrganizationTypeCV = _WQDefaultValueProvider.OrganizationTypeCVChemistry;
             organization.OrganizationCode = GetOrganizationCode(organizationName);
             organization.OrganizationName = organizationName;
             organization.OrganizationDescription = null;

@@ -16,7 +16,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         public ProcessingLevel Map(ESDATModel esdatModel)
         {
             var entity = Scaffold(esdatModel);
-            entity = GetDuplicate(_duplicateChecker, _wayToHandleNewData, entity);
+            entity = GetDuplicate(_wayToHandleNewData, entity);
 
             return entity;
         }
@@ -25,7 +25,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         {
             ProcessingLevel processingLevel = new ProcessingLevel();
 
-            processingLevel.ProcessingLevelCode = _WQDefaultValueProvider.DefaultProcessingLevels;
+            processingLevel.ProcessingLevelCode = _WQDefaultValueProvider.DefaultProcessingLevelCode;
 
             return processingLevel;
         }

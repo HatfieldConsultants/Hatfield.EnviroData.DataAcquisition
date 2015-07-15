@@ -71,7 +71,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Importer
             if (castedDataToImport.HeaderFileToImport == null)
             {
                 var castedModel = model as ESDATModel;
-                castedModel.LabName = _wqDefaultValueProvider.DefaultOrganizationName;
+                castedModel.LabName = _wqDefaultValueProvider.OrganizationNameSampleCollection;
                 extractedDataset.AddParsingResults(new List<IResult> { 
                     new BaseResult(ResultLevel.WARN, "Header file is null, use the default organization name in the default value provider")
                 });

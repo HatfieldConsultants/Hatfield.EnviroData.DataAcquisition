@@ -9,18 +9,26 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public abstract class PersonMapperBase : ESDATMapperBase<Person>, IODM2DuplicableMapper<Person>
     {
+        List<Person> _backingStore;
+
         public PersonMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData)
             : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
         }
 
-        public Person GetDuplicate(ESDATDuplicateChecker duplicateChecker, WayToHandleNewData wayToHandleNewData, Person entity)
+        public void SetBackingStore(List<Person> backingStore)
         {
-            return duplicateChecker.GetDuplicate<Person>(entity, x =>
+            _backingStore = backingStore;
+        }
+
+        public Person GetDuplicate(WayToHandleNewData wayToHandleNewData, Person entity)
+        {
+            return _duplicateChecker.GetDuplicate<Person>(entity, x =>
                 x.PersonFirstName.Equals(entity.PersonFirstName) &&
                 x.PersonMiddleName.Equals(entity.PersonMiddleName) &&
                 x.PersonLastName.Equals(entity.PersonLastName),
-                wayToHandleNewData
+                wayToHandleNewData,
+                _backingStore
             );
         }
     }

@@ -9,10 +9,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class SampleCollectionResultMapper : ResultMapperBase, IESDATSampleCollectionMapper<Result>
     {
-        // Constants
-        private const string ResultTypeCV = "measurement";
-        private const string SampledMediumCV = "Liquid aqueous";
-
         public SampleFileData Sample { get; set; }
 
         public SampleCollectionResultMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
@@ -30,9 +26,9 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         {
             var result = new Result();
 
-            result.ResultTypeCV = ResultTypeCV;
+            result.ResultTypeCV = _WQDefaultValueProvider.ResultTypeCVSampleCollection;
             result.ResultDateTime = Sample.SampledDateTime;
-            result.SampledMediumCV = SampledMediumCV;
+            result.SampledMediumCV = _WQDefaultValueProvider.ResultSampledMediumCVSampleCollection;
             result.ValueCount = 1;
 
             return result;

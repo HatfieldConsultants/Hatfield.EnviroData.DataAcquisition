@@ -9,9 +9,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class DatasetMapper : DatasetMapperBase, IESDATSharedMapper<Dataset>
     {
-        // Constants
-        private const string DatasetTypeCV = "other";
-
         public DatasetMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
         }
@@ -27,7 +24,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         {
             Dataset dataset = new Dataset();
 
-            dataset.DatasetTypeCV = DatasetTypeCV;
+            dataset.DatasetTypeCV = _WQDefaultValueProvider.DefaultDatasetTypeCV;
             dataset.DatasetCode = string.Empty;
             dataset.DatasetTitle = string.Empty;
             dataset.DatasetAbstract = string.Empty;

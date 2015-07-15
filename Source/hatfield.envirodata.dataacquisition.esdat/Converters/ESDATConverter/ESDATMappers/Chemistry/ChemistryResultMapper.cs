@@ -9,10 +9,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class ChemistryResultMapper : ResultMapperBase, IESDATChemistryMapper<Result>
     {
-        // Constants
-        private const string ResultTypeCV = "measurement";
-        private const string SampledMediumCV = "Liquid aqueous";
-
         public ChemistryResultMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
         }
@@ -28,9 +24,9 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         {
             var result = new Result();
 
-            result.ResultTypeCV = ResultTypeCV;
+            result.ResultTypeCV = _WQDefaultValueProvider.ResultTypeCVChemistry;
             result.ResultDateTime = chemistry.AnalysedDate;
-            result.SampledMediumCV = SampledMediumCV;
+            result.SampledMediumCV = _WQDefaultValueProvider.ResultSampledMediumCVChemistry;
             result.ValueCount = 1;
 
             return result;

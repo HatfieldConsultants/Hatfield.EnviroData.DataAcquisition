@@ -17,12 +17,24 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             _dbContext = dbContext;
         }
 
-        public T GetDuplicate<T>(T entity, Expression<Func<T, bool>> predicate, WayToHandleNewData wayToHandleNewData) where T : class
+        public T GetDuplicate<T>(T entity, Expression<Func<T, bool>> predicate, WayToHandleNewData wayToHandleNewData, List<T> backingStore) where T : class
         {
-            var match = _dbContext.Query<T>().Where(predicate).FirstOrDefault();
+            // Try to match from the database
+            var match = _dbContext.Query<T>().FirstOrDefault(predicate);
 
+            // Try to match from backing store
             if (match == null)
             {
+                var store = backingStore.AsQueryable<T>();
+                match = store.FirstOrDefault(predicate);
+            }
+
+            // Handle if no match anywhere
+            if (match == null)
+            {
+                // Add data to backing store
+                backingStore.Add(entity);
+
                 switch (wayToHandleNewData)
                 {
                     case WayToHandleNewData.CreateInstanceForNewData:
@@ -42,6 +54,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
                     case WayToHandleNewData.WarningForNewData:
                         {
+                            Console.WriteLine("Warning: New entry " + entity + " created");
                             return entity;
                         }
 

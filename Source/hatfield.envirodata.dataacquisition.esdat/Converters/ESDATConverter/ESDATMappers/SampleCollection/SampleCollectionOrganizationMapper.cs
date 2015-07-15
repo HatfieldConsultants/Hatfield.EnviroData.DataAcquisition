@@ -9,9 +9,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class SampleCollectionOrganizationMapper : OrganizationMapperBase, IESDATSampleCollectionMapper<Organization>
     {
-        // Constants
-        private const string OrganizationTypeCV = "Company";
-
         public SampleCollectionOrganizationMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
         }
@@ -19,7 +16,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         public Organization Map(ESDATModel esdatModel)
         {
             var entity = Scaffold(esdatModel);
-            entity = GetDuplicate(_duplicateChecker, _wayToHandleNewData, entity);
+            entity = GetDuplicate(_wayToHandleNewData, entity);
 
             return entity;
         }
@@ -28,11 +25,9 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         {
             Organization organization = new Organization();
 
-            var organizationName = "Hatfield";
-
-            organization.OrganizationTypeCV = OrganizationTypeCV;
-            organization.OrganizationCode = GetOrganizationCode(organizationName);
-            organization.OrganizationName = organizationName;
+            organization.OrganizationTypeCV = _WQDefaultValueProvider.OrganizationTypeCVSampleCollection;
+            organization.OrganizationCode = GetOrganizationCode(_WQDefaultValueProvider.OrganizationNameSampleCollection);
+            organization.OrganizationName = _WQDefaultValueProvider.OrganizationNameSampleCollection;
             organization.OrganizationDescription = null;
             organization.OrganizationLink = null;
             organization.ParentOrganizationID = null;

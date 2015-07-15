@@ -9,20 +9,29 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public abstract class OrganizationMapperBase : ESDATMapperBase<Organization>, IODM2DuplicableMapper<Organization>
     {
+        List<Organization> _backingStore;
+
         public OrganizationMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData)
             : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
         }
 
-        public Organization GetDuplicate(ESDATDuplicateChecker duplicateChecker, WayToHandleNewData wayToHandleNewData, Organization entity)
+        public void SetBackingStore(List<Organization> backingStore)
         {
-            return duplicateChecker.GetDuplicate<Organization>(entity, x =>
+            _backingStore = backingStore;
+        }
+
+        public Organization GetDuplicate(WayToHandleNewData wayToHandleNewData, Organization entity)
+        {
+            return _duplicateChecker.GetDuplicate<Organization>(entity, x =>
                 x.OrganizationTypeCV.Equals(entity.OrganizationTypeCV) &&
                 x.OrganizationCode.Equals(entity.OrganizationCode) &&
                 x.OrganizationName.Equals(entity.OrganizationName),
-                wayToHandleNewData
+                wayToHandleNewData,
+                _backingStore
             );
         }
+
         protected string GetOrganizationCode(string organizationName)
         {
             const int orgCodeLength = 3;

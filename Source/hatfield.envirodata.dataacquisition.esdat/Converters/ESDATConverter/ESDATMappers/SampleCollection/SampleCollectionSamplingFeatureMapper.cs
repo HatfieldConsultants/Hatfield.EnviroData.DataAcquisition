@@ -9,9 +9,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class SampleCollectionSamplingFeatureMapper : SamplingFeatureMapperBase, IESDATSampleCollectionMapper<SamplingFeature>
     {
-        // Sample Collection Constants
-        private const string SamplingFeatureTypeCVSampleCollection = "Site";
-
         public SampleCollectionSamplingFeatureMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
         {
         }
@@ -19,7 +16,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         public SamplingFeature Map(ESDATModel esdatModel)
         {
             var entity = Scaffold(esdatModel);
-            entity = GetDuplicate(_duplicateChecker, _wayToHandleNewData, entity);
+            entity = GetDuplicate(_wayToHandleNewData, entity);
 
             return entity;
         }
@@ -28,7 +25,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         {
             SamplingFeature samplingFeature = new SamplingFeature();
 
-            samplingFeature.SamplingFeatureTypeCV = SamplingFeatureTypeCVSampleCollection;
+            samplingFeature.SamplingFeatureTypeCV = _WQDefaultValueProvider.DefaultSamplingFeatureTypeCVSampleCollection;
             samplingFeature.SamplingFeatureCode = _WQDefaultValueProvider.DefaultSamplingFeatureCode;
             samplingFeature.SamplingFeatureUUID = new Guid();
 

@@ -10,6 +10,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public interface IODM2DuplicableMapper<T> where T : class
     {
-        T GetDuplicate(ESDATDuplicateChecker duplicateChecker, WayToHandleNewData wayToHandleNewData, T entity);
+        void SetBackingStore(List<T> backingStore);
+        T GetDuplicate(WayToHandleNewData wayToHandleNewData, T entity);
     }
 }
