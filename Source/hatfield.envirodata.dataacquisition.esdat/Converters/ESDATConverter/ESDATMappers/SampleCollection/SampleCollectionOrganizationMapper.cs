@@ -9,7 +9,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class SampleCollectionOrganizationMapper : OrganizationMapperBase, IESDATSampleCollectionMapper<Organization>
     {
-        public SampleCollectionOrganizationMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public SampleCollectionOrganizationMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
@@ -17,6 +17,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         {
             var entity = Scaffold(esdatModel);
             entity = GetDuplicate(_wayToHandleNewData, entity);
+
+            LogMappingComplete(this);
 
             return entity;
         }
@@ -31,6 +33,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             organization.OrganizationDescription = null;
             organization.OrganizationLink = null;
             organization.ParentOrganizationID = null;
+
+            LogScaffoldingComplete(this);
 
             return organization;
         }

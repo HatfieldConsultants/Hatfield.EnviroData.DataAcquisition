@@ -11,8 +11,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
     {
         List<Organization> _backingStore;
 
-        public OrganizationMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData)
-            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public OrganizationMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
+            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
@@ -23,13 +23,25 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
         public Organization GetDuplicate(WayToHandleNewData wayToHandleNewData, Organization entity)
         {
-            return _duplicateChecker.GetDuplicate<Organization>(entity, x =>
-                x.OrganizationTypeCV.Equals(entity.OrganizationTypeCV) &&
-                x.OrganizationCode.Equals(entity.OrganizationCode) &&
-                x.OrganizationName.Equals(entity.OrganizationName),
-                wayToHandleNewData,
-                _backingStore
-            );
+            var duplicate = entity;
+
+            try
+            {
+                duplicate = _duplicateChecker.GetDuplicate<Organization>(entity, x =>
+                    x.OrganizationTypeCV.Equals(entity.OrganizationTypeCV) &&
+                    x.OrganizationCode.Equals(entity.OrganizationCode) &&
+                    x.OrganizationName.Equals(entity.OrganizationName),
+                    wayToHandleNewData,
+                    _backingStore
+                );
+            }
+            catch (KeyNotFoundException)
+            {
+                var location = new MapperSourceLocation(this.ToString(), null);
+                LogNotFoundInDatabaseException(location);
+            }
+
+            return duplicate;
         }
 
         protected string GetOrganizationCode(string organizationName)

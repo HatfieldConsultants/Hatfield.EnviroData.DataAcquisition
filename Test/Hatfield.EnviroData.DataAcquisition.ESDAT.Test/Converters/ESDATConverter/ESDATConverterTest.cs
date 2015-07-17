@@ -26,15 +26,16 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
             var duplicateChecker = new ESDATDuplicateChecker(dbContext);
             var esdatModel = extractEsdatModel();
             var WQDefaultValueProvider = new StaticWQDefaultValueProvider();
-            var wayToHandleNewData = WayToHandleNewData.WarningForNewData;
+            var wayToHandleNewData = WayToHandleNewData.CreateInstanceForNewData;
 
-            var sampleCollectionFactory = new ESDATSampleCollectionMapperFactory(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
-            var chemistryFactory = new ESDATChemistryMapperFactory(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            var results = new List<IResult>();
+            var sampleCollectionFactory = new ESDATSampleCollectionMapperFactory(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
+            var chemistryFactory = new ESDATChemistryMapperFactory(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
 
-            var mapper = new SampleCollectionActionMapper(duplicateChecker, sampleCollectionFactory, WQDefaultValueProvider, chemistryFactory, wayToHandleNewData);
+            var mapper = new SampleCollectionActionMapper(duplicateChecker, sampleCollectionFactory, WQDefaultValueProvider, chemistryFactory, wayToHandleNewData, results);
 
             var converter = new ESDATConverter(mapper);
-            var action = converter.Convert(esdatModel);
+            var action = converter.Map(esdatModel);
 
             dbContext.Add(action);
             dbContext.SaveChanges();

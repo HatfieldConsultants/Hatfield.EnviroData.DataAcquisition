@@ -9,7 +9,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class ChemistryUnitMapper : UnitMapperBase, IESDATChemistryMapper<Unit>
     {
-        public ChemistryUnitMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public ChemistryUnitMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
@@ -17,6 +17,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         {
             var entity = Scaffold(esdatModel, chemistry);
             entity = GetDuplicate(_wayToHandleNewData, entity);
+
+            LogMappingComplete(this);
 
             return entity;
         }
@@ -29,12 +31,16 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
             if (string.IsNullOrEmpty(resultUnit))
             {
-                throw new ArgumentNullException("Please ensure that the chemistry result unit is not null.");
+                var location = new MapperSourceLocation(this.ToString(), "ResultUnit");
+                string message = "Value can not be null.";
+                LogMappingError(location, message);
             }
 
             unit.UnitsTypeCV = _WQDefaultValueProvider.DefaultUnitsTypeCVChemistry;
             unit.UnitsAbbreviation = Abbereviate(resultUnit);
             unit.UnitsName = resultUnit;
+
+            LogScaffoldingComplete(this);
 
             return unit;
         }

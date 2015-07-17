@@ -26,7 +26,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
             var duplicateChecker = new ESDATDuplicateChecker(mockDbContext);
             var defaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
-            var mapper = new ChemistryFeatureActionMapper(duplicateChecker,defaultValueProvider, wayToHandleNewData);
+            var results = new List<IResult>();
+            var mapper = new ChemistryFeatureActionMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
 
             var featureAction = mapper.Scaffold(esdatModel, chemistry);
 

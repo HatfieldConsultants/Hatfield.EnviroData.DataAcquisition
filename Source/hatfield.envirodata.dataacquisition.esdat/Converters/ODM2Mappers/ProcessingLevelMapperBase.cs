@@ -11,8 +11,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
     {
         List<ProcessingLevel> _backingStore;
 
-        public ProcessingLevelMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData)
-            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public ProcessingLevelMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
+            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
@@ -23,11 +23,23 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
         public ProcessingLevel GetDuplicate(WayToHandleNewData wayToHandleNewData, ProcessingLevel entity)
         {
-            return _duplicateChecker.GetDuplicate<ProcessingLevel>(entity, x =>
-                x.ProcessingLevelCode.Equals(entity.ProcessingLevelCode),
-                wayToHandleNewData,
-                _backingStore
-            );
+            var duplicate = entity;
+
+            try
+            {
+                duplicate = _duplicateChecker.GetDuplicate<ProcessingLevel>(entity, x =>
+                    x.ProcessingLevelCode.Equals(entity.ProcessingLevelCode),
+                    wayToHandleNewData,
+                    _backingStore
+                );
+            }
+            catch (KeyNotFoundException)
+            {
+                var location = new MapperSourceLocation(this.ToString(), null);
+                LogNotFoundInDatabaseException(location);
+            }
+
+            return duplicate;
         }
     }
 }

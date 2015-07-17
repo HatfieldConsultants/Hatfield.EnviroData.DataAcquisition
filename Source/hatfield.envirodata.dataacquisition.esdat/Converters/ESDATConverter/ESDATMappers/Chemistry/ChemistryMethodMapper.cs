@@ -9,7 +9,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class ChemistryMethodMapper : MethodMapperBase, IESDATChemistryMapper<Method>
     {
-        public ChemistryMethodMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public ChemistryMethodMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
@@ -17,6 +17,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         {
             var entity = Scaffold(esdatModel, chemistry);
             entity = GetDuplicate(_wayToHandleNewData, entity);
+
+            LogMappingComplete(this);
 
             return entity;
         }
@@ -29,6 +31,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             method.MethodTypeCV = _WQDefaultValueProvider.DefaultMethodTypeCVChemistry;
             method.MethodCode = string.Empty;
             method.MethodName = chemistry.MethodName;
+
+            LogScaffoldingComplete(this);
 
             return method;
         }

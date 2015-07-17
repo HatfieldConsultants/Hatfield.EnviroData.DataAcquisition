@@ -9,7 +9,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class ChemistrySamplingFeatureMapper : SamplingFeatureMapperBase, IESDATChemistryMapper<SamplingFeature>
     {
-        public ChemistrySamplingFeatureMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public ChemistrySamplingFeatureMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
@@ -17,6 +17,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         {
             var entity = Scaffold(esdatModel, chemistry);
             entity = GetDuplicate(_wayToHandleNewData, entity);
+
+            LogMappingComplete(this);
 
             return entity;
         }
@@ -28,6 +30,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             samplingFeature.SamplingFeatureTypeCV = _WQDefaultValueProvider.DefaultSamplingFeatureTypeCVChemistry;
             samplingFeature.SamplingFeatureCode = string.Empty;
             samplingFeature.SamplingFeatureUUID = new Guid();
+
+            LogScaffoldingComplete(this);
 
             return samplingFeature;
         }

@@ -9,7 +9,9 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class AffiliationMapper : AffiliationMapperBase, IESDATSharedMapper<Affiliation>
     {
-        public AffiliationMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public Person Person { get; set; }
+
+        public AffiliationMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
@@ -18,6 +20,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             var entity = Scaffold(esdatModel);
             entity = GetDuplicate(_wayToHandleNewData, entity);
 
+            LogMappingComplete(this);
+
             return entity;
         }
 
@@ -25,8 +29,12 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         {
             Affiliation affiliation = new Affiliation();
 
-            affiliation.AffiliationStartDate = DateTime.Now;
+            affiliation.AffiliationStartDate = DateTime.Today;
             affiliation.PrimaryEmail = string.Empty;
+
+            ODM2EntityLinker.Link(affiliation, Person);
+
+            LogScaffoldingComplete(this);
 
             return affiliation;
         }

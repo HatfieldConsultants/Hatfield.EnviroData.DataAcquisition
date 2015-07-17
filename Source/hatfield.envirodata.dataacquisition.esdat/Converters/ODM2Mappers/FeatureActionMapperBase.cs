@@ -9,8 +9,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public abstract class FeatureActionMapperBase : ESDATMapperBase<FeatureAction>
     {
-        public FeatureActionMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData)
-            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public FeatureActionMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
+            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 

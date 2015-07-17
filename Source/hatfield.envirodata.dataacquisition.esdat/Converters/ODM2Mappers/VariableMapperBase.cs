@@ -11,8 +11,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
     {
         List<Variable> _backingStore;
 
-        public VariableMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData)
-            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public VariableMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
+            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
@@ -23,11 +23,23 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
         public Variable GetDuplicate(WayToHandleNewData wayToHandleNewData, Variable entity)
         {
-            return _duplicateChecker.GetDuplicate<Variable>(entity, x =>
-                x.VariableTypeCV.Equals(entity.VariableTypeCV),
-                wayToHandleNewData,
-                _backingStore
-            );
+            var duplicate = entity;
+
+            try
+            {
+                duplicate = _duplicateChecker.GetDuplicate<Variable>(entity, x =>
+                    x.VariableTypeCV.Equals(entity.VariableTypeCV),
+                    wayToHandleNewData,
+                    _backingStore
+                );
+            }
+            catch (KeyNotFoundException)
+            {
+                var location = new MapperSourceLocation(this.ToString(), null);
+                LogNotFoundInDatabaseException(location);
+            }
+
+            return duplicate;
         }
     }
 }

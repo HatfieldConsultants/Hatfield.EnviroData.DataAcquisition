@@ -11,9 +11,10 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
     {
         public SampleFileData SampleFileData { get; set; }
         protected ESDATChemistryMapperFactory _chemistryFactory;
-        public  Core.Action ParentAction { get; set; }
+        public Core.Action ParentAction { get; set; }
 
-        public ChemistryActionMapper(ESDATDuplicateChecker duplicateChecker, ESDATChemistryMapperFactory factory, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public ChemistryActionMapper(ESDATDuplicateChecker duplicateChecker, ESDATChemistryMapperFactory factory, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
+            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
             _chemistryFactory = factory;
         }
@@ -74,11 +75,12 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
                 ActionBy actionBy = _chemistryFactory.ActionByMapper.Map(esdatModel);
                 ODM2EntityLinker.Link(action, actionBy);
 
-                var affiliation = _chemistryFactory.AffiliationMapper.Map(esdatModel);
-                ODM2EntityLinker.Link(actionBy, affiliation);
-
                 var person = _chemistryFactory.PersonMapper.Map(esdatModel);
-                ODM2EntityLinker.Link(affiliation, person);
+                _chemistryFactory.AffiliationMapper.Person = person;
+                
+                var affiliation = _chemistryFactory.AffiliationMapper.Map(esdatModel);
+
+                ODM2EntityLinker.Link(actionBy, affiliation);
             }
 
             // Method
@@ -97,6 +99,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
             ODM2EntityLinker.Link(action, relatedAction);
 
+            LogMappingComplete(this);
+
             return action;
         }
 
@@ -106,6 +110,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
             entity.ActionTypeCV = _WQDefaultValueProvider.ActionTypeCVChemistry;
             entity.BeginDateTime = chemistry.AnalysedDate;
+
+            LogScaffoldingComplete(this);
 
             return entity;
         }
