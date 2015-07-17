@@ -69,6 +69,7 @@
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryMeasurementResultValueMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryMeasurementResultMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryFeatureActionMapper.cs" />
+    <Compile Include="Converters\ODM2Mappers\MapperSourceLocation.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\IESDATSharedMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\IESDATChemistryMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\IESDATSampleCollectionMapper.cs" />

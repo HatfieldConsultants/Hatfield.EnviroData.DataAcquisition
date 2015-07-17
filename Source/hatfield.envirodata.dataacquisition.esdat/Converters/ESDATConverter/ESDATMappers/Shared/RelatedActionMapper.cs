@@ -13,7 +13,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         private Core.Action _action1;
         private string _relationshipTypeCV;
 
-        public RelatedActionMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public RelatedActionMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
@@ -25,6 +25,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             }
 
             var relatedAction = Scaffold(esdatModel);
+
+            LogMappingComplete(this);
 
             return relatedAction;
         }
@@ -40,6 +42,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             relatedAction.Action = _action;
             relatedAction.Action1 = _action1;
 
+            LogScaffoldingComplete(this);
+
             return relatedAction;
         }
 
@@ -54,16 +58,28 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         {
             if (_action == null)
             {
+                var location = new MapperSourceLocation(this.ToString(), "_action");
+                string message = "Value can not be null.";
+                LogMappingError(location, message);
+
                 return true;
             }
 
             if (_action1 == null)
             {
+                var location = new MapperSourceLocation(this.ToString(), "_action1");
+                string message = "Value can not be null.";
+                LogMappingError(location, message);
+
                 return true;
             }
 
             if (string.IsNullOrEmpty(_relationshipTypeCV))
             {
+                var location = new MapperSourceLocation(this.ToString(), "_relationshipTypeCV");
+                string message = "Value can not be null.";
+                LogMappingError(location, message);
+
                 return true;
             }
 

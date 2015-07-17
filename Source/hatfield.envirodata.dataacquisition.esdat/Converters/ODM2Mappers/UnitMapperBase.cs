@@ -11,8 +11,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
     {
         List<Unit> _backingStore;
 
-        public UnitMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData)
-            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public UnitMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
+            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
@@ -23,13 +23,25 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
         public Unit GetDuplicate(WayToHandleNewData wayToHandleNewData, Unit entity)
         {
-            return _duplicateChecker.GetDuplicate<Unit>(entity, x =>
-                x.UnitsTypeCV.Equals(entity.UnitsTypeCV) &&
-                x.UnitsAbbreviation.Equals(entity.UnitsAbbreviation) &&
-                x.UnitsName.Equals(entity.UnitsName),
-                wayToHandleNewData,
-                _backingStore
-            );
+            var duplicate = entity;
+
+            try
+            {
+                duplicate = _duplicateChecker.GetDuplicate<Unit>(entity, x =>
+                    x.UnitsTypeCV.Equals(entity.UnitsTypeCV) &&
+                    x.UnitsAbbreviation.Equals(entity.UnitsAbbreviation) &&
+                    x.UnitsName.Equals(entity.UnitsName),
+                    wayToHandleNewData,
+                    _backingStore
+                );
+            }
+            catch (KeyNotFoundException)
+            {
+                var location = new MapperSourceLocation(this.ToString(), null);
+                LogNotFoundInDatabaseException(location);
+            }
+
+            return duplicate;
         }
 
         protected string Abbereviate(string name)

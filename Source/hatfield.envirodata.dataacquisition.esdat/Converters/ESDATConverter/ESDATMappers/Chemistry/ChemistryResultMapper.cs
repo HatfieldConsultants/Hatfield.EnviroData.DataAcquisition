@@ -9,13 +9,15 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class ChemistryResultMapper : ResultMapperBase, IESDATChemistryMapper<Result>
     {
-        public ChemistryResultMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public ChemistryResultMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
         public Result Map(ESDATModel esdatModel, ChemistryFileData chemistry)
         {
             var result = Scaffold(esdatModel, chemistry);
+
+            LogMappingComplete(this);
 
             return result;
         }
@@ -28,6 +30,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             result.ResultDateTime = chemistry.AnalysedDate;
             result.SampledMediumCV = _WQDefaultValueProvider.ResultSampledMediumCVChemistry;
             result.ValueCount = 1;
+
+            LogScaffoldingComplete(this);
 
             return result;
         }

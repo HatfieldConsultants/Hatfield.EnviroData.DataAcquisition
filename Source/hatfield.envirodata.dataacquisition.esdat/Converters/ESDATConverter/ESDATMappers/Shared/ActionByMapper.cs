@@ -9,13 +9,15 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class ActionByMapper : ActionByMapperBase, IESDATSharedMapper<ActionBy>
     {
-        public ActionByMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public ActionByMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
         public ActionBy Map(ESDATModel esdatModel)
         {
             var entity = Scaffold(esdatModel);
+
+            LogMappingComplete(this);
 
             return entity;
         }
@@ -27,6 +29,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             entity.BridgeID = 0;
             entity.IsActionLead = true;
             entity.RoleDescription = null;
+
+            LogScaffoldingComplete(this);
 
             return entity;
         }

@@ -11,13 +11,15 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
     {
         public SampleFileData Sample { get; set; }
 
-        public SampleCollectionResultMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public SampleCollectionResultMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
         public Result Map(ESDATModel esdatModel)
         {
             var result = Scaffold(esdatModel);
+
+            LogMappingComplete(this);
 
             return result;
         }
@@ -30,6 +32,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             result.ResultDateTime = Sample.SampledDateTime;
             result.SampledMediumCV = _WQDefaultValueProvider.ResultSampledMediumCVSampleCollection;
             result.ValueCount = 1;
+
+            LogScaffoldingComplete(this);
 
             return result;
         }

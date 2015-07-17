@@ -9,13 +9,15 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class DatasetMapper : DatasetMapperBase, IESDATSharedMapper<Dataset>
     {
-        public DatasetMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public DatasetMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
         public Dataset Map(ESDATModel esdatModel)
         {
             var entity = Scaffold(esdatModel);
+
+            LogMappingComplete(this);
 
             return entity;
         }
@@ -28,6 +30,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             dataset.DatasetCode = string.Empty;
             dataset.DatasetTitle = string.Empty;
             dataset.DatasetAbstract = string.Empty;
+
+            LogScaffoldingComplete(this);
 
             return dataset;
         }

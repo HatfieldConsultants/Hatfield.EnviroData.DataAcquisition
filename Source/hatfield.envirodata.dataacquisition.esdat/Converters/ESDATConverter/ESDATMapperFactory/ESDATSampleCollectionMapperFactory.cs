@@ -25,43 +25,43 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         public SampleCollectionUnitMapper UnitMapper { get; protected set; }
         public SampleCollectionVariableMapper VariableMapper { get; protected set; }
 
-        public ESDATSampleCollectionMapperFactory(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData)
+        public ESDATSampleCollectionMapperFactory(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
         {
             this.WQDefaultValueProvider = WQDefaultValueProvider;
+            
+            var chemistryFactory = new ESDATChemistryMapperFactory(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
 
-            var chemistryFactory = new ESDATChemistryMapperFactory(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            ActionByMapper = new ActionByMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
 
-            ActionByMapper = new ActionByMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
-
-            AffiliationMapper = new AffiliationMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            AffiliationMapper = new AffiliationMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
             AffiliationMapper.SetBackingStore(new List<Affiliation>());
 
-            DatasetMapper = new DatasetMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
-            DatasetsResultMapper = new DatasetsResultMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
-            FeatureActionMapper = new SampleCollectionFeatureActionMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            DatasetMapper = new DatasetMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
+            DatasetsResultMapper = new DatasetsResultMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
+            FeatureActionMapper = new SampleCollectionFeatureActionMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
 
-            MethodMapper = new SampleCollectionMethodMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            MethodMapper = new SampleCollectionMethodMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
             MethodMapper.SetBackingStore(new List<Method>());
 
-            OrganizationMapper = new SampleCollectionOrganizationMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            OrganizationMapper = new SampleCollectionOrganizationMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
             OrganizationMapper.SetBackingStore(new List<Organization>());
 
-            PersonMapper = new PersonMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            PersonMapper = new PersonMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
             PersonMapper.SetBackingStore(new List<Person>());
 
-            ProcessingLevelMapper = new ProcessingLevelMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            ProcessingLevelMapper = new ProcessingLevelMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
             ProcessingLevelMapper.SetBackingStore(new List<ProcessingLevel>());
 
-            RelatedActionMapper = new RelatedActionMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
-            ResultMapper = new SampleCollectionResultMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            RelatedActionMapper = new RelatedActionMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
+            ResultMapper = new SampleCollectionResultMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
 
-            SamplingFeatureMapper = new SampleCollectionSamplingFeatureMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            SamplingFeatureMapper = new SampleCollectionSamplingFeatureMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
             SamplingFeatureMapper.SetBackingStore(new List<SamplingFeature>());
 
-            UnitMapper = new SampleCollectionUnitMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            UnitMapper = new SampleCollectionUnitMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
             UnitMapper.SetBackingStore(new List<Unit>());
 
-            VariableMapper = new SampleCollectionVariableMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            VariableMapper = new SampleCollectionVariableMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
             VariableMapper.SetBackingStore(new List<Variable>());
         }
     }

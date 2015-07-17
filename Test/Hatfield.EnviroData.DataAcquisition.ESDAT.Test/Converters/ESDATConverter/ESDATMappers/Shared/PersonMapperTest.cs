@@ -24,7 +24,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
             var duplicateChecker = new ESDATDuplicateChecker(mockDbContext);
             var defaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
-            var mapper = new PersonMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData);
+            var results = new List<IResult>();
+            var mapper = new PersonMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
 
             var affiliation = new Affiliation();
             var person = mapper.Scaffold(esdatModel);

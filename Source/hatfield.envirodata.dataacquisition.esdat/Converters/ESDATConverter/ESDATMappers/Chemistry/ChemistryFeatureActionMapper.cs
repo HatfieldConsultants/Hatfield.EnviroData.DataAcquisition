@@ -9,7 +9,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class ChemistryFeatureActionMapper : FeatureActionMapperBase, IESDATChemistryMapper<FeatureAction>
     {
-        public ChemistryFeatureActionMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public ChemistryFeatureActionMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
@@ -17,11 +17,15 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         {
             var entity = Scaffold(esdatModel, chemistry);
 
+            LogMappingComplete(this);
+
             return entity;
         }
 
         public FeatureAction Scaffold(ESDATModel esdatModel, ChemistryFileData chemistry)
         {
+            LogScaffoldingComplete(this);
+
             return new FeatureAction();
         }
     }

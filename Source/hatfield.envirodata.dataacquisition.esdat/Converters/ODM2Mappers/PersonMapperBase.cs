@@ -11,8 +11,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
     {
         List<Person> _backingStore;
 
-        public PersonMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData)
-            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public PersonMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
+            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
@@ -23,13 +23,25 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
         public Person GetDuplicate(WayToHandleNewData wayToHandleNewData, Person entity)
         {
-            return _duplicateChecker.GetDuplicate<Person>(entity, x =>
-                x.PersonFirstName.Equals(entity.PersonFirstName) &&
-                x.PersonMiddleName.Equals(entity.PersonMiddleName) &&
-                x.PersonLastName.Equals(entity.PersonLastName),
-                wayToHandleNewData,
-                _backingStore
-            );
+            var duplicate = entity;
+
+            try
+            {
+                duplicate = _duplicateChecker.GetDuplicate<Person>(entity, x =>
+                    x.PersonFirstName.Equals(entity.PersonFirstName) &&
+                    x.PersonMiddleName.Equals(entity.PersonMiddleName) &&
+                    x.PersonLastName.Equals(entity.PersonLastName),
+                    wayToHandleNewData,
+                    _backingStore
+                );
+            }
+            catch (KeyNotFoundException)
+            {
+                var location = new MapperSourceLocation(this.ToString(), null);
+                LogNotFoundInDatabaseException(location);
+            }
+
+            return duplicate;
         }
     }
 }

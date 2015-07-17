@@ -12,10 +12,23 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         protected ESDATSampleCollectionMapperFactory _sampleCollectionFactory;
         protected ESDATChemistryMapperFactory _chemistryFactory;
 
-        public SampleCollectionActionMapper(ESDATDuplicateChecker duplicateChecker, ESDATSampleCollectionMapperFactory sampleCollectionFactory, IWQDefaultValueProvider WQDefaultValueProvider, ESDATChemistryMapperFactory chemistryFactory, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+
+        public SampleCollectionActionMapper(ESDATDuplicateChecker duplicateChecker, ESDATSampleCollectionMapperFactory sampleCollectionFactory, IWQDefaultValueProvider WQDefaultValueProvider, ESDATChemistryMapperFactory chemistryFactory, WayToHandleNewData wayToHandleNewData, List<IResult> results)
+            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
             _sampleCollectionFactory = sampleCollectionFactory;
             _chemistryFactory = chemistryFactory;
+        }
+
+        public IEnumerable<IResult> Convert(ESDATModel model)
+        {
+            var action = Map(model);
+
+            var location = new MapperSourceLocation(this.ToString(), null);
+            var result = new ParsingResult(ResultLevel.INFO, this + ": mapping sucessful.", action, location);
+            _results.Add(result);
+
+            return _results;
         }
 
         public Core.Action Map(ESDATModel esdatModel)
@@ -36,7 +49,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             {
                 _sampleCollectionFactory.ResultMapper.Sample = sample_;
                 Result result = _sampleCollectionFactory.ResultMapper.Map(esdatModel);
-
                 ODM2EntityLinker.Link(featureAction, result);
 
                 // Unit
@@ -74,11 +86,12 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
                 ActionBy actionBy = _sampleCollectionFactory.ActionByMapper.Map(esdatModel);
                 ODM2EntityLinker.Link(action, actionBy);
 
-                var affiliation = _sampleCollectionFactory.AffiliationMapper.Map(esdatModel);
-                ODM2EntityLinker.Link(actionBy, affiliation);
+                var person = _chemistryFactory.PersonMapper.Map(esdatModel);
+                _chemistryFactory.AffiliationMapper.Person = person;
 
-                var person = _sampleCollectionFactory.PersonMapper.Map(esdatModel);
-                ODM2EntityLinker.Link(affiliation, person);
+                var affiliation = _chemistryFactory.AffiliationMapper.Map(esdatModel);
+
+                ODM2EntityLinker.Link(actionBy, affiliation);
             }
 
 
@@ -91,6 +104,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
                 ODM2EntityLinker.Link(method, organization);
             }
 
+            LogMappingComplete(this);
+
             return action;
         }
 
@@ -100,6 +115,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
             entity.ActionTypeCV = _WQDefaultValueProvider.ActionTypeCVSampleCollection;
             entity.BeginDateTime = esdatModel.DateReported;
+
+            LogScaffoldingComplete(this);
 
             return entity;
         }
