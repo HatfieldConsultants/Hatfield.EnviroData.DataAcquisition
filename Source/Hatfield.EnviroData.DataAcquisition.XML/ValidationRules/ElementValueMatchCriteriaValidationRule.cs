@@ -45,7 +45,7 @@ namespace Hatfield.EnviroData.DataAcquisition.XML.ValidationRules
             }
             catch (Exception)
             {
-                return new BaseResult(ResultLevel.ERROR, "System not able to compare to the criteria since parsing value from data fail.");
+                return new BaseResult(ResultLevel.ERROR, "System not able to compare to the criteria since parsing value from data fail. Failing at " + _location.ToString());
             }
 
         }
