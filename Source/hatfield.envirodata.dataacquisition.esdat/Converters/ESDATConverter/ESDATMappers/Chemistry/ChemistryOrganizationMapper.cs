@@ -11,32 +11,34 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
     {
         public SampleFileData SampleFileData { get; set; }
 
-        public ChemistryOrganizationMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public ChemistryOrganizationMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
         public Organization Map(ESDATModel esdatModel, ChemistryFileData chemistry)
         {
-            var entity = Scaffold(esdatModel, chemistry);
+            var entity = Draft(esdatModel, chemistry);
             entity = GetDuplicate(_wayToHandleNewData, entity);
 
             return entity;
         }
 
-        public Organization Scaffold(ESDATModel esdatModel, ChemistryFileData chemistry)
+        public Organization Draft(ESDATModel esdatModel, ChemistryFileData chemistry)
         {
-            Organization organization = new Organization();
+            var entity = new Organization();
 
             var organizationName = SampleFileData.LabName;
 
-            organization.OrganizationTypeCV = _WQDefaultValueProvider.OrganizationTypeCVChemistry;
-            organization.OrganizationCode = GetOrganizationCode(organizationName);
-            organization.OrganizationName = organizationName;
-            organization.OrganizationDescription = null;
-            organization.OrganizationLink = null;
-            organization.ParentOrganizationID = null;
+            entity.OrganizationTypeCV = _WQDefaultValueProvider.OrganizationTypeCVChemistry;
+            entity.OrganizationCode = GetOrganizationCode(organizationName);
+            entity.OrganizationName = organizationName;
+            entity.OrganizationDescription = null;
+            entity.OrganizationLink = null;
+            entity.ParentOrganizationID = null;
 
-            return organization;
+            Validate(entity);
+
+            return entity;
         }
     }
 }

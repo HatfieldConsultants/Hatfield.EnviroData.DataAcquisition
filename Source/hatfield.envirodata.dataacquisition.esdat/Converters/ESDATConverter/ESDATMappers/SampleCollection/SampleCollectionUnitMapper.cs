@@ -9,27 +9,29 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class SampleCollectionUnitMapper : UnitMapperBase, IESDATSampleCollectionMapper<Unit>
     {
-        public SampleCollectionUnitMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public SampleCollectionUnitMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
         public Unit Map(ESDATModel esdatModel)
         {
-            var entity = Scaffold(esdatModel);
+            var entity = Draft(esdatModel);
             entity = GetDuplicate(_wayToHandleNewData, entity);
 
             return entity;
         }
 
-        public Unit Scaffold(ESDATModel esdatModel)
+        public Unit Draft(ESDATModel esdatModel)
         {
-            var unit = new Unit();
+            var entity = new Unit();
 
-            unit.UnitsTypeCV = _WQDefaultValueProvider.DefaultUnitsTypeCVSampleCollection;
-            unit.UnitsAbbreviation = Abbereviate(_WQDefaultValueProvider.DefaultUnitsTypeCVSampleCollection);
-            unit.UnitsName = _WQDefaultValueProvider.DefaultUnitsTypeCVSampleCollection;
+            entity.UnitsTypeCV = _WQDefaultValueProvider.DefaultUnitsTypeCVSampleCollection;
+            entity.UnitsAbbreviation = Abbereviate(_WQDefaultValueProvider.DefaultUnitsTypeCVSampleCollection);
+            entity.UnitsName = _WQDefaultValueProvider.DefaultUnitsTypeCVSampleCollection;
 
-            return unit;
+            Validate(entity);
+
+            return entity;
         }
     }
 }

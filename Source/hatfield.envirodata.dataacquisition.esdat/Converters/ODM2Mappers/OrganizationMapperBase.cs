@@ -11,8 +11,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
     {
         List<Organization> _backingStore;
 
-        public OrganizationMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData)
-            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public OrganizationMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
+            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
@@ -21,15 +21,26 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             _backingStore = backingStore;
         }
 
+        protected override void Validate(Organization entity)
+        {
+            Validate(entity.OrganizationTypeCV, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.OrganizationTypeCV)));
+            Validate(entity.OrganizationCode, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.OrganizationCode)));
+            Validate(entity.OrganizationName, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.OrganizationName)));
+        }
+
         public Organization GetDuplicate(WayToHandleNewData wayToHandleNewData, Organization entity)
         {
-            return _duplicateChecker.GetDuplicate<Organization>(entity, x =>
+            var duplicate = entity;
+
+            duplicate = _duplicateChecker.GetDuplicate<Organization>(entity, x =>
                 x.OrganizationTypeCV.Equals(entity.OrganizationTypeCV) &&
                 x.OrganizationCode.Equals(entity.OrganizationCode) &&
                 x.OrganizationName.Equals(entity.OrganizationName),
                 wayToHandleNewData,
                 _backingStore
             );
+
+            return duplicate;
         }
 
         protected string GetOrganizationCode(string organizationName)

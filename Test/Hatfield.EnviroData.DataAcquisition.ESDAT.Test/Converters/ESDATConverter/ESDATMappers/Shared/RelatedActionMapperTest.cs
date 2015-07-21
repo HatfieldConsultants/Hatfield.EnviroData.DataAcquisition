@@ -24,7 +24,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
             var duplicateChecker = new ESDATDuplicateChecker(mockDbContext);
             var defaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
-            var mapper = new RelatedActionMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData);
+            var results = new List<IResult>();
+            var mapper = new RelatedActionMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
 
             var action1 = new Core.Action();
             action1.ActionID = 101;
@@ -34,7 +35,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 
             mapper.SetRelationship(action1, "relationshipTypeCV", action2);
 
-            var relatedAction = mapper.Scaffold(esdatModel);
+            var relatedAction = mapper.Draft(esdatModel);
 
             Assert.AreEqual(0, relatedAction.RelationID);
             Assert.AreEqual(action1.ActionID, relatedAction.ActionID);

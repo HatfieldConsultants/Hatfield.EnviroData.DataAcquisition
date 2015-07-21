@@ -20,24 +20,50 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
     {
         //Commment this out so auto-build would not run this unit test
         //[Test]
-        public void MapTest()
+        public void DBTest()
         {
             var dbContext = new ODM2Entities();
             var duplicateChecker = new ESDATDuplicateChecker(dbContext);
             var esdatModel = extractEsdatModel();
             var WQDefaultValueProvider = new StaticWQDefaultValueProvider();
-            var wayToHandleNewData = WayToHandleNewData.WarningForNewData;
+            var wayToHandleNewData = WayToHandleNewData.CreateInstanceForNewData;
 
-            var sampleCollectionFactory = new ESDATSampleCollectionMapperFactory(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
-            var chemistryFactory = new ESDATChemistryMapperFactory(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            var results = new List<IResult>();
+            var sampleCollectionFactory = new ESDATSampleCollectionMapperFactory(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
+            var chemistryFactory = new ESDATChemistryMapperFactory(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
 
-            var mapper = new SampleCollectionActionMapper(duplicateChecker, sampleCollectionFactory, WQDefaultValueProvider, chemistryFactory, wayToHandleNewData);
+            var mapper = new SampleCollectionActionMapper(duplicateChecker, sampleCollectionFactory, WQDefaultValueProvider, chemistryFactory, wayToHandleNewData, results);
 
             var converter = new ESDATConverter(mapper);
-            var action = converter.Convert(esdatModel);
+            var action = converter.Map(esdatModel);
 
             dbContext.Add(action);
             dbContext.SaveChanges();
+        }
+
+        //Commment this out so auto-build would not run this unit test
+        //[Test]
+        public void ResultsTest()
+        {
+            var dbContext = new ODM2Entities();
+            var duplicateChecker = new ESDATDuplicateChecker(dbContext);
+            var esdatModel = extractEsdatModel();
+            var WQDefaultValueProvider = new StaticWQDefaultValueProvider();
+            var wayToHandleNewData = WayToHandleNewData.CreateInstanceForNewData;
+
+            var results = new List<IResult>();
+            var sampleCollectionFactory = new ESDATSampleCollectionMapperFactory(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
+            var chemistryFactory = new ESDATChemistryMapperFactory(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
+
+            var mapper = new SampleCollectionActionMapper(duplicateChecker, sampleCollectionFactory, WQDefaultValueProvider, chemistryFactory, wayToHandleNewData, results);
+
+            var converter = new ESDATConverter(mapper);
+            var resultsList = converter.Convert(esdatModel);
+
+            foreach (IResult result in resultsList)
+            {
+                Console.WriteLine(result.Level + ": " + result.Message);
+            }
         }
 
         private ESDATModel extractEsdatModel()

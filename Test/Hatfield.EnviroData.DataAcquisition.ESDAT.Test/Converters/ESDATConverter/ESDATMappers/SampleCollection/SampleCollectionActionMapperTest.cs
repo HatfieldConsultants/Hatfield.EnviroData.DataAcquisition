@@ -25,11 +25,12 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
             var duplicateChecker = new ESDATDuplicateChecker(mockDbContext);
             var defaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
-            var SampleCollectionFactory = new ESDATSampleCollectionMapperFactory(duplicateChecker, defaultValueProvider, wayToHandleNewData);
-            var chemistryFactory = new ESDATChemistryMapperFactory(duplicateChecker, defaultValueProvider, wayToHandleNewData);
-            var mapper = new SampleCollectionActionMapper(duplicateChecker, SampleCollectionFactory, defaultValueProvider, chemistryFactory, wayToHandleNewData);
+            var results = new List<IResult>();
+            var SampleCollectionFactory = new ESDATSampleCollectionMapperFactory(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
+            var chemistryFactory = new ESDATChemistryMapperFactory(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
+            var mapper = new SampleCollectionActionMapper(duplicateChecker, SampleCollectionFactory, defaultValueProvider, chemistryFactory, wayToHandleNewData, results);
 
-            var action = mapper.Scaffold(esdatModel);
+            var action = mapper.Draft(esdatModel);
 
             Assert.AreEqual(0, action.ActionID);
             Assert.AreEqual("Specimen collection", action.ActionTypeCV);

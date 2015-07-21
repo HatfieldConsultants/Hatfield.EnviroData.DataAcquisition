@@ -11,8 +11,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
     {
         List<Variable> _backingStore;
 
-        public VariableMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData)
-            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public VariableMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
+            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
@@ -21,13 +21,26 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             _backingStore = backingStore;
         }
 
+        protected override void Validate(Variable entity)
+        {
+            Validate(entity.VariableTypeCV, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.VariableTypeCV)));
+            Validate(entity.VariableCode, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.VariableCode)));
+            Validate(entity.VariableNameCV, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.VariableNameCV)));
+            Validate(entity.SpeciationCV, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.SpeciationCV)));
+            Validate(entity.NoDataValue, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.NoDataValue)));
+        }
+
         public Variable GetDuplicate(WayToHandleNewData wayToHandleNewData, Variable entity)
         {
-            return _duplicateChecker.GetDuplicate<Variable>(entity, x =>
+            var duplicate = entity;
+
+            duplicate = _duplicateChecker.GetDuplicate<Variable>(entity, x =>
                 x.VariableTypeCV.Equals(entity.VariableTypeCV),
                 wayToHandleNewData,
                 _backingStore
             );
+
+            return duplicate;
         }
     }
 }

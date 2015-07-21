@@ -9,34 +9,31 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class ChemistryUnitMapper : UnitMapperBase, IESDATChemistryMapper<Unit>
     {
-        public ChemistryUnitMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public ChemistryUnitMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
         public Unit Map(ESDATModel esdatModel, ChemistryFileData chemistry)
         {
-            var entity = Scaffold(esdatModel, chemistry);
+            var entity = Draft(esdatModel, chemistry);
             entity = GetDuplicate(_wayToHandleNewData, entity);
 
             return entity;
         }
 
-        public Unit Scaffold(ESDATModel esdatModel, ChemistryFileData chemistry)
+        public Unit Draft(ESDATModel esdatModel, ChemistryFileData chemistry)
         {
-            var unit = new Unit();
+            var entity = new Unit();
 
             string resultUnit = chemistry.ResultUnit;
 
-            if (string.IsNullOrEmpty(resultUnit))
-            {
-                throw new ArgumentNullException("Please ensure that the chemistry result unit is not null.");
-            }
+            entity.UnitsTypeCV = _WQDefaultValueProvider.DefaultUnitsTypeCVChemistry;
+            entity.UnitsAbbreviation = Abbereviate(resultUnit);
+            entity.UnitsName = resultUnit;
 
-            unit.UnitsTypeCV = _WQDefaultValueProvider.DefaultUnitsTypeCVChemistry;
-            unit.UnitsAbbreviation = Abbereviate(resultUnit);
-            unit.UnitsName = resultUnit;
+            Validate(entity);
 
-            return unit;
+            return entity;
         }
     }
 }
