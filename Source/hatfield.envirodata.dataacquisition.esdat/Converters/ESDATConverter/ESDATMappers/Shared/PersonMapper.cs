@@ -9,27 +9,29 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class PersonMapper : PersonMapperBase, IESDATSharedMapper<Person>
     {
-        public PersonMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public PersonMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
         public Person Map(ESDATModel esdatModel)
         {
-            var entity = Scaffold(esdatModel);
+            var entity = Draft(esdatModel);
             entity = GetDuplicate(_wayToHandleNewData, entity);
 
             return entity;
         }
 
-        public Person Scaffold(ESDATModel esdatModel)
+        public Person Draft(ESDATModel esdatModel)
         {
-            Person person = new Person();
+            var entity = new Person();
 
-            person.PersonFirstName = _WQDefaultValueProvider.DefaultPersonFirstName;
-            person.PersonMiddleName = _WQDefaultValueProvider.DefaultPersonMiddleName;
-            person.PersonLastName = _WQDefaultValueProvider.DefaultPersonLastName;
+            entity.PersonFirstName = _WQDefaultValueProvider.DefaultPersonFirstName;
+            entity.PersonMiddleName = _WQDefaultValueProvider.DefaultPersonMiddleName;
+            entity.PersonLastName = _WQDefaultValueProvider.DefaultPersonLastName;
 
-            return person;
+            Validate(entity);
+
+            return entity;
         }
     }
 }

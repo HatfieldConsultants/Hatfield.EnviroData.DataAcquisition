@@ -9,30 +9,29 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class SampleCollectionOrganizationMapper : OrganizationMapperBase, IESDATSampleCollectionMapper<Organization>
     {
-        public SampleCollectionOrganizationMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public SampleCollectionOrganizationMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
         public Organization Map(ESDATModel esdatModel)
         {
-            var entity = Scaffold(esdatModel);
+            var entity = Draft(esdatModel);
             entity = GetDuplicate(_wayToHandleNewData, entity);
 
             return entity;
         }
 
-        public Organization Scaffold(ESDATModel esdatModel)
+        public Organization Draft(ESDATModel esdatModel)
         {
-            Organization organization = new Organization();
+            var entity = new Organization();
 
-            organization.OrganizationTypeCV = _WQDefaultValueProvider.OrganizationTypeCVSampleCollection;
-            organization.OrganizationCode = GetOrganizationCode(_WQDefaultValueProvider.OrganizationNameSampleCollection);
-            organization.OrganizationName = _WQDefaultValueProvider.OrganizationNameSampleCollection;
-            organization.OrganizationDescription = null;
-            organization.OrganizationLink = null;
-            organization.ParentOrganizationID = null;
+            entity.OrganizationTypeCV = _WQDefaultValueProvider.OrganizationTypeCVSampleCollection;
+            entity.OrganizationCode = GetOrganizationCode(_WQDefaultValueProvider.OrganizationNameSampleCollection);
+            entity.OrganizationName = _WQDefaultValueProvider.OrganizationNameSampleCollection;
 
-            return organization;
+            Validate(entity);
+
+            return entity;
         }
     }
 }

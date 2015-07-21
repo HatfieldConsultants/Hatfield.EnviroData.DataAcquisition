@@ -9,6 +9,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public interface IESDATDataConverter
     {
-        Core.Action Convert(ESDATModel model);
+        IEnumerable<IResult> Convert(ESDATModel model);
     }
 }

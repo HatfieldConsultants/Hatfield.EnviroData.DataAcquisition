@@ -24,9 +24,10 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
             var duplicateChecker = new ESDATDuplicateChecker(mockDbContext);
             var defaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
-            var mapper = new DatasetsResultMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData);
+            var results = new List<IResult>();
+            var mapper = new DatasetsResultMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
 
-            var datasetsResult = mapper.Scaffold(esdatModel);
+            var datasetsResult = mapper.Draft(esdatModel);
 
             Assert.AreEqual(0, datasetsResult.BridgeID);
             Assert.AreEqual(0, datasetsResult.DatasetID);

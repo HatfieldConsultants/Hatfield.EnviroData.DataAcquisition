@@ -25,9 +25,10 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
             var duplicateChecker = new ESDATDuplicateChecker(mockDbContext);
             var defaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
-            var mapper = new SampleCollectionVariableMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData);
+            var results = new List<IResult>();
+            var mapper = new SampleCollectionVariableMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
 
-            var variable = mapper.Scaffold(esdatModel);
+            var variable = mapper.Draft(esdatModel);
 
             Assert.AreEqual(0, variable.VariableID);
             Assert.AreEqual("Unknown", variable.VariableTypeCV);

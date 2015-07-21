@@ -9,25 +9,27 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class ProcessingLevelMapper : ProcessingLevelMapperBase, IESDATSharedMapper<ProcessingLevel>
     {
-        public ProcessingLevelMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public ProcessingLevelMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
         public ProcessingLevel Map(ESDATModel esdatModel)
         {
-            var entity = Scaffold(esdatModel);
+            var entity = Draft(esdatModel);
             entity = GetDuplicate(_wayToHandleNewData, entity);
 
             return entity;
         }
 
-        public ProcessingLevel Scaffold(ESDATModel esdatModel)
+        public ProcessingLevel Draft(ESDATModel esdatModel)
         {
-            ProcessingLevel processingLevel = new ProcessingLevel();
+            var entity = new ProcessingLevel();
 
-            processingLevel.ProcessingLevelCode = _WQDefaultValueProvider.DefaultProcessingLevelCode;
+            entity.ProcessingLevelCode = _WQDefaultValueProvider.DefaultProcessingLevelCode;
 
-            return processingLevel;
+            Validate(entity);
+
+            return entity;
         }
     }
 }

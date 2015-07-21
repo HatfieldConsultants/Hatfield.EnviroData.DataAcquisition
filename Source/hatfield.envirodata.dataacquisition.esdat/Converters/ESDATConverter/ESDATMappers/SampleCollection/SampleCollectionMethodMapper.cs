@@ -9,28 +9,29 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class SampleCollectionMethodMapper : MethodMapperBase, IESDATSampleCollectionMapper<Method>
     {
-        public SampleCollectionMethodMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public SampleCollectionMethodMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
         public Method Map(ESDATModel esdatModel)
         {
-            var entity = Scaffold(esdatModel);
+            var entity = Draft(esdatModel);
             entity = GetDuplicate(_wayToHandleNewData, entity);
 
             return entity;
         }
 
-        public Method Scaffold(ESDATModel esdatModel)
+        public Method Draft(ESDATModel esdatModel)
         {
-            Method method = new Method();
+            var entity = new Method();
 
-            method.MethodID = 0;
-            method.MethodTypeCV = _WQDefaultValueProvider.DefaultMethodTypeCVSampleCollection;
-            method.MethodCode = string.Empty;
-            method.MethodName = _WQDefaultValueProvider.DefaultMethodTypeCVSampleCollection;
+            entity.MethodTypeCV = _WQDefaultValueProvider.DefaultMethodTypeCVSampleCollection;
+            entity.MethodCode = string.Empty;
+            entity.MethodName = _WQDefaultValueProvider.DefaultMethodTypeCVSampleCollection;
 
-            return method;
+            Validate(entity);
+
+            return entity;
         }
     }
 }

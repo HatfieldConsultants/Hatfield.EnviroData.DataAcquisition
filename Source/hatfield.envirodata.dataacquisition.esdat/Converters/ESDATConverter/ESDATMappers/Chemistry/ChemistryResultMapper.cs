@@ -9,27 +9,29 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class ChemistryResultMapper : ResultMapperBase, IESDATChemistryMapper<Result>
     {
-        public ChemistryResultMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public ChemistryResultMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
         public Result Map(ESDATModel esdatModel, ChemistryFileData chemistry)
         {
-            var result = Scaffold(esdatModel, chemistry);
+            var result = Draft(esdatModel, chemistry);
 
             return result;
         }
 
-        public Result Scaffold(ESDATModel esdatModel, ChemistryFileData chemistry)
+        public Result Draft(ESDATModel esdatModel, ChemistryFileData chemistry)
         {
-            var result = new Result();
+            var entity = new Result();
 
-            result.ResultTypeCV = _WQDefaultValueProvider.ResultTypeCVChemistry;
-            result.ResultDateTime = chemistry.AnalysedDate;
-            result.SampledMediumCV = _WQDefaultValueProvider.ResultSampledMediumCVChemistry;
-            result.ValueCount = 1;
+            entity.ResultTypeCV = _WQDefaultValueProvider.ResultTypeCVChemistry;
+            entity.ResultDateTime = chemistry.AnalysedDate;
+            entity.SampledMediumCV = _WQDefaultValueProvider.ResultSampledMediumCVChemistry;
+            entity.ValueCount = 1;
 
-            return result;
+            Validate(entity);
+
+            return entity;
         }
     }
 }

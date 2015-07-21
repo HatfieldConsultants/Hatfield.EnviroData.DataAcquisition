@@ -19,14 +19,13 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
         public T GetDuplicate<T>(T entity, Expression<Func<T, bool>> predicate, WayToHandleNewData wayToHandleNewData, List<T> backingStore) where T : class
         {
-            // Try to match from the database
+            // Try the database
             var match = _dbContext.Query<T>().FirstOrDefault(predicate);
 
-            // Try to match from backing store
+            // Try the backing store
             if (match == null)
             {
-                var store = backingStore.AsQueryable<T>();
-                match = store.FirstOrDefault(predicate);
+                match = backingStore.AsQueryable().FirstOrDefault(predicate);
             }
 
             // Handle if no match anywhere

@@ -11,27 +11,29 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
     {
         public SampleFileData Sample { get; set; }
 
-        public SampleCollectionResultMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public SampleCollectionResultMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
         public Result Map(ESDATModel esdatModel)
         {
-            var result = Scaffold(esdatModel);
+            var result = Draft(esdatModel);
 
             return result;
         }
 
-        public Result Scaffold(ESDATModel esdatModel)
+        public Result Draft(ESDATModel esdatModel)
         {
-            var result = new Result();
+            var entity = new Result();
 
-            result.ResultTypeCV = _WQDefaultValueProvider.ResultTypeCVSampleCollection;
-            result.ResultDateTime = Sample.SampledDateTime;
-            result.SampledMediumCV = _WQDefaultValueProvider.ResultSampledMediumCVSampleCollection;
-            result.ValueCount = 1;
+            entity.ResultTypeCV = _WQDefaultValueProvider.ResultTypeCVSampleCollection;
+            entity.ResultDateTime = Sample.SampledDateTime;
+            entity.SampledMediumCV = _WQDefaultValueProvider.ResultSampledMediumCVSampleCollection;
+            entity.ValueCount = 1;
 
-            return result;
+            Validate(entity);
+
+            return entity;
         }
     }
 }
