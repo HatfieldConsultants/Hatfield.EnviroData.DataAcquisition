@@ -9,9 +9,14 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public abstract class ActionByMapperBase : ESDATMapperBase<ActionBy>
     {
-        public ActionByMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData)
-            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public ActionByMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
+            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
+        }
+
+        protected override void Validate(ActionBy entity)
+        {
+            Validate(entity.IsActionLead, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.IsActionLead)));
         }
     }
 }

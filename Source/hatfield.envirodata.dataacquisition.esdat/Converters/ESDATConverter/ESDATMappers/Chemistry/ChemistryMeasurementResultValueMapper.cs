@@ -9,27 +9,28 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class ChemistryMeasurementResultValueMapper : MeasurementResultValueMapperBase, IESDATChemistryMapper<MeasurementResultValue>
     {
-        public ChemistryMeasurementResultValueMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public ChemistryMeasurementResultValueMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
+            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
         public MeasurementResultValue Map(ESDATModel esdatModel, ChemistryFileData chemistry)
         {
-            return Scaffold(esdatModel, chemistry);
+            var entity = Draft(esdatModel, chemistry);
+
+            return entity;
         }
 
-        public MeasurementResultValue Scaffold(ESDATModel esdatModel, ChemistryFileData chemistry)
+        public MeasurementResultValue Draft(ESDATModel esdatModel, ChemistryFileData chemistry)
         {
-            var measurementResultValue = new MeasurementResultValue();
+            var entity = new MeasurementResultValue();
 
-            if (chemistry.Result.HasValue)
-            {
-                measurementResultValue.DataValue = (double)chemistry.Result;
-            }
+            entity.DataValue = (double)chemistry.Result;
+            entity.ValueDateTime = chemistry.AnalysedDate;
 
-            measurementResultValue.ValueDateTime = chemistry.AnalysedDate;
+            Validate(entity);
 
-            return measurementResultValue;
+            return entity;
         }
     }
 }

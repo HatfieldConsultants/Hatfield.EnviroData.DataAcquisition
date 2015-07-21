@@ -63,6 +63,7 @@
     <Compile Include="IValidationRule.cs" />
     <Compile Include="IValueAssigner.cs" />
     <Compile Include="IValueParser.cs" />
+    <Compile Include="MappingResult.cs" />
     <Compile Include="ParsingResult.cs" />
     <Compile Include="ResultLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

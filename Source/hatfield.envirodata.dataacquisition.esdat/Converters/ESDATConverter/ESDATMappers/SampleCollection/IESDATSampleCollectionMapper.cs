@@ -10,6 +10,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
     public interface IESDATSampleCollectionMapper<T> where T : class
     {
         T Map(ESDATModel esdatModel);
-        T Scaffold(ESDATModel esdatModel);
+        T Draft(ESDATModel esdatModel);
     }
 }

@@ -9,9 +9,16 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public abstract class MeasurementResultMapperBase : ESDATMapperBase<MeasurementResult>
     {
-        public MeasurementResultMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData)
-            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public MeasurementResultMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
+            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
+        }
+
+        protected override void Validate(MeasurementResult entity)
+        {
+            Validate(entity.CensorCodeCV, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.CensorCodeCV)));
+            Validate(entity.QualityCodeCV, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.QualityCodeCV)));
+            Validate(entity.AggregationStatisticCV, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.AggregationStatisticCV)));
         }
     }
 }

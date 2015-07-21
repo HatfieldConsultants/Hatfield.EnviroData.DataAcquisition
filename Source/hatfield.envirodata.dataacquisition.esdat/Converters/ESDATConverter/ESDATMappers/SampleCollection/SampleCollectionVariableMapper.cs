@@ -9,29 +9,31 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class SampleCollectionVariableMapper : VariableMapperBase, IESDATSampleCollectionMapper<Variable>
     {
-        public SampleCollectionVariableMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public SampleCollectionVariableMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
         public Variable Map(ESDATModel esdatModel)
         {
-            var entity = Scaffold(esdatModel);
+            var entity = Draft(esdatModel);
             entity = GetDuplicate(_wayToHandleNewData, entity);
 
             return entity;
         }
 
-        public Variable Scaffold(ESDATModel esdatModel)
+        public Variable Draft(ESDATModel esdatModel)
         {
-            Variable variable = new Variable();
+            var entity = new Variable();
 
-            variable.VariableTypeCV = _WQDefaultValueProvider.DefaultVariableTypeCVSampleCollection;
-            variable.VariableCode = _WQDefaultValueProvider.DefaultVariableCode;
-            variable.VariableNameCV = _WQDefaultValueProvider.DefaultVariableNameCV;
-            variable.SpeciationCV = _WQDefaultValueProvider.DefaultVariableSpeciationCV;
-            variable.NoDataValue = _WQDefaultValueProvider.DefaultVariableNoDataValue;
+            entity.VariableTypeCV = _WQDefaultValueProvider.DefaultVariableTypeCVSampleCollection;
+            entity.VariableCode = _WQDefaultValueProvider.DefaultVariableCode;
+            entity.VariableNameCV = _WQDefaultValueProvider.DefaultVariableNameCV;
+            entity.SpeciationCV = _WQDefaultValueProvider.DefaultVariableSpeciationCV;
+            entity.NoDataValue = _WQDefaultValueProvider.DefaultVariableNoDataValue;
 
-            return variable;
+            Validate(entity);
+
+            return entity;
         }
     }
 }

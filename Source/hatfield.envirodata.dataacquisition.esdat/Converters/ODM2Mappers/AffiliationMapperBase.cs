@@ -11,8 +11,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
     {
         List<Affiliation> _backingStore;
 
-        public AffiliationMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData)
-            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public AffiliationMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
+            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
@@ -21,13 +21,25 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             _backingStore = backingStore;
         }
 
+        protected override void Validate(Affiliation entity)
+        {
+            Validate(entity.AffiliationStartDate, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.AffiliationStartDate)));
+            Validate(entity.PrimaryEmail, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.PrimaryEmail)));
+        }
+
         public Affiliation GetDuplicate(WayToHandleNewData wayToHandleNewData, Affiliation entity)
         {
-            return _duplicateChecker.GetDuplicate<Affiliation>(entity, x =>
-                x.PrimaryAddress.Equals(entity.PrimaryAddress),
+            var duplicate = entity;
+
+            duplicate = _duplicateChecker.GetDuplicate<Affiliation>(entity, x =>
+                x.Person.PersonFirstName.Equals(entity.Person.PersonFirstName) &&
+                x.Person.PersonMiddleName.Equals(entity.Person.PersonMiddleName) &&
+                x.Person.PersonLastName.Equals(entity.Person.PersonLastName),
                 wayToHandleNewData,
                 _backingStore
             );
+
+            return duplicate;
         }
     }
 }

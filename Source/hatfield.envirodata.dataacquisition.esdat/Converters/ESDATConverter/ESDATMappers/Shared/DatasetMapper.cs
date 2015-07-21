@@ -9,27 +9,29 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class DatasetMapper : DatasetMapperBase, IESDATSharedMapper<Dataset>
     {
-        public DatasetMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public DatasetMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
         public Dataset Map(ESDATModel esdatModel)
         {
-            var entity = Scaffold(esdatModel);
+            var entity = Draft(esdatModel);
 
             return entity;
         }
 
-        public Dataset Scaffold(ESDATModel esdatModel)
+        public Dataset Draft(ESDATModel esdatModel)
         {
-            Dataset dataset = new Dataset();
+            var entity = new Dataset();
 
-            dataset.DatasetTypeCV = _WQDefaultValueProvider.DefaultDatasetTypeCV;
-            dataset.DatasetCode = string.Empty;
-            dataset.DatasetTitle = string.Empty;
-            dataset.DatasetAbstract = string.Empty;
+            entity.DatasetTypeCV = _WQDefaultValueProvider.DefaultDatasetTypeCV;
+            entity.DatasetCode = string.Empty;
+            entity.DatasetTitle = string.Empty;
+            entity.DatasetAbstract = string.Empty;
 
-            return dataset;
+            Validate(entity);
+
+            return entity;
         }
     }
 }
