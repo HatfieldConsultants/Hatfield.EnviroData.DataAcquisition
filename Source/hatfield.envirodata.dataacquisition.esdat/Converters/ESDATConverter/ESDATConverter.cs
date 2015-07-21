@@ -15,7 +15,12 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             _mapper = mapper;
         }
 
-        public Core.Action Convert(ESDATModel model)
+        public IEnumerable<IResult> Convert(ESDATModel model)
+        {
+            return _mapper.Convert(model);
+        }
+
+        public Core.Action Map(ESDATModel model)
         {
             return _mapper.Map(model);
         }

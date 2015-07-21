@@ -27,9 +27,10 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
             var duplicateChecker = new ESDATDuplicateChecker(mockDbContext);
             var defaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
-            var mapper = new ChemistryMethodMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData);
+            var results = new List<IResult>();
+            var mapper = new ChemistryMethodMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
 
-            var method = mapper.Scaffold(esdatModel, chemistry);
+            var method = mapper.Draft(esdatModel, chemistry);
 
             Assert.AreEqual(0, method.MethodID);
             Assert.AreEqual("Specimen analysis", method.MethodTypeCV);

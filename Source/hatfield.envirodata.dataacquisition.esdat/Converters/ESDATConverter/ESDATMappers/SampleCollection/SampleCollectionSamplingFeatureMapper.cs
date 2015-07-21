@@ -9,27 +9,29 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class SampleCollectionSamplingFeatureMapper : SamplingFeatureMapperBase, IESDATSampleCollectionMapper<SamplingFeature>
     {
-        public SampleCollectionSamplingFeatureMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public SampleCollectionSamplingFeatureMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
         public SamplingFeature Map(ESDATModel esdatModel)
         {
-            var entity = Scaffold(esdatModel);
+            var entity = Draft(esdatModel);
             entity = GetDuplicate(_wayToHandleNewData, entity);
 
             return entity;
         }
 
-        public SamplingFeature Scaffold(ESDATModel esdatModel)
+        public SamplingFeature Draft(ESDATModel esdatModel)
         {
-            SamplingFeature samplingFeature = new SamplingFeature();
+            var entity = new SamplingFeature();
 
-            samplingFeature.SamplingFeatureTypeCV = _WQDefaultValueProvider.DefaultSamplingFeatureTypeCVSampleCollection;
-            samplingFeature.SamplingFeatureCode = _WQDefaultValueProvider.DefaultSamplingFeatureCode;
-            samplingFeature.SamplingFeatureUUID = new Guid();
+            entity.SamplingFeatureTypeCV = _WQDefaultValueProvider.DefaultSamplingFeatureTypeCVSampleCollection;
+            entity.SamplingFeatureCode = _WQDefaultValueProvider.DefaultSamplingFeatureCode;
+            entity.SamplingFeatureUUID = new Guid();
 
-            return samplingFeature;
+            Validate(entity);
+
+            return entity;
         }
     }
 }

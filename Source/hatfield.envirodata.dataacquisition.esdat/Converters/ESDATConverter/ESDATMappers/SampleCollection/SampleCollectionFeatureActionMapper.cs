@@ -9,20 +9,24 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class SampleCollectionFeatureActionMapper : FeatureActionMapperBase, IESDATSampleCollectionMapper<FeatureAction>
     {
-        public SampleCollectionFeatureActionMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public SampleCollectionFeatureActionMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
         public FeatureAction Map(ESDATModel esdatModel)
         {
-            var entity = Scaffold(esdatModel);
+            var entity = Draft(esdatModel);
 
             return entity;
         }
 
-        public FeatureAction Scaffold(ESDATModel esdatModel)
+        public FeatureAction Draft(ESDATModel esdatModel)
         {
-            return new FeatureAction();
+            var entity = new FeatureAction();
+
+            Validate(entity);
+
+            return entity;
         }
     }
 }

@@ -9,20 +9,22 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class DatasetsResultMapper : DatasetsResultMapperBase, IESDATSharedMapper<DatasetsResult>
     {
-        public DatasetsResultMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public DatasetsResultMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
         public DatasetsResult Map(ESDATModel esdatModel)
         {
-            var entity = Scaffold(esdatModel);
+            var entity = Draft(esdatModel);
 
             return entity;
         }
 
-        public DatasetsResult Scaffold(ESDATModel esdatModel)
+        public DatasetsResult Draft(ESDATModel esdatModel)
         {
             var entity = new DatasetsResult();
+
+            Validate(entity);
 
             return entity;
         }

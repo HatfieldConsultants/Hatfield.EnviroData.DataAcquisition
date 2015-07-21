@@ -13,34 +13,30 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         private Core.Action _action1;
         private string _relationshipTypeCV;
 
-        public RelatedActionMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public RelatedActionMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
         public RelatedAction Map(ESDATModel esdatModel)
         {
-            if (ParamsAreNull())
-            {
-                throw new ArgumentNullException("Please set relationship (parameters).");
-            }
+            var entity = Draft(esdatModel);
 
-            var relatedAction = Scaffold(esdatModel);
-
-            return relatedAction;
+            return entity;
         }
 
-        public RelatedAction Scaffold(ESDATModel esdatModel)
+        public RelatedAction Draft(ESDATModel esdatModel)
         {
-            RelatedAction relatedAction = new RelatedAction();
+            var entity = new RelatedAction();
 
-            relatedAction.RelationID = 0;
-            relatedAction.ActionID = _action.ActionID;
-            relatedAction.RelationshipTypeCV = _relationshipTypeCV;
-            relatedAction.RelatedActionID = _action1.ActionID;
-            relatedAction.Action = _action;
-            relatedAction.Action1 = _action1;
+            entity.ActionID = _action.ActionID;
+            entity.RelationshipTypeCV = _relationshipTypeCV;
+            entity.RelatedActionID = _action1.ActionID;
+            entity.Action = _action;
+            entity.Action1 = _action1;
 
-            return relatedAction;
+            Validate(entity);
+
+            return entity;
         }
 
         public override void SetRelationship(Core.Action action, string relationshipTypeCV, Core.Action action1)
@@ -48,26 +44,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             _action = action;
             _action1 = action1;
             _relationshipTypeCV = relationshipTypeCV;
-        }
-
-        private bool ParamsAreNull()
-        {
-            if (_action == null)
-            {
-                return true;
-            }
-
-            if (_action1 == null)
-            {
-                return true;
-            }
-
-            if (string.IsNullOrEmpty(_relationshipTypeCV))
-            {
-                return true;
-            }
-
-            return false;
         }
     }
 }

@@ -26,10 +26,11 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
             var defaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
             //duplicateChecker.SampleFileData = sample;
-            var mapper = new SampleCollectionResultMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData);
+            var results = new List<IResult>();
+            var mapper = new SampleCollectionResultMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
 
             mapper.Sample = sample;
-            var result = mapper.Scaffold(esdatModel);
+            var result = mapper.Draft(esdatModel);
 
             Assert.AreEqual(0, result.ResultID);
             Assert.AreEqual(0, result.FeatureActionID);

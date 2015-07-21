@@ -9,27 +9,29 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class ChemistrySamplingFeatureMapper : SamplingFeatureMapperBase, IESDATChemistryMapper<SamplingFeature>
     {
-        public ChemistrySamplingFeatureMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public ChemistrySamplingFeatureMapper(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
         public SamplingFeature Map(ESDATModel esdatModel, ChemistryFileData chemistry)
         {
-            var entity = Scaffold(esdatModel, chemistry);
+            var entity = Draft(esdatModel, chemistry);
             entity = GetDuplicate(_wayToHandleNewData, entity);
 
             return entity;
         }
 
-        public SamplingFeature Scaffold(ESDATModel esdatModel, ChemistryFileData chemistry)
+        public SamplingFeature Draft(ESDATModel esdatModel, ChemistryFileData chemistry)
         {
-            SamplingFeature samplingFeature = new SamplingFeature();
+            var entity = new SamplingFeature();
 
-            samplingFeature.SamplingFeatureTypeCV = _WQDefaultValueProvider.DefaultSamplingFeatureTypeCVChemistry;
-            samplingFeature.SamplingFeatureCode = string.Empty;
-            samplingFeature.SamplingFeatureUUID = new Guid();
+            entity.SamplingFeatureTypeCV = _WQDefaultValueProvider.DefaultSamplingFeatureTypeCVChemistry;
+            entity.SamplingFeatureCode = string.Empty;
+            entity.SamplingFeatureUUID = new Guid();
 
-            return samplingFeature;
+            Validate(entity);
+
+            return entity;
         }
     }
 }

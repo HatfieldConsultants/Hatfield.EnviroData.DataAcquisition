@@ -11,20 +11,21 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
     {
         public SampleFileData SampleFileData { get; set; }
         protected ESDATChemistryMapperFactory _chemistryFactory;
-        public  Core.Action ParentAction { get; set; }
+        public Core.Action ParentAction { get; set; }
 
-        public ChemistryActionMapper(ESDATDuplicateChecker duplicateChecker, ESDATChemistryMapperFactory factory, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData)
+        public ChemistryActionMapper(ESDATDuplicateChecker duplicateChecker, ESDATChemistryMapperFactory factory, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
+            : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
             _chemistryFactory = factory;
         }
 
         public Core.Action Map(ESDATModel esdatModel, ChemistryFileData chemistry)
         {
-            var action = Scaffold(esdatModel, chemistry);
+            var entity = Draft(esdatModel, chemistry);
 
             // Feature Actions
             var featureAction = _chemistryFactory.FeatureActionMapper.Map(esdatModel, chemistry);
-            ODM2EntityLinker.Link(action, featureAction);
+            ODM2EntityLinker.Link(entity, featureAction);
 
             // Sampling Feature
             var samplingFeature = _chemistryFactory.SamplingFeatureMapper.Map(esdatModel, chemistry);
@@ -72,19 +73,20 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             // Action Bies
             {
                 ActionBy actionBy = _chemistryFactory.ActionByMapper.Map(esdatModel);
-                ODM2EntityLinker.Link(action, actionBy);
-
-                var affiliation = _chemistryFactory.AffiliationMapper.Map(esdatModel);
-                ODM2EntityLinker.Link(actionBy, affiliation);
+                ODM2EntityLinker.Link(entity, actionBy);
 
                 var person = _chemistryFactory.PersonMapper.Map(esdatModel);
-                ODM2EntityLinker.Link(affiliation, person);
+                _chemistryFactory.AffiliationMapper.Person = person;
+                
+                var affiliation = _chemistryFactory.AffiliationMapper.Map(esdatModel);
+
+                ODM2EntityLinker.Link(actionBy, affiliation);
             }
 
             // Method
             {
                 var method = _chemistryFactory.MethodMapper.Map(esdatModel, chemistry);
-                ODM2EntityLinker.Link(action, method);
+                ODM2EntityLinker.Link(entity, method);
 
                 _chemistryFactory.OrganizationMapper.SampleFileData = SampleFileData;
                 var organization = _chemistryFactory.OrganizationMapper.Map(esdatModel, chemistry);
@@ -92,20 +94,22 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             }
 
             // Related Actions
-            _chemistryFactory.RelatedActionMapper.SetRelationship(action, _WQDefaultValueProvider.ActionRelationshipTypeCVChemistry, ParentAction);
+            _chemistryFactory.RelatedActionMapper.SetRelationship(entity, _WQDefaultValueProvider.ActionRelationshipTypeCVChemistry, ParentAction);
             RelatedAction relatedAction = _chemistryFactory.RelatedActionMapper.Map(esdatModel);
 
-            ODM2EntityLinker.Link(action, relatedAction);
+            ODM2EntityLinker.Link(entity, relatedAction);
 
-            return action;
+            return entity;
         }
 
-        public Core.Action Scaffold(ESDATModel esdatModel, ChemistryFileData chemistry)
+        public Core.Action Draft(ESDATModel esdatModel, ChemistryFileData chemistry)
         {
             var entity = new Core.Action();
 
             entity.ActionTypeCV = _WQDefaultValueProvider.ActionTypeCVChemistry;
             entity.BeginDateTime = chemistry.AnalysedDate;
+
+            Validate(entity);
 
             return entity;
         }

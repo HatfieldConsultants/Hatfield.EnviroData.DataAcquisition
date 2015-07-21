@@ -28,45 +28,45 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         public ChemistryUnitMapper UnitMapper { get; protected set; }
         public ChemistryVariableMapper VariableMapper { get; protected set; }
 
-        public ESDATChemistryMapperFactory(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData)
+        public ESDATChemistryMapperFactory(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
         {
             this.WQDefaultValueProvider = WQDefaultValueProvider;
 
-            ActionMapper = new ChemistryActionMapper(duplicateChecker, this, WQDefaultValueProvider, wayToHandleNewData);
-            ActionByMapper = new ActionByMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            ActionMapper = new ChemistryActionMapper(duplicateChecker, this, WQDefaultValueProvider, wayToHandleNewData, results);
+            ActionByMapper = new ActionByMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
 
-            AffiliationMapper = new AffiliationMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            AffiliationMapper = new AffiliationMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
             AffiliationMapper.SetBackingStore(new List<Affiliation>());
 
-            DatasetMapper = new DatasetMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
-            DatasetsResultMapper = new DatasetsResultMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
-            FeatureActionMapper = new ChemistryFeatureActionMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            DatasetMapper = new DatasetMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
+            DatasetsResultMapper = new DatasetsResultMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
+            FeatureActionMapper = new ChemistryFeatureActionMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
             
-            MeasurementResultMapper = new ChemistryMeasurementResultMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
-            MeasurementResultValueMapper = new ChemistryMeasurementResultValueMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            MeasurementResultMapper = new ChemistryMeasurementResultMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
+            MeasurementResultValueMapper = new ChemistryMeasurementResultValueMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
 
-            MethodMapper = new ChemistryMethodMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            MethodMapper = new ChemistryMethodMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
             MethodMapper.SetBackingStore(new List<Method>());
 
-            OrganizationMapper = new ChemistryOrganizationMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            OrganizationMapper = new ChemistryOrganizationMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
             OrganizationMapper.SetBackingStore(new List<Organization>());
 
-            PersonMapper = new PersonMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            PersonMapper = new PersonMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
             PersonMapper.SetBackingStore(new List<Person>());
 
-            ProcessingLevelMapper = new ProcessingLevelMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            ProcessingLevelMapper = new ProcessingLevelMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
             ProcessingLevelMapper.SetBackingStore(new List<ProcessingLevel>());
 
-            RelatedActionMapper = new RelatedActionMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
-            ResultMapper = new ChemistryResultMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            RelatedActionMapper = new RelatedActionMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
+            ResultMapper = new ChemistryResultMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
 
-            SamplingFeatureMapper = new ChemistrySamplingFeatureMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            SamplingFeatureMapper = new ChemistrySamplingFeatureMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
             SamplingFeatureMapper.SetBackingStore(new List<SamplingFeature>());
 
-            UnitMapper = new ChemistryUnitMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            UnitMapper = new ChemistryUnitMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
             UnitMapper.SetBackingStore(new List<Unit>());
 
-            VariableMapper = new ChemistryVariableMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData);
+            VariableMapper = new ChemistryVariableMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
             VariableMapper.SetBackingStore(new List<Variable>());
         }
     }
