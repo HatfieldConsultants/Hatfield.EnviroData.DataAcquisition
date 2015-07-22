@@ -10,14 +10,14 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public abstract class ESDATMapperBase<T> where T : class
     {
-        public List<IResult> _results { get; private set; }
+        public List<IResult> _iResults { get; private set; }
         protected ESDATDuplicateChecker _duplicateChecker;
         protected IWQDefaultValueProvider _WQDefaultValueProvider;
         protected WayToHandleNewData _wayToHandleNewData;
 
-        public ESDATMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
+        public ESDATMapperBase(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> iResults)
         {
-            _results = results;
+            _iResults = iResults;
             _duplicateChecker = duplicateChecker;
             _WQDefaultValueProvider = WQDefaultValueProvider;
             _wayToHandleNewData = wayToHandleNewData;
@@ -33,7 +33,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             var resultLevel = ResultLevel.INFO;
             var result = new MappingResult(resultLevel, message, location);
 
-            _results.Add(result);
+            _iResults.Add(result);
         }
 
         private void LogError(string message, MapperSourceLocation location)
@@ -41,7 +41,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             var resultLevel = ResultLevel.ERROR;
             var result = new MappingResult(resultLevel, message, location);
 
-            _results.Add(result);
+            _iResults.Add(result);
         }
 
         private void LogErrorIfNull(object variable, MapperSourceLocation location)
