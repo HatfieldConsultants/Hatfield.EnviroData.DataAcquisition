@@ -60,10 +60,27 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
             var converter = new ESDATConverter(mapper);
             var resultsList = converter.Convert(esdatModel);
 
+            var errorCount = 0;
+            var warningCount = 0;
+
             foreach (IResult result in resultsList)
             {
                 Console.WriteLine(result.Level + ": " + result.Message);
+
+                if (result.Level.Equals(ResultLevel.ERROR) || result.Level.Equals(ResultLevel.FATAL))
+                {
+                    errorCount++;
+                }
+                else if (result.Level.Equals(ResultLevel.WARN))
+                {
+                    warningCount++;
+                }
             }
+
+            Console.WriteLine(String.Format("{0} error(s), and {1} warning(s) found.", errorCount, warningCount));
+
+            Assert.AreEqual(0, errorCount, String.Format("{0} error(s) found.", errorCount));
+            Assert.AreEqual(0, warningCount, String.Format("{0} warning(s) found", warningCount));
         }
 
         private ESDATModel extractEsdatModel()
