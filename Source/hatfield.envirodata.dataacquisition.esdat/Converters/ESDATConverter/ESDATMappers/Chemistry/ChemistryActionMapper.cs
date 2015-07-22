@@ -68,6 +68,32 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
                     var measurementResultValue = _chemistryFactory.MeasurementResultValueMapper.Map(esdatModel, chemistry);
                     ODM2EntityLinker.Link(measurementResult, measurementResultValue);
                 }
+
+                // Result Extension Property Values
+                {
+                    var properties = new Dictionary<string, string>();
+
+                    properties["SampleCode"] = chemistry.SampleCode;
+                    properties["Prefix"] = chemistry.Prefix;
+                    properties["Total_or_Filtered"] = chemistry.TotalOrFiltered;
+                    properties["Result_Type"] = chemistry.ResultType;
+                    properties["EQL"] = chemistry.EQL.ToString();
+                    properties["EQL_Units"] = chemistry.EQLUnits;
+                    properties["Comments"] = chemistry.Comments;
+                    properties["UCL"] = chemistry.UCL.ToString();
+                    properties["LCL"] = chemistry.LCL.ToString();
+
+                    foreach (var property in properties)
+                    {
+                        var extensionProperty = _chemistryFactory.ExtensionPropertyMapper.Map(property.Key);
+
+                        var propertyID = extensionProperty.PropertyID;
+                        var propertyValue = property.Value;
+                        var resultExtensionPropertyValue = _chemistryFactory.ResultExtensionPropertyValueMapper.Map(propertyID, propertyValue);
+
+                        ODM2EntityLinker.Link(result, resultExtensionPropertyValue);
+                    }
+                }
             }
 
             // Action Bies
@@ -77,7 +103,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
                 var person = _chemistryFactory.PersonMapper.Map(esdatModel);
                 _chemistryFactory.AffiliationMapper.Person = person;
-                
+
                 var affiliation = _chemistryFactory.AffiliationMapper.Map(esdatModel);
 
                 ODM2EntityLinker.Link(actionBy, affiliation);
@@ -107,7 +133,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             var entity = new Core.Action();
 
             entity.ActionTypeCV = _WQDefaultValueProvider.ActionTypeCVChemistry;
-            entity.BeginDateTime = chemistry.AnalysedDate;
+            entity.BeginDateTime = chemistry.ExtractionDate;
+            entity.EndDateTime = chemistry.AnalysedDate;
 
             Validate(entity);
 
