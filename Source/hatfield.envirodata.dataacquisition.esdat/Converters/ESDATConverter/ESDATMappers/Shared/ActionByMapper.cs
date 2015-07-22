@@ -16,7 +16,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         public ActionBy Map(ESDATModel esdatModel)
         {
             var entity = Draft(esdatModel);
-
+            
             return entity;
         }
 
