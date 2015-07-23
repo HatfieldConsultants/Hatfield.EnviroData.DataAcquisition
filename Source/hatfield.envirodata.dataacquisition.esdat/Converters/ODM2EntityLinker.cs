@@ -150,5 +150,20 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
             organization.Methods.Add(method);
         }
+
+        internal static void Link(Result result, ResultExtensionPropertyValue resultExtensionPropertyValue)
+        {
+            result.ResultExtensionPropertyValues.Add(resultExtensionPropertyValue);
+
+            resultExtensionPropertyValue.Result = result;
+            resultExtensionPropertyValue.ResultID = result.ResultID;
+        }
+
+        internal static void Link(ResultExtensionPropertyValue resultExtensionPropertyValue, ExtensionProperty extensionProperty)
+        {
+            resultExtensionPropertyValue.ExtensionProperty = extensionProperty;
+
+            extensionProperty.ResultExtensionPropertyValues.Add(resultExtensionPropertyValue);
+        }
     }
 }

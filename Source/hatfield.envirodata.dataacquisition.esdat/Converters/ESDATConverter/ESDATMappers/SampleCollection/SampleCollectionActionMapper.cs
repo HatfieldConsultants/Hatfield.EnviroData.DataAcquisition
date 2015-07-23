@@ -29,10 +29,10 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             var message = string.Format("{0}: Core.Action is mappped.", location);
             var result = new ParsingResult(resultLevel, message, action, location);
 
-            _results.Add(result);
+            _iResults.Add(result);
             PrintToConsole(message);
 
-            return _results;
+            return _iResults;
         }
 
         public Core.Action Map(ESDATModel esdatModel)
@@ -66,6 +66,34 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
                 // Processing Level
                 var processingLevel = _sampleCollectionFactory.ProcessingLevelMapper.Map(esdatModel);
                 ODM2EntityLinker.Link(result, processingLevel);
+
+                // Result Extension Property Values
+                {
+                    var properties = new Dictionary<string, string>();
+
+                    properties[ESDATSampleCollectionConstants.ResultExtensionPropertyValueKeySampleCode] = sample_.SampleCode;
+                    properties[ESDATSampleCollectionConstants.ResultExtensionPropertyValueKeyFieldID] = sample_.FieldID;
+                    properties[ESDATSampleCollectionConstants.ResultExtensionPropertyValueKeySampleDepth] = sample_.SampleDepth.ToString();
+                    properties[ESDATSampleCollectionConstants.ResultExtensionPropertyValueKeyMatrixType] = sample_.MatrixType;
+                    properties[ESDATSampleCollectionConstants.ResultExtensionPropertyValueKeySampleType] = sample_.SampleType;
+                    properties[ESDATSampleCollectionConstants.ResultExtensionPropertyValueKeyParentSample] = sample_.ParentSample;
+                    properties[ESDATSampleCollectionConstants.ResultExtensionPropertyValueKeySDG] = sample_.SDG;
+                    properties[ESDATSampleCollectionConstants.ResultExtensionPropertyValueKeyLabSampleID] = sample_.LabSampleID;
+                    properties[ESDATSampleCollectionConstants.ResultExtensionPropertyValueKeyComments] = sample_.Comments;
+                    properties[ESDATSampleCollectionConstants.ResultExtensionPropertyValueKeyLabReportNumber] = sample_.LabReportNumber;
+
+                    foreach (var property in properties)
+                    {
+                        var extensionProperty = _sampleCollectionFactory.ExtensionPropertyMapper.Map(property.Key);
+
+                        var propertyID = extensionProperty.PropertyID;
+                        var propertyValue = property.Value;
+                        var resultExtensionPropertyValue = _sampleCollectionFactory.ResultExtensionPropertyValueMapper.Map(propertyID, propertyValue);
+
+                        ODM2EntityLinker.Link(resultExtensionPropertyValue, extensionProperty);
+                        ODM2EntityLinker.Link(result, resultExtensionPropertyValue);
+                    }
+                }
 
                 // Related Actions
                 // Create a new related Action for each chemistry file

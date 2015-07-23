@@ -24,6 +24,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         public SampleCollectionSamplingFeatureMapper SamplingFeatureMapper { get; protected set; }
         public SampleCollectionUnitMapper UnitMapper { get; protected set; }
         public SampleCollectionVariableMapper VariableMapper { get; protected set; }
+        public ResultExtensionPropertyValueMapper ResultExtensionPropertyValueMapper { get; protected set; }
+        public ExtensionPropertyMapper ExtensionPropertyMapper { get; protected set; }
 
         public ESDATSampleCollectionMapperFactory(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
         {
@@ -63,6 +65,11 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
             VariableMapper = new SampleCollectionVariableMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
             VariableMapper.SetBackingStore(new List<Variable>());
+
+            ResultExtensionPropertyValueMapper = new ResultExtensionPropertyValueMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
+
+            ExtensionPropertyMapper = new ExtensionPropertyMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
+            ExtensionPropertyMapper.SetBackingStore(new List<ExtensionProperty>());
         }
     }
 }

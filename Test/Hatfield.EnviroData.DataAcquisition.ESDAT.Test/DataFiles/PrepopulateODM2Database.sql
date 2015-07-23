@@ -42,4 +42,26 @@ INSERT INTO [ODM2].[Organizations]
            ('Company','Hatfield','Hat'),
 		   ('Laboratory','AGAT','AGA')
 
+INSERT INTO [ODM2].[ExtensionProperties]
+           ([PropertyName],[PropertyDataTypeCV])
+     VALUES
+           ('SampleCode','String'),
+		   ('Comments','String'),
+           ('Prefix','String'),
+           ('Total or Filtered','String'),
+           ('Result Type','String'),
+           ('EQL','String'),
+           ('EQL Units','String'),
+           ('QA','String'),
+           ('UCL','String'),
+           ('LCL','String'),
+           ('Field ID','String'),
+           ('Sample Depth','String'),
+           ('Matrix Type','String'),
+           ('Sample Type','String'),
+           ('Parent Sample','String'),
+           ('SDG','String'),
+           ('Lab SampleID','String'),
+           ('Lab Report Number','String')
+
 GO
