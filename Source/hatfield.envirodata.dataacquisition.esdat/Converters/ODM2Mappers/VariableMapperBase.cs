@@ -35,7 +35,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             var duplicate = entity;
 
             duplicate = _duplicateChecker.GetDuplicate<Variable>(entity, x =>
-                x.VariableTypeCV.Equals(entity.VariableTypeCV),
+                x.VariableCode.Equals(entity.VariableCode),
                 wayToHandleNewData,
                 _backingStore
             );

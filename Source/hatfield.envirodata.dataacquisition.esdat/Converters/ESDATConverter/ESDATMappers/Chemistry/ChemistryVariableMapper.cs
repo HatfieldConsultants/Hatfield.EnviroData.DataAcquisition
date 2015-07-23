@@ -27,7 +27,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
             entity.VariableTypeCV = _WQDefaultValueProvider.DefaultVariableTypeCVChemistry;
             entity.VariableCode = chemistry.ChemCode;
-            entity.VariableNameCV = chemistry.OriginalChemName;
+            entity.VariableNameCV = "1,1,1-Trichloroethane";
+            entity.VariableDefinition = chemistry.OriginalChemName;
             entity.SpeciationCV = _WQDefaultValueProvider.DefaultVariableSpeciationCV;
             entity.NoDataValue = _WQDefaultValueProvider.DefaultVariableNoDataValue;
 

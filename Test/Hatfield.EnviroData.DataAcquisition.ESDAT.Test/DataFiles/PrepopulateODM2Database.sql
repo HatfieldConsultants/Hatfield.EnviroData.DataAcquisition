@@ -8,12 +8,6 @@ INSERT INTO [ODM2].[Units]
 		   ('Action','ug','ug/mL',NULL),
 		   ('Action','%','%',NULL)
 
-INSERT INTO [ODM2].[Variables]
-           ([VariableTypeCV],[VariableCode],[VariableNameCV],[VariableDefinition],[SpeciationCV],[NoDataValue])
-     VALUES
-           ('Chemistry','Unknown','1,1,1-Trichloroethane',NULL,'Unknown',-9999),
-		   ('Unknown','Unknown','1,1,1-Trichloroethane',NULL,'Unknown',-9999)
-
 INSERT INTO [ODM2].[Methods]
            ([MethodTypeCV],[MethodCode],[MethodName],[MethodDescription],[MethodLink],[OrganizationID])
      VALUES
