@@ -158,5 +158,12 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             resultExtensionPropertyValue.Result = result;
             resultExtensionPropertyValue.ResultID = result.ResultID;
         }
+
+        internal static void Link(ResultExtensionPropertyValue resultExtensionPropertyValue, ExtensionProperty extensionProperty)
+        {
+            resultExtensionPropertyValue.ExtensionProperty = extensionProperty;
+
+            extensionProperty.ResultExtensionPropertyValues.Add(resultExtensionPropertyValue);
+        }
     }
 }

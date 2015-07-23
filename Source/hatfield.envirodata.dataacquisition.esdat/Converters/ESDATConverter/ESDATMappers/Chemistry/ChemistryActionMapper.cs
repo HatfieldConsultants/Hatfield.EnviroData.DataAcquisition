@@ -73,15 +73,15 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
                 {
                     var properties = new Dictionary<string, string>();
 
-                    properties["SampleCode"] = chemistry.SampleCode;
-                    properties["Prefix"] = chemistry.Prefix;
-                    properties["Total or Filtered"] = chemistry.TotalOrFiltered;
-                    properties["Result Type"] = chemistry.ResultType;
-                    properties["EQL"] = chemistry.EQL.ToString();
-                    properties["EQL Units"] = chemistry.EQLUnits;
-                    properties["Comments"] = chemistry.Comments;
-                    properties["UCL"] = chemistry.UCL.ToString();
-                    properties["LCL"] = chemistry.LCL.ToString();
+                    properties[ESDATChemistryConstants.ResultExtensionPropertyValueKeySampleCode] = chemistry.SampleCode;
+                    properties[ESDATChemistryConstants.ResultExtensionPropertyValueKeyPrefix] = chemistry.Prefix;
+                    properties[ESDATChemistryConstants.ResultExtensionPropertyValueKeyTotalOrFiltered] = chemistry.TotalOrFiltered;
+                    properties[ESDATChemistryConstants.ResultExtensionPropertyValueKeyResultType] = chemistry.ResultType;
+                    properties[ESDATChemistryConstants.ResultExtensionPropertyValueKeyEQL] = chemistry.EQL.ToString();
+                    properties[ESDATChemistryConstants.ResultExtensionPropertyValueKeyEQLUnits] = chemistry.EQLUnits;
+                    properties[ESDATChemistryConstants.ResultExtensionPropertyValueKeyComments] = chemistry.Comments;
+                    properties[ESDATChemistryConstants.ResultExtensionPropertyValueKeyUCL] = chemistry.UCL.ToString();
+                    properties[ESDATChemistryConstants.ResultExtensionPropertyValueKeyLCL] = chemistry.LCL.ToString();
 
                     foreach (var property in properties)
                     {

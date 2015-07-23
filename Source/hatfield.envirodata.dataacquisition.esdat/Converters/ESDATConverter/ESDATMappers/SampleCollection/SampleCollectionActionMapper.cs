@@ -71,16 +71,16 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
                 {
                     var properties = new Dictionary<string, string>();
 
-                    properties["SampleCode"] = sample_.SampleCode;
-                    properties["Field ID"] = sample_.FieldID;
-                    properties["Sample Depth"] = sample_.SampleDepth.ToString();
-                    properties["Matrix Type"] = sample_.MatrixType;
-                    properties["Sample Type"] = sample_.SampleType;
-                    properties["Parent Sample"] = sample_.ParentSample;
-                    properties["SDG"] = sample_.SDG;
-                    properties["Lab SampleID"] = sample_.LabSampleID;
-                    properties["Comments"] = sample_.Comments;
-                    properties["Lab Report Number"] = sample_.LabReportNumber;
+                    properties[ESDATSampleCollectionConstants.ResultExtensionPropertyValueKeySampleCode] = sample_.SampleCode;
+                    properties[ESDATSampleCollectionConstants.ResultExtensionPropertyValueKeyFieldID] = sample_.FieldID;
+                    properties[ESDATSampleCollectionConstants.ResultExtensionPropertyValueKeySampleDepth] = sample_.SampleDepth.ToString();
+                    properties[ESDATSampleCollectionConstants.ResultExtensionPropertyValueKeyMatrixType] = sample_.MatrixType;
+                    properties[ESDATSampleCollectionConstants.ResultExtensionPropertyValueKeySampleType] = sample_.SampleType;
+                    properties[ESDATSampleCollectionConstants.ResultExtensionPropertyValueKeyParentSample] = sample_.ParentSample;
+                    properties[ESDATSampleCollectionConstants.ResultExtensionPropertyValueKeySDG] = sample_.SDG;
+                    properties[ESDATSampleCollectionConstants.ResultExtensionPropertyValueKeyLabSampleID] = sample_.LabSampleID;
+                    properties[ESDATSampleCollectionConstants.ResultExtensionPropertyValueKeyComments] = sample_.Comments;
+                    properties[ESDATSampleCollectionConstants.ResultExtensionPropertyValueKeyLabReportNumber] = sample_.LabReportNumber;
 
                     foreach (var property in properties)
                     {
@@ -90,6 +90,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
                         var propertyValue = property.Value;
                         var resultExtensionPropertyValue = _sampleCollectionFactory.ResultExtensionPropertyValueMapper.Map(propertyID, propertyValue);
 
+                        ODM2EntityLinker.Link(resultExtensionPropertyValue, extensionProperty);
                         ODM2EntityLinker.Link(result, resultExtensionPropertyValue);
                     }
                 }
