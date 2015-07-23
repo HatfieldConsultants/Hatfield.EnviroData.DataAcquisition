@@ -30,7 +30,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         public ResultExtensionPropertyValueMapper ResultExtensionPropertyValueMapper { get; protected set; }
         public ExtensionPropertyMapper ExtensionPropertyMapper { get; protected set; }
 
-        public ESDATChemistryMapperFactory(ESDATDuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
+        public ESDATChemistryMapperFactory(ODM2DuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
         {
             this.WQDefaultValueProvider = WQDefaultValueProvider;
 

@@ -23,7 +23,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
         public void DBTest()
         {
             var dbContext = new ODM2Entities();
-            var duplicateChecker = new ESDATDuplicateChecker(dbContext);
+            var duplicateChecker = new ODM2DuplicateChecker(dbContext);
             var esdatModel = extractEsdatModel();
             var WQDefaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.CreateInstanceForNewData;
@@ -46,7 +46,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
         public void ResultsTest()
         {
             var dbContext = new ODM2Entities();
-            var duplicateChecker = new ESDATDuplicateChecker(dbContext);
+            var duplicateChecker = new ODM2DuplicateChecker(dbContext);
             var esdatModel = extractEsdatModel();
             var WQDefaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.CreateInstanceForNewData;
