@@ -99,7 +99,7 @@
     <Compile Include="Converters\ODM2MapperBases\DatasetsResultMapperBase.cs" />
     <Compile Include="Converters\ODM2MapperBases\ExtensionPropertyMapperBase.cs" />
     <Compile Include="Converters\ODM2MapperBases\FeatureActionMapperBase.cs" />
-    <Compile Include="Converters\ODM2MapperBases\MapperSourceLocation.cs" />
+    <Compile Include="Converters\ODM2ConverterSourceLocation.cs" />
     <Compile Include="Converters\ODM2MapperBases\MeasurementResultMapperBase.cs" />
     <Compile Include="Converters\ODM2MapperBases\MeasurementResultValueMapperBase.cs" />
     <Compile Include="Converters\ODM2MapperBases\MethodMapperBase.cs" />
@@ -127,7 +127,6 @@
     <Compile Include="Converters\ESDATConverter\ESDATMappers\ChemistryMappers\ChemistryOrganizationMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMapperBase.cs" />
     <Compile Include="Converters\ODM2EntityLinker.cs" />
-    <Compile Include="Converters\ODM2MapperFactory.cs" />
     <Compile Include="ESDATDataToImport.cs" />
     <Compile Include="ESDATModel.cs" />
     <Compile Include="IESDATDataConverter.cs" />
