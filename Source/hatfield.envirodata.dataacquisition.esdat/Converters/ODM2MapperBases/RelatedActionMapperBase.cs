@@ -18,11 +18,11 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
         protected override void Validate(RelatedAction entity)
         {
-            Validate(entity.ActionID, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.ActionID)));
-            Validate(entity.RelationshipTypeCV, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.RelationshipTypeCV)));
-            Validate(entity.RelatedActionID, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.RelatedActionID)));
-            Validate(entity.Action, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.Action)));
-            Validate(entity.Action1, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.Action1)));
+            Validate(entity.ActionID, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.ActionID)));
+            Validate(entity.RelationshipTypeCV, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.RelationshipTypeCV)));
+            Validate(entity.RelatedActionID, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.RelatedActionID)));
+            Validate(entity.Action, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.Action)));
+            Validate(entity.Action1, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.Action1)));
         }
     }
 }

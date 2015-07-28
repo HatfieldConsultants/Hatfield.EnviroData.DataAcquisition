@@ -7,12 +7,12 @@ using Hatfield.EnviroData.DataAcquisition;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public class MapperSourceLocation : IDataSourceLocation
+    public class ODM2ConverterSourceLocation : IDataSourceLocation
     {
         public string Mapper { get; private set; }
         public string Field { get; private set; }
 
-        public MapperSourceLocation(string mapper, string field)
+        public ODM2ConverterSourceLocation(string mapper, string field)
         {
             Mapper = mapper;
             Field = field;

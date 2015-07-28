@@ -28,7 +28,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             Console.WriteLine(message);
         }
 
-        private void LogInfo(string message, MapperSourceLocation location)
+        private void LogInfo(string message, ODM2ConverterSourceLocation location)
         {
             var resultLevel = ResultLevel.INFO;
             var result = new MappingResult(resultLevel, message, location);
@@ -36,7 +36,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             _iResults.Add(result);
         }
 
-        private void LogError(string message, MapperSourceLocation location)
+        private void LogError(string message, ODM2ConverterSourceLocation location)
         {
             var resultLevel = ResultLevel.ERROR;
             var result = new MappingResult(resultLevel, message, location);
@@ -44,7 +44,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             _iResults.Add(result);
         }
 
-        private void LogErrorIfNull(object variable, MapperSourceLocation location)
+        private void LogErrorIfNull(object variable, ODM2ConverterSourceLocation location)
         {
             if (variable == null)
             {
@@ -54,14 +54,14 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             }
         }
 
-        protected void LogMapping(object variable, MapperSourceLocation location)
+        protected void LogMapping(object variable, ODM2ConverterSourceLocation location)
         {
             string message = string.Format("{0}: Mapped as \"{1}\".", location, variable);
             LogInfo(message, location);
             PrintToConsole(message);
         }
 
-        protected void Validate(object variable, MapperSourceLocation location)
+        protected void Validate(object variable, ODM2ConverterSourceLocation location)
         {
             LogErrorIfNull(variable, location);
             LogMapping(variable, location);

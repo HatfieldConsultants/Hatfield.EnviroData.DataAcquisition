@@ -23,9 +23,9 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
         protected override void Validate(SamplingFeature entity)
         {
-            Validate(entity.SamplingFeatureTypeCV, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.SamplingFeatureTypeCV)));
-            Validate(entity.SamplingFeatureCode, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.SamplingFeatureCode)));
-            Validate(entity.SamplingFeatureUUID, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.SamplingFeatureUUID)));
+            Validate(entity.SamplingFeatureTypeCV, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.SamplingFeatureTypeCV)));
+            Validate(entity.SamplingFeatureCode, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.SamplingFeatureCode)));
+            Validate(entity.SamplingFeatureUUID, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.SamplingFeatureUUID)));
         }
 
         public SamplingFeature GetDuplicate(WayToHandleNewData wayToHandleNewData, SamplingFeature entity)

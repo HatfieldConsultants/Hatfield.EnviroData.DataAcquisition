@@ -25,7 +25,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             var action = Map(model);
 
             var resultLevel = ResultLevel.INFO;
-            var location = new MapperSourceLocation(this.ToString(), "Core.Action");
+            var location = new ODM2ConverterSourceLocation(this.ToString(), "Core.Action");
             var message = string.Format("{0}: Core.Action is mappped.", location);
             var result = new ParsingResult(resultLevel, message, action, location);
 

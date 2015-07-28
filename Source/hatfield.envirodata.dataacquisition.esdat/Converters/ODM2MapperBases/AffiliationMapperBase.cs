@@ -23,8 +23,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
         protected override void Validate(Affiliation entity)
         {
-            Validate(entity.AffiliationStartDate, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.AffiliationStartDate)));
-            Validate(entity.PrimaryEmail, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.PrimaryEmail)));
+            Validate(entity.AffiliationStartDate, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.AffiliationStartDate)));
+            Validate(entity.PrimaryEmail, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.PrimaryEmail)));
         }
 
         public Affiliation GetDuplicate(WayToHandleNewData wayToHandleNewData, Affiliation entity)

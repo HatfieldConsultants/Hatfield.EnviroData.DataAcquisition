@@ -23,7 +23,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
         protected override void Validate(ProcessingLevel entity)
         {
-            Validate(entity.ProcessingLevelCode, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.ProcessingLevelCode)));
+            Validate(entity.ProcessingLevelCode, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.ProcessingLevelCode)));
         }
 
         public ProcessingLevel GetDuplicate(WayToHandleNewData wayToHandleNewData, ProcessingLevel entity)

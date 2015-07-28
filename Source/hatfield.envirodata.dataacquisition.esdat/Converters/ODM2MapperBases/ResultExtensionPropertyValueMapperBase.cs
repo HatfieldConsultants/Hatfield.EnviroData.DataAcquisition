@@ -16,8 +16,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
         protected override void Validate(ResultExtensionPropertyValue entity)
         {
-            Validate(entity.PropertyID, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.PropertyID)));
-            Validate(entity.PropertyValue, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.PropertyValue)));
+            Validate(entity.PropertyID, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.PropertyID)));
+            Validate(entity.PropertyValue, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.PropertyValue)));
         }
     }
 }

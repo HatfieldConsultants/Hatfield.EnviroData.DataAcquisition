@@ -16,9 +16,9 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
         protected override void Validate(MeasurementResult entity)
         {
-            Validate(entity.CensorCodeCV, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.CensorCodeCV)));
-            Validate(entity.QualityCodeCV, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.QualityCodeCV)));
-            Validate(entity.AggregationStatisticCV, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.AggregationStatisticCV)));
+            Validate(entity.CensorCodeCV, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.CensorCodeCV)));
+            Validate(entity.QualityCodeCV, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.QualityCodeCV)));
+            Validate(entity.AggregationStatisticCV, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.AggregationStatisticCV)));
         }
     }
 }

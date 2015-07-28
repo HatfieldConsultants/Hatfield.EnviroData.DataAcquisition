@@ -23,9 +23,9 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
         protected override void Validate(Organization entity)
         {
-            Validate(entity.OrganizationTypeCV, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.OrganizationTypeCV)));
-            Validate(entity.OrganizationCode, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.OrganizationCode)));
-            Validate(entity.OrganizationName, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.OrganizationName)));
+            Validate(entity.OrganizationTypeCV, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.OrganizationTypeCV)));
+            Validate(entity.OrganizationCode, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.OrganizationCode)));
+            Validate(entity.OrganizationName, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.OrganizationName)));
         }
 
         public Organization GetDuplicate(WayToHandleNewData wayToHandleNewData, Organization entity)

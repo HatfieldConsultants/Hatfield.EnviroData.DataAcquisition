@@ -23,11 +23,11 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
         protected override void Validate(Variable entity)
         {
-            Validate(entity.VariableTypeCV, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.VariableTypeCV)));
-            Validate(entity.VariableCode, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.VariableCode)));
-            Validate(entity.VariableNameCV, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.VariableNameCV)));
-            Validate(entity.SpeciationCV, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.SpeciationCV)));
-            Validate(entity.NoDataValue, new MapperSourceLocation(this.ToString(), GetVariableName(() => entity.NoDataValue)));
+            Validate(entity.VariableTypeCV, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.VariableTypeCV)));
+            Validate(entity.VariableCode, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.VariableCode)));
+            Validate(entity.VariableNameCV, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.VariableNameCV)));
+            Validate(entity.SpeciationCV, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.SpeciationCV)));
+            Validate(entity.NoDataValue, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.NoDataValue)));
         }
 
         public Variable GetDuplicate(WayToHandleNewData wayToHandleNewData, Variable entity)
