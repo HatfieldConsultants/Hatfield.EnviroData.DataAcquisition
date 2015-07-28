@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    static class ESDATSampleCollectionConstants
+    public static class ESDATSampleCollectionConstants
     {
         public static string ResultExtensionPropertyValueKeySampleCode { get { return "SampleCode"; } }
         public static string ResultExtensionPropertyValueKeyFieldID { get { return "Field ID"; } }
