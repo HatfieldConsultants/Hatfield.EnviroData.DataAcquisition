@@ -114,7 +114,7 @@
     <Compile Include="Converters\ODM2MapperBase\DatasetsResultMapperBase.cs" />
     <Compile Include="Converters\ODM2MapperBase\DatasetMapperBase.cs" />
     <Compile Include="Converters\ODM2MapperBase\AffiliationMapperBase.cs" />
-    <Compile Include="Converters\ESDATMapperBase.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMapperBase.cs" />
     <Compile Include="Converters\ODM2EntityLinker.cs" />
     <Compile Include="Converters\ESDATDuplicateChecker.cs" />
     <Compile Include="Converters\ODM2MapperBase\ActionMapperBase.cs" />

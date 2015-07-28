@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using Hatfield.EnviroData.Core;
 using System.Linq.Expressions;
+using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public class ODM2DuplicateChecker
+    public class ODM2DuplicateChecker : IODM2DuplicateChecker
     {
         IDbContext _dbContext;
 
@@ -16,21 +17,51 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             _dbContext = dbContext;
         }
 
-        /// <summary>
-        /// Gets a matching entity from the database based on the provided entity and predicate
-        /// </summary>
-        /// <typeparam name="T">ODM2 entity</typeparam>
-        /// <param name="entity">The entity to find</param>
-        /// <param name="predicate">The equality criteria lambda</param>
-        /// <returns>An entity that matches the given criteria</returns>
-        /// <exception>The given entity does not exist in the database</exception>
-        public T GetDuplicate<T>(T entity, Expression<Func<T, bool>> predicate) where T : class
+        public T GetDuplicate<T>(T entity, Expression<Func<T, bool>> predicate, WayToHandleNewData wayToHandleNewData, List<T> backingStore) where T : class
         {
-            var match = _dbContext.Query<T>().Where(predicate).FirstOrDefault();
+            // Try the database
+            var match = _dbContext.Query<T>().FirstOrDefault(predicate);
 
+            // Try the backing store
             if (match == null)
             {
-                throw new KeyNotFoundException();
+                match = backingStore.AsQueryable().FirstOrDefault(predicate);
+            }
+
+            // Handle if no match anywhere
+            if (match == null)
+            {
+                // Add data to backing store
+                backingStore.Add(entity);
+
+                switch (wayToHandleNewData)
+                {
+                    case WayToHandleNewData.CreateInstanceForNewData:
+                        {
+                            return entity;
+                        }
+
+                    case WayToHandleNewData.SetNewDataToBeNull:
+                        {
+                            return null;
+                        }
+
+                    case WayToHandleNewData.ThrowExceptionForNewData:
+                        {
+                            throw new KeyNotFoundException();
+                        }
+
+                    case WayToHandleNewData.WarningForNewData:
+                        {
+                            Console.WriteLine("Warning: New entry " + entity + " created");
+                            return entity;
+                        }
+
+                    default:
+                        {
+                            throw new ArgumentNullException();
+                        }
+                }
             }
             else
             {

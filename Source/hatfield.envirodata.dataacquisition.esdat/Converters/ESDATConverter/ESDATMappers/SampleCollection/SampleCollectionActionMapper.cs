@@ -13,7 +13,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         protected ESDATChemistryMapperFactory _chemistryFactory;
 
 
-        public SampleCollectionActionMapper(ESDATDuplicateChecker duplicateChecker, ESDATSampleCollectionMapperFactory sampleCollectionFactory, IWQDefaultValueProvider WQDefaultValueProvider, ESDATChemistryMapperFactory chemistryFactory, WayToHandleNewData wayToHandleNewData, List<IResult> results)
+        public SampleCollectionActionMapper(ODM2DuplicateChecker duplicateChecker, ESDATSampleCollectionMapperFactory sampleCollectionFactory, IWQDefaultValueProvider WQDefaultValueProvider, ESDATChemistryMapperFactory chemistryFactory, WayToHandleNewData wayToHandleNewData, List<IResult> results)
             : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
             _sampleCollectionFactory = sampleCollectionFactory;
