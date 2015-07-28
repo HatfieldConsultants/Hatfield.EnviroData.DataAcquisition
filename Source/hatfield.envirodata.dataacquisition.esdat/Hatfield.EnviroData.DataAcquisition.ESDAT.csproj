@@ -73,6 +73,7 @@
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Constants\ESDATSampleCollectionConstants.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\ExtensionPropertyMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\ResultExtensionPropertyValueMapper.cs" />
+    <Compile Include="Converters\ODM2DuplicateChecker.cs" />
     <Compile Include="Converters\ODM2MapperBase\MapperSourceLocation.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\IESDATSharedMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\IESDATChemistryMapper.cs" />
@@ -116,7 +117,6 @@
     <Compile Include="Converters\ODM2MapperBase\AffiliationMapperBase.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMapperBase.cs" />
     <Compile Include="Converters\ODM2EntityLinker.cs" />
-    <Compile Include="Converters\ESDATDuplicateChecker.cs" />
     <Compile Include="Converters\ODM2MapperBase\ActionMapperBase.cs" />
     <Compile Include="Converters\ODM2MapperBase\ActionByMapperBase.cs" />
     <Compile Include="Converters\ODM2MapperFactory.cs" />
