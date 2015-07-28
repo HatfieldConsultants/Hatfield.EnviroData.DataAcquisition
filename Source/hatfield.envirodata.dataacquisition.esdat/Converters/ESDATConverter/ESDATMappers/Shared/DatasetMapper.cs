@@ -16,6 +16,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         public Dataset Map(ESDATModel esdatModel)
         {
             var entity = Draft(esdatModel);
+            entity = GetDuplicate(_wayToHandleNewData, entity);
 
             return entity;
         }
@@ -25,8 +26,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             var entity = new Dataset();
 
             entity.DatasetTypeCV = _WQDefaultValueProvider.DefaultDatasetTypeCV;
-            entity.DatasetCode = string.Empty;
-            entity.DatasetTitle = string.Empty;
+            entity.DatasetCode = esdatModel.LabRequestId.ToString();
+            entity.DatasetTitle = String.Format("{0}: {1} ({2})", esdatModel.LabName, esdatModel.LabRequestId.ToString(), esdatModel.DateReported);
             entity.DatasetAbstract = string.Empty;
 
             Validate(entity);
