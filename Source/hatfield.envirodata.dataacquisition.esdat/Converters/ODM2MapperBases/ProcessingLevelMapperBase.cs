@@ -7,7 +7,7 @@ using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public abstract class ProcessingLevelMapperBase : ESDATMapperBase<ProcessingLevel>, IODM2DuplicableMapper<ProcessingLevel>
+    public abstract class ProcessingLevelMapperBase : ODM2MapperBase<ProcessingLevel>, IODM2DuplicableMapper<ProcessingLevel>
     {
         List<ProcessingLevel> _backingStore;
 

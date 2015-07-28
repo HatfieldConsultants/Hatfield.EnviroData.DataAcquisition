@@ -7,7 +7,7 @@ using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public abstract class DatasetMapperBase : ESDATMapperBase<Dataset>, IODM2DuplicableMapper<Dataset>
+    public abstract class DatasetMapperBase : ODM2MapperBase<Dataset>, IODM2DuplicableMapper<Dataset>
     {
         List<Dataset> _backingStore;
 

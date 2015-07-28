@@ -8,14 +8,14 @@ using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public abstract class ESDATMapperBase<T> where T : class
+    public abstract class ODM2MapperBase<T> where T : class
     {
         public List<IResult> _iResults { get; private set; }
         protected ODM2DuplicateChecker _duplicateChecker;
         protected IWQDefaultValueProvider _WQDefaultValueProvider;
         protected WayToHandleNewData _wayToHandleNewData;
 
-        public ESDATMapperBase(ODM2DuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> iResults)
+        public ODM2MapperBase(ODM2DuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> iResults)
         {
             _iResults = iResults;
             _duplicateChecker = duplicateChecker;

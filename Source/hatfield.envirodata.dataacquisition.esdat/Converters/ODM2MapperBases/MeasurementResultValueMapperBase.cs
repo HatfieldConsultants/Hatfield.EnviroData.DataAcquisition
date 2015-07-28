@@ -7,7 +7,7 @@ using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public abstract class MeasurementResultValueMapperBase : ESDATMapperBase<MeasurementResultValue>
+    public abstract class MeasurementResultValueMapperBase : ODM2MapperBase<MeasurementResultValue>
     {
         public MeasurementResultValueMapperBase(ODM2DuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
             : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)

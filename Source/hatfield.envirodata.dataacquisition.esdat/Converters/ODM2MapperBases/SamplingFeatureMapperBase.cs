@@ -7,7 +7,7 @@ using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
-    public abstract class SamplingFeatureMapperBase : ESDATMapperBase<SamplingFeature>, IODM2DuplicableMapper<SamplingFeature>
+    public abstract class SamplingFeatureMapperBase : ODM2MapperBase<SamplingFeature>, IODM2DuplicableMapper<SamplingFeature>
     {
         List<SamplingFeature> _backingStore;
 
