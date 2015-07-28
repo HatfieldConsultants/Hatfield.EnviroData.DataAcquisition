@@ -39,6 +39,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             AffiliationMapper.SetBackingStore(new List<Affiliation>());
 
             DatasetMapper = new DatasetMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
+            DatasetMapper.SetBackingStore(new List<Dataset>());
+
             DatasetsResultMapper = new DatasetsResultMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
             FeatureActionMapper = new SampleCollectionFeatureActionMapper(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
 
