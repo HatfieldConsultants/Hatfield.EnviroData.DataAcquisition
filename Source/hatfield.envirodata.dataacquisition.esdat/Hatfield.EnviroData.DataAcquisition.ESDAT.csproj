@@ -73,7 +73,7 @@
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Constants\ESDATSampleCollectionConstants.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\ExtensionPropertyMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\ResultExtensionPropertyValueMapper.cs" />
-    <Compile Include="Converters\ODM2Mappers\MapperSourceLocation.cs" />
+    <Compile Include="Converters\ODM2MapperBase\MapperSourceLocation.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\IESDATSharedMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\IESDATChemistryMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\IESDATSampleCollectionMapper.cs" />
@@ -84,15 +84,15 @@
     <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionResultMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionUnitMapper.cs" />
     <Compile Include="Converters\IODM2DuplicateChecker.cs" />
-    <Compile Include="Converters\ODM2Mappers\ResultExtensionPropertyValueMapperBase.cs" />
-    <Compile Include="Converters\ODM2Mappers\ResultMapperBase.cs" />
-    <Compile Include="Converters\ODM2Mappers\SamplingFeatureMapperBase.cs" />
-    <Compile Include="Converters\ODM2Mappers\ExtensionPropertyMapperBase.cs" />
-    <Compile Include="Converters\ODM2Mappers\UnitMapperBase.cs" />
-    <Compile Include="Converters\ODM2Mappers\MethodMapperBase.cs" />
-    <Compile Include="Converters\ODM2Mappers\MeasurementResultValueMapperBase.cs" />
-    <Compile Include="Converters\ODM2Mappers\MeasurementResultMapperBase.cs" />
-    <Compile Include="Converters\ODM2Mappers\FeatureActionMapperBase.cs" />
+    <Compile Include="Converters\ODM2MapperBase\ResultExtensionPropertyValueMapperBase.cs" />
+    <Compile Include="Converters\ODM2MapperBase\ResultMapperBase.cs" />
+    <Compile Include="Converters\ODM2MapperBase\SamplingFeatureMapperBase.cs" />
+    <Compile Include="Converters\ODM2MapperBase\ExtensionPropertyMapperBase.cs" />
+    <Compile Include="Converters\ODM2MapperBase\UnitMapperBase.cs" />
+    <Compile Include="Converters\ODM2MapperBase\MethodMapperBase.cs" />
+    <Compile Include="Converters\ODM2MapperBase\MeasurementResultValueMapperBase.cs" />
+    <Compile Include="Converters\ODM2MapperBase\MeasurementResultMapperBase.cs" />
+    <Compile Include="Converters\ODM2MapperBase\FeatureActionMapperBase.cs" />
     <Compile Include="Converters\IODM2DuplicableMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Chemistry\ChemistryVariableMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollection\SampleCollectionVariableMapper.cs" />
@@ -106,19 +106,19 @@
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\PersonMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\ProcessingLevelMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\RelatedActionMapper.cs" />
-    <Compile Include="Converters\ODM2Mappers\OrganizationMapperBase.cs" />
-    <Compile Include="Converters\ODM2Mappers\VariableMapperBase.cs" />
-    <Compile Include="Converters\ODM2Mappers\RelatedActionMapperBase.cs" />
-    <Compile Include="Converters\ODM2Mappers\ProcessingLevelMapperBase.cs" />
-    <Compile Include="Converters\ODM2Mappers\PersonMapperBase.cs" />
-    <Compile Include="Converters\ODM2Mappers\DatasetsResultMapperBase.cs" />
-    <Compile Include="Converters\ODM2Mappers\DatasetMapperBase.cs" />
-    <Compile Include="Converters\ODM2Mappers\AffiliationMapperBase.cs" />
+    <Compile Include="Converters\ODM2MapperBase\OrganizationMapperBase.cs" />
+    <Compile Include="Converters\ODM2MapperBase\VariableMapperBase.cs" />
+    <Compile Include="Converters\ODM2MapperBase\RelatedActionMapperBase.cs" />
+    <Compile Include="Converters\ODM2MapperBase\ProcessingLevelMapperBase.cs" />
+    <Compile Include="Converters\ODM2MapperBase\PersonMapperBase.cs" />
+    <Compile Include="Converters\ODM2MapperBase\DatasetsResultMapperBase.cs" />
+    <Compile Include="Converters\ODM2MapperBase\DatasetMapperBase.cs" />
+    <Compile Include="Converters\ODM2MapperBase\AffiliationMapperBase.cs" />
     <Compile Include="Converters\ESDATMapperBase.cs" />
     <Compile Include="Converters\ODM2EntityLinker.cs" />
     <Compile Include="Converters\ESDATDuplicateChecker.cs" />
-    <Compile Include="Converters\ODM2Mappers\ActionMapperBase.cs" />
-    <Compile Include="Converters\ODM2Mappers\ActionByMapperBase.cs" />
+    <Compile Include="Converters\ODM2MapperBase\ActionMapperBase.cs" />
+    <Compile Include="Converters\ODM2MapperBase\ActionByMapperBase.cs" />
     <Compile Include="Converters\ODM2MapperFactory.cs" />
     <Compile Include="ESDATDataToImport.cs" />
     <Compile Include="ESDATModel.cs" />
@@ -130,7 +130,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Converters\ESDATConverter\ESDATConverter.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
