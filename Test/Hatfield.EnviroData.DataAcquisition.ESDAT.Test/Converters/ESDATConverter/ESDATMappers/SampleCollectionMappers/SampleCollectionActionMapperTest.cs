@@ -32,15 +32,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 
             var action = mapper.Draft(esdatModel);
 
-            Assert.AreEqual(0, action.ActionID);
-            Assert.AreEqual("Specimen collection", action.ActionTypeCV);
-            Assert.AreEqual(0, action.MethodID);
+            Assert.AreEqual(defaultValueProvider.ActionTypeCVSampleCollection, action.ActionTypeCV);
             Assert.AreEqual(esdatModel.DateReported, action.BeginDateTime);
-            Assert.AreEqual(0, action.BeginDateTimeUTCOffset);
-            Assert.AreEqual(null, action.EndDateTime);
-            Assert.AreEqual(null, action.EndDateTimeUTCOffset);
-            Assert.AreEqual(null, action.ActionDescription);
-            Assert.AreEqual(null, action.ActionFileLink);
         }
     }
 }

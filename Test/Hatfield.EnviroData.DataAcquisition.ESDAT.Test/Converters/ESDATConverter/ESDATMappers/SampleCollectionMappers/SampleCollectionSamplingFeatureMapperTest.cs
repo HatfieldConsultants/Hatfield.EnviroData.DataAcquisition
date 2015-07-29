@@ -12,13 +12,12 @@ using Hatfield.EnviroData.WQDataProfile;
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 {
     [TestFixture]
-    class SampleCollectionVariableMapperTest
+    class SampleCollectionSamplingFeatureMapperTest
     {
         [Test]
         public void ScaffoldTest()
         {
             var esdatModel = new ESDATModel();
-            esdatModel.DateReported = DateTime.Now;
 
             var mockDb = new Mock<IDbContext>();
             var mockDbContext = mockDb.Object;
@@ -26,17 +25,13 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
             var defaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
             var results = new List<IResult>();
-            var mapper = new SampleCollectionVariableMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
+            var mapper = new SampleCollectionSamplingFeatureMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
 
-            var variable = mapper.Draft(esdatModel);
+            var samplingFeature = mapper.Draft(esdatModel);
 
-            Assert.AreEqual(0, variable.VariableID);
-            Assert.AreEqual("Unknown", variable.VariableTypeCV);
-            Assert.AreEqual(string.Empty, variable.VariableCode);
-            Assert.AreEqual(string.Empty, variable.VariableNameCV);
-            Assert.AreEqual(null, variable.VariableDefinition);
-            Assert.AreEqual("Unknown", variable.SpeciationCV);
-            Assert.AreEqual(-9999, variable.NoDataValue);
+            Assert.AreEqual(defaultValueProvider.DefaultSamplingFeatureTypeCVSampleCollection, samplingFeature.SamplingFeatureTypeCV);
+            Assert.AreEqual(defaultValueProvider.DefaultSamplingFeatureCode, samplingFeature.SamplingFeatureCode);
+            Assert.AreEqual(new Guid(), samplingFeature.SamplingFeatureUUID);
         }
     }
 }

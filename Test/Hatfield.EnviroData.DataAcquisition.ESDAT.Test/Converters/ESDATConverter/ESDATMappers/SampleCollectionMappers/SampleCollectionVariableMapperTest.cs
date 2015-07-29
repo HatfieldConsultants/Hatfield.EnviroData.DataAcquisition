@@ -12,12 +12,13 @@ using Hatfield.EnviroData.WQDataProfile;
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 {
     [TestFixture]
-    class SamplingFeatureSamplingFeatureMapperTest
+    class SampleCollectionVariableMapperTest
     {
         [Test]
         public void ScaffoldTest()
         {
             var esdatModel = new ESDATModel();
+            esdatModel.DateReported = DateTime.Now;
 
             var mockDb = new Mock<IDbContext>();
             var mockDbContext = mockDb.Object;
@@ -25,16 +26,15 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
             var defaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
             var results = new List<IResult>();
-            var mapper = new SampleCollectionSamplingFeatureMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
+            var mapper = new SampleCollectionVariableMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
 
-            var samplingFeature = mapper.Draft(esdatModel);
+            var variable = mapper.Draft(esdatModel);
 
-            Assert.AreEqual(0, samplingFeature.SamplingFeatureID);
-            Assert.AreEqual("Site", samplingFeature.SamplingFeatureTypeCV);
-            Assert.AreEqual("Unknown", samplingFeature.SamplingFeatureCode);
-            Assert.AreEqual(null, samplingFeature.SamplingFeatureGeotypeCV);
-            Assert.AreEqual(null, samplingFeature.FeatureGeometry);
-            Assert.AreEqual(null, samplingFeature.ElevationDatumCV);
+            Assert.AreEqual(defaultValueProvider.DefaultVariableTypeCVSampleCollection, variable.VariableTypeCV);
+            Assert.AreEqual(defaultValueProvider.DefaultVariableCode, variable.VariableCode);
+            Assert.AreEqual(defaultValueProvider.DefaultVariableNameCV, variable.VariableNameCV);
+            Assert.AreEqual(defaultValueProvider.DefaultVariableSpeciationCV, variable.SpeciationCV);
+            Assert.AreEqual(defaultValueProvider.DefaultVariableNoDataValue, variable.NoDataValue);
         }
     }
 }

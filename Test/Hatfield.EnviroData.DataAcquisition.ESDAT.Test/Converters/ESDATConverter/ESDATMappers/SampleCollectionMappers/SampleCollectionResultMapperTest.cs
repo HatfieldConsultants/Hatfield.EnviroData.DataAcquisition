@@ -12,30 +12,30 @@ using Hatfield.EnviroData.WQDataProfile;
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 {
     [TestFixture]
-    class SampleCollectionMethodMapperTest
+    class SampleCollectionResultMapperTest
     {
         [Test]
         public void ScaffoldTest()
         {
             var esdatModel = new ESDATModel();
+            var sample = new SampleFileData();
 
             var mockDb = new Mock<IDbContext>();
             var mockDbContext = mockDb.Object;
             var duplicateChecker = new ODM2DuplicateChecker(mockDbContext);
             var defaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
+            //duplicateChecker.SampleFileData = sample;
             var results = new List<IResult>();
-            var mapper = new SampleCollectionMethodMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
+            var mapper = new SampleCollectionResultMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
 
-            var method = mapper.Draft(esdatModel);
+            mapper.Sample = sample;
+            var result = mapper.Draft(esdatModel);
 
-            Assert.AreEqual(0, method.MethodID);
-            Assert.AreEqual("Specimen collection", method.MethodTypeCV);
-            Assert.AreEqual(string.Empty, method.MethodCode);
-            Assert.AreEqual("Specimen collection", method.MethodName);
-            Assert.AreEqual(null, method.MethodDescription);
-            Assert.AreEqual(null, method.MethodLink);
-            Assert.AreEqual(null, method.OrganizationID);
+            Assert.AreEqual(defaultValueProvider.ResultTypeCVSampleCollection, result.ResultTypeCV);
+            Assert.AreEqual(sample.SampledDateTime, result.ResultDateTime);
+            Assert.AreEqual(defaultValueProvider.ResultSampledMediumCVSampleCollection, result.SampledMediumCV);
+            Assert.AreEqual(1, result.ValueCount);
         }
     }
 }

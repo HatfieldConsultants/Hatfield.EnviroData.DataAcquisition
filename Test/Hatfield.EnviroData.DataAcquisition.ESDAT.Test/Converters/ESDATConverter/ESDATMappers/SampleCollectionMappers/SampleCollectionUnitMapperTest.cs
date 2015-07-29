@@ -29,10 +29,9 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 
             var unit = mapper.Draft(esdatModel);
 
-            Assert.AreEqual(0, unit.UnitsID);
-            Assert.AreEqual("Dimensionless", unit.UnitsTypeCV);
-            Assert.AreEqual("Di", unit.UnitsAbbreviation);
-            Assert.AreEqual("Dimensionless", unit.UnitsName);
+            Assert.AreEqual(defaultValueProvider.DefaultUnitsTypeCVSampleCollection, unit.UnitsTypeCV);
+            Assert.AreEqual(mapper.AbbereviateUnit(defaultValueProvider.DefaultUnitsTypeCVSampleCollection), unit.UnitsAbbreviation);
+            Assert.AreEqual(defaultValueProvider.DefaultUnitsTypeCVSampleCollection, unit.UnitsName);
         }
     }
 }
