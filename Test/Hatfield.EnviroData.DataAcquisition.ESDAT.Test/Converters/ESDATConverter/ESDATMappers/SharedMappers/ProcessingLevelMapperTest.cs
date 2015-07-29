@@ -29,10 +29,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 
             var processingLevel = mapper.Draft(esdatModel);
 
-            Assert.AreEqual(0, processingLevel.ProcessingLevelID);
-            Assert.AreEqual("Unknown", processingLevel.ProcessingLevelCode);
-            Assert.AreEqual(null, processingLevel.Definition);
-            Assert.AreEqual(null, processingLevel.Explanation);
+            Assert.AreEqual(defaultValueProvider.DefaultProcessingLevelCode, processingLevel.ProcessingLevelCode);
         }
     }
 }

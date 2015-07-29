@@ -30,10 +30,9 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
             var datasetsResult = new DatasetsResult();
             var dataSet = mapper.Draft(esdatModel);
 
-            Assert.AreEqual(0, dataSet.DatasetID);
-            Assert.AreEqual("other", dataSet.DatasetTypeCV);
-            Assert.AreEqual(string.Empty, dataSet.DatasetCode);
-            Assert.AreEqual(string.Empty, dataSet.DatasetTitle);
+            Assert.AreEqual(defaultValueProvider.DefaultDatasetTypeCV, dataSet.DatasetTypeCV);
+            Assert.AreEqual(esdatModel.LabRequestId.ToString(), dataSet.DatasetCode);
+            Assert.AreEqual(String.Format("{0}: {1} ({2})", esdatModel.LabName, esdatModel.LabRequestId.ToString(), esdatModel.DateReported), dataSet.DatasetTitle);
             Assert.AreEqual(string.Empty, dataSet.DatasetAbstract);
         }
     }

@@ -12,7 +12,7 @@ using Hatfield.EnviroData.WQDataProfile;
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 {
     [TestFixture]
-    class AffiliationMapperTest
+    class RelatedActionMapperTest
     {
         [Test]
         public void ScaffoldTest()
@@ -25,19 +25,23 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
             var defaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
             var results = new List<IResult>();
-            var mapper = new AffiliationMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
+            var mapper = new RelatedActionMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
 
-            var affiliation = mapper.Draft(esdatModel);
+            var action1 = new Core.Action();
+            action1.ActionID = 101;
 
-            Assert.AreEqual(0, affiliation.AffiliationID);
-            Assert.AreEqual(0, affiliation.PersonID);
-            Assert.AreEqual(null, affiliation.OrganizationID);
-            Assert.AreEqual(null, affiliation.IsPrimaryOrganizationContact);
-            Assert.AreEqual(null, affiliation.AffiliationEndDate);
-            Assert.AreEqual(null, affiliation.PrimaryPhone);
-            Assert.AreEqual(string.Empty, affiliation.PrimaryEmail);
-            Assert.AreEqual(null, affiliation.PrimaryAddress);
-            Assert.AreEqual(null, affiliation.PersonLink);
+            var action2 = new Core.Action();
+            action2.ActionID = 102;
+
+            mapper.SetRelationship(action1, "relationshipTypeCV", action2);
+
+            var relatedAction = mapper.Draft(esdatModel);
+
+            Assert.AreEqual(action1.ActionID, relatedAction.ActionID);
+            Assert.AreEqual("relationshipTypeCV", relatedAction.RelationshipTypeCV);
+            Assert.AreEqual(action2.ActionID, relatedAction.RelatedActionID);
+            Assert.AreEqual(action1, relatedAction.Action);
+            Assert.AreEqual(action2, relatedAction.Action1);
         }
     }
 }

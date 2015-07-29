@@ -12,7 +12,7 @@ using Hatfield.EnviroData.WQDataProfile;
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 {
     [TestFixture]
-    class OrganizationMapperTest
+    class SampleCollectionOrganizationMapperTest
     {
         [Test]
         public void Scaffold()
@@ -31,19 +31,13 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
             var defaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
             var results = new List<IResult>();
-            var mapper = new ChemistryOrganizationMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
+            var mapper = new SampleCollectionOrganizationMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
 
-            mapper.SampleFileData = sample;
+            var organization = mapper.Draft(esdatModel);
 
-            var organization = mapper.Draft(esdatModel, chemistry);
-
-            Assert.AreEqual(0, organization.OrganizationID);
-            Assert.AreEqual("Laboratory", organization.OrganizationTypeCV);
-            Assert.AreEqual(labName.Substring(0, 3), organization.OrganizationCode);
-            Assert.AreEqual(labName, organization.OrganizationName);
-            Assert.AreEqual(null, organization.OrganizationDescription);
-            Assert.AreEqual(null, organization.OrganizationLink);
-            Assert.AreEqual(null, organization.ParentOrganizationID);
+            Assert.AreEqual(defaultValueProvider.OrganizationTypeCVSampleCollection, organization.OrganizationTypeCV);
+            Assert.AreEqual(mapper.GetOrganizationCode(defaultValueProvider.OrganizationNameSampleCollection), organization.OrganizationCode);
+            Assert.AreEqual(defaultValueProvider.OrganizationNameSampleCollection, organization.OrganizationName);
         }
     }
 }

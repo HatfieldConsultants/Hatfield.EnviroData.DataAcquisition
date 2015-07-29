@@ -12,7 +12,7 @@ using Hatfield.EnviroData.WQDataProfile;
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 {
     [TestFixture]
-    class RelatedActionMapperTest
+    class ActionByMapperTest
     {
         [Test]
         public void ScaffoldTest()
@@ -25,24 +25,14 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
             var defaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
             var results = new List<IResult>();
-            var mapper = new RelatedActionMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
+            var mapper = new ActionByMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
 
-            var action1 = new Core.Action();
-            action1.ActionID = 101;
+            var action = new Core.Action();
+            action.ActionID = 101;
 
-            var action2 = new Core.Action();
-            action2.ActionID = 102;
+            var actionBy = mapper.Draft(esdatModel);
 
-            mapper.SetRelationship(action1, "relationshipTypeCV", action2);
-
-            var relatedAction = mapper.Draft(esdatModel);
-
-            Assert.AreEqual(0, relatedAction.RelationID);
-            Assert.AreEqual(action1.ActionID, relatedAction.ActionID);
-            Assert.AreEqual("relationshipTypeCV", relatedAction.RelationshipTypeCV);
-            Assert.AreEqual(action2.ActionID, relatedAction.RelatedActionID);
-            Assert.AreEqual(action1, relatedAction.Action);
-            Assert.AreEqual(action2, relatedAction.Action1);
+            Assert.AreEqual(true, actionBy.IsActionLead);
         }
     }
 }

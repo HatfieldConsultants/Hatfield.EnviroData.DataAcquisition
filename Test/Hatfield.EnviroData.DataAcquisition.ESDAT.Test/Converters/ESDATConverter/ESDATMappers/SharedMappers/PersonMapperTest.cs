@@ -12,10 +12,10 @@ using Hatfield.EnviroData.WQDataProfile;
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 {
     [TestFixture]
-    class ActionByMapperTest
+    class PersonMapperTest
     {
         [Test]
-        public void ScaffoldTest()
+        public void Scaffold()
         {
             var esdatModel = new ESDATModel();
 
@@ -25,16 +25,14 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
             var defaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
             var results = new List<IResult>();
-            var mapper = new ActionByMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
+            var mapper = new PersonMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
 
-            var action = new Core.Action();
-            action.ActionID = 101;
+            var affiliation = new Affiliation();
+            var person = mapper.Draft(esdatModel);
 
-            var actionBy = mapper.Draft(esdatModel);
-
-            Assert.AreEqual(0, actionBy.BridgeID);
-            Assert.AreEqual(true, actionBy.IsActionLead);
-            Assert.AreEqual(null, actionBy.RoleDescription);
+            Assert.AreEqual(defaultValueProvider.DefaultPersonFirstName, person.PersonFirstName);
+            Assert.AreEqual(defaultValueProvider.DefaultPersonMiddleName, person.PersonMiddleName);
+            Assert.AreEqual(defaultValueProvider.DefaultPersonLastName, person.PersonLastName);
         }
     }
 }

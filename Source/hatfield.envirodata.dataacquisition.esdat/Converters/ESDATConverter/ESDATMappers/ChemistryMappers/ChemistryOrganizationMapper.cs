@@ -32,9 +32,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             entity.OrganizationTypeCV = _WQDefaultValueProvider.OrganizationTypeCVChemistry;
             entity.OrganizationCode = GetOrganizationCode(organizationName);
             entity.OrganizationName = organizationName;
-            entity.OrganizationDescription = null;
-            entity.OrganizationLink = null;
-            entity.ParentOrganizationID = null;
 
             Validate(entity);
 

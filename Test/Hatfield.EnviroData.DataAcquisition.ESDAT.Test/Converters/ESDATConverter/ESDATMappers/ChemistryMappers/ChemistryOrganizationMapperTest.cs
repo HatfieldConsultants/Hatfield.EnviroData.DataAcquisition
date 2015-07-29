@@ -12,12 +12,18 @@ using Hatfield.EnviroData.WQDataProfile;
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 {
     [TestFixture]
-    class PersonMapperTest
+    class ChemistryOrganizationMapperTest
     {
         [Test]
         public void Scaffold()
         {
             var esdatModel = new ESDATModel();
+
+            var labName = "XYZ Labs";
+            var sample = new SampleFileData();
+            sample.LabName = labName;
+
+            var chemistry = new ChemistryFileData();
 
             var mockDb = new Mock<IDbContext>();
             var mockDbContext = mockDb.Object;
@@ -25,15 +31,15 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
             var defaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
             var results = new List<IResult>();
-            var mapper = new PersonMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
+            var mapper = new ChemistryOrganizationMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
 
-            var affiliation = new Affiliation();
-            var person = mapper.Draft(esdatModel);
+            mapper.SampleFileData = sample;
 
-            Assert.AreEqual(0, person.PersonID);
-            Assert.AreEqual("Unknown", person.PersonFirstName);
-            Assert.AreEqual("Unknown", person.PersonMiddleName);
-            Assert.AreEqual("Unknown", person.PersonLastName);
+            var organization = mapper.Draft(esdatModel, chemistry);
+
+            Assert.AreEqual(defaultValueProvider.OrganizationTypeCVChemistry, organization.OrganizationTypeCV);
+            Assert.AreEqual(sample.LabName.Substring(0, 3), organization.OrganizationCode);
+            Assert.AreEqual(sample.LabName, organization.OrganizationName);
         }
     }
 }

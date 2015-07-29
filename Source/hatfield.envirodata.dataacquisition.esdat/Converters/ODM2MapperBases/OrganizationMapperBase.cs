@@ -43,7 +43,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             return duplicate;
         }
 
-        protected string GetOrganizationCode(string organizationName)
+        public string GetOrganizationCode(string organizationName)
         {
             const int orgCodeLength = 3;
             return (organizationName.Length > orgCodeLength) ? organizationName.Substring(0, orgCodeLength) : organizationName;

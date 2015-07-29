@@ -90,6 +90,7 @@
     <Compile Include="Converters\ESDATConverter\ESDATMappers\ChemistryMappers\ChemistryMeasurementResultMapperTest.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\ChemistryMappers\ChemistryFeatureActionMapperTest.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\ChemistryMappers\ChemistryVariableMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollectionMappers\SampleCollectionOrganizationMapperTest.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollectionMappers\SampleCollectionFeatureActionMapperTest.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollectionMappers\SampleCollectionMethodMapperTest.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollectionMappers\SampleCollectionSamplingFeatureMapperTest.cs" />
@@ -100,8 +101,8 @@
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\DatasetMapperTest.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\AffiliationMapperTest.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\ActionByMapperTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\DataSetsResultMapperTest.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\OrganizationMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\DatasetsResultMapperTest.cs" />
+    <Compile Include="Converters\ESDATConverter\ESDATMappers\ChemistryMappers\ChemistryOrganizationMapperTest.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\PersonMapperTest.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\ProcessingLevelMapperTest.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\Shared\RelatedActionMapperTest.cs" />
