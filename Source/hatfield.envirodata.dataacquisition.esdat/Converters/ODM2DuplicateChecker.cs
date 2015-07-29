@@ -21,11 +21,32 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         {
             // Try the database
             var match = _dbContext.Query<T>().FirstOrDefault(predicate);
+            if (match != null)
+            {
+                Console.WriteLine(this + ": Match found in database.");
+            }
+            else
+            {
+                Console.WriteLine(this + ": Match not found in database.");
+            }
 
             // Try the backing store
             if (match == null)
             {
                 match = backingStore.AsQueryable().FirstOrDefault(predicate);
+
+                string message;
+
+                if (match != null)
+                {
+                    message = String.Format(this + ": Match found in backing store.");
+                }
+                else
+                {
+                    message = String.Format(this + ": Match not found in backing store.");
+                }
+
+                Console.WriteLine(message);
             }
 
             // Handle if no match anywhere
@@ -38,22 +59,29 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
                 {
                     case WayToHandleNewData.CreateInstanceForNewData:
                         {
+                            Console.WriteLine(this + ": New instance created.");
+
                             return entity;
                         }
 
                     case WayToHandleNewData.SetNewDataToBeNull:
                         {
+                            Console.WriteLine(this + ": New data set to null.");
+
                             return null;
                         }
 
                     case WayToHandleNewData.ThrowExceptionForNewData:
                         {
+                            Console.WriteLine(this + ": Exception will be thrown.");
+
                             throw new KeyNotFoundException();
                         }
 
                     case WayToHandleNewData.WarningForNewData:
                         {
-                            Console.WriteLine("Warning: New entry " + entity + " created");
+                            Console.WriteLine(this + ": Warning - New entry " + entity + " created");
+
                             return entity;
                         }
 

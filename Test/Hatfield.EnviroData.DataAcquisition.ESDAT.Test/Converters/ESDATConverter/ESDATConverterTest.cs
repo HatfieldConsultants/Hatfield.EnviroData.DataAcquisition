@@ -43,13 +43,14 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 
         //Commment this out so auto-build would not run this unit test
         //[Test]
-        public void ResultsTest()
+        //[TestCase(WayToHandleNewData.CreateInstanceForNewData)]
+        //[TestCase(WayToHandleNewData.WarningForNewData)]
+        public void ResultsTest(WayToHandleNewData wayToHandleNewData)
         {
-            var dbContext = new ODM2Entities();
+            var dbContext = new Mock<IDbContext>().Object;
             var duplicateChecker = new ODM2DuplicateChecker(dbContext);
             var esdatModel = extractEsdatModel();
             var WQDefaultValueProvider = new StaticWQDefaultValueProvider();
-            var wayToHandleNewData = WayToHandleNewData.CreateInstanceForNewData;
 
             var results = new List<IResult>();
             var sampleCollectionFactory = new ESDATSampleCollectionMapperFactory(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results);
