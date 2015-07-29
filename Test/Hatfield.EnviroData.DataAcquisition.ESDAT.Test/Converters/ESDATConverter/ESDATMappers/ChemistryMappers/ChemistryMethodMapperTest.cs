@@ -12,31 +12,28 @@ using Hatfield.EnviroData.WQDataProfile;
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 {
     [TestFixture]
-    class ChemistryUnitMapperTest
+    class ChemistryMethodMapperTest
     {
         [Test]
         public void ScaffoldTest()
         {
             var chemistry = new ChemistryFileData();
-            chemistry.ResultUnit = "Unit";
 
             var esdatModel = new ESDATModel();
             var sample = new SampleFileData();
-
             var mockDb = new Mock<IDbContext>();
             var mockDbContext = mockDb.Object;
             var duplicateChecker = new ODM2DuplicateChecker(mockDbContext);
             var defaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
             var results = new List<IResult>();
-            var mapper = new ChemistryUnitMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
+            var mapper = new ChemistryMethodMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
 
-            var unit = mapper.Draft(esdatModel, chemistry);
+            var method = mapper.Draft(esdatModel, chemistry);
 
-            Assert.AreEqual(0, unit.UnitsID);
-            Assert.AreEqual("Action", unit.UnitsTypeCV);
-            Assert.AreEqual("Un", unit.UnitsAbbreviation);
-            Assert.AreEqual("Unit", unit.UnitsName);
+            Assert.AreEqual(defaultValueProvider.DefaultMethodTypeCVChemistry, method.MethodTypeCV);
+            Assert.AreEqual(chemistry.MethodType, method.MethodCode);
+            Assert.AreEqual(chemistry.MethodName, method.MethodName);
         }
     }
 }

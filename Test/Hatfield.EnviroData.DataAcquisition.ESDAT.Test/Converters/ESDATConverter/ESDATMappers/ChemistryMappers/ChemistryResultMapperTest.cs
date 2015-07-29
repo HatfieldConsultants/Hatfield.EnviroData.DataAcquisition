@@ -12,7 +12,7 @@ using Hatfield.EnviroData.WQDataProfile;
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 {
     [TestFixture]
-    class ChemistrySamplingFeatureMapperTest
+    class ChemistryResultMapperTest
     {
         [Test]
         public void ScaffoldTest()
@@ -21,23 +21,20 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 
             var esdatModel = new ESDATModel();
             var sample = new SampleFileData();
-
             var mockDb = new Mock<IDbContext>();
             var mockDbContext = mockDb.Object;
             var duplicateChecker = new ODM2DuplicateChecker(mockDbContext);
             var defaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
             var results = new List<IResult>();
-            var mapper = new ChemistrySamplingFeatureMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
+            var mapper = new ChemistryResultMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
 
-            var samplingFeature = mapper.Draft(esdatModel, chemistry);
+            var result = mapper.Draft(esdatModel, chemistry);
 
-            Assert.AreEqual(0, samplingFeature.SamplingFeatureID);
-            Assert.AreEqual("Specimen", samplingFeature.SamplingFeatureTypeCV);
-            Assert.AreEqual(string.Empty, samplingFeature.SamplingFeatureCode);
-            Assert.AreEqual(null, samplingFeature.SamplingFeatureGeotypeCV);
-            Assert.AreEqual(null, samplingFeature.FeatureGeometry);
-            Assert.AreEqual(null, samplingFeature.ElevationDatumCV);
+            Assert.AreEqual(defaultValueProvider.ResultTypeCVChemistry, result.ResultTypeCV);
+            Assert.AreEqual(chemistry.AnalysedDate, result.ResultDateTime);
+            Assert.AreEqual(defaultValueProvider.ResultSampledMediumCVChemistry, result.SampledMediumCV);
+            Assert.AreEqual(1, result.ValueCount);
         }
     }
 }

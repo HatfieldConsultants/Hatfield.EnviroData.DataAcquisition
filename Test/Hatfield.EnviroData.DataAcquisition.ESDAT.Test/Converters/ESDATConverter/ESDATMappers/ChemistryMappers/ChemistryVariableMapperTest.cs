@@ -12,33 +12,35 @@ using Hatfield.EnviroData.WQDataProfile;
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 {
     [TestFixture]
-    class ChemistryMethodMapperTest
+    class ChemistryVariableMapperTest
     {
         [Test]
         public void ScaffoldTest()
         {
             var chemistry = new ChemistryFileData();
+            chemistry.OriginalChemName = "XYZ";
 
             var esdatModel = new ESDATModel();
             var sample = new SampleFileData();
-
             var mockDb = new Mock<IDbContext>();
             var mockDbContext = mockDb.Object;
             var duplicateChecker = new ODM2DuplicateChecker(mockDbContext);
             var defaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
             var results = new List<IResult>();
-            var mapper = new ChemistryMethodMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
+            var mapper = new ChemistryVariableMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
 
-            var method = mapper.Draft(esdatModel, chemistry);
+            var variable = mapper.Draft(esdatModel, chemistry);            
 
-            Assert.AreEqual(0, method.MethodID);
-            Assert.AreEqual("Specimen analysis", method.MethodTypeCV);
-            Assert.AreEqual(string.Empty, method.MethodCode);
-            Assert.AreEqual(null, method.MethodName);
-            Assert.AreEqual(null, method.MethodDescription);
-            Assert.AreEqual(null, method.MethodLink);
-            Assert.AreEqual(null, method.OrganizationID);
+            Assert.AreEqual(defaultValueProvider.DefaultVariableTypeCVChemistry, variable.VariableTypeCV);
+            Assert.AreEqual(chemistry.ChemCode, variable.VariableCode);
+
+            // This is temporarily hard-coded
+            Assert.AreEqual("1,1,1-Trichloroethane", variable.VariableNameCV);
+
+            Assert.AreEqual(chemistry.OriginalChemName, variable.VariableDefinition);
+            Assert.AreEqual(defaultValueProvider.DefaultVariableSpeciationCV, variable.SpeciationCV);
+            Assert.AreEqual(defaultValueProvider.DefaultVariableNoDataValue, variable.NoDataValue);
         }
     }
 }

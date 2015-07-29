@@ -28,7 +28,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             string resultUnit = chemistry.ResultUnit;
 
             entity.UnitsTypeCV = _WQDefaultValueProvider.DefaultUnitsTypeCVChemistry;
-            entity.UnitsAbbreviation = Abbereviate(resultUnit);
+            entity.UnitsAbbreviation = AbbereviateUnit(resultUnit);
             entity.UnitsName = resultUnit;
 
             Validate(entity);

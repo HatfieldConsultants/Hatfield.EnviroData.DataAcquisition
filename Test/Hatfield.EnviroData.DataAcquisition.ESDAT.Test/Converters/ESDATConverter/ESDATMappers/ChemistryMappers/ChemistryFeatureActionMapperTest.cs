@@ -12,34 +12,28 @@ using Hatfield.EnviroData.WQDataProfile;
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 {
     [TestFixture]
-    class ChemistryVariableMapperTest
+    class ChemistryFeatureActionMapperTest
     {
         [Test]
         public void ScaffoldTest()
         {
             var chemistry = new ChemistryFileData();
-            chemistry.OriginalChemName = "XYZ";
 
             var esdatModel = new ESDATModel();
             var sample = new SampleFileData();
-
             var mockDb = new Mock<IDbContext>();
             var mockDbContext = mockDb.Object;
             var duplicateChecker = new ODM2DuplicateChecker(mockDbContext);
             var defaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
             var results = new List<IResult>();
-            var mapper = new ChemistryVariableMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
+            var mapper = new ChemistryFeatureActionMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
 
-            var variable = mapper.Draft(esdatModel, chemistry);            
+            var featureAction = mapper.Draft(esdatModel, chemistry);
 
-            Assert.AreEqual(0, variable.VariableID);
-            Assert.AreEqual("Chemistry", variable.VariableTypeCV);
-            Assert.AreEqual(string.Empty, variable.VariableCode);
-            Assert.AreEqual("XYZ", variable.VariableNameCV);
-            Assert.AreEqual(null, variable.VariableDefinition);
-            Assert.AreEqual("Unknown", variable.SpeciationCV);
-            Assert.AreEqual(-9999, variable.NoDataValue);
+            Assert.AreEqual(0, featureAction.FeatureActionID);
+            Assert.AreEqual(0, featureAction.SamplingFeatureID);
+            Assert.AreEqual(0, featureAction.ActionID);
         }
     }
 }

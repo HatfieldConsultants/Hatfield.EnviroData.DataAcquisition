@@ -25,7 +25,6 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         {
             var entity = new Method();
 
-            entity.MethodID = 0;
             entity.MethodTypeCV = _WQDefaultValueProvider.DefaultMethodTypeCVChemistry;
             entity.MethodCode = chemistry.MethodType;
             entity.MethodName = chemistry.MethodName;

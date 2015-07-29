@@ -12,28 +12,28 @@ using Hatfield.EnviroData.WQDataProfile;
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 {
     [TestFixture]
-    class ChemistryFeatureActionMapperTest
+    class ChemistryMeasurementResultMapperTest
     {
         [Test]
         public void ScaffoldTest()
         {
             var chemistry = new ChemistryFileData();
+
             var esdatModel = new ESDATModel();
             var sample = new SampleFileData();
-
             var mockDb = new Mock<IDbContext>();
             var mockDbContext = mockDb.Object;
             var duplicateChecker = new ODM2DuplicateChecker(mockDbContext);
             var defaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
             var results = new List<IResult>();
-            var mapper = new ChemistryFeatureActionMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
+            var mapper = new ChemistryMeasurementResultMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
 
-            var featureAction = mapper.Draft(esdatModel, chemistry);
+            var measurementResult = mapper.Draft(esdatModel, chemistry);
 
-            Assert.AreEqual(0, featureAction.FeatureActionID);
-            Assert.AreEqual(0, featureAction.SamplingFeatureID);
-            Assert.AreEqual(0, featureAction.ActionID);
+            Assert.AreEqual(defaultValueProvider.MeasurementResultCensorCodeCVChemistry, measurementResult.CensorCodeCV);
+            Assert.AreEqual(defaultValueProvider.MeasurementResultQualityCodeCVChemistry, measurementResult.QualityCodeCV);
+            Assert.AreEqual(defaultValueProvider.MeasurementResultAggregationStatisticCVChemistry, measurementResult.AggregationStatisticCV);
         }
     }
 }

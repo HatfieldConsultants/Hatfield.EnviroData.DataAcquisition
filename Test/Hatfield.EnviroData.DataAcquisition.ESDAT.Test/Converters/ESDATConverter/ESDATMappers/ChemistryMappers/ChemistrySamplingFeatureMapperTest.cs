@@ -12,34 +12,28 @@ using Hatfield.EnviroData.WQDataProfile;
 namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
 {
     [TestFixture]
-    class ChemistryMeasurementResultValueMapperTest
+    class ChemistrySamplingFeatureMapperTest
     {
         [Test]
         public void ScaffoldTest()
         {
             var chemistry = new ChemistryFileData();
-            chemistry.Result = 101;
-            chemistry.AnalysedDate = DateTime.Now;
 
             var esdatModel = new ESDATModel();
             var sample = new SampleFileData();
-
             var mockDb = new Mock<IDbContext>();
             var mockDbContext = mockDb.Object;
             var duplicateChecker = new ODM2DuplicateChecker(mockDbContext);
             var defaultValueProvider = new StaticWQDefaultValueProvider();
             var wayToHandleNewData = WayToHandleNewData.ThrowExceptionForNewData;
             var results = new List<IResult>();
-            var mapper = new ChemistryMeasurementResultValueMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
+            var mapper = new ChemistrySamplingFeatureMapper(duplicateChecker, defaultValueProvider, wayToHandleNewData, results);
 
-            var measurementResultValue = mapper.Draft(esdatModel, chemistry);
+            var samplingFeature = mapper.Draft(esdatModel, chemistry);
 
-            Assert.AreEqual(0, measurementResultValue.ValueID);
-            Assert.AreEqual(0, measurementResultValue.ResultID);
-            Assert.AreEqual(chemistry.Result, measurementResultValue.DataValue);
-            Assert.AreEqual(chemistry.AnalysedDate, measurementResultValue.ValueDateTime);
-            Assert.AreEqual(0, measurementResultValue.ValueDateTimeUTCOffset);
-            Assert.AreEqual(0, measurementResultValue.ValueID);
+            Assert.AreEqual(defaultValueProvider.DefaultSamplingFeatureTypeCVChemistry, samplingFeature.SamplingFeatureTypeCV);
+            Assert.AreEqual(string.Empty, samplingFeature.SamplingFeatureCode);
+            Assert.AreEqual(new Guid(), samplingFeature.SamplingFeatureUUID);
         }
     }
 }

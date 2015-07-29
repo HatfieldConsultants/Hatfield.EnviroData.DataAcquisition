@@ -26,7 +26,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             var entity = new Unit();
 
             entity.UnitsTypeCV = _WQDefaultValueProvider.DefaultUnitsTypeCVSampleCollection;
-            entity.UnitsAbbreviation = Abbereviate(_WQDefaultValueProvider.DefaultUnitsTypeCVSampleCollection);
+            entity.UnitsAbbreviation = AbbereviateUnit(_WQDefaultValueProvider.DefaultUnitsTypeCVSampleCollection);
             entity.UnitsName = _WQDefaultValueProvider.DefaultUnitsTypeCVSampleCollection;
 
             Validate(entity);

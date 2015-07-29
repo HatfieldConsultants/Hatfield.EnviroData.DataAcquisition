@@ -125,7 +125,7 @@
     <Compile Include="Converters\ESDATConverter\ESDATMappers\ChemistryMappers\ChemistryActionMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\SampleCollectionMappers\SampleCollectionActionMapper.cs" />
     <Compile Include="Converters\ESDATConverter\ESDATMappers\ChemistryMappers\ChemistryOrganizationMapper.cs" />
-    <Compile Include="Converters\ESDATConverter\ESDATMapperBase.cs" />
+    <Compile Include="Converters\ODM2MapperBase.cs" />
     <Compile Include="Converters\ODM2EntityLinker.cs" />
     <Compile Include="ESDATDataToImport.cs" />
     <Compile Include="ESDATModel.cs" />
