@@ -9,16 +9,11 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public abstract class AffiliationMapperBase : ODM2MapperBase<Affiliation>, IODM2DuplicableMapper<Affiliation>
     {
-        List<Affiliation> _backingStore;
+        public List<Affiliation> BackingStore { get; set; }
 
         public AffiliationMapperBase(ODM2DuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
             : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
-        }
-
-        public void SetBackingStore(List<Affiliation> backingStore)
-        {
-            _backingStore = backingStore;
         }
 
         protected override void Validate(Affiliation entity)
@@ -36,7 +31,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
                 x.Person.PersonMiddleName.Equals(entity.Person.PersonMiddleName) &&
                 x.Person.PersonLastName.Equals(entity.Person.PersonLastName),
                 wayToHandleNewData,
-                _backingStore
+                BackingStore
             );
 
             return duplicate;

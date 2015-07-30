@@ -9,16 +9,11 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public abstract class VariableMapperBase : ODM2MapperBase<Variable>, IODM2DuplicableMapper<Variable>
     {
-        List<Variable> _backingStore;
+        public List<Variable> BackingStore { get; set; }
 
         public VariableMapperBase(ODM2DuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
             : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
-        }
-
-        public void SetBackingStore(List<Variable> backingStore)
-        {
-            _backingStore = backingStore;
         }
 
         protected override void Validate(Variable entity)
@@ -37,7 +32,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             duplicate = _duplicateChecker.GetDuplicate<Variable>(entity, x =>
                 x.VariableCode.Equals(entity.VariableCode),
                 wayToHandleNewData,
-                _backingStore
+                BackingStore
             );
 
             return duplicate;

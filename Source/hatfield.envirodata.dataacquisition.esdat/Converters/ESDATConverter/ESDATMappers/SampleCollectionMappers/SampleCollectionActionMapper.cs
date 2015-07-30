@@ -47,6 +47,14 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             var samplingFeature = _sampleCollectionFactory.SamplingFeatureMapper.Map(esdatModel);
             ODM2EntityLinker.Link(featureAction, samplingFeature);
 
+            // Dataset Guid
+            // Generate and set guid for this import batch
+            var guid = Guid.NewGuid();
+            _sampleCollectionFactory.DatasetMapper.Guid = guid;
+            _chemistryFactory.DatasetMapper.Guid = guid;
+
+            _chemistryFactory.DatasetMapper.BackingStore = _sampleCollectionFactory.DatasetMapper.BackingStore;
+
             // Results
             // Each Feature Action can contain many results (Samples)
             foreach (SampleFileData sample_ in esdatModel.SampleFileData)
@@ -62,6 +70,15 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
                 // Variable
                 var variable = _sampleCollectionFactory.VariableMapper.Map(esdatModel);
                 ODM2EntityLinker.Link(result, variable);
+
+                // Datasets Result
+                {
+                    var datasetsResult = _sampleCollectionFactory.DatasetsResultMapper.Map(esdatModel);
+                    ODM2EntityLinker.Link(result, datasetsResult);
+
+                    var dataset = _sampleCollectionFactory.DatasetMapper.Map(esdatModel);
+                    ODM2EntityLinker.Link(datasetsResult, dataset);
+                }
 
                 // Processing Level
                 var processingLevel = _sampleCollectionFactory.ProcessingLevelMapper.Map(esdatModel);
