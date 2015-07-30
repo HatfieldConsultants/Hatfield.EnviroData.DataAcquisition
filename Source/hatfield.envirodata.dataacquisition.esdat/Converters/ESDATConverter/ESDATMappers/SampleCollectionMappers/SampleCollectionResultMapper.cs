@@ -26,6 +26,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
         {
             var entity = new Result();
 
+            entity.ResultUUID = Guid.NewGuid();
             entity.ResultTypeCV = _WQDefaultValueProvider.ResultTypeCVSampleCollection;
             entity.ResultDateTime = Sample.SampledDateTime;
             entity.SampledMediumCV = _WQDefaultValueProvider.ResultSampledMediumCVSampleCollection;
