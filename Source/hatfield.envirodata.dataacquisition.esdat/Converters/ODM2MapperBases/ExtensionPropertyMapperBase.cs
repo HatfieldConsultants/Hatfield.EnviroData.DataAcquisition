@@ -9,16 +9,11 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public abstract class ExtensionPropertyMapperBase : ODM2MapperBase<ExtensionProperty>, IODM2DuplicableMapper<ExtensionProperty>
     {
-        List<ExtensionProperty> _backingStore;
+        public List<ExtensionProperty> BackingStore { get; set; }
 
         public ExtensionPropertyMapperBase(ODM2DuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
             : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
-        }
-
-        public void SetBackingStore(List<ExtensionProperty> backingStore)
-        {
-            _backingStore = backingStore;
         }
 
         protected override void Validate(ExtensionProperty entity)
@@ -34,7 +29,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             duplicate = _duplicateChecker.GetDuplicate<ExtensionProperty>(
                 entity, x => x.PropertyName.Equals(entity.PropertyName),
                 wayToHandleNewData,
-                _backingStore
+                BackingStore
             );
 
             return duplicate;

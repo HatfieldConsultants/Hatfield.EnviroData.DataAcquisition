@@ -9,6 +9,8 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public class DatasetMapper : DatasetMapperBase, IESDATSharedMapper<Dataset>
     {
+        public Guid Guid { get; set; }
+
         public DatasetMapper(ODM2DuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results) : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
@@ -26,6 +28,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             var entity = new Dataset();
 
             entity.DatasetTypeCV = _WQDefaultValueProvider.DefaultDatasetTypeCV;
+            entity.DatasetUUID = Guid;
             entity.DatasetCode = esdatModel.LabRequestId.ToString();
             entity.DatasetTitle = String.Format("{0}: {1} ({2})", esdatModel.LabName, esdatModel.LabRequestId.ToString(), esdatModel.DateReported);
             entity.DatasetAbstract = string.Empty;

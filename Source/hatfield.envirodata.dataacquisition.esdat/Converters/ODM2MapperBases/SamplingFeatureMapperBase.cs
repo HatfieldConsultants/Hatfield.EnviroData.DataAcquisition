@@ -9,16 +9,11 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public abstract class SamplingFeatureMapperBase : ODM2MapperBase<SamplingFeature>, IODM2DuplicableMapper<SamplingFeature>
     {
-        List<SamplingFeature> _backingStore;
+        public List<SamplingFeature> BackingStore { get; set; }
 
         public SamplingFeatureMapperBase(ODM2DuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
             : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
-        }
-
-        public void SetBackingStore(List<SamplingFeature> backingStore)
-        {
-            _backingStore = backingStore;
         }
 
         protected override void Validate(SamplingFeature entity)
@@ -35,7 +30,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             duplicate = _duplicateChecker.GetDuplicate<SamplingFeature>(entity, x =>
                 x.SamplingFeatureTypeCV.Equals(entity.SamplingFeatureTypeCV),
                 wayToHandleNewData,
-                _backingStore
+                BackingStore
             );
 
             return duplicate;

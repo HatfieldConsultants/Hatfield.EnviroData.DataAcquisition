@@ -9,21 +9,17 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public abstract class DatasetMapperBase : ODM2MapperBase<Dataset>, IODM2DuplicableMapper<Dataset>
     {
-        List<Dataset> _backingStore;
+        public List<Dataset> BackingStore { get; set; }
 
         public DatasetMapperBase(ODM2DuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
             : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
         }
 
-        public void SetBackingStore(List<Dataset> backingStore)
-        {
-            _backingStore = backingStore;
-        }
-
         protected override void Validate(Dataset entity)
         {
             Validate(entity.DatasetTypeCV, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.DatasetTypeCV)));
+            Validate(entity.DatasetUUID, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.DatasetUUID)));
             Validate(entity.DatasetCode, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.DatasetCode)));
             Validate(entity.DatasetTitle, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.DatasetTitle)));
             Validate(entity.DatasetAbstract, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.DatasetAbstract)));
@@ -35,10 +31,11 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 
             duplicate = _duplicateChecker.GetDuplicate<Dataset>(entity, x =>
                 x.DatasetTypeCV.Equals(entity.DatasetTypeCV) &&
+                x.DatasetUUID.Equals(entity.DatasetUUID) &&
                 x.DatasetCode.Equals(entity.DatasetCode) &&
                 x.DatasetTitle.Equals(entity.DatasetTitle),
                 wayToHandleNewData,
-                _backingStore
+                BackingStore
             );
 
             return duplicate;

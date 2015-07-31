@@ -9,16 +9,11 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public abstract class MethodMapperBase : ODM2MapperBase<Method>, IODM2DuplicableMapper<Method>
     {
-        List<Method> _backingStore;
+        public List<Method> BackingStore { get; set; }
 
         public MethodMapperBase(ODM2DuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
             : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
-        }
-
-        public void SetBackingStore(List<Method> backingStore)
-        {
-            _backingStore = backingStore;
         }
 
         protected override void Validate(Method entity)
@@ -38,7 +33,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
                 x.MethodCode.Equals(entity.MethodCode) &&
                 x.MethodTypeCV.Equals(entity.MethodTypeCV),
                 wayToHandleNewData,
-                _backingStore
+                BackingStore
             );
 
             return duplicate;

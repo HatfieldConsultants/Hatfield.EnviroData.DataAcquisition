@@ -9,16 +9,11 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
 {
     public abstract class ProcessingLevelMapperBase : ODM2MapperBase<ProcessingLevel>, IODM2DuplicableMapper<ProcessingLevel>
     {
-        List<ProcessingLevel> _backingStore;
+        public List<ProcessingLevel> BackingStore { get; set; }
 
         public ProcessingLevelMapperBase(ODM2DuplicateChecker duplicateChecker, IWQDefaultValueProvider WQDefaultValueProvider, WayToHandleNewData wayToHandleNewData, List<IResult> results)
             : base(duplicateChecker, WQDefaultValueProvider, wayToHandleNewData, results)
         {
-        }
-
-        public void SetBackingStore(List<ProcessingLevel> backingStore)
-        {
-            _backingStore = backingStore;
         }
 
         protected override void Validate(ProcessingLevel entity)
@@ -33,7 +28,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             duplicate = _duplicateChecker.GetDuplicate<ProcessingLevel>(entity, x =>
                 x.ProcessingLevelCode.Equals(entity.ProcessingLevelCode),
                 wayToHandleNewData,
-                _backingStore
+                BackingStore
             );
 
             return duplicate;
