@@ -32,15 +32,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>$(SolutionDir)\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>$(SolutionDir)\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Hatfield.EnviroData.Core, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(SolutionDir)\packages\Hatfield.EnviroData.Core.1.0.0.1\lib\Hatfield.EnviroData.Core.dll</HintPath>
+      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Hatfield.EnviroData.Core, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Hatfield.EnviroData.Core.1.0.0.4\lib\net40\Hatfield.EnviroData.Core.dll</HintPath>
     </Reference>
     <Reference Include="Hatfield.EnviroData.FileSystems, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -49,11 +51,13 @@
     <Reference Include="Hatfield.EnviroData.FileSystems.WindowsFileSystem">
       <HintPath>$(SolutionDir)\packages\Hatfield.EnviroData.FileSystems.WindowsFileSystem.1.0.0\lib\net40\Hatfield.EnviroData.FileSystems.WindowsFileSystem.dll</HintPath>
     </Reference>
-    <Reference Include="Hatfield.EnviroData.WQDataProfile">
-      <HintPath>$(SolutionDir)\packages\Hatfield.EnviroData.WQDataProfile.dll.1.0.0.1\lib\net40\Hatfield.EnviroData.WQDataProfile.dll</HintPath>
+    <Reference Include="Hatfield.EnviroData.WQDataProfile, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Hatfield.EnviroData.WQDataProfile.dll.1.0.0.9\lib\net40\Hatfield.EnviroData.WQDataProfile.dll</HintPath>
     </Reference>
-    <Reference Include="Hatfield.WQDefaultValueProvider.JSON">
-      <HintPath>$(SolutionDir)\packages\Hatfield.WQDefaultValueProvider.JSON.1.0.0.1\lib\net40\Hatfield.WQDefaultValueProvider.JSON.dll</HintPath>
+    <Reference Include="Hatfield.WQDefaultValueProvider.JSON, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Hatfield.WQDefaultValueProvider.JSON.1.0.0.9\lib\net40\Hatfield.WQDefaultValueProvider.JSON.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
       <HintPath>$(SolutionDir)\packages\Moq.4.2.1502.0911\lib\net40\Moq.dll</HintPath>
@@ -68,7 +72,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />

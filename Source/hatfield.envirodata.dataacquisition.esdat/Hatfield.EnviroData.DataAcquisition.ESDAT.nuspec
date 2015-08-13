@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Hatfield.EnviroData.DataAcquisition.ESDAT</id>
+    <version>1.0.0.2</version>
+    <title>Hatfield.EnviroData.DataAcquisition.ESDAT</title>
+    <authors>Daniel LU</authors>
+    <owners>Hatfield Consultants</owners>
+    <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
+    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
+    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Hatfield.EnviroData.DataAcquisition.ESDAT</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>ODM2</tags>
+  </metadata>
+</package>

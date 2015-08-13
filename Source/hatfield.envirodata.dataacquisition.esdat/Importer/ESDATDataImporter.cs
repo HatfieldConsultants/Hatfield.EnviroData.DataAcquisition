@@ -103,6 +103,11 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Importer
         private IEnumerable<IResult> ExtractHeaderFile(object model, IList<IExtractConfiguration> extractConfiguration, IDataToImport xmlDataToImport)
         {
             var results = new List<IResult>();
+
+            var validatedDataToImportResult = ValidateHeaderFileDataToImport(xmlDataToImport);
+
+            results.AddRange(validatedDataToImportResult.Item2);
+
             IDataSourceLocation currentLocation = null;
             foreach (var configuration in extractConfiguration.Where(x => x is ISimpleExtractConfiguration))
             {
@@ -116,6 +121,16 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Importer
             }
 
             return results;
+        }
+
+        private Tuple<bool, IEnumerable<IResult>> ValidateHeaderFileDataToImport(IDataToImport dataToImport)
+        {
+            var allValidationResults = from rule in _validationRules
+                                       select rule.Validate(dataToImport);
+
+            var isValid = !allValidationResults.Any(x => ResultLevelHelper.LevelIsHigherThanOrEqualToThreshold(_thresholdLevel, x.Level));
+
+            return new Tuple<bool, IEnumerable<IResult>>(isValid, allValidationResults);
         }
 
         private IEnumerable<IResult> ExtractChemistryFileData(object model, ChemistryFileChildObjectExtractConfiguration configuration, IDataToImport dataToImport)
