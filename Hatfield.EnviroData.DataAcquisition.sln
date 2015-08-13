@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.DataAcquisition", "Source\Hatfield.EnviroData.DataAcquisition\Hatfield.EnviroData.DataAcquisition.csproj", "{FB279550-18D7-43D5-BC1E-01B651ED1C76}"
 EndProject
@@ -36,6 +36,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.DataAcquisition.JSON", "Source\Hatfield.EnviroData.DataAcquisition.JSON\Hatfield.EnviroData.DataAcquisition.JSON.csproj", "{0FEA5B18-6ACD-41D4-980D-870BF5174132}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.DataAcquisition.JSON.Test", "Test\Hatfield.EnviroData.DataAcquisition.JSON.Test\Hatfield.EnviroData.DataAcquisition.JSON.Test.csproj", "{80F1A678-E77E-415D-9097-64A25DB32C9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.WQDataProfile", "..\Hatfield.EnviroData.WQDataProfile\Source\Hatfield.EnviroData.WQDataProfile\Hatfield.EnviroData.WQDataProfile.csproj", "{5413D97C-1DA9-48B7-B1E8-547B4DAA463B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +85,10 @@ Global
 		{80F1A678-E77E-415D-9097-64A25DB32C9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80F1A678-E77E-415D-9097-64A25DB32C9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80F1A678-E77E-415D-9097-64A25DB32C9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5413D97C-1DA9-48B7-B1E8-547B4DAA463B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5413D97C-1DA9-48B7-B1E8-547B4DAA463B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5413D97C-1DA9-48B7-B1E8-547B4DAA463B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5413D97C-1DA9-48B7-B1E8-547B4DAA463B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

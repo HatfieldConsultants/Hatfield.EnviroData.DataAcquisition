@@ -26,9 +26,9 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             var entity = new SamplingFeature();
 
             entity.SamplingFeatureTypeCV = _WQDefaultValueProvider.DefaultSamplingFeatureTypeCVSampleCollection;
-            entity.SamplingFeatureCode = _WQDefaultValueProvider.DefaultSamplingFeatureCode;
-            entity.SamplingFeatureUUID = Guid.Empty;
-            entity.SamplingFeatureName = _WQDefaultValueProvider.DefaultSamplingFeatureName;
+            entity.SamplingFeatureCode = _WQDefaultValueProvider.DefaultSamplingFeatureCodeSampleCollection;
+            entity.SamplingFeatureName = _WQDefaultValueProvider.DefaultSamplingFeatureNameSampleCollection;
+            entity.SamplingFeatureUUID = _WQDefaultValueProvider.DefaultSamplingFeatureUUIDSampleCollection;
 
             Validate(entity);
 
