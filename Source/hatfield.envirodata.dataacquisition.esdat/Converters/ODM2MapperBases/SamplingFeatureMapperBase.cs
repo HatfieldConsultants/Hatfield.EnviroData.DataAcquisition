@@ -21,6 +21,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             Validate(entity.SamplingFeatureTypeCV, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.SamplingFeatureTypeCV)));
             Validate(entity.SamplingFeatureCode, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.SamplingFeatureCode)));
             Validate(entity.SamplingFeatureUUID, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.SamplingFeatureUUID)));
+            Validate(entity.SamplingFeatureName, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.SamplingFeatureName)));
         }
 
         public SamplingFeature GetDuplicate(WayToHandleNewData wayToHandleNewData, SamplingFeature entity)
