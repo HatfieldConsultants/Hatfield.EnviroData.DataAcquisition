@@ -22,6 +22,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             Validate(entity.SamplingFeatureCode, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.SamplingFeatureCode)));
             Validate(entity.SamplingFeatureUUID, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.SamplingFeatureUUID)));
             Validate(entity.SamplingFeatureName, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.SamplingFeatureName)));
+            Validate(entity.SamplingFeatureUUID, new ODM2ConverterSourceLocation(this.ToString(), GetVariableName(() => entity.SamplingFeatureUUID)));
         }
 
         public SamplingFeature GetDuplicate(WayToHandleNewData wayToHandleNewData, SamplingFeature entity)
@@ -29,10 +30,13 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Converters
             var duplicate = entity;
 
             duplicate = _duplicateChecker.GetDuplicate<SamplingFeature>(entity, x =>
-                x.SamplingFeatureTypeCV.Equals(entity.SamplingFeatureTypeCV),
-                wayToHandleNewData,
-                BackingStore
-            );
+                                                                        x.SamplingFeatureTypeCV.Equals(entity.SamplingFeatureTypeCV) &&
+                                                                        x.SamplingFeatureCode.Equals(entity.SamplingFeatureCode) &&
+                                                                        x.SamplingFeatureName.Equals(entity.SamplingFeatureName) &&
+                                                                        x.SamplingFeatureUUID.Equals(entity.SamplingFeatureUUID),
+                                                                        wayToHandleNewData,
+                                                                        BackingStore
+                                                                        );
 
             return duplicate;
         }

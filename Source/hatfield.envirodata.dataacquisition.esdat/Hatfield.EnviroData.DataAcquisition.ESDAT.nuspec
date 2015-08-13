@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Hatfield.EnviroData.DataAcquisition.ESDAT</id>
-    <version>1.0.0.2</version>
+    <version>1.0.0.3</version>
     <title>Hatfield.EnviroData.DataAcquisition.ESDAT</title>
     <authors>Daniel LU</authors>
     <owners>Hatfield Consultants</owners>

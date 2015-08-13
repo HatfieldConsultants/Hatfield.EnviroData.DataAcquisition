@@ -32,7 +32,7 @@ namespace Hatfield.EnviroData.DataAcquisition.ESDAT.Test.Converters
             var samplingFeature = mapper.Draft(esdatModel, chemistry);
 
             Assert.AreEqual(defaultValueProvider.DefaultSamplingFeatureTypeCVChemistry, samplingFeature.SamplingFeatureTypeCV);
-            Assert.AreEqual(string.Empty, samplingFeature.SamplingFeatureCode);
+            Assert.AreEqual("Unknown", samplingFeature.SamplingFeatureCode);
             Assert.AreEqual(new Guid(), samplingFeature.SamplingFeatureUUID);
         }
     }
